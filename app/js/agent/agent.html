@@ -1,0 +1,29 @@
+<div id="content" class="container-fluid">
+
+    <div class="md-toolbar-tools">
+        <h1 md-truncate="" flex="">{{appTitle}}</h1>
+    </div>    
+          
+    <md-card >
+        <md-card-title translate>General Informations</md-card-title>
+        <md-card-content>
+            <div layout="row" layout-xs="column">
+                <md-input-container class="md-block md-input-has-value">
+                    <md-switch ng-model="agent.is_external" aria-label="Is external ?">
+                        In external ?
+                    </md-switch>
+                </md-input-container> 
+            </div>              
+        </md-card-content>
+    </md-card>  
+    <div layout="row" layout-xs="column">
+        <md-button class="md-raised md-primary" aria-label="Add" >
+            <md-icon>save</md-icon>
+            <md-tooltip md-direction="top">
+                <span translate>Save</span>
+            </md-tooltip>
+            Save
+        </md-button>
+    </div> 
+</div>
+

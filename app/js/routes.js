@@ -42,7 +42,7 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
             template: '<div>Error 404</div>',
         }).state('home.equipements', {
             url: 'equipements',
-            template: require('./equipement/equipement.html'),
+            template: require('./equipement/equipements.html'),
             controller: 'EquipementsController',
             resolve: {
                 loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {

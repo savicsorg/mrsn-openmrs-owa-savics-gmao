@@ -38,7 +38,14 @@
                             <td md-cell >{{data.localization}}</td>
                             <td md-cell >{{data.status}}</td>
                             <td md-cell>{{data.lastModified| date:'dd/MM/yyyy'}}</td>
-                            <td md-cell >aaa aaaa</td>
+                            <td md-cell >
+                                <md-button class="md-default" aria-label="Add" >
+                                    <md-icon>eye</md-icon>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>View</span>
+                                    </md-tooltip>
+                                </md-button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
