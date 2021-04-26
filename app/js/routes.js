@@ -77,42 +77,6 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                 }]
             },
             breadcrumbs: ["Home", "Equipements", "Ajout/Modification"]
-        }).state('home.agents', {
-            url: 'agents',
-            template: require('./agent/agents.html'),
-            controller: 'AgentController',
-            resolve: {
-                loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
-                    var deferred = $q.defer();
-                    require.ensure([], function () {
-                        var mod = require('./agent/AgentController.js');
-                        $ocLazyLoad.load({
-                            name: 'AgentController'
-                        });
-                        deferred.resolve(mod.controller);
-                    });
-                    return deferred.promise;
-                }]
-            },
-            breadcrumbs: ["Home", "Agents"]
-        }).state('home.agent', {
-            url: 'agent/:id',
-            template: require('./agent/agent.html'),
-            controller: 'AgentsController',
-            resolve: {
-                loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
-                    var deferred = $q.defer();
-                    require.ensure([], function () {
-                        var mod = require('./agent/AgentController.js');
-                        $ocLazyLoad.load({
-                            name: 'AgentsController'
-                        });
-                        deferred.resolve(mod.controller);
-                    });
-                    return deferred.promise;
-                }]
-            },
-            breadcrumbs: ["Home", "Agents", "Ajout/Modofication"]
         }).state('home.maintenances', {
             url: 'maintenances',
             template: require('./maintenance/maintenances.html'),
@@ -275,6 +239,24 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                 }]
             },
             breadcrumbs: ["Home", "Settings", "Departments"]
+        }).state('home.agents', { 
+            url: 'agents',
+            template: require('./settings/agents.html'),
+            controller: 'SettingsController',
+            resolve: {
+                loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        var mod = require('./settings/SettingsController.js');
+                        $ocLazyLoad.load({
+                            name: 'SettingsController'
+                        });
+                        deferred.resolve(mod.controller);
+                    });
+                    return deferred.promise;
+                }]
+            },
+            breadcrumbs: ["Home", "Settings", "Agents"]
         });
 
         //$urlRouterProvider.otherwise('/error');

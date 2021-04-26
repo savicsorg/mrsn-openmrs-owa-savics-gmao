@@ -18,6 +18,10 @@ angular.module('SettingsController', []).controller('SettingsController', ['$sco
 
     $scope.departments = [];
     $scope.department = {};
+
+    $scope.agents = [];
+    $scope.agent = {};
+
     //loadSettingss();
 
     function loadSettingss() {
