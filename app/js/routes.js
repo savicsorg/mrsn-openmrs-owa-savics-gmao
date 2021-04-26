@@ -257,6 +257,24 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                 }]
             },
             breadcrumbs: ["Home", "Settings", "Equipment types"]
+        }).state('home.departments', { 
+            url: 'departments',
+            template: require('./settings/departments.html'),
+            controller: 'SettingsController',
+            resolve: {
+                loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        var mod = require('./settings/SettingsController.js');
+                        $ocLazyLoad.load({
+                            name: 'SettingsController'
+                        });
+                        deferred.resolve(mod.controller);
+                    });
+                    return deferred.promise;
+                }]
+            },
+            breadcrumbs: ["Home", "Settings", "Departments"]
         });
 
         //$urlRouterProvider.otherwise('/error');

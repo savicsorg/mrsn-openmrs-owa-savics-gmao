@@ -15,6 +15,9 @@ angular.module('SettingsController', []).controller('SettingsController', ['$sco
 
     $scope.equipmentTypes = [];
     $scope.equipmentType = {};
+
+    $scope.departments = [];
+    $scope.department = {};
     //loadSettingss();
 
     function loadSettingss() {
