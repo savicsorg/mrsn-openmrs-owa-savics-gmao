@@ -1,4 +1,4 @@
-<div id="content" class="container-fluid" ng-controller="MaintenanceController as vm">
+<div id="content" class="container-fluid">
 
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex=""> Do a maintenance</h1>
@@ -24,7 +24,7 @@
 
     <md-card>
         <md-card-title>Maintenance information</md-card-title>
-        <md-card_content>
+        <md-card-content>
             <div layout="row" layout-xs="column"  class="flex flex-col">
                 <md-input-container class="md-block"  flex="50">
                     <label translate>Type of maintenance</label>
@@ -44,13 +44,16 @@
                 </md-input-container>
             </div>  
             <div layout="row" layout-xs="column"  class="flex flex-col">
-                <md-input-container class="md-block" flexx="100">
-                    <label translate>State</label>
-                    <md-radio-group ng-model="vm.maintenance.status" layout="row" required>
-                        <md-radio-button value="1" class="md-primary" >In progress</md-radio-button>
+                <md-input-container class="md-block md-input-has-value">
+                    <label translate>Status</label>
+                    <md-radio-group ng-model="equipment.status" layout="row" name="property" required>
+                        <md-radio-button value="1" class="md-primary" >In Progress</md-radio-button>
                         <md-radio-button value="2" class="md-primary" >Completed</md-radio-button>
                     </md-radio-group>
-                </md-input-container>
+                    <div ng-messages="form.property.$error">
+                        <div ng-message="required" translate>Please choose a status.</div>
+                    </div>
+                </md-input-container>   
             </div>   
             <div layout="row" layout-xs="column">
                 <md-input-container class="md-block" flex-gt-sm>
@@ -70,5 +73,13 @@
             </div>                      
         </md-card_content>
     </md-card>
-    
+    <div layout="row" layout-xs="column">
+        <md-button class="md-raised md-primary" aria-label="Add" >
+            <md-icon>save</md-icon>
+            <md-tooltip md-direction="top">
+                <span translate>Save</span>
+            </md-tooltip>
+            Save
+        </md-button>
+    </div> 
 </div>

@@ -1,7 +1,6 @@
 <div id="content" class="container-fluid">
-
     <div class="md-toolbar-tools">
-        <h1 md-truncate="" flex="">{{vm.appTitle}}</h1>
+        <h1 md-truncate="" flex="">{{appTitle}}</h1>
         <md-button class="md-raised md-primary" aria-label="Add" >
             <md-icon>build</md-icon>
             <md-tooltip md-direction="top">
@@ -10,16 +9,12 @@
             Do maintenance
         </md-button>
     </div>    
-          
-    <!--<div ng-controller="EquipementController as vm">
-        <openmrs-list resource="vm.resource" columns="vm.columns" actions="vm.actions" list-all="true"></openmrs-list>
-    </div>-->
     <md-card >
         <md-card-title translate>General Informations</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column">
                 <md-input-container class="md-block md-input-has-value">
-                    <md-switch ng-model="vm.equipment.is_active" aria-label="In service ?">
+                    <md-switch ng-model="equipment.is_active" aria-label="In service ?">
                         In service ?
                     </md-switch>
                 </md-input-container> 
@@ -27,43 +22,43 @@
             <div layout="row" layout-xs="column">
                 <md-input-container class="md-block" flex-gt-sm>
                     <label translate>Serial Number</label>
-                    <input disabled ng-model="vm.equipment.serialNumber">
+                    <input disabled ng-model="equipment.serialNumber">
                 </md-input-container>
                 <md-input-container  class="md-block" flex-gt-sm>
                     <label translate>Code</label>
-                    <input ng-model="vm.equipment.code">
+                    <input ng-model="equipment.code">
                 </md-input-container>
                 <md-input-container  class="md-block" flex-gt-sm>
                     <label translate>Designation</label>
-                    <input ng-model="vm.equipment.designation">
+                    <input ng-model="equipment.designation">
                 </md-input-container>                
             </div>
-            <div layout="row" layout-xs="column">
-                <md-input-container class="md-block">
+            <div layout="row" layout-xs="column" class="flex flex-col">
+                <md-input-container class="md-block" flex="33">
                     <label translate>Type</label>
-                    <md-select ng-model="vm.equipment.equipment_type_id" >
-                        <md-option ng-repeat="t in vm.equipmentTypes" ng-value="t.equipment_type_id">
+                    <md-select ng-model="equipment.equipment_type_id" >
+                        <md-option ng-repeat="t in equipmentTypes" ng-value="t.equipment_type_id">
                             {{t.name}}
                         </md-option>
                     </md-select>
                 </md-input-container>
-                <md-input-container class="md-block">
+                <md-input-container class="md-block" flex="33">
                     <label translate>Department</label>
-                    <md-select ng-model="vm.equipment.department_id" >
-                        <md-option ng-repeat="d in vm.departments" ng-value="d.department_id">
+                    <md-select ng-model="equipment.department_id" >
+                        <md-option ng-repeat="d in departments" ng-value="d.department_id">
                             {{d.name}}
                         </md-option>
                     </md-select>
                 </md-input-container>
-                <md-input-container  class="md-block" flex-gt-sm>
+                <md-input-container  class="md-block" flex="33">
                     <label translate>Localization</label>
-                    <input ng-model="vm.equipment.localization">
+                    <input ng-model="equipment.localization">
                 </md-input-container>
             </div>    
             <div layout="row" layout-xs="column">             
                 <md-input-container class="md-block md-input-has-value">
                     <label translate>Operating state</label>
-                    <md-radio-group ng-model="vm.equipment.status" layout="row" name="property" required>
+                    <md-radio-group ng-model="equipment.status" layout="row" name="property" required>
                         <md-radio-button value="1" class="md-primary" >Well</md-radio-button>
                         <md-radio-button value="2" class="md-primary" >Defective</md-radio-button>
                         <md-radio-button value="0" class="md-primary" >Out of order</md-radio-button>
@@ -73,20 +68,20 @@
                     </div>
                 </md-input-container>                            
             </div>     
-            <div layout="row" layout-xs="column">                                        
-                <md-input-container class="md-block md-input-has-value">
+            <div layout="row" layout-xs="column" class="flex flex-col">                                        
+                <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Acquisition date</label>
-                    <md-datepicker ng-model="vm.equipment.acquisition_date"></md-datepicker>
+                    <input type="date" ng-model="equipment.acquisition_date"/>
                 </md-input-container> 
-                <md-input-container  class="md-block" flex-gt-sm>
+                <md-input-container  class="md-block" flex-gt-sm flex="50">
                     <label translate>Year of commissionning</label>
-                    <input type="number" ng-model="vm.equipment.commissioning">
+                    <input type="number" ng-model="equipment.commissioning">
                 </md-input-container>
             </div>    
             <div layout="row" layout-xs="column">                                        
                 <md-input-container  class="md-block" flex-gt-sm>
                     <label translate>Comments</label>
-                    <textarea ng-model="vm.equipment.comments"></textarea>
+                    <textarea ng-model="equipment.comments"></textarea>
                 </md-input-container>
             </div>               
         </md-card-content>
@@ -97,7 +92,7 @@
             <div layout="row" layout-xs="column">
                 <md-input-container class="md-block md-input-has-value">
                     <label translate>Tracking</label>
-                    <md-radio-group ng-model="vm.equipment.tracking" layout="row" name="property" required>
+                    <md-radio-group ng-model="equipment.tracking" layout="row" name="property" required>
                         <md-radio-button value="1" class="md-primary" >By unique serial number</md-radio-button>
                         <md-radio-button value="2" class="md-primary" >By lots</md-radio-button>
                         <md-radio-button value="0" class="md-primary" >No tracking</md-radio-button>
@@ -110,11 +105,11 @@
             <div layout="row" layout-xs="column">
                 <md-input-container class="md-block" flex-gt-sm>
                     <label translate>Weight</label>
-                    <input type="number" ng-model="vm.equipment.weight" >
+                    <input type="number" ng-model="equipment.weight" >
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                     <label translate>Volume</label>
-                    <input type="number" ng-model="vm.equipment.volume" >
+                    <input type="number" ng-model="equipment.volume" >
                 </md-input-container>
             </div>        
         </md-card-content>

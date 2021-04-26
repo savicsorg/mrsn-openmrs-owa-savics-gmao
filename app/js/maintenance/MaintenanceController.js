@@ -1,4 +1,4 @@
-angular.module('MaintenanceController', []).controller('MaintenanceController', ['$scope', '$rootScope', 'openmrsRest', function ($scope, $rootScope, openmrsRest) {
+angular.module('MaintenanceController', []).controller('MaintenanceController', ['$scope', '$rootScope', '$state', '$stateParams', 'openmrsRest', function ($scope, $rootScope, $state, $stateParams, openmrsRest) {
     $scope.rootscope = $rootScope;
     
     console.log("MaintenanceController new form ---")

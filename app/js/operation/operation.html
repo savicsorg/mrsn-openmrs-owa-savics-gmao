@@ -1,4 +1,4 @@
-<div id="content" class="container-fluid" ng-controller="OperationController as vm">
+<div id="content" class="container-fluid">
 
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="">Operation on equipment(s)</h1>
@@ -7,35 +7,36 @@
         <md-card-title translate>General Informations</md-card-title>
         <md-card-content>  
             <div layout="row" layout-xs="column"  class="flex flex-col">
-                <md-input-container class="md-block" flex="50">
+                <md-input-container class="md-block" flex="33">
                     <label translate>Code</label>
-                    <input disabled ng-model="vm.operation.code">
+                    <input disabled ng-model="operation.code">
                 </md-input-container>
-                <md-input-container  class="md-block" flex="50">
+                <md-input-container  class="md-block" flex="33">
                     <label translate>Date</label>
-                    <md-datepicker ng-model="vm.operation.operation_date"></md-datepicker>
-                </md-input-container>               
-            </div>
-            <div layout="row" layout-xs="column" class="flex flex-col">
+                    <input type="date" ng-model="operation.code">
+                </md-input-container> 
                 <md-input-container class="md-block"  flex="33">
                     <label translate>Type</label>
-                    <md-select ng-model="vm.operation.operation_type_id" >
+                    <md-select ng-model="operation.operation_type_id" >
                         <md-option ng-value="1">Output</md-option>
                         <md-option ng-value="2">Transfert</md-option>
                     </md-select>
-                </md-input-container>
-                <md-input-container class="md-block"  flex="33" ng-if="vm.operation.operation_type_id == 2">
+                </md-input-container>             
+            </div>
+            <div layout="row" layout-xs="column" class="flex flex-col">
+                
+                <md-input-container class="md-block"  flex="100" ng-if="operation.operation_type_id == 2">
                     <label translate>Source</label>
-                    <md-select ng-model="vm.operation.source_department_id" >
-                        <md-option ng-repeat="s in vm.sites" ng-value="s.site_id">
+                    <md-select ng-model="operation.source_department_id" >
+                        <md-option ng-repeat="s in sites" ng-value="s.site_id">
                             {{s.name}}
                         </md-option>
                     </md-select>
                 </md-input-container>
-                <md-input-container class="md-block"  flex="33" ng-if="vm.operation.operation_type_id == 2">
+                <md-input-container class="md-block"  flex="33" ng-if="operation.operation_type_id == 2">
                     <label translate>Destination</label>
-                    <md-select ng-model="vm.operation.destination_department_id" >
-                        <md-option ng-repeat="s in vm.sites" ng-value="s.site_id">
+                    <md-select ng-model="operation.destination_department_id" >
+                        <md-option ng-repeat="s in sites" ng-value="s.site_id">
                             {{s.name}}
                         </md-option>
                     </md-select>
@@ -44,7 +45,7 @@
             <div layout="row" layout-xs="column"  class="flex flex-col">             
                 <md-input-container class="md-block md-input-has-value" flex="100">
                     <label translate>Motif</label>
-                    <textarea ng-model="vm.operation.motif"></textarea>
+                    <textarea ng-model="operation.motif"></textarea>
                 </md-input-container>                            
             </div>                
         </md-card-content>
@@ -54,7 +55,7 @@
             Equipments
         </md-card-title>
         <md-card-content>
-            <md-chips ng-model="vm.operation.equipments" md-autocomplete-snap>
+            <md-chips ng-model="operation.equipments" md-autocomplete-snap>
                 <md-autocomplete md-selected-item="selectedItem"
                                  md-search-text="searchText"
                                  md-items="item in equipments"

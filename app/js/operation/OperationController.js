@@ -1,4 +1,4 @@
-angular.module('OperationController', []).controller('OperationController', ['$scope', '$rootScope', 'openmrsRest', function ($scope, $rootScope, openmrsRest) {
+angular.module('OperationController', []).controller('OperationController', ['$scope', '$rootScope', '$state', '$stateParams', 'openmrsRest', function ($scope, $rootScope, $state, $stateParams, openmrsRest) {
     $scope.rootscope = $rootScope;  
     console.log("OperationController new form ---")
     $scope.myAgents = [{}];
