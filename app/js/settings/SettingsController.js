@@ -12,6 +12,9 @@ angular.module('SettingsController', []).controller('SettingsController', ['$sco
     
     $scope.maintenanceReasons = [];
     $scope.maintenanceReason = {};
+
+    $scope.equipmentTypes = [];
+    $scope.equipmentType = {};
     //loadSettingss();
 
     function loadSettingss() {

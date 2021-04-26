@@ -1,0 +1,70 @@
+<div id="content" class="container-fluid">
+
+    <div class="md-toolbar-tools">
+        <h1 md-truncate="" flex="">Equipment types management</h1>
+    </div>    
+          
+    <md-card >
+        <md-card-title translate>Add/Modify equipment type</md-card-title>
+        <md-card-content>
+            <div layout="row" layout-xs="column" class="flex flex-col">                                        
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Type Name</label>
+                    <input type="text" ng-model="equipmentType.type_name"/>
+                </md-input-container> 
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Type Code</label>
+                    <input type="text" ng-model="equipmentType.type_code"/>
+                </md-input-container> 
+            </div>     
+            <div layout="row" layout-xs="column">
+                <md-button class="md-raised md-primary" aria-label="Add" >
+                    <md-icon>save</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Save</span>
+                    </md-tooltip>
+                    Save
+                </md-button>
+            </div>          
+        </md-card-content>
+    </md-card>  
+    <md-card >
+        <md-card-title translate>List</md-card-title>
+        <md-card-content>
+            <md-table-container class="container" fixed-column-table>
+                <table md-table md-progress="promise">
+                    <thead md-head md-order="query.order">
+                        <tr md-row>
+                            <th md-column md-order-by="type_name"><span translate>Name</span></th>
+                            <th md-column md-order-by="type_code"><span translate>Code</span></th>
+                            <th md-column ><span translate>Actions</span></th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row data-ng-repeat="data in equipmentTypes" >
+                            <td md-cell >{{data.type_name}}</td>
+                            <td md-cell >{{data.type_code}}</td>
+                            <td md-cell >
+                                <md-button class="md-raised md-primary" aria-label="Add" >
+                                    <md-icon>pencil</md-icon>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>Edit</span>
+                                    </md-tooltip>
+                                </md-button>
+                                <md-button class="md-raised md-primary" aria-label="Add" >
+                                    <md-icon>trash</md-icon>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>Remove</span>
+                                    </md-tooltip>
+                                </md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+            </md-table-pagination>
+        </md-card-content>
+    </md-card>
+</div>
+
