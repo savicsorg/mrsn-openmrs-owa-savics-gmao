@@ -185,6 +185,24 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                 }]
             },
             breadcrumbs: ["Home", "Operations", "Edit"]
+        }).state('home.operationApproval', {
+            url: 'operationApproval',
+            template: require('./operation/operationApproval.html'),
+            controller: 'OperationController',
+            resolve: {
+                loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        var mod = require('./operation/OperationController.js');
+                        $ocLazyLoad.load({
+                            name: 'OperationController'
+                        });
+                        deferred.resolve(mod.controller);
+                    });
+                    return deferred.promise;
+                }]
+            },
+            breadcrumbs: ["Home", "Operations", "Approval"]
         }).state('home.maintenanceReasons', { 
             url: 'maintenanceReasons',
             template: require('./settings/maintenanceReasons.html'),
