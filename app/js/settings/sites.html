@@ -1,0 +1,217 @@
+<div id="content" class="container-fluid">
+
+    <div class="md-toolbar-tools">
+        <h1 md-truncate="" flex="">Sites/Locations management</h1>
+        <md-button class="md-raised" ng-click="siteTab=1">
+            <md-tooltip md-direction="top">
+                <span translate>Regions</span>
+            </md-tooltip>
+            Regions
+        </md-button>
+        <md-button class="" ng-click="siteTab=2">
+            <md-tooltip md-direction="top">
+                <span translate>Districts</span>
+            </md-tooltip>
+            Districts
+        </md-button>
+        <md-button class="" ng-click="siteTab=3">
+            <md-tooltip md-direction="top">
+                <span translate>Sites</span>
+            </md-tooltip>
+            Sites
+        </md-button>
+    </div>    
+    <md-card ng-if="siteTab === 1">
+        <md-card-title translate>Add/Modify region</md-card-title>
+        <md-card-content>
+            <div layout="row" layout-xs="column" class="flex flex-col">                                        
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Region name</label>
+                    <input type="text" ng-model="region.region_name"/>
+                </md-input-container> 
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Code</label>
+                    <input type="text" ng-model="region.region_code"/>
+                </md-input-container> 
+            </div>  
+            
+            <div layout="row" layout-xs="column">
+                <md-button class="md-raised md-primary" aria-label="Add" >
+                    <md-icon>save</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Save</span>
+                    </md-tooltip>
+                    Save
+                </md-button>
+            </div>          
+        </md-card-content>
+    </md-card>  
+    <md-card ng-if="siteTab === 1">
+        <md-card-title translate>List</md-card-title>
+        <md-card-content>
+            <md-table-container class="container" fixed-column-table>
+                <table md-table md-progress="promise">
+                    <thead md-head md-order="query.order">
+                        <tr md-row>
+                            <th md-column md-order-by="region_name"><span translate>Name</span></th>
+                            <th md-column md-order-by="region_code"><span translate>Code</span></th>
+                            <th md-column ><span translate>Actions</span></th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row data-ng-repeat="data in regions" >
+                            <td md-cell >{{data.region_name}}</td>
+                            <td md-cell >{{data.region_code}}</td>
+                            <td md-cell >
+                                <md-button class="md-raised md-primary" aria-label="Add" >
+                                    <md-icon>pencil</md-icon>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>Edit</span>
+                                    </md-tooltip>
+                                </md-button>
+                                <md-button class="md-raised md-primary" aria-label="Add" >
+                                    <md-icon>trash</md-icon>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>Remove</span>
+                                    </md-tooltip>
+                                </md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+            </md-table-pagination>
+        </md-card-content>
+    </md-card>
+
+    <md-card ng-if="siteTab === 2">
+        <md-card-title translate>Add/Modify district</md-card-title>
+        <md-card-content>
+            <div layout="row" layout-xs="column" class="flex flex-col">                                        
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>District name</label>
+                    <input type="text" ng-model="district.district_name"/>
+                </md-input-container> 
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Code</label>
+                    <input type="text" ng-model="district.district_code"/>
+                </md-input-container> 
+            </div>  
+            
+            <div layout="row" layout-xs="column">
+                <md-button class="md-raised md-primary" aria-label="Add" >
+                    <md-icon>save</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Save</span>
+                    </md-tooltip>
+                    Save
+                </md-button>
+            </div>          
+        </md-card-content>
+    </md-card>  
+    <md-card ng-if="siteTab === 2">
+        <md-card-title translate>List</md-card-title>
+        <md-card-content>
+            <md-table-container class="container" fixed-column-table>
+                <table md-table md-progress="promise">
+                    <thead md-head md-order="query.order">
+                        <tr md-row>
+                            <th md-column md-order-by="district_name"><span translate>Name</span></th>
+                            <th md-column md-order-by="district_code"><span translate>Code</span></th>
+                            <th md-column ><span translate>Actions</span></th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row data-ng-repeat="data in agents" >
+                            <td md-cell >{{data.district_name}}</td>
+                            <td md-cell >{{data.district_code}}</td>
+                            <td md-cell >
+                                <md-button class="md-raised md-primary" aria-label="Add" >
+                                    <md-icon>pencil</md-icon>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>Edit</span>
+                                    </md-tooltip>
+                                </md-button>
+                                <md-button class="md-raised md-primary" aria-label="Add" >
+                                    <md-icon>trash</md-icon>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>Remove</span>
+                                    </md-tooltip>
+                                </md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+            </md-table-pagination>
+        </md-card-content>
+    </md-card>
+    <md-card ng-if="siteTab === 3">
+        <md-card-title translate>Add/Modify site</md-card-title>
+        <md-card-content>
+            <div layout="row" layout-xs="column" class="flex flex-col">                                        
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Site name</label>
+                    <input type="text" ng-model="site.site_name"/>
+                </md-input-container> 
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Code</label>
+                    <input type="text" ng-model="site.site_code"/>
+                </md-input-container> 
+            </div>  
+            
+            <div layout="row" layout-xs="column">
+                <md-button class="md-raised md-primary" aria-label="Add" >
+                    <md-icon>save</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Save</span>
+                    </md-tooltip>
+                    Save
+                </md-button>
+            </div>          
+        </md-card-content>
+    </md-card>  
+    <md-card ng-if="siteTab === 3">
+        <md-card-title translate>List</md-card-title>
+        <md-card-content>
+            <md-table-container class="container" fixed-column-table>
+                <table md-table md-progress="promise">
+                    <thead md-head md-order="query.order">
+                        <tr md-row>
+                            <th md-column md-order-by="site_name"><span translate>Name</span></th>
+                            <th md-column md-order-by="site_code"><span translate>Code</span></th>
+                            <th md-column ><span translate>Actions</span></th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row data-ng-repeat="data in agents" >
+                            <td md-cell >{{data.site_name}}</td>
+                            <td md-cell >{{data.site_code}}</td>
+                            <td md-cell >
+                                <md-button class="md-raised md-primary" aria-label="Add" >
+                                    <md-icon>pencil</md-icon>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>Edit</span>
+                                    </md-tooltip>
+                                </md-button>
+                                <md-button class="md-raised md-primary" aria-label="Add" >
+                                    <md-icon>trash</md-icon>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>Remove</span>
+                                    </md-tooltip>
+                                </md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+            </md-table-pagination>
+        </md-card-content>
+    </md-card>
+    
+</div>
+
+

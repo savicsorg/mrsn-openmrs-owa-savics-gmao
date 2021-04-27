@@ -22,6 +22,18 @@ angular.module('SettingsController', []).controller('SettingsController', ['$sco
     $scope.agents = [];
     $scope.agent = {};
 
+    $scope.regions = [];
+    $scope.region = {};
+
+    $scope.districts = [];
+    $scope.district = {};
+
+    $scope.sites = [];
+    $scope.site = {};
+
+    $scope.siteTab = 1;
+
+
     //loadSettingss();
 
     function loadSettingss() {
