@@ -8,7 +8,5 @@ angular.module('DashboardController', []).controller('DashboardController', ['$s
     //Breadcrumbs properties
     $rootScope.links = {};
     $rootScope.links["Home"] = "";
-    $rootScope.links["Agents"] = "/agents";
-    
-    
+    $rootScope.links["Agents"] = "/agents";   
 }]);

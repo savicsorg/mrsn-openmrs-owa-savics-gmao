@@ -1,0 +1,87 @@
+<div id="content" class="container-fluid">
+
+    <div class="md-toolbar-tools">
+        <h1 md-truncate="" flex="">Agents management</h1>
+    </div>    
+          
+    <md-card >
+        <md-card-title translate>Add/Modify agent</md-card-title>
+        <md-card-content>
+            <div layout="row" layout-xs="column" class="flex flex-col">                                        
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Roll N°</label>
+                    <input type="text" ng-model="department.department_name"/>
+                </md-input-container> 
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Department</label>
+                    <input type="text" ng-model="department.department_code"/>
+                </md-input-container> 
+            </div>  
+            <div layout="row" layout-xs="column" class="flex flex-col">                                        
+                <md-input-container class="md-block md-input-has-value" flex="100">
+                    <label translate>Full name</label>
+                    <input type="text" ng-model="department.department_name"/>
+                </md-input-container> 
+            </div>
+            <div layout="row" layout-xs="column" class="flex flex-col">                                        
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Contact</label>
+                    <input type="text" ng-model="department.department_name"/>
+                </md-input-container> 
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Address</label>
+                    <input type="text" ng-model="department.department_code"/>
+                </md-input-container> 
+            </div> 
+            <div layout="row" layout-xs="column">
+                <md-button class="md-raised md-primary" aria-label="Add" >
+                    <md-icon>save</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Save</span>
+                    </md-tooltip>
+                    Save
+                </md-button>
+            </div>          
+        </md-card-content>
+    </md-card>  
+    <md-card >
+        <md-card-title translate>List</md-card-title>
+        <md-card-content>
+            <md-table-container class="container" fixed-column-table>
+                <table md-table md-progress="promise">
+                    <thead md-head md-order="query.order">
+                        <tr md-row>
+                            <th md-column md-order-by="roll_number"><span translate>Roll N°</span></th>
+                            <th md-column md-order-by="full_name"><span translate>Full name</span></th>
+                            <th md-column md-order-by="department"><span translate>Department</span></th>
+                            <th md-column ><span translate>Actions</span></th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row data-ng-repeat="data in agents" >
+                            <td md-cell >{{data.roll_number}}</td>
+                            <td md-cell >{{data.full_name}}</td>
+                            <td md-cell >{{data.department}}</td>
+                            <td md-cell >
+                                <md-button class="md-raised md-primary" aria-label="Add" >
+                                    <md-icon>pencil</md-icon>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>Edit</span>
+                                    </md-tooltip>
+                                </md-button>
+                                <md-button class="md-raised md-primary" aria-label="Add" >
+                                    <md-icon>trash</md-icon>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>Remove</span>
+                                    </md-tooltip>
+                                </md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+            </md-table-pagination>
+        </md-card-content>
+    </md-card>
+</div>
