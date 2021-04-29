@@ -37,7 +37,8 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                     });
                     return deferred.promise;
                 }]
-            }
+            },
+            breadcrumbs: ["Home"]
         }).state('home.error', {
             url: 'error',
             template: '<div>Error 404</div>',

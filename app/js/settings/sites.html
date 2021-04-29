@@ -89,16 +89,25 @@
         <md-card-title translate>Add/Modify district</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
-                <md-input-container class="md-block md-input-has-value" flex="50">
+                <md-input-container class="md-block md-input-has-value" flex="100">
                     <label translate>District name</label>
                     <input type="text" ng-model="district.district_name"/>
-                </md-input-container> 
+                </md-input-container>  
+            </div>  
+            <div layout="row" layout-xs="column" class="flex flex-col">                                        
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Code</label>
                     <input type="text" ng-model="district.district_code"/>
                 </md-input-container> 
-            </div>  
-            
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Region</label>
+                    <md-select ng-model="district.region_id" >
+                        <md-option ng-repeat="r in regions" ng-value="r.region_id">
+                            {{r.region_name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container> 
+            </div>
             <div layout="row" layout-xs="column">
                 <md-button class="md-raised md-primary" aria-label="Add" >
                     <md-icon>save</md-icon>
@@ -119,6 +128,7 @@
                         <tr md-row>
                             <th md-column md-order-by="district_name"><span translate>Name</span></th>
                             <th md-column md-order-by="district_code"><span translate>Code</span></th>
+                            <th md-column md-order-by="region"><span translate>Region</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
@@ -126,6 +136,7 @@
                         <tr md-row data-ng-repeat="data in agents" >
                             <td md-cell >{{data.district_name}}</td>
                             <td md-cell >{{data.district_code}}</td>
+                            <td md-cell >{{data.region}}</td>
                             <td md-cell >
                                 <md-button class="md-raised md-primary" aria-label="Add" >
                                     <md-icon>pencil</md-icon>
@@ -152,16 +163,25 @@
         <md-card-title translate>Add/Modify site</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
-                <md-input-container class="md-block md-input-has-value" flex="50">
+                <md-input-container class="md-block md-input-has-value" flex="100">
                     <label translate>Site name</label>
                     <input type="text" ng-model="site.site_name"/>
-                </md-input-container> 
+                </md-input-container>  
+            </div>  
+            <div layout="row" layout-xs="column" class="flex flex-col"> 
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Code</label>
                     <input type="text" ng-model="site.site_code"/>
-                </md-input-container> 
-            </div>  
-            
+                </md-input-container>                                         
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>District</label>
+                    <md-select ng-model="site.district_id" >
+                        <md-option ng-repeat="d in districts" ng-value="d.district_id">
+                            {{d.district_name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div> 
             <div layout="row" layout-xs="column">
                 <md-button class="md-raised md-primary" aria-label="Add" >
                     <md-icon>save</md-icon>
@@ -182,13 +202,15 @@
                         <tr md-row>
                             <th md-column md-order-by="site_name"><span translate>Name</span></th>
                             <th md-column md-order-by="site_code"><span translate>Code</span></th>
+                            <th md-column md-order-by="district"><span translate>District</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="data in agents" >
+                        <tr md-row data-ng-repeat="data in sites" >
                             <td md-cell >{{data.site_name}}</td>
                             <td md-cell >{{data.site_code}}</td>
+                            <td md-cell >{{data.district}}</td>
                             <td md-cell >
                                 <md-button class="md-raised md-primary" aria-label="Add" >
                                     <md-icon>pencil</md-icon>
