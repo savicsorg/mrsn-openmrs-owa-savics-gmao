@@ -4,7 +4,7 @@
   "description": "OpenMRS Savics Gmao OWA module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/anatoleabe/openmrs-owa-savics-gmao"
+    "url": "https://github.com/savicsorg/mrsn-openmrs-owa-savics-gmao"
   },
   "dependencies": {
     "@uirouter/angularjs": "1.0.19",
@@ -82,6 +82,6 @@
     "Web",
     "App"
   ],
-  "author": "anatoleabe",
+  "author": "Savics",
   "license": "MPL-2.0"
 }
