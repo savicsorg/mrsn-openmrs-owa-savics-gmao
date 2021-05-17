@@ -3,43 +3,62 @@
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="">Agents management</h1>       
     </div>    
-          
+
     <md-card >
         <md-card-title translate>Add/Modify agent</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
-                <md-input-container class="md-block md-input-has-value" flex="50">
-                    <label translate>Roll N°</label>
-                    <input type="text" ng-model="department.department_name"/>
-                </md-input-container> 
-                <md-input-container class="md-block md-input-has-value" flex="50">
-                    <label translate>Department</label>
-                    <input type="text" ng-model="department.department_code"/>
-                </md-input-container> 
-            </div>  
-            <div layout="row" layout-xs="column" class="flex flex-col">                                        
                 <md-input-container class="md-block md-input-has-value" flex="100">
                     <label translate>Full name</label>
-                    <input type="text" ng-model="department.department_name"/>
+                    <input type="text" ng-model="agent.fullName" required/>
                 </md-input-container> 
             </div>
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
                 <md-input-container class="md-block md-input-has-value" flex="50">
-                    <label translate>Contact</label>
-                    <input type="text" ng-model="department.department_name"/>
+                    <label translate>Phone number</label>
+                    <input type="text" ng-model="agent.phoneNumber"/>
                 </md-input-container> 
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Address</label>
-                    <input type="text" ng-model="department.department_code"/>
+                    <input type="text" ng-model="agent.agentAddress" required/>
                 </md-input-container> 
             </div> 
-            <div layout="row" layout-xs="column">
-                <md-button class="md-raised md-primary" aria-label="Add" ng-click="createRegion()">
+            <div layout="row" layout-xs="column" class="flex flex-col">                                        
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Roll N°</label>
+                    <input type="text" ng-model="agent.rollNumber" required/>
+                </md-input-container> 
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>External </label>
+                    <md-switch md-invert  ng-model="agent.isExternal" aria-label="External">
+                        External
+                    </md-switch>
+                </md-input-container> 
+            </div> 
+            <div layout="row" layout-xs="column" class="flex flex-col">                                        
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Department</label>
+                    <input type="number" ng-pattern="/^[0-9]{1,7}$/" required ng-model="agent.department"/>
+                </md-input-container> 
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Location</label>
+                    <input type="number" ng-pattern="/^[0-9]{1,7}$/" required ng-model="agent.siteLocation"/>
+                </md-input-container> 
+            </div> 
+            <div layout="row" layout-xs="column" style="text-align: right; float: right;">
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="saveAgent()">
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Save</span>
                     </md-tooltip>
                     Save
+                </md-button>
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()">
+                    <md-icon>clear</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Clear</span>
+                    </md-tooltip>
+                    Clear
                 </md-button>
             </div>          
         </md-card-content>
@@ -53,30 +72,30 @@
                         <tr md-row>
                             <th md-column md-order-by="roll_number"><span translate>Roll N°</span></th>
                             <th md-column md-order-by="full_name"><span translate>Full name</span></th>
-                            <th md-column md-order-by="department"><span translate>Department</span></th>
+                            <th md-column md-order-by="agent"><span translate>Department</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
                         <tr md-row data-ng-repeat="data in agents" >
-                            <td md-cell >{{data.roll_number}}</td>
-                            <td md-cell >{{data.full_name}}</td>
-                            <td md-cell >{{data.department}}</td>
+                            <td md-cell >{{data.rollNumber}}</td>
+                            <td md-cell >{{data.fullName}}</td>
+                            <td md-cell >{{data.department.departmentName}}</td>
                             <td md-cell >
-                                <md-button class="md-raised md-primary" aria-label="Add" >
-                                    <md-icon>pencil</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Edit</span>
-                                    </md-tooltip>
-                                </md-button>
-                                <md-button class="md-raised md-primary" aria-label="Add" >
-                                    <md-icon>trash</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Remove</span>
-                                    </md-tooltip>
-                                </md-button>
-                            </td>
-                        </tr>
+                    <md-button class="md-fab md-mini md-primary" aria-label="Add" ng-click="readAgent(data)">
+                        <md-icon>edit</md-icon>
+                        <md-tooltip md-direction="top">
+                            <span translate>Edit</span>
+                        </md-tooltip>
+                    </md-button>
+                    <md-button class="md-fab md-mini md-primary" ng-click="deleteAgent(data)" aria-label="Remove" >
+                        <md-icon>delete</md-icon>
+                        <md-tooltip md-direction="top">
+                            <span translate>Remove</span>
+                        </md-tooltip>
+                    </md-button>
+                    </td>
+                    </tr>
                     </tbody>
                 </table>
             </md-table-container>
