@@ -2,7 +2,7 @@
 
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="">Sites/Locations management</h1>
-        <md-button class="md-raised" ng-click="siteTab=1">
+        <md-button  class="" ng-click="siteTab=1">
             <md-tooltip md-direction="top">
                 <span translate>Regions</span>
             </md-tooltip>
@@ -21,7 +21,10 @@
             Sites
         </md-button>
     </div>    
-    <md-card ng-if="siteTab === 1">
+    <div layout="row" ng-if="loading" layout-sm="column" layout-align="space-around">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div> 
+    <md-card ng-if="siteTab === 1"  ng-show="!loading">
         <md-card-title translate>Add/Modify region</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
@@ -46,7 +49,7 @@
             </div>          
         </md-card-content>
     </md-card>  
-    <md-card ng-if="siteTab === 1">
+    <md-card ng-if="siteTab === 1"  ng-show="!loading">
         <md-card-title translate>List</md-card-title>
         <md-card-content>
             <md-table-container class="container" fixed-column-table>
@@ -85,7 +88,7 @@
         </md-card-content>
     </md-card>
 
-    <md-card ng-if="siteTab === 2">
+    <md-card ng-if="siteTab === 2"  ng-show="!loading">
         <md-card-title translate>Add/Modify district</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
@@ -119,7 +122,7 @@
             </div>          
         </md-card-content>
     </md-card>  
-    <md-card ng-if="siteTab === 2">
+    <md-card ng-if="siteTab === 2"  ng-show="!loading">
         <md-card-title translate>List</md-card-title>
         <md-card-content>
             <md-table-container class="container" fixed-column-table>
@@ -155,29 +158,29 @@
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{districts.count}}" md-page-select="true">
             </md-table-pagination>
         </md-card-content>
     </md-card>
-    <md-card ng-if="siteTab === 3">
+    <md-card ng-if="siteTab === 3"  ng-show="!loading">
         <md-card-title translate>Add/Modify site</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
                 <md-input-container class="md-block md-input-has-value" flex="100">
                     <label translate>Site name</label>
-                    <input type="text" ng-model="site.site_name"/>
+                    <input type="text" ng-model="site.siteName"/>
                 </md-input-container>  
             </div>  
             <div layout="row" layout-xs="column" class="flex flex-col"> 
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Code</label>
-                    <input type="text" ng-model="site.site_code"/>
+                    <input type="text" ng-model="site.siteCode"/>
                 </md-input-container>                                         
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>District</label>
-                    <md-select ng-model="site.district_id" >
-                        <md-option ng-repeat="d in districts" ng-value="d.district_id">
-                            {{d.district_name}}
+                    <md-select ng-model="site.district" >
+                        <md-option ng-repeat="d in districts" ng-value="d.id">
+                            {{d.districtName}}
                         </md-option>
                     </md-select>
                 </md-input-container>
@@ -193,23 +196,23 @@
             </div>          
         </md-card-content>
     </md-card>  
-    <md-card ng-if="siteTab === 3">
+    <md-card ng-if="siteTab === 3"  ng-show="!loading">
         <md-card-title translate>List</md-card-title>
         <md-card-content>
             <md-table-container class="container" fixed-column-table>
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
-                            <th md-column md-order-by="site_name"><span translate>Name</span></th>
-                            <th md-column md-order-by="site_code"><span translate>Code</span></th>
+                            <th md-column md-order-by="siteName"><span translate>Name</span></th>
+                            <th md-column md-order-by="siteCode"><span translate>Code</span></th>
                             <th md-column md-order-by="district"><span translate>District</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="data in sites" >
-                            <td md-cell >{{data.site_name}}</td>
-                            <td md-cell >{{data.site_code}}</td>
+                        <tr md-row data-ng-repeat="data in siteLocations" >
+                            <td md-cell >{{data.siteName}}</td>
+                            <td md-cell >{{data.siteCode}}</td>
                             <td md-cell >{{data.district}}</td>
                             <td md-cell >
                                 <md-button class="md-raised md-primary" aria-label="Add" >
@@ -217,19 +220,21 @@
                                     <md-tooltip md-direction="top">
                                         <span translate>Edit</span>
                                     </md-tooltip>
+                                    Edit
                                 </md-button>
                                 <md-button class="md-raised md-primary" aria-label="Add" >
                                     <md-icon>trash</md-icon>
                                     <md-tooltip md-direction="top">
                                         <span translate>Remove</span>
                                     </md-tooltip>
+                                    Remove
                                 </md-button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{siteLocations.count}}" md-page-select="true">
             </md-table-pagination>
         </md-card-content>
     </md-card>

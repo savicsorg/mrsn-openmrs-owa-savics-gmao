@@ -3,22 +3,31 @@
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="">Equipment types management</h1>
     </div>    
-          
-    <md-card >
+    <div layout="row" ng-if="loading" layout-sm="column" layout-align="space-around">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>   
+    <md-card  ng-show="!loading">
         <md-card-title translate>Add/Modify equipment type</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Type Name</label>
-                    <input type="text" ng-model="equipmentType.type_name"/>
+                    <input type="text" ng-model="equipmentType.typeName"/>
                 </md-input-container> 
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Type Code</label>
-                    <input type="text" ng-model="equipmentType.type_code"/>
+                    <input type="text" ng-model="equipmentType.typeCode"/>
                 </md-input-container> 
             </div>     
             <div layout="row" layout-xs="column">
-                <md-button class="md-raised md-primary" aria-label="Add" >
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clearEquipmentType()" >
+                    <md-icon>add</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Add a new department</span>
+                    </md-tooltip>
+                    New
+                </md-button>
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="saveEquipmentType()" >
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Save</span>
@@ -28,41 +37,43 @@
             </div>          
         </md-card-content>
     </md-card>  
-    <md-card >
+    <md-card  ng-show="!loading">
         <md-card-title translate>List</md-card-title>
         <md-card-content>
             <md-table-container class="container" fixed-column-table>
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
-                            <th md-column md-order-by="type_name"><span translate>Name</span></th>
-                            <th md-column md-order-by="type_code"><span translate>Code</span></th>
+                            <th md-column md-order-by="typeName"><span translate>Name</span></th>
+                            <th md-column md-order-by="typeCode"><span translate>Code</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
                         <tr md-row data-ng-repeat="data in equipmentTypes" >
-                            <td md-cell >{{data.type_name}}</td>
-                            <td md-cell >{{data.type_code}}</td>
+                            <td md-cell >{{data.typeName}}</td>
+                            <td md-cell >{{data.typeCode}}</td>
                             <td md-cell >
                                 <md-button class="md-raised md-primary" aria-label="Add" >
                                     <md-icon>pencil</md-icon>
                                     <md-tooltip md-direction="top">
                                         <span translate>Edit</span>
                                     </md-tooltip>
+                                    Edit
                                 </md-button>
                                 <md-button class="md-raised md-primary" aria-label="Add" >
                                     <md-icon>trash</md-icon>
                                     <md-tooltip md-direction="top">
                                         <span translate>Remove</span>
                                     </md-tooltip>
+                                    Remove
                                 </md-button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{equipmentTypes.count}}" md-page-select="true">
             </md-table-pagination>
         </md-card-content>
     </md-card>

@@ -1,6 +1,4 @@
-angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', '$rootScope', function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $rootScope) {
-        $rootScope.ressource = "savicsgmao/";
-
+angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
         $urlRouterProvider
         .when('', '/');
 

@@ -32,19 +32,27 @@ angular.module('EquipmentController', []).controller('EquipmentController', ['$s
     ];
 
     $scope.loadList = function(){
-        openmrsRest.getFull($rooScope.resource + "/equipment").then(function (response) {
+        openmrsRest.getFull($scope.resource + "/equipment").then(function (response) {
             $scope.equipments = response.results;
         });
     }
 
-    $scope.add = function(equipment){
-        openmrsRest.create($rootScope.resource + "/equipment").then(function (response) {
-            $scope.equipments = response.results;
-        });
+    $scope.upsert = function(){
+        if ($scope.agent && $scope.agent.uuid) {    // edit
+            console.log("Updating the equipment ", $scope.equipment.uuid)
+            openmrsRest.update($scope.ressource + "equipment", $scope.equipment).then(function (response) {
+                console.log(response);
+            });
+        } else {    // creation
+            console.log("Creating new equipment ")
+            openmrsRest.create($scope.ressource + "equipment", $scope.equipment).then(function (response) {
+                console.log(response);
+            });
+        }
     }
 
-    $scope.view = function(id){
-        
+    $scope.view = function(equipment){
+        $scope.equipment = equipment;
     }
     
 }]);

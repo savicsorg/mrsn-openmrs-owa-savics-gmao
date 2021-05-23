@@ -1,24 +1,35 @@
 <div id="content" class="container-fluid">
-
     <div class="md-toolbar-tools">
-        <h1 md-truncate="" flex="">Departments management</h1>
+        <h1 md-truncate="" flex="">
+            <md-icon class=" material-icons" style="text-align: left;" role="img" aria-hidden="true">sitemap</md-icon>
+            Departments management
+        </h1>
     </div>    
-          
-    <md-card >
+    <div layout="row" ng-if="loading" layout-sm="column" layout-align="space-around">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>    
+    <md-card ng-show="!loading">
         <md-card-title translate>Add/Modify department</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
                 <md-input-container class="md-block md-input-has-value" flex="50">
-                    <label translate>Dpmt.Name</label>
-                    <input type="text" ng-model="department.department_name"/>
+                    <label translate>Dpmt. Name</label>
+                    <input type="text" ng-model="department.departmentName"/>
                 </md-input-container> 
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Dpmt. Code</label>
-                    <input type="text" ng-model="department.department_code"/>
+                    <input type="text" ng-model="department.departmentCode"/>
                 </md-input-container> 
             </div>     
             <div layout="row" layout-xs="column">
-                <md-button class="md-raised md-primary" aria-label="Add" >
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clearDepartment()" >
+                    <md-icon>add</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Add a new department</span>
+                    </md-tooltip>
+                    New
+                </md-button>
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="saveDepartment()" >
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Save</span>
@@ -28,42 +39,40 @@
             </div>          
         </md-card-content>
     </md-card>  
-    <md-card >
+    <md-card ng-show="!loading">
         <md-card-title translate>List</md-card-title>
         <md-card-content>
-            <md-table-container class="container" fixed-column-table>
+            <md-table-container >
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
-                            <th md-column md-order-by="department_name"><span translate>Name</span></th>
-                            <th md-column md-order-by="department_code"><span translate>Code</span></th>
+                            <th md-column md-order-by="departmentName"><span translate>Name</span></th>
+                            <th md-column md-order-by="departmentCode"><span translate>Code</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
                         <tr md-row data-ng-repeat="data in departments" >
-                            <td md-cell >{{data.department_name}}</td>
-                            <td md-cell >{{data.department_code}}</td>
+                            <td md-cell >{{data.departmentName}}</td>
+                            <td md-cell >{{data.departmentCode}}</td>
                             <td md-cell >
-                                <md-button class="md-raised md-primary" aria-label="Add" >
-                                    <md-icon>pencil</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Edit</span>
-                                    </md-tooltip>
-                                </md-button>
-                                <md-button class="md-raised md-primary" aria-label="Add" >
-                                    <md-icon>trash</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Remove</span>
-                                    </md-tooltip>
-                                </md-button>
+                                <button ng-click="readDepartment(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Add">
+                                    <md-icon class=" material-icons" role="img" aria-hidden="true">edit</md-icon>
+                                    Edit
+                                </button>
+                                <button ng-click="deleteDepartment(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Remove">
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
-            </md-table-pagination>
+            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" 
+                md-page="query.page" md-total="{{departments.count}}" md-page-select="true"></md-table-pagination>           
         </md-card-content>
     </md-card>
 </div>

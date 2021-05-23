@@ -3,18 +3,37 @@
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="">Maintenance reasons management</h1>
     </div>    
-          
-    <md-card >
+    <div layout="row" ng-if="loading" layout-sm="column" layout-align="space-around">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>  
+    <md-card  ng-show="!loading">
         <md-card-title translate>Add/Modify reason</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
-                <md-input-container class="md-block md-input-has-value" flex="100">
+                <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Label</label>
-                    <input type="text" ng-model="maintenanceReason.reason_name"/>
+                    <input type="text" ng-model="maintenanceReason.reasonName"/>
+                </md-input-container> 
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Code</label>
+                    <input type="text" ng-model="maintenanceReason.reasonCode"/>
                 </md-input-container> 
             </div>     
+            <div layout="row" layout-xs="column" class="flex flex-col">                                        
+                <md-input-container class="md-block md-input-has-value" flex="100">
+                    <label translate>Details</label>
+                    <textarea type="text" ng-model="maintenanceReason.details"></textarea>
+                </md-input-container> 
+            </div> 
             <div layout="row" layout-xs="column">
-                <md-button class="md-raised md-primary" aria-label="Add" >
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clearMaintenanceReason()" >
+                    <md-icon>add</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Add a new department</span>
+                    </md-tooltip>
+                    New
+                </md-button>
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="saveMaintenanceReason()" >
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Save</span>
@@ -24,39 +43,43 @@
             </div>          
         </md-card-content>
     </md-card>  
-    <md-card >
+    <md-card  ng-show="!loading">
         <md-card-title translate>List</md-card-title>
         <md-card-content>
-            <md-table-container class="container" fixed-column-table>
+            <md-table-container class="container" >
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
-                            <th md-column md-order-by="maintenance_reason_id"><span translate>Name</span></th>
+                            <th md-column md-order-by="reasonName"><span translate>Name</span></th>
+                            <th md-column md-order-by="reasonCode"><span translate>Code</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="data in maintenanceResons" >
-                            <td md-cell >{{data.maintenance_reason_name}}</td>
+                        <tr md-row data-ng-repeat="data in maintenanceReasons" >
+                            <td md-cell >{{reasonName}}</td>
+                            <td md-cell >{{reasonCode}}</td>
                             <td md-cell >
                                 <md-button class="md-raised md-primary" aria-label="Add" >
                                     <md-icon>pencil</md-icon>
                                     <md-tooltip md-direction="top">
                                         <span translate>Edit</span>
                                     </md-tooltip>
+                                    Edit
                                 </md-button>
                                 <md-button class="md-raised md-primary" aria-label="Add" >
                                     <md-icon>trash</md-icon>
                                     <md-tooltip md-direction="top">
                                         <span translate>Remove</span>
                                     </md-tooltip>
+                                    Remove
                                 </md-button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{maintenanceReasons.count}}" md-page-select="true">
             </md-table-pagination>
         </md-card-content>
     </md-card>
