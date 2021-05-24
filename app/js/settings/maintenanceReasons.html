@@ -60,20 +60,16 @@
                             <td md-cell >{{reasonName}}</td>
                             <td md-cell >{{reasonCode}}</td>
                             <td md-cell >
-                                <md-button class="md-raised md-primary" aria-label="Add" >
-                                    <md-icon>pencil</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Edit</span>
-                                    </md-tooltip>
+                                <button ng-click="readMaintenanceReason(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Add">
+                                    <md-icon class=" material-icons" role="img" aria-hidden="true">edit</md-icon>
                                     Edit
-                                </md-button>
-                                <md-button class="md-raised md-primary" aria-label="Add" >
-                                    <md-icon>trash</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Remove</span>
-                                    </md-tooltip>
-                                    Remove
-                                </md-button>
+                                </button>
+                                <button ng-click="deleteMaintenanceReason(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Remove">
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     </tbody>

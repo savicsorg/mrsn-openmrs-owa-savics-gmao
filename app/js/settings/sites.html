@@ -30,16 +30,23 @@
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Region name</label>
-                    <input type="text" ng-model="region.region_name"/>
+                    <input type="text" ng-model="region.regionName"/>
                 </md-input-container> 
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Code</label>
-                    <input type="text" ng-model="region.region_code"/>
+                    <input type="text" ng-model="region.regionCode"/>
                 </md-input-container> 
             </div>  
             
             <div layout="row" layout-xs="column">
-                <md-button class="md-raised md-primary" aria-label="Add" >
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clearRegion()" >
+                    <md-icon>add</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Add a new region</span>
+                    </md-tooltip>
+                    New
+                </md-button>
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="saveRegion()" >
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Save</span>
@@ -52,67 +59,71 @@
     <md-card ng-if="siteTab === 1"  ng-show="!loading">
         <md-card-title translate>List</md-card-title>
         <md-card-content>
-            <md-table-container class="container" fixed-column-table>
+            <md-table-container class="container">
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
-                            <th md-column md-order-by="region_name"><span translate>Name</span></th>
-                            <th md-column md-order-by="region_code"><span translate>Code</span></th>
+                            <th md-column md-order-by="regionName"><span translate>Name</span></th>
+                            <th md-column md-order-by="regionCode"><span translate>Code</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
                         <tr md-row data-ng-repeat="data in regions" >
-                            <td md-cell >{{data.region_name}}</td>
-                            <td md-cell >{{data.region_code}}</td>
+                            <td md-cell >{{data.regionName}}</td>
+                            <td md-cell >{{data.regionCode}}</td>
                             <td md-cell >
-                                <md-button class="md-raised md-primary" aria-label="Add" >
-                                    <md-icon>pencil</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Edit</span>
-                                    </md-tooltip>
-                                </md-button>
-                                <md-button class="md-raised md-primary" aria-label="Add" >
-                                    <md-icon>trash</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Remove</span>
-                                    </md-tooltip>
-                                </md-button>
+                                <button ng-click="readRegion(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Add">
+                                    <md-icon class=" material-icons" role="img" aria-hidden="true">edit</md-icon>
+                                    Edit
+                                </button>
+                                <button ng-click="deleteRegion(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Remove">
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{regions.count}}" md-page-select="true">
             </md-table-pagination>
         </md-card-content>
     </md-card>
-
     <md-card ng-if="siteTab === 2"  ng-show="!loading">
         <md-card-title translate>Add/Modify district</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
                 <md-input-container class="md-block md-input-has-value" flex="100">
                     <label translate>District name</label>
-                    <input type="text" ng-model="district.district_name"/>
+                    <input type="text" ng-model="district.districtName"/>
                 </md-input-container>  
             </div>  
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Code</label>
-                    <input type="text" ng-model="district.district_code"/>
+                    <input type="text" ng-model="district.districtCode"/>
                 </md-input-container> 
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Region</label>
-                    <md-select ng-model="district.region_id" >
-                        <md-option ng-repeat="r in regions" ng-value="r.region_id">
-                            {{r.region_name}}
+                    <md-select ng-model="district.region.id" >
+                        <md-option ng-repeat="r in regions" ng-value="r.id">
+                            {{r.regionName}}
                         </md-option>
                     </md-select>
                 </md-input-container> 
             </div>
             <div layout="row" layout-xs="column">
-                <md-button class="md-raised md-primary" aria-label="Add" >
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clearDistrict()" >
+                    <md-icon>add</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Add a new district</span>
+                    </md-tooltip>
+                    New
+                </md-button>
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="saveDistrict()" >
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Save</span>
@@ -129,30 +140,28 @@
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
-                            <th md-column md-order-by="district_name"><span translate>Name</span></th>
-                            <th md-column md-order-by="district_code"><span translate>Code</span></th>
-                            <th md-column md-order-by="region"><span translate>Region</span></th>
+                            <th md-column md-order-by="districtName"><span translate>Name</span></th>
+                            <th md-column md-order-by="districtCode"><span translate>Code</span></th>
+                            <th md-column md-order-by="region.regionName"><span translate>Region</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="data in agents" >
-                            <td md-cell >{{data.district_name}}</td>
-                            <td md-cell >{{data.district_code}}</td>
-                            <td md-cell >{{data.region}}</td>
+                        <tr md-row data-ng-repeat="data in districts" >
+                            <td md-cell >{{data.districtName}}</td>
+                            <td md-cell >{{data.districtCode}}</td>
+                            <td md-cell >{{data.region.regionName}}</td>
                             <td md-cell >
-                                <md-button class="md-raised md-primary" aria-label="Add" >
-                                    <md-icon>pencil</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Edit</span>
-                                    </md-tooltip>
-                                </md-button>
-                                <md-button class="md-raised md-primary" aria-label="Add" >
-                                    <md-icon>trash</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Remove</span>
-                                    </md-tooltip>
-                                </md-button>
+                                <button ng-click="readDistrict(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Add">
+                                    <md-icon class=" material-icons" role="img" aria-hidden="true">edit</md-icon>
+                                    Edit
+                                </button>
+                                <button ng-click="deleteDistrict(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Remove">
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     </tbody>
@@ -178,7 +187,7 @@
                 </md-input-container>                                         
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>District</label>
-                    <md-select ng-model="site.district" >
+                    <md-select ng-model="site.district.id" >
                         <md-option ng-repeat="d in districts" ng-value="d.id">
                             {{d.districtName}}
                         </md-option>
@@ -186,7 +195,14 @@
                 </md-input-container>
             </div> 
             <div layout="row" layout-xs="column">
-                <md-button class="md-raised md-primary" aria-label="Add" >
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clearSiteLocation()" >
+                    <md-icon>add</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Add a new site</span>
+                    </md-tooltip>
+                    New
+                </md-button>
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="saveSiteLocation()" >
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Save</span>
@@ -205,30 +221,26 @@
                         <tr md-row>
                             <th md-column md-order-by="siteName"><span translate>Name</span></th>
                             <th md-column md-order-by="siteCode"><span translate>Code</span></th>
-                            <th md-column md-order-by="district"><span translate>District</span></th>
+                            <th md-column md-order-by="district.districtName"><span translate>District</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
                         <tr md-row data-ng-repeat="data in siteLocations" >
-                            <td md-cell >{{data.siteName}}</td>
-                            <td md-cell >{{data.siteCode}}</td>
-                            <td md-cell >{{data.district}}</td>
+                            <td md-cell >{{data.locationName}}</td>
+                            <td md-cell >{{data.locationCode}}</td>
+                            <td md-cell >{{data.district.districtName}}</td>
                             <td md-cell >
-                                <md-button class="md-raised md-primary" aria-label="Add" >
-                                    <md-icon>pencil</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Edit</span>
-                                    </md-tooltip>
+                                <button ng-click="readSiteLocation(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Add">
+                                    <md-icon class=" material-icons" role="img" aria-hidden="true">edit</md-icon>
                                     Edit
-                                </md-button>
-                                <md-button class="md-raised md-primary" aria-label="Add" >
-                                    <md-icon>trash</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Remove</span>
-                                    </md-tooltip>
-                                    Remove
-                                </md-button>
+                                </button>
+                                <button ng-click="deleteSiteLocation(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Remove">
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     </tbody>

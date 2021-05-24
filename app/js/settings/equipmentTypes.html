@@ -10,20 +10,16 @@
         <md-card-title translate>Add/Modify equipment type</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
-                <md-input-container class="md-block md-input-has-value" flex="50">
+                <md-input-container class="md-block md-input-has-value" flex="100">
                     <label translate>Type Name</label>
-                    <input type="text" ng-model="equipmentType.typeName"/>
-                </md-input-container> 
-                <md-input-container class="md-block md-input-has-value" flex="50">
-                    <label translate>Type Code</label>
-                    <input type="text" ng-model="equipmentType.typeCode"/>
-                </md-input-container> 
+                    <input type="text" required ng-model="equipmentType.typeName"/>
+                </md-input-container>  
             </div>     
             <div layout="row" layout-xs="column">
                 <md-button class="md-raised md-primary" aria-label="Add" ng-click="clearEquipmentType()" >
                     <md-icon>add</md-icon>
                     <md-tooltip md-direction="top">
-                        <span translate>Add a new department</span>
+                        <span translate>Add a new equipment type</span>
                     </md-tooltip>
                     New
                 </md-button>
@@ -45,29 +41,23 @@
                     <thead md-head md-order="query.order">
                         <tr md-row>
                             <th md-column md-order-by="typeName"><span translate>Name</span></th>
-                            <th md-column md-order-by="typeCode"><span translate>Code</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
                         <tr md-row data-ng-repeat="data in equipmentTypes" >
                             <td md-cell >{{data.typeName}}</td>
-                            <td md-cell >{{data.typeCode}}</td>
                             <td md-cell >
-                                <md-button class="md-raised md-primary" aria-label="Add" >
-                                    <md-icon>pencil</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Edit</span>
-                                    </md-tooltip>
+                                <button ng-click="readEquipmentType(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Add">
+                                    <md-icon class=" material-icons" role="img" aria-hidden="true">edit</md-icon>
                                     Edit
-                                </md-button>
-                                <md-button class="md-raised md-primary" aria-label="Add" >
-                                    <md-icon>trash</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Remove</span>
-                                    </md-tooltip>
-                                    Remove
-                                </md-button>
+                                </button>
+                                <button ng-click="deleteEquipmentType(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Remove">
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     </tbody>

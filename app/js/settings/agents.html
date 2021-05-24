@@ -92,18 +92,16 @@
                             <td md-cell >{{data.fullName}}</td>
                             <td md-cell >{{data.department.departmentName}}</td>
                             <td md-cell >
-                                <md-button class="md-fab md-mini md-primary" aria-label="Add" ng-click="readAgent(data)">
-                                    <md-icon>edit</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Edit</span>
-                                    </md-tooltip>
-                                </md-button>
-                                <md-button class="md-fab md-mini md-primary" ng-click="deleteAgent(data)" aria-label="Remove" >
-                                    <md-icon>delete</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>Remove</span>
-                                    </md-tooltip>
-                                </md-button>
+                                <button ng-click="readAgent(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Add">
+                                    <md-icon class=" material-icons" role="img" aria-hidden="true">edit</md-icon>
+                                    Edit
+                                </button>
+                                <button ng-click="deleteAgent(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Remove">
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     </tbody>
