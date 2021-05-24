@@ -320,7 +320,7 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
             console.log("Updating the district ", $scope.district.uuid)
             openmrsRest.update($scope.ressource + "district", $scope.district).then(function (response) {
                 console.log(response);
-                $scope.region = response;
+                $scope.district = response;
                 loadDistricts();
                 toastr.success('Data saved successfully.', 'Success');   
             },function(e){
@@ -332,7 +332,7 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
             console.log("Creating new disctrict ")
             openmrsRest.create($scope.ressource + "district", $scope.district).then(function (response) {
                 console.log(response);
-                $scope.region = response;
+                $scope.district = response;
                 loadDistricts();
                 toastr.success('Data saved successfully.', 'Success');   
             },function(e){
@@ -388,7 +388,7 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
             console.log("Updating the SiteLocation ", $scope.siteLocation.uuid)
             openmrsRest.update($scope.ressource + "siteLocation", $scope.siteLocation).then(function (response) {
                 console.log(response);
-                $scope.region = response;
+                $scope.siteLocation = response;
                 loadSiteLocations() ;
                 toastr.success('Data saved successfully.', 'Success');   
             },function(e){
@@ -400,7 +400,7 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
             console.log("Creating new siteLocation ")
             openmrsRest.create($scope.ressource + "siteLocation", $scope.siteLocation).then(function (response) {
                 console.log(response);
-                $scope.region = response;
+                $scope.siteLocation = response;
                 loadSiteLocations() ;
                 toastr.success('Data saved successfully.', 'Success');   
             },function(e){
