@@ -31,7 +31,7 @@
                     </thead>
                     <tbody md-body>
                         <tr md-row data-ng-repeat="data in equipments" >
-                            <td md-cell >{{data.serialnumber}}</td>
+                            <td md-cell >{{data.serialNumber}}</td>
                             <td md-cell>{{data.designation}}</td>
                             <td md-cell >{{data.equipmentType.typeName}}</td>
                             <td md-cell >{{data.department.departmentName}}</td>
@@ -39,8 +39,8 @@
                             <td md-cell >{{data.status}}</td>
                             <td md-cell>{{data.lastModifiedDate | date:'dd/MM/yyyy'}}</td>
                             <td md-cell >
-                                <md-button class="md-default" aria-label="Add" >
-                                    <md-icon>eye</md-icon>
+                                <md-button class="md-fab md-raised md-mini" aria-label="View" >
+                                    <md-icon>visibility</md-icon>
                                     <md-tooltip md-direction="top">
                                         <span translate>View</span>
                                     </md-tooltip>

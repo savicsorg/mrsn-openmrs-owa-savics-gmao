@@ -28,20 +28,10 @@ angular.module('EquipementController', []).controller('EquipementController', ['
             openmrsRest.getFull("savicsgmao/equipment").then(function (response) {
                 $scope.showLoading = false;
                 $scope.equipments = response.results;
-                console.log($scope.equipments)
             });
         }
 
         loadEquipmnts();
-//
-//        //TODO replace this by real data comming from openmrsRest
-//        $scope.equipements = [
-//            {"equipmentId": 1, "serialnumber": "11KH34567", "designation": "Toyota Hilux", "type": "Vehicule", "localization": "Bureau MCD", "status": "En service", "lastModified": "2020-03-12"},
-//            {"equipmentId": 2, "serialnumber": "XD1276578", "designation": "Toyota Hilux", "type": "Vehicule", "localization": "Bureau MCD", "status": "En service", "lastModified": "2020-03-12"},
-//            {"equipmentId": 3, "serialnumber": "567HJG878", "designation": "Toyota Hilux", "type": "Vehicule", "localization": "Bureau MCD", "status": "En service", "lastModified": "2020-03-12"},
-//            {"equipmentId": 4, "serialnumber": "YTU78645G", "designation": "Toyota Hilux", "type": "Vehicule", "localization": "Bureau MCD", "status": "En service", "lastModified": "2020-03-12"},
-//            {"equipmentId": 5, "serialnumber": "76GFH6VHB", "designation": "Toyota Hilux", "type": "Vehicule", "localization": "Bureau MCD", "status": "En service", "lastModified": "2020-03-12"}
-//        ];
 
         $scope.view = function (id) {
 
