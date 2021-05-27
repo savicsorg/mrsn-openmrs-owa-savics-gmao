@@ -3,12 +3,20 @@
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="">Agents management</h1>       
     </div>    
-
-    <md-card >
+    <div layout="row" ng-if="loading" layout-sm="column" layout-align="space-around">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div> 
+    <md-card  ng-show="!loading">
         <md-card-title translate>Add/Modify agent</md-card-title>
-        <md-card-content>
-            <div layout="row" layout-xs="column" class="flex flex-col">                                        
-                <md-input-container class="md-block md-input-has-value" flex="100">
+        <md-card-content>            
+            <div layout="row" layout-xs="column" class="flex flex-col">    
+                <md-input-container class="md-block md-input-has-value" flex="20">
+                    <label translate>External </label>
+                    <md-switch md-invert  ng-model="agent.isExternal" aria-label="External">
+                        External
+                    </md-switch>
+                </md-input-container>                                    
+                <md-input-container class="md-block md-input-has-value" flex="80">
                     <label translate>Full name</label>
                     <input type="text" ng-model="agent.fullName" required/>
                 </md-input-container> 
@@ -17,35 +25,37 @@
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Phone number</label>
                     <input type="text" ng-model="agent.phoneNumber"/>
-                </md-input-container> 
-                <md-input-container class="md-block md-input-has-value" flex="50">
-                    <label translate>Address</label>
-                    <input type="text" ng-model="agent.agentAddress" required/>
-                </md-input-container> 
-            </div> 
-            <div layout="row" layout-xs="column" class="flex flex-col">                                        
+                </md-input-container>                                         
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Roll N°</label>
                     <input type="text" ng-model="agent.rollNumber" required/>
-                </md-input-container> 
-                <md-input-container class="md-block md-input-has-value" flex="50">
-                    <label translate>External </label>
-                    <md-switch md-invert  ng-model="agent.isExternal" aria-label="External">
-                        External
-                    </md-switch>
-                </md-input-container> 
+                </md-input-container>
+            </div> 
+            <div layout="row" layout-xs="column" class="flex flex-col"> 
+                <md-input-container class="md-block md-input-has-value" flex="100">
+                    <label translate>Address</label>
+                    <input type="text" ng-model="agent.agentAddress" required/>
+                </md-input-container>                 
             </div> 
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Department</label>
-                    <input type="number" ng-pattern="/^[0-9]{1,7}$/" required ng-model="agent.department"/>
+                    <md-select ng-model="agent.department" >
+                        <md-option ng-repeat="d in departments" ng-value="d.id">
+                            {{d.departmentName}}
+                        </md-option>
+                    </md-select>
                 </md-input-container> 
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Location</label>
-                    <input type="number" ng-pattern="/^[0-9]{1,7}$/" required ng-model="agent.siteLocation"/>
+                    <md-select ng-model="agent.siteLocation" >
+                        <md-option ng-repeat="sL in siteLocations" ng-value="sL.id">
+                            {{sL.locationName}}
+                        </md-option>
+                    </md-select>
                 </md-input-container> 
             </div> 
-            <div layout="row" layout-xs="column" style="text-align: right; float: right;">
+            <div layout="row" layout-xs="column" >
                 <md-button class="md-raised md-primary" aria-label="Add" ng-click="saveAgent()">
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
@@ -53,26 +63,26 @@
                     </md-tooltip>
                     Save
                 </md-button>
-                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()">
-                    <md-icon>clear</md-icon>
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clearAgent()">
+                    <md-icon>add</md-icon>
                     <md-tooltip md-direction="top">
-                        <span translate>Clear</span>
+                        <span translate>Add a new agent</span>
                     </md-tooltip>
-                    Clear
+                    New
                 </md-button>
             </div>          
         </md-card-content>
     </md-card>  
-    <md-card >
+    <md-card  ng-show="!loading">
         <md-card-title translate>List</md-card-title>
         <md-card-content>
             <md-table-container class="container" fixed-column-table>
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
-                            <th md-column md-order-by="roll_number"><span translate>Roll N°</span></th>
-                            <th md-column md-order-by="full_name"><span translate>Full name</span></th>
-                            <th md-column md-order-by="agent"><span translate>Department</span></th>
+                            <th md-column md-order-by="rollNumber"><span translate>Roll N°</span></th>
+                            <th md-column md-order-by="fullName"><span translate>Full name</span></th>
+                            <th md-column md-order-by="department"><span translate>Department</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
@@ -82,24 +92,22 @@
                             <td md-cell >{{data.fullName}}</td>
                             <td md-cell >{{data.department.departmentName}}</td>
                             <td md-cell >
-                    <md-button class="md-fab md-mini md-primary" aria-label="Add" ng-click="readAgent(data)">
-                        <md-icon>edit</md-icon>
-                        <md-tooltip md-direction="top">
-                            <span translate>Edit</span>
-                        </md-tooltip>
-                    </md-button>
-                    <md-button class="md-fab md-mini md-primary" ng-click="deleteAgent(data)" aria-label="Remove" >
-                        <md-icon>delete</md-icon>
-                        <md-tooltip md-direction="top">
-                            <span translate>Remove</span>
-                        </md-tooltip>
-                    </md-button>
-                    </td>
-                    </tr>
+                                <button ng-click="readAgent(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Add">
+                                    <md-icon class=" material-icons" role="img" aria-hidden="true">edit</md-icon>
+                                    Edit
+                                </button>
+                                <button ng-click="deleteAgent(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Remove">
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{agents.count}}" md-page-select="true">
             </md-table-pagination>
         </md-card-content>
     </md-card>

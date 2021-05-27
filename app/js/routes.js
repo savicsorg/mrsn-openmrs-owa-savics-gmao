@@ -1,5 +1,4 @@
 angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-
         $urlRouterProvider
                 .when('', '/');
 
@@ -42,10 +41,10 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         }).state('home.error', {
             url: 'error',
             template: '<div>Error 404</div>',
-        }).state('home.equipements', {
-            url: 'equipements',
-            template: require('./equipement/equipements.html'),
-            controller: 'EquipementController',
+        }).state('home.equipments', {
+            url: 'equipments',
+            template: require('./equipment/equipments.html'),
+            controller: 'EquipmentController',
             resolve: {
                 loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
                         var deferred = $q.defer();
@@ -59,11 +58,11 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                         return deferred.promise;
                     }]
             },
-            breadcrumbs: ["Home", "Equipements"]
-        }).state('home.equipement', {
-            url: 'equipement',
-            template: require('./equipement/equipement.html'),
-            controller: 'EquipementController',
+            breadcrumbs: ["Home", "Equipments"]
+        }).state('home.equipment', {
+            url: 'equipment',
+            template: require('./equipment/equipment.html'),
+            controller: 'EquipmentController',
             resolve: {
                 loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
                         var deferred = $q.defer();
@@ -77,7 +76,7 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                         return deferred.promise;
                     }]
             },
-            breadcrumbs: ["Home", "Equipements", "Ajout/Modification"]
+            breadcrumbs: ["Home", "Equipments", "Ajout/Modification"]
         }).state('home.maintenances', {
             url: 'maintenances',
             template: require('./maintenance/maintenances.html'),
