@@ -1,50 +1,111 @@
-angular.module('EquipementController', []).controller('EquipementController', ['$scope', '$rootScope', '$state', '$stateParams', 'openmrsRest', function ($scope, $rootScope, $state, $stateParams, openmrsRest) {
-        $scope.rootscope = $rootScope;
+angular.module('EquipmentController' ['ngMaterial','ngAnimate', 'toastr']).controller('EquipmentController', ['$scope', '$rootScope', '$state', '$stateParams', 'openmrsRest','toastr', function ($scope, $rootScope, $state, $stateParams, openmrsRest, toastr) {
+    $scope.rootscope = $rootScope;
+    console.log("EquipmentController new form ---")
+    //Breadcrumbs properties
+    $rootScope.links = {};
+    $rootScope.links["Home"] = "";
+    $rootScope.links["Equipments"] = "/equipments";
+    $scope.equipement = { department:{}, equipmentType:{} };
 
-        console.log("EquipementController new form ---")
-        $scope.appTitle = "Gestion des equipements";
-        $scope.resource = "savicsgmao/agent";
-        //Breadcrumbs properties
-        $rootScope.links = {};
-        $rootScope.links["Home"] = "";
-        $rootScope.links["Equipements"] = "/equipements";
-        $scope.equipement = {};
+    $scope.resource = "savicsgmao";
+    $scope.departments = [];
+    $scope.equipmentTypes = [];
+    $scope.equipments = [];
 
-        $scope.appTitle = "Gestion des equipements";
-        $scope.resource = "savicsgmao/agent";
-        $scope.departments = [
-            {department_id: 1, name: 'Department 1'},
-            {department_id: 2, name: 'Department 2'}
-        ];
-        $scope.equipmentTypes = [
-            {equipment_type_id: 1, name: 'Type 1'},
-            {equipment_type_id: 2, name: 'Type 2'}
-        ];
+    function loadLookUps(callback) {
+        openmrsRest.getFull($scope.resource + "/equipmentType").then(function (response) {
+            $scope.equipmentTypes = response.results;
+            openmrsRest.getFull($scope.resource + "/department").then(function (response) {
+                $scope.departments = response.results;     
+                callback(null,response.results);          
+            });
+        });
+    }
 
+    function loadEquipment(uuid, callback) {
+        openmrsRest.getFull($scope.resource + "/equipment/" + uuid).then(function (response) {
+            $scope.equipment = response.results;     
+            callback(null, response.results);          
+        }, function(e){
+            callback(e, null);      
+        });
+    }
 
-        //loadSettingss();
+    function loadEquipments(callback) {
+        openmrsRest.getFull($scope.resource + "/equipment").then(function (response) {
+            $scope.equipments = response.results;     
+            callback(null, response.results);          
+        }, function(e){
+            callback(e, null);      
+        });
+    }
 
-        function loadEquipmnts() {
-            openmrsRest.getFull("savicsgmao/equipment").then(function (response) {
-                $scope.showLoading = false;
-                $scope.equipments = response.results;
-                console.log($scope.equipments)
+    if($stateParams.equipment && $stateParams.equipment.id){
+        $scope.equipment = $stateParams.equipment;
+    } else {
+        loadLookUps(function(e,data){
+            if(e){
+                toastr.error('An unexpected error has occured.', 'Error');
+                $scope.loading = false;
+            }                
+            else {
+                loadEquipments(function(e1, data1){
+                    if(e){
+                        toastr.error('An unexpected error has occured.', 'Error');
+                        $scope.loading = false;
+                    }
+                    else {
+                        toastr.success('Data saved successfully.', 'Success'); 
+                        $scope.loading = false;
+                    } 
+                });
+            }                         
+        });
+    }  
+
+    $scope.view = function (equipment) {
+        $state.go('home.equipment', { equipment: equipment });
+    }
+
+    $scope.saveEquipment = function () {
+        $scope.loading = true;
+        if ($scope.equipment && $scope.equipment.uuid) {//edit
+            console.log("Updating the equipment ", $scope.equipment.uuid)
+            openmrsRest.update($scope.ressource + "equipment", $scope.equipment).then(function (response) {
+                console.log(response);
+                loadEquipments();
+                toastr.success('Data saved successfully.', 'Success');   
+            },function(e){
+                console.error(e);
+                $scope.loading = false;
+                toastr.error('An unexpected error has occured.', 'Error');
+            });
+        } else {//Creation
+            console.log("Creating new equipment ")
+            openmrsRest.create($scope.ressource + "equipment", $scope.equipment).then(function (response) {
+                console.log(response);
+                loadEquipments();
+                toastr.success('Data saved successfully.', 'Success');   
+            },function(e){
+                console.error(e);
+                $scope.loading = false;
+                toastr.error('An unexpected error has occured.', 'Error');
             });
         }
+    }
 
-        loadEquipmnts();
-//
-//        //TODO replace this by real data comming from openmrsRest
-//        $scope.equipements = [
-//            {"equipmentId": 1, "serialnumber": "11KH34567", "designation": "Toyota Hilux", "type": "Vehicule", "localization": "Bureau MCD", "status": "En service", "lastModified": "2020-03-12"},
-//            {"equipmentId": 2, "serialnumber": "XD1276578", "designation": "Toyota Hilux", "type": "Vehicule", "localization": "Bureau MCD", "status": "En service", "lastModified": "2020-03-12"},
-//            {"equipmentId": 3, "serialnumber": "567HJG878", "designation": "Toyota Hilux", "type": "Vehicule", "localization": "Bureau MCD", "status": "En service", "lastModified": "2020-03-12"},
-//            {"equipmentId": 4, "serialnumber": "YTU78645G", "designation": "Toyota Hilux", "type": "Vehicule", "localization": "Bureau MCD", "status": "En service", "lastModified": "2020-03-12"},
-//            {"equipmentId": 5, "serialnumber": "76GFH6VHB", "designation": "Toyota Hilux", "type": "Vehicule", "localization": "Bureau MCD", "status": "En service", "lastModified": "2020-03-12"}
-//        ];
+    $scope.deleteEquipment = function (equipment) {
+        $scope.loading = true;
+        console.log(equipment)
+        openmrsRest.remove($scope.ressource + "equipment", equipment, "Generic Reason").then(function (response) {
+            console.log(response);
+            loadEquipments();
+            toastr.success('Data removed successfully.', 'Success');
+        },function(e){
+            console.error(e);
+            $scope.loading = false;
+            toastr.error('An unexpected error has occured.', 'Error');
+        });
+    }
 
-        $scope.view = function (id) {
-
-        }
-
-    }]);
+}]);

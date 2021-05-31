@@ -1,34 +1,23 @@
 <div id="content" class="container-fluid">
     <div class="md-toolbar-tools">
-        <h1 md-truncate="" flex="">{{appTitle}}</h1>
-        <md-button class="md-raised md-primary" aria-label="Add" >
-            <md-icon>build</md-icon>
-            <md-tooltip md-direction="top">
-                <span translate>Perform a maintenance on this equipment</span>
-            </md-tooltip>
-            Do maintenance
-        </md-button>
+        <h1 md-truncate="" flex="">Add/Modify an equipment</h1>
     </div>    
     <md-card >
         <md-card-title translate>General Informations</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column">
                 <md-input-container class="md-block md-input-has-value">
-                    <md-switch ng-model="equipment.is_active" aria-label="In service ?">
+                    <md-switch ng-model="equipment.inService" aria-label="In service ?">
                         In service ?
                     </md-switch>
                 </md-input-container> 
             </div>   
-            <div layout="row" layout-xs="column">
-                <md-input-container class="md-block" flex-gt-sm>
+            <div layout="row" layout-xs="column" class="flex flex-col">
+                <md-input-container class="md-block" flex-gt-sm flex="50">
                     <label translate>Serial Number</label>
-                    <input disabled ng-model="equipment.serialNumber">
+                    <input ng-model="equipment.serialNumber">
                 </md-input-container>
-                <md-input-container  class="md-block" flex-gt-sm>
-                    <label translate>Code</label>
-                    <input ng-model="equipment.code">
-                </md-input-container>
-                <md-input-container  class="md-block" flex-gt-sm>
+                <md-input-container  class="md-block" flex-gt-sm  flex="50">
                     <label translate>Designation</label>
                     <input ng-model="equipment.designation">
                 </md-input-container>                
@@ -36,16 +25,16 @@
             <div layout="row" layout-xs="column" class="flex flex-col">
                 <md-input-container class="md-block" flex="33">
                     <label translate>Type</label>
-                    <md-select ng-model="equipment.equipment_type_id" >
-                        <md-option ng-repeat="t in equipmentTypes" ng-value="t.equipment_type_id">
+                    <md-select ng-model="equipment.equipmentType.id" >
+                        <md-option ng-repeat="t in equipmentTypes" ng-value="t.id">
                             {{t.name}}
                         </md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container class="md-block" flex="33">
                     <label translate>Department</label>
-                    <md-select ng-model="equipment.department_id" >
-                        <md-option ng-repeat="d in departments" ng-value="d.department_id">
+                    <md-select ng-model="equipment.department.id" >
+                        <md-option ng-repeat="d in departments" ng-value="d.id">
                             {{d.name}}
                         </md-option>
                     </md-select>
