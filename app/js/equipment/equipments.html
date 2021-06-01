@@ -30,26 +30,28 @@
                     </thead>
                     <tbody md-body>
                         <tr md-row data-ng-repeat="data in equipments" >
-                            <td md-cell >{{data.serialnumber}}</td>
+                            <td md-cell >{{data.serialNumber}}</td>
                             <td md-cell>{{data.designation}}</td>
                             <td md-cell >{{data.equipmentType.typeName}}</td>
                             <td md-cell >{{data.department.departmentName}}</td>
                             <td md-cell >{{data.localization}}</td>
-                            <td md-cell >{{data.status}}</td>
-                            <td md-cell>{{data.lastModifiedDate | date:'dd/MM/yyyy'}}</td>
                             <td md-cell >
-                                <md-button class="md-default" aria-label="Add" >
-                                    <md-icon>eye</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>View</span>
-                                    </md-tooltip>
-                                </md-button>
+                                <button ng-click="view(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Add">
+                                    <md-icon class=" material-icons" role="img" aria-hidden="true">edit</md-icon>
+                                    Edit
+                                </button>
+                                <button ng-click="deleteEquipment(data)" class=" md-primary md-button"
+                                    type="button" aria-label="Remove">
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{equipments.count}}" md-page-select="true">
             </md-table-pagination>
         </md-card-content>
     </md-card>    

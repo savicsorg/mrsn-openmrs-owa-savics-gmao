@@ -22,15 +22,6 @@ angular.module('EquipmentController' ['ngMaterial','ngAnimate', 'toastr']).contr
         });
     }
 
-    function loadEquipment(uuid, callback) {
-        openmrsRest.getFull($scope.resource + "/equipment/" + uuid).then(function (response) {
-            $scope.equipment = response.results;     
-            callback(null, response.results);          
-        }, function(e){
-            callback(e, null);      
-        });
-    }
-
     function loadEquipments(callback) {
         openmrsRest.getFull($scope.resource + "/equipment").then(function (response) {
             $scope.equipments = response.results;     
@@ -73,6 +64,7 @@ angular.module('EquipmentController' ['ngMaterial','ngAnimate', 'toastr']).contr
             console.log("Updating the equipment ", $scope.equipment.uuid)
             openmrsRest.update($scope.ressource + "equipment", $scope.equipment).then(function (response) {
                 console.log(response);
+                $scope.equipment = response;
                 loadEquipments();
                 toastr.success('Data saved successfully.', 'Success');   
             },function(e){
@@ -84,6 +76,7 @@ angular.module('EquipmentController' ['ngMaterial','ngAnimate', 'toastr']).contr
             console.log("Creating new equipment ")
             openmrsRest.create($scope.ressource + "equipment", $scope.equipment).then(function (response) {
                 console.log(response);
+                $scope.equipment = response;
                 loadEquipments();
                 toastr.success('Data saved successfully.', 'Success');   
             },function(e){

@@ -1,6 +1,11 @@
 <div id="content" class="container-fluid">
     <div class="md-toolbar-tools">
-        <h1 md-truncate="" flex="">Add/Modify an equipment</h1>
+        <h1 md-truncate="" flex="">
+            <a href="index.html#!/equipments">
+                <md-icon>save</md-icon>
+            </a>
+            Add/Modify an equipment
+        </h1>
     </div>    
     <md-card >
         <md-card-title translate>General Informations</md-card-title>
@@ -47,7 +52,7 @@
             <div layout="row" layout-xs="column">             
                 <md-input-container class="md-block md-input-has-value">
                     <label translate>Operating state</label>
-                    <md-radio-group ng-model="equipment.status" layout="row" name="property" required>
+                    <md-radio-group ng-model="equipment.operatingState" layout="row" name="property" required>
                         <md-radio-button value="1" class="md-primary" >Well</md-radio-button>
                         <md-radio-button value="2" class="md-primary" >Defective</md-radio-button>
                         <md-radio-button value="0" class="md-primary" >Out of order</md-radio-button>
@@ -58,13 +63,17 @@
                 </md-input-container>                            
             </div>     
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
-                <md-input-container class="md-block md-input-has-value" flex="50">
+                <md-input-container class="md-block md-input-has-value" flex="33">
                     <label translate>Acquisition date</label>
-                    <input type="date" ng-model="equipment.acquisition_date"/>
+                    <input type="date" ng-model="equipment.acquisitionDate"/>
                 </md-input-container> 
-                <md-input-container  class="md-block" flex-gt-sm flex="50">
+                <md-input-container  class="md-block" flex-gt-sm flex="33">
                     <label translate>Year of commissionning</label>
-                    <input type="number" ng-model="equipment.commissioning">
+                    <input type="number" ng-model="equipment.commissioningYear">
+                </md-input-container>
+                <md-input-container  class="md-block" flex-gt-sm flex="33">
+                    <label translate>Acquisition Value</label>
+                    <input type="number" ng-model="equipment.acquisitionValue">
                 </md-input-container>
             </div>    
             <div layout="row" layout-xs="column">                                        
@@ -94,7 +103,7 @@
             <div layout="row" layout-xs="column">
                 <md-input-container class="md-block" flex-gt-sm>
                     <label translate>Weight</label>
-                    <input type="number" ng-model="equipment.weight" >
+                    <input type="number" ng-model="equipment.equipmentWeight" >
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                     <label translate>Volume</label>
@@ -104,7 +113,7 @@
         </md-card-content>
     </md-card>  
     <div layout="row" layout-xs="column">
-        <md-button class="md-raised md-primary" aria-label="Add" >
+        <md-button class="md-raised md-primary" aria-label="Add" ng-click="saveEquipment()">
             <md-icon>save</md-icon>
             <md-tooltip md-direction="top">
                 <span translate>Save</span>
