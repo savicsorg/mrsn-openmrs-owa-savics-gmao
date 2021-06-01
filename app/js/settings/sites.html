@@ -177,17 +177,17 @@
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
                 <md-input-container class="md-block md-input-has-value" flex="100">
                     <label translate>Site name</label>
-                    <input type="text" ng-model="site.siteName"/>
+                    <input type="text" ng-model="siteLocation.locationName"/>
                 </md-input-container>  
             </div>  
             <div layout="row" layout-xs="column" class="flex flex-col"> 
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Code</label>
-                    <input type="text" ng-model="site.siteCode"/>
+                    <input type="text" ng-model="siteLocation.locationCode"/>
                 </md-input-container>                                         
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>District</label>
-                    <md-select ng-model="site.district.id" >
+                    <md-select ng-model="siteLocation.district.id" >
                         <md-option ng-repeat="d in districts" ng-value="d.id">
                             {{d.districtName}}
                         </md-option>
