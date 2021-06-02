@@ -4,7 +4,6 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
     console.log("SettingsController new form ---")
     $scope.mySettings = [{}];
     $scope.appTitle = "Gestion des equipements";
-    $scope.resource = "savicsgmao";
     //Breadcrumbs properties
     $rootScope.links = {};
     $rootScope.links["Home"] = "";

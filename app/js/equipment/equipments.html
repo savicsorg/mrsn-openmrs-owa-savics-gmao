@@ -11,18 +11,18 @@
             </md-button>
         </a>       
     </div>   
-    
-    <md-card>
+    <div layout="row" ng-if="loading" layout-sm="column" layout-align="space-around">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div> 
+    <md-card   ng-show="!loading">
         <md-card-content>
             <md-table-container class="container" fixed-column-table>
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
-                            <th md-column md-order-by="serialnumber"><span translate>Serial No</span></th>
+                            <th md-column md-order-by="serialNumber"><span translate>Serial N°</span></th>
                             <th md-column md-order-by="designation"><span translate>Designation</span></th>
-                            <th md-column md-order-by="type" ><span translate>type</span></th>
-                            <th md-column md-order-by="department" ><span translate>Department</span></th>
-                            <th md-column md-order-by="localization"><span translate>Localization</span></th>
+                            <th md-column md-order-by="type" ><span translate>Type</span></th>
                             <th md-column md-order-by="actions"><span translate>Actions</span></th>
                         </tr>
                     </thead>
@@ -31,18 +31,19 @@
                             <td md-cell >{{data.serialNumber}}</td>
                             <td md-cell>{{data.designation}}</td>
                             <td md-cell >{{data.equipmentType.typeName}}</td>
-                            <td md-cell >{{data.department.departmentName}}</td>
-                            <td md-cell >{{data.localization}}</td>
                             <td md-cell >
                                 <button ng-click="view(data)" class=" md-primary md-button"
-                                    type="button" aria-label="Add">
-                                    <md-icon class=" material-icons" role="img" aria-hidden="true">edit</md-icon>
-                                    Edit
+                                    type="button">
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
                                 </button>
-                                <button ng-click="deleteEquipment(data)" class=" md-primary md-button"
-                                    type="button" aria-label="Remove">
+                                <button ng-click="view(data)" class=" md-primary md-button" type="button">
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
+                                </button>
+                                <button ng-click="view(data)" class=" md-primary md-button" type="button">
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
+                                </button>
+                                <button ng-click="deleteEquipment(data)" class=" md-primary md-button" type="button">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
-                                    Delete
                                 </button>
                             </td>
                         </tr>

@@ -16,11 +16,11 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                     template: require('./templates/footer.html')
                 }
             }
-        }).state('home.dashboard', {// Define home page
+        }).state('home.dashboard', {
             abstract: true,
             url: '',
             template: require('./dashboard/dashboard.html')
-        }).state('home.dashboard.main', {// Define dashboard page
+        }).state('home.dashboard.main', {
             url: '',
             template: require('./dashboard/main.html'),
             controller: 'DashboardController',
@@ -41,7 +41,7 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         }).state('home.error', {
             url: 'error',
             template: '<div>Error 404</div>',
-        }).state('home.equipments', {
+        }).state('home.equipments', { 
             url: 'equipments',
             template: require('./equipment/equipments.html'),
             controller: 'EquipmentController',
@@ -312,7 +312,6 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
             },
             breadcrumbs: ["Home", "Settings", "Sites"]
         });
-
         //$urlRouterProvider.otherwise('/error');
         //$locationProvider.html5Mode(true);
     }]).run(['$rootScope', '$state', '$transitions', function ($rootScope, $state, $transitions) {

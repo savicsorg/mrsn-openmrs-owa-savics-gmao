@@ -1,58 +1,36 @@
-angular.module('EquipmentController' ['ngMaterial','ngAnimate', 'toastr']).controller('EquipmentController', ['$scope', '$rootScope', '$state', '$stateParams', 'openmrsRest','toastr', function ($scope, $rootScope, $state, $stateParams, openmrsRest, toastr) {
-   /*  $scope.rootscope = $rootScope;
+angular.module('EquipmentController', []).controller('EquipmentController', ['$scope', '$rootScope', '$state', '$stateParams', 'openmrsRest', function ($scope, $rootScope, $state, $stateParams, openmrsRest) {
+    $scope.rootscope = $rootScope;
     console.log("EquipmentController new form ---")
     //Breadcrumbs properties
+    $scope.ressource = "savicsgmao/";
     $rootScope.links = {};
     $rootScope.links["Home"] = "";
-    $rootScope.links["Equipments"] = "/equipments";
-    $scope.equipment = { department:{}, equipmentType:{} };
+    $rootScope.links["Equipments"] = "equipments";
+    $scope.equipment = { department: {}, equipmentType: {} };
 
     $scope.resource = "savicsgmao";
     $scope.departments = [];
     $scope.equipmentTypes = [];
     $scope.equipments = [];
+    $scope.loading = false;
 
-    function loadLookUps(callback) {
+    function loadEquipments() {
+        $scope.loading = true;
         openmrsRest.getFull($scope.resource + "/equipmentType").then(function (response) {
             $scope.equipmentTypes = response.results;
             openmrsRest.getFull($scope.resource + "/department").then(function (response) {
                 $scope.departments = response.results;     
-                callback(null,response.results);          
+                openmrsRest.getFull($scope.resource + "/equipment").then(function (response) {
+                    $scope.equipments = response.results;     
+                    $scope.loading = false; 
+                }, function(e){
+                    $scope.loading = false;       
+                });
             });
         });
     }
 
-    function loadEquipments(callback) {
-        openmrsRest.getFull($scope.resource + "/equipment").then(function (response) {
-            $scope.equipments = response.results;     
-            callback(null, response.results);          
-        }, function(e){
-            callback(e, null);      
-        });
-    }
-
-    if($stateParams.equipment && $stateParams.equipment.id){
-        $scope.equipment = $stateParams.equipment;
-    } else {
-        loadLookUps(function(e,data){
-            if(e){
-                toastr.error('An unexpected error has occured.', 'Error');
-                $scope.loading = false;
-            }                
-            else {
-                loadEquipments(function(e1, data1){
-                    if(e){
-                        toastr.error('An unexpected error has occured.', 'Error');
-                        $scope.loading = false;
-                    }
-                    else {
-                        toastr.success('Data saved successfully.', 'Success'); 
-                        $scope.loading = false;
-                    } 
-                });
-            }                         
-        });
-    }  
+    loadEquipments();
 
     $scope.view = function (equipment) {
         $state.go('home.equipment', { equipment: equipment });
@@ -99,6 +77,5 @@ angular.module('EquipmentController' ['ngMaterial','ngAnimate', 'toastr']).contr
             $scope.loading = false;
             toastr.error('An unexpected error has occured.', 'Error');
         });
-    } */
-
+    }
 }]);

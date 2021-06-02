@@ -1,21 +1,35 @@
 <div id="content" class="container-fluid">
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="">
-            <a href="index.html#!/equipments">
-                <md-icon>save</md-icon>
+            <a href="index.html#!/equipments" >
+                <i class="icon-angle-left"></i>
             </a>
             Add/Modify an equipment
         </h1>
-    </div>    
-    <md-card >
+    </div>  
+    <div layout="row" ng-if="loading" layout-sm="column" layout-align="space-around">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>   
+    <md-card ng-show="!loading">
         <md-card-title translate>General Informations</md-card-title>
         <md-card-content>
-            <div layout="row" layout-xs="column">
-                <md-input-container class="md-block md-input-has-value">
+            <div layout="row" layout-xs="column" class="flex flex-col">
+                <md-input-container class="md-block md-input-has-value" flex = "30">
                     <md-switch ng-model="equipment.inService" aria-label="In service ?">
                         In service ?
                     </md-switch>
                 </md-input-container> 
+                <md-input-container class="md-block md-input-has-value" flex = "70" ng-if="!equipment.inService">
+                    <br><label translate>Status</label>
+                    <md-radio-group ng-model="equipment.equipmentStatus" layout="row" required>
+                        <md-radio-button value="0" class="md-primary" >Defective</md-radio-button>
+                        <md-radio-button value="1" class="md-primary" >Tranfered</md-radio-button>
+                        <md-radio-button value="2" class="md-primary" >Disposed</md-radio-button>  
+                    </md-radio-group>
+                    <div ng-messages="form.property.$error">
+                        <div ng-message="required" translate>Please choose an equipment status.</div>
+                    </div>
+                </md-input-container>  
             </div>   
             <div layout="row" layout-xs="column" class="flex flex-col">
                 <md-input-container class="md-block" flex-gt-sm flex="50">
@@ -32,7 +46,7 @@
                     <label translate>Type</label>
                     <md-select ng-model="equipment.equipmentType.id" >
                         <md-option ng-repeat="t in equipmentTypes" ng-value="t.id">
-                            {{t.name}}
+                            {{t.typeName}}
                         </md-option>
                     </md-select>
                 </md-input-container>
@@ -40,7 +54,7 @@
                     <label translate>Department</label>
                     <md-select ng-model="equipment.department.id" >
                         <md-option ng-repeat="d in departments" ng-value="d.id">
-                            {{d.name}}
+                            {{d.departmentName}}
                         </md-option>
                     </md-select>
                 </md-input-container>
@@ -84,7 +98,7 @@
             </div>               
         </md-card-content>
     </md-card>   
-    <md-card>
+    <md-card ng-show="!loading">
         <md-card-title>Inventory</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column">
@@ -112,7 +126,7 @@
             </div>        
         </md-card-content>
     </md-card>  
-    <div layout="row" layout-xs="column">
+    <div layout="row" layout-xs="column" ng-show="!loading">
         <md-button class="md-raised md-primary" aria-label="Add" ng-click="saveEquipment()">
             <md-icon>save</md-icon>
             <md-tooltip md-direction="top">
