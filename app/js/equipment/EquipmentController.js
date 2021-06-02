@@ -1,14 +1,12 @@
-angular.module('EquipmentController', []).controller('EquipmentController', ['$scope', '$rootScope', '$state', '$stateParams', 'openmrsRest', function ($scope, $rootScope, $state, $stateParams, openmrsRest) {
+angular.module('EquipmentController', ['ngMaterial','ngAnimate', 'toastr']).controller('EquipmentController', ['$scope', '$rootScope', '$state', '$stateParams', 'openmrsRest', 'toastr', function ($scope, $rootScope, $state, $stateParams, openmrsRest, toastr) {
     $scope.rootscope = $rootScope;
     console.log("EquipmentController new form ---")
     //Breadcrumbs properties
-    $scope.ressource = "savicsgmao/";
+    $scope.resource = "savicsgmao";
     $rootScope.links = {};
     $rootScope.links["Home"] = "";
     $rootScope.links["Equipments"] = "equipments";
     $scope.equipment = { department: {}, equipmentType: {} };
-
-    $scope.resource = "savicsgmao";
     $scope.departments = [];
     $scope.equipmentTypes = [];
     $scope.equipments = [];
@@ -23,10 +21,20 @@ angular.module('EquipmentController', []).controller('EquipmentController', ['$s
                 openmrsRest.getFull($scope.resource + "/equipment").then(function (response) {
                     $scope.equipments = response.results;     
                     $scope.loading = false; 
-                }, function(e){
-                    $scope.loading = false;       
+                },function(e){
+                    console.error(e);
+                    $scope.loading = false;
+                    toastr.error('An unexpected error has occured.', 'Error');
                 });
+            },function(e){
+                console.error(e);
+                $scope.loading = false;
+                toastr.error('An unexpected error has occured.', 'Error');
             });
+        },function(e){
+            console.error(e);
+            $scope.loading = false;
+            toastr.error('An unexpected error has occured.', 'Error');
         });
     }
 
@@ -38,9 +46,14 @@ angular.module('EquipmentController', []).controller('EquipmentController', ['$s
 
     $scope.saveEquipment = function () {
         $scope.loading = true;
+        if(!$scope.equipment.equipmentStatus) $scope.equipment.equipmentStatus = 1;
+        if(!$scope.equipment.providerId) $scope.equipment.providerId = 1;
+        $scope.equipment.acquisitionDate = new Date($scope.equipment.acquisitionDate);
+        $scope.equipment.department = $scope.equipment.department.id;
+        $scope.equipment.equipmentType = $scope.equipment.equipmentType.id;
         if ($scope.equipment && $scope.equipment.uuid) {    //Edit
             console.log("Updating the equipment ", $scope.equipment.uuid)
-            openmrsRest.update($scope.ressource + "equipment", $scope.equipment).then(function (response) {
+            openmrsRest.update($scope.resource + "/equipment", $scope.equipment).then(function (response) {
                 console.log(response);
                 $scope.equipment = response;
                 loadEquipments();
@@ -52,7 +65,7 @@ angular.module('EquipmentController', []).controller('EquipmentController', ['$s
             });
         } else {    //Creation
             console.log("Creating new equipment ")
-            openmrsRest.create($scope.ressource + "equipment", $scope.equipment).then(function (response) {
+            openmrsRest.create($scope.resource + "/equipment", $scope.equipment).then(function (response) {
                 console.log(response);
                 $scope.equipment = response;
                 loadEquipments();
@@ -68,7 +81,7 @@ angular.module('EquipmentController', []).controller('EquipmentController', ['$s
     $scope.deleteEquipment = function (equipment) {
         $scope.loading = true;
         console.log(equipment)
-        openmrsRest.remove($scope.ressource + "equipment", equipment, "Generic Reason").then(function (response) {
+        openmrsRest.remove($scope.resource + "/equipment", equipment, "Generic Reason").then(function (response) {
             console.log(response);
             loadEquipments();
             toastr.success('Data removed successfully.', 'Success');
