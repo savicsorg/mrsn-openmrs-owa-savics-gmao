@@ -1,11 +1,11 @@
 angular.module('EquipmentController' ['ngMaterial','ngAnimate', 'toastr']).controller('EquipmentController', ['$scope', '$rootScope', '$state', '$stateParams', 'openmrsRest','toastr', function ($scope, $rootScope, $state, $stateParams, openmrsRest, toastr) {
-    $scope.rootscope = $rootScope;
+   /*  $scope.rootscope = $rootScope;
     console.log("EquipmentController new form ---")
     //Breadcrumbs properties
     $rootScope.links = {};
     $rootScope.links["Home"] = "";
     $rootScope.links["Equipments"] = "/equipments";
-    $scope.equipement = { department:{}, equipmentType:{} };
+    $scope.equipment = { department:{}, equipmentType:{} };
 
     $scope.resource = "savicsgmao";
     $scope.departments = [];
@@ -60,7 +60,7 @@ angular.module('EquipmentController' ['ngMaterial','ngAnimate', 'toastr']).contr
 
     $scope.saveEquipment = function () {
         $scope.loading = true;
-        if ($scope.equipment && $scope.equipment.uuid) {//edit
+        if ($scope.equipment && $scope.equipment.uuid) {    //Edit
             console.log("Updating the equipment ", $scope.equipment.uuid)
             openmrsRest.update($scope.ressource + "equipment", $scope.equipment).then(function (response) {
                 console.log(response);
@@ -72,7 +72,7 @@ angular.module('EquipmentController' ['ngMaterial','ngAnimate', 'toastr']).contr
                 $scope.loading = false;
                 toastr.error('An unexpected error has occured.', 'Error');
             });
-        } else {//Creation
+        } else {    //Creation
             console.log("Creating new equipment ")
             openmrsRest.create($scope.ressource + "equipment", $scope.equipment).then(function (response) {
                 console.log(response);
@@ -99,6 +99,6 @@ angular.module('EquipmentController' ['ngMaterial','ngAnimate', 'toastr']).contr
             $scope.loading = false;
             toastr.error('An unexpected error has occured.', 'Error');
         });
-    }
+    } */
 
 }]);

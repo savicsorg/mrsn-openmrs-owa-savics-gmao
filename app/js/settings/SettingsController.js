@@ -397,7 +397,7 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
                 toastr.error('An unexpected error has occured.', 'Error');
             });
         } else {//Creation
-            console.log("Creating new siteLocation ")
+            console.log("Creating new siteLocation ");
             openmrsRest.create($scope.ressource + "siteLocation", $scope.siteLocation).then(function (response) {
                 console.log(response);
                 $scope.siteLocation = response;
@@ -428,7 +428,7 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
     function loadSiteLocations() {
         $scope.loading = true;
         openmrsRest.getFull($scope.ressource + "siteLocation").then(function (response) {
-            $scope.showLoading = false;
+            $scope.loading = false;
             $scope.siteLocations = response.results;
             console.log($scope.siteLocations)
         },function(e){
