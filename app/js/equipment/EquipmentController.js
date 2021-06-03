@@ -12,20 +12,26 @@ angular.module('EquipmentController', ['ngMaterial','ngAnimate', 'toastr']).cont
     $scope.equipments = [];
     $scope.loading = false;
 
-    function loadEquipments() {
+    function loadData() {
         $scope.loading = true;
         openmrsRest.getFull($scope.resource + "/equipmentType").then(function (response) {
             $scope.equipmentTypes = response.results;
             openmrsRest.getFull($scope.resource + "/department").then(function (response) {
-                $scope.departments = response.results;     
-                openmrsRest.getFull($scope.resource + "/equipment").then(function (response) {
-                    $scope.equipments = response.results;     
+                $scope.departments = response.results;  
+                console.log($stateParams);
+                if($stateParams.equipment){
+                    $scope.equipment = $stateParams.equipment;
                     $scope.loading = false; 
-                },function(e){
-                    console.error(e);
-                    $scope.loading = false;
-                    toastr.error('An unexpected error has occured.', 'Error');
-                });
+                }   else {
+                    openmrsRest.getFull($scope.resource + "/equipment").then(function (response) {
+                        $scope.equipments = response.results;     
+                        $scope.loading = false; 
+                    },function(e){
+                        console.error(e);
+                        $scope.loading = false;
+                        toastr.error('An unexpected error has occured.', 'Error');
+                    });
+                }
             },function(e){
                 console.error(e);
                 $scope.loading = false;
@@ -38,10 +44,19 @@ angular.module('EquipmentController', ['ngMaterial','ngAnimate', 'toastr']).cont
         });
     }
 
-    loadEquipments();
+    loadData();
 
     $scope.view = function (equipment) {
+        equipment.acquisitionDate = new Date(equipment.acquisitionDate);
         $state.go('home.equipment', { equipment: equipment });
+    }
+
+    $scope.movement = function (equipment) {
+        $state.go('home.operation', { equipment: equipment });
+    }
+
+    $scope.maintenance = function (equipment) {
+        $state.go('home.maintenance', { equipment: equipment });
     }
 
     $scope.saveEquipment = function () {
@@ -55,8 +70,9 @@ angular.module('EquipmentController', ['ngMaterial','ngAnimate', 'toastr']).cont
             console.log("Updating the equipment ", $scope.equipment.uuid)
             openmrsRest.update($scope.resource + "/equipment", $scope.equipment).then(function (response) {
                 console.log(response);
+                response.acquisitionDate = new Date(response.acquisitionDate);
                 $scope.equipment = response;
-                loadEquipments();
+                loadData();
                 toastr.success('Data saved successfully.', 'Success');   
             },function(e){
                 console.error(e);
@@ -67,8 +83,9 @@ angular.module('EquipmentController', ['ngMaterial','ngAnimate', 'toastr']).cont
             console.log("Creating new equipment ")
             openmrsRest.create($scope.resource + "/equipment", $scope.equipment).then(function (response) {
                 console.log(response);
+                response.acquisitionDate = new Date(response.acquisitionDate);
                 $scope.equipment = response;
-                loadEquipments();
+                loadData();
                 toastr.success('Data saved successfully.', 'Success');   
             },function(e){
                 console.error(e);
@@ -83,7 +100,7 @@ angular.module('EquipmentController', ['ngMaterial','ngAnimate', 'toastr']).cont
         console.log(equipment)
         openmrsRest.remove($scope.resource + "/equipment", equipment, "Generic Reason").then(function (response) {
             console.log(response);
-            loadEquipments();
+            loadData();
             toastr.success('Data removed successfully.', 'Success');
         },function(e){
             console.error(e);

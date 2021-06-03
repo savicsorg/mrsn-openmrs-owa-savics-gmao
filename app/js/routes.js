@@ -63,6 +63,9 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
             url: 'equipment',
             template: require('./equipment/equipment.html'),
             controller: 'EquipmentController',
+            params: {
+                equipment: {}
+            },
             resolve: {
                 loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
                     var deferred = $q.defer();
@@ -99,6 +102,9 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
             url: 'maintenance',
             template: require('./maintenance/maintenance.html'),
             controller: 'MaintenanceController',
+            params: {
+                equipment: null
+            },
             resolve: {
                 loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
                     var deferred = $q.defer();
@@ -171,6 +177,9 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
             url: 'operation',
             template: require('./operation/operation.html'),
             controller: 'OperationController',
+            params: {
+                equipment: null
+            },
             resolve: {
                 loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
                     var deferred = $q.defer();

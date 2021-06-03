@@ -32,18 +32,30 @@
                             <td md-cell>{{data.designation}}</td>
                             <td md-cell >{{data.equipmentType.typeName}}</td>
                             <td md-cell >
-                                <button ng-click="view(data)" class=" md-primary md-button"
+                                <button ng-click="view(data)" class="md-primary md-button"
                                     type="button">
-                                    <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
+                                    <i class="icon-edit"></i>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>Edit</span>
+                                    </md-tooltip>
                                 </button>
-                                <button ng-click="view(data)" class=" md-primary md-button" type="button">
-                                    <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
+                                <button ng-click="maintenance(data)" class="md-primary md-button" type="button">
+                                    <i class="icon-suitcase"></i>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>Maintenance</span>
+                                    </md-tooltip>
                                 </button>
-                                <button ng-click="view(data)" class=" md-primary md-button" type="button">
-                                    <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
+                                <button ng-click="movement(data)" class="md-primary md-button" type="button">
+                                    <i class="icon-fullscreen "></i>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>Movements</span>
+                                    </md-tooltip>
                                 </button>
-                                <button ng-click="deleteEquipment(data)" class=" md-primary md-button" type="button">
-                                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                                <button ng-click="deleteEquipment(data)" class="md-primary md-button" type="button">
+                                    <i class="icon-trash"></i>
+                                    <md-tooltip md-direction="top">
+                                        <span translate>Remove</span>
+                                    </md-tooltip>
                                 </button>
                             </td>
                         </tr>

@@ -1,7 +1,7 @@
 <div id="content" class="container-fluid">
 
     <div class="md-toolbar-tools">
-        <h1 md-truncate="" flex=""> Historique des opérations</h1>
+        <h1 md-truncate="" flex=""> Movements management</h1>
         <a href = "index.html#!/operation">
             <md-button class="md-raised md-primary" aria-label="Add" >
                 <md-icon>add</md-icon>
@@ -9,15 +9,6 @@
                     <span translate>New</span>
                 </md-tooltip>
                 Add new
-            </md-button>
-        </a>
-        <a href = "index.html#!/operationApproval">
-            <md-button class="md-raised md-primary" aria-label="Add" >
-                <md-icon>playlist-check</md-icon>
-                <md-tooltip md-direction="top">
-                    <span translate>Approve an operation</span>
-                </md-tooltip>
-                Approve operation
             </md-button>
         </a>       
     </div>
@@ -29,10 +20,8 @@
             </form>
         </div>
     </md-toolbar>
-            <!--<div ng-controller="EquipementController as vm">
-                <openmrs-list resource="vm.resource" columns="vm.columns" actions="vm.actions" list-all="true"></openmrs-list>
-            </div>-->
-    <md-card ng-controller="OperationController as vm">
+
+    <md-card>
         <md-table-container class="container" fixed-column-table>
             <table md-table md-progress="promise">
                 <thead md-head md-order="query.order">
@@ -53,7 +42,7 @@
                 </tbody>
             </table>
         </md-table-container>
-        <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+        <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{operations.count}}" md-page-select="true">
         </md-table-pagination>
     </md-card>
 </div>
