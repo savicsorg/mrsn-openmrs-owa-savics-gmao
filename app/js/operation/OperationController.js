@@ -1,5 +1,5 @@
-angular.module('OperationController', []).controller('OperationController', ['$scope', '$rootScope', '$state', '$stateParams', 'openmrsRest', function ($scope, $rootScope, $state, $stateParams, openmrsRest) {
-    $scope.rootscope = $rootScope;  
+angular.module('OperationController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('OperationController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) {    
+        $scope.rootscope = $rootScope;  
     console.log("OperationController new form ---")
     $scope.myAgents = [{}];
     $scope.appTitle = "Gestion des operations";

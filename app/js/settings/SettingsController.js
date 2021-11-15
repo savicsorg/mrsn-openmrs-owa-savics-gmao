@@ -1,4 +1,4 @@
-angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).controller('SettingsController', ['$scope', '$rootScope', 'openmrsRest', 'toastr', function ($scope, $rootScope, openmrsRest, toastr) {
+angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('SettingsController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) {
     $scope.rootscope = $rootScope;
 
     console.log("SettingsController new form ---")
@@ -67,22 +67,22 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
             openmrsRest.update($scope.ressource + "agent", $scope.agent).then(function (response) {
                 console.log(response);
                 loadAgents();
-                toastr.success('Data saved successfully.', 'Success');   
+                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
             },function(e){
                 console.error(e);
                 $scope.loading = false;
-                toastr.error('An unexpected error has occured.', 'Error');
+                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         } else {//Creation
-            console.log("Creating new agent ")
+            console.log($translate.instant("Creating new agent "))
             openmrsRest.create($scope.ressource + "agent", $scope.agent).then(function (response) {
                 console.log(response);
                 loadAgents();
-                toastr.success('Data saved successfully.', 'Success');   
+                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
             },function(e){
                 console.error(e);
                 $scope.loading = false;
-                toastr.error('An unexpected error has occured.', 'Error');
+                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         }
     }
@@ -97,7 +97,7 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
         },function(e){
             console.error(e);
             $scope.loading = false;
-            toastr.error('An unexpected error has occured.', 'Error');
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 
@@ -107,11 +107,11 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
         openmrsRest.remove($scope.ressource + "agent", agent, "Generic Reason").then(function (response) {
             console.log(response);
             $scope.loading = false;
-            toastr.success('Data removed successfully.', 'Success');
+            toastr.success($translate.instant('Data removed successfully.'), 'Success');
         },function(e){
             console.error(e);
             $scope.loading = false;
-            toastr.error('An unexpected error has occured.', 'Error');
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 
@@ -123,26 +123,26 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
     $scope.saveDepartment = function () {
         $scope.loading = true;
         if ($scope.department && $scope.department.uuid) {//edit
-            console.log("Updating the department ", $scope.department.uuid)
+            console.log($translate.instant("Updating the department "), $scope.department.uuid)
             openmrsRest.update($scope.ressource + "department", $scope.department).then(function (response) {
                 console.log(response);
                 loadDepartments();    
-                toastr.success('Data saved successfully.', 'Success');              
+                toastr.success($translate.instant('Data removed successfully.'), 'Success');              
             },function(e){
                 console.error(e);
                 $scope.loading = false;
-                toastr.error('An unexpected error has occured.', 'Error');
+                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         } else {//Creation
-            console.log("Creating new department ")
+            console.log($translate.instant("Creating new department "))
             openmrsRest.create($scope.ressource + "department", $scope.department).then(function (response) {
                 console.log(response);
                 loadDepartments();
-                toastr.success('Data saved successfully.', 'Success');   
+                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
             },function(e){
                 console.error(e);
                 $scope.loading = false;
-                toastr.error('An unexpected error has occured.', 'Error');
+                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         }
     }
@@ -153,11 +153,11 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
         openmrsRest.remove($scope.ressource + "department", department, "Generic Reason").then(function (response) {
             console.log(response);
             loadDepartments();
-            toastr.success('Data removed successfully.', 'Success');   
+            toastr.success($translate.instant('Data removed successfully.'), 'Success');   
         },function(e){
             console.error(e);
             $scope.loading = false;
-            toastr.error('An unexpected error has occured.', 'Error');
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 
@@ -171,7 +171,7 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
         },function(e){
             console.error(e);
             $scope.loading = false;
-            toastr.error('An unexpected error has occured.', 'Error');
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 
@@ -191,22 +191,22 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
             openmrsRest.update($scope.ressource + "equipmentType", $scope.equipmentType).then(function (response) {
                 console.log(response);
                 loadEquipmentTypes();
-                toastr.success('Data saved successfully.', 'Success');   
+                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
             },function(e){
                 console.error(e);
                 $scope.loading = false;
-                toastr.error('An unexpected error has occured.', 'Error');
+                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         } else {//Creation
             console.log("Creating new equipmentType ")
             openmrsRest.create($scope.ressource + "equipmentType", $scope.equipmentType).then(function (response) {
                 console.log(response);
                 loadEquipmentTypes();
-                toastr.success('Data saved successfully.', 'Success');   
+                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
             },function(e){
                 console.error(e);
                 $scope.loading = false;
-                toastr.error('An unexpected error has occured.', 'Error');
+                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         }
     }
@@ -217,11 +217,11 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
         openmrsRest.remove($scope.ressource + "equipmentType", equipmentType, "Generic Reason").then(function (response) {
             console.log(response);
             loadEquipmentTypes();
-            toastr.success('Data removed successfully.', 'Success');
+            toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
         },function(e){
             console.error(e);
             $scope.loading = false;
-            toastr.error('An unexpected error has occured.', 'Error');
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 
@@ -235,7 +235,7 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
         },function(e){
             console.error(e);
             $scope.loading = false;
-            toastr.error('An unexpected error has occured.', 'Error');
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 
@@ -255,22 +255,22 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
             openmrsRest.update($scope.ressource + "region", $scope.region).then(function (response) {
                 console.log(response);
                 loadRegions();
-                toastr.success('Data saved successfully.', 'Success');   
+                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
             },function(e){
                 console.error(e);
                 $scope.loading = false;
-                toastr.error('An unexpected error has occured.', 'Error');
+                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         } else {//Creation
             console.log("Creating new region ")
             openmrsRest.create($scope.ressource + "region", $scope.region).then(function (response) {
                 console.log(response);
                 loadRegions();
-                toastr.success('Data saved successfully.', 'Success');   
+                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
             },function(e){
                 console.error(e);
                 $scope.loading = false;
-                toastr.error('An unexpected error has occured.', 'Error');
+                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         }
     }
@@ -281,11 +281,11 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
         openmrsRest.remove($scope.ressource + "region", region, "Generic Reason").then(function (response) {
             console.log(response);
             loadRegions();
-            toastr.success('Data removed successfully.', 'Success');
+            toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
         },function(e){
             console.error(e);
             $scope.loading = false;
-            toastr.error('An unexpected error has occured.', 'Error');
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 
@@ -300,7 +300,7 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
         },function(e){
             console.error(e);
             $scope.loading = false;
-            toastr.error('An unexpected error has occured.', 'Error');
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 
@@ -322,11 +322,11 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
                 console.log(response);
                 $scope.district = response;
                 loadDistricts();
-                toastr.success('Data saved successfully.', 'Success');   
+                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
             },function(e){
                 console.error(e);
                 $scope.loading = false;
-                toastr.error('An unexpected error has occured.', 'Error');
+                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         } else {//Creation
             console.log("Creating new disctrict ")
@@ -334,11 +334,11 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
                 console.log(response);
                 $scope.district = response;
                 loadDistricts();
-                toastr.success('Data saved successfully.', 'Success');   
+                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
             },function(e){
                 console.error(e);
                 $scope.loading = false;
-                toastr.error('An unexpected error has occured.', 'Error');
+                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         }
     }
@@ -349,11 +349,11 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
         openmrsRest.remove($scope.ressource + "district", disctrict, "Generic Reason").then(function (response) {
             console.log(response);
             loadDistricts();
-            toastr.success('Data removed successfully.', 'Success');
+            toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
         },function(e){
             console.error(e);
             $scope.loading = false;
-            toastr.error('An unexpected error has occured.', 'Error');
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 
@@ -368,7 +368,7 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
         },function(e){
             console.error(e);
             $scope.loading = false;
-            toastr.error('An unexpected error has occured.', 'Error');
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 
@@ -390,11 +390,11 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
                 console.log(response);
                 $scope.siteLocation = response;
                 loadSiteLocations() ;
-                toastr.success('Data saved successfully.', 'Success');   
+                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
             },function(e){
                 console.error(e);
                 $scope.loading = false;
-                toastr.error('An unexpected error has occured.', 'Error');
+                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         } else {//Creation
             console.log("Creating new siteLocation ")
@@ -402,11 +402,11 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
                 console.log(response);
                 $scope.siteLocation = response;
                 loadSiteLocations() ;
-                toastr.success('Data saved successfully.', 'Success');   
+                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
             },function(e){
                 console.error(e);
                 $scope.loading = false;
-                toastr.error('An unexpected error has occured.', 'Error');
+                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         }
     }
@@ -417,11 +417,11 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
         openmrsRest.remove($scope.ressource + "siteLocation", siteLocation, "Generic Reason").then(function (response) {
             console.log(response);
             loadSiteLocations() ;
-            toastr.success('Data removed successfully.', 'Success');
+            toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
         },function(e){
             console.error(e);
             $scope.loading = false;
-            toastr.error('An unexpected error has occured.', 'Error');
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 
@@ -434,7 +434,7 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
         },function(e){
             console.error(e);
             $scope.loading = false;
-            toastr.error('An unexpected error has occured.', 'Error');
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 
@@ -454,22 +454,22 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
             openmrsRest.update($scope.ressource + "maintenanceReason", $scope.maintenanceReason).then(function (response) {
                 console.log(response);
                 loadMaintenanceReasons();
-                toastr.success('Data saved successfully.', 'Success');   
+                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
             },function(e){
                 console.error(e);
                 $scope.loading = false;
-                toastr.error('An unexpected error has occured.', 'Error');
+                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         } else {//Creation
             console.log("Creating new maintenanceReason ")
             openmrsRest.create($scope.ressource + "maintenanceReason", $scope.maintenanceReason).then(function (response) {
                 console.log(response);
                 loadMaintenanceReasons();
-                toastr.success('Data saved successfully.', 'Success');   
+                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
             },function(e){
                 console.error(e);
                 $scope.loading = false;
-                toastr.error('An unexpected error has occured.', 'Error');
+                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         }
     }
@@ -480,11 +480,11 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
         openmrsRest.remove($scope.ressource + "maintenanceReason", maintenanceReason, "Generic Reason").then(function (response) {
             console.log(response);
             loadMaintenanceReasons();
-            toastr.success('Data removed successfully.', 'Success');
+            toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
         },function(e){
             console.error(e);
             $scope.loading = false;
-            toastr.error('An unexpected error has occured.', 'Error');
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 
@@ -498,7 +498,7 @@ angular.module('SettingsController', ['ngMaterial','ngAnimate', 'toastr']).contr
         },function(e){
             console.error(e);
             $scope.loading = false;
-            toastr.error('An unexpected error has occured.', 'Error');
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 

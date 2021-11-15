@@ -29,7 +29,7 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 const nodeModulesDir = path.resolve(__dirname, '../node_modules');
 
 
-const fileName = 'app';
+const fileName = 'app'+new Date().getTime();// @aissa: The gettime here is added for Cache Busting purposes
 const appName = 'savicsgmao'
 
 const plugins = [];
@@ -70,6 +70,8 @@ if (target === 'web') {
                 nodeModules[mod] = `commonjs ${mod}`;
             });
 }
+
+console.log(env)
 
 /** Minify for production */
 if (env === 'production') {

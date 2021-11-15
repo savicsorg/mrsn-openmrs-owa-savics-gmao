@@ -1,5 +1,5 @@
-angular.module('MaintenanceController', []).controller('MaintenanceController', ['$scope', '$rootScope', '$state', '$stateParams', 'openmrsRest', function ($scope, $rootScope, $state, $stateParams, openmrsRest) {
-    $scope.rootscope = $rootScope;
+angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('MaintenanceController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) { 
+        $scope.rootscope = $rootScope;
     
     console.log("MaintenanceController new form ---")
     $scope.myAgents = [{}];

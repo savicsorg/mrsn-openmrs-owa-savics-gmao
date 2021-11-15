@@ -1,0 +1,541 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+#: app/js/appFilters.js:87 app/js/appFilters.js:147
+msgid "ago"
+msgstr ""
+
+#: app/js/appFilters.js:2 app/js/appFilters.js:161 app/js/appFilters.js:202
+msgid "January"
+msgstr ""
+
+#: app/js/appFilters.js:3 app/js/appFilters.js:162 app/js/appFilters.js:203
+msgid "February"
+msgstr ""
+
+#: app/js/appFilters.js:4 app/js/appFilters.js:163 app/js/appFilters.js:204
+msgid "March"
+msgstr ""
+
+#: app/js/appFilters.js:5 app/js/appFilters.js:164 app/js/appFilters.js:205
+msgid "April"
+msgstr ""
+
+#: app/js/appFilters.js:6 app/js/appFilters.js:165 app/js/appFilters.js:206
+msgid "May"
+msgstr ""
+
+#: app/js/appFilters.js:7 app/js/appFilters.js:166 app/js/appFilters.js:207
+msgid "June"
+msgstr ""
+
+#: app/js/appFilters.js:8 app/js/appFilters.js:167 app/js/appFilters.js:208
+msgid "July"
+msgstr ""
+
+#: app/js/appFilters.js:9 app/js/appFilters.js:168 app/js/appFilters.js:209
+msgid "August"
+msgstr ""
+
+#: app/js/appFilters.js:10 app/js/appFilters.js:169 app/js/appFilters.js:210
+msgid "September"
+msgstr ""
+
+#: app/js/appFilters.js:11 app/js/appFilters.js:170 app/js/appFilters.js:211
+msgid "October"
+msgstr ""
+
+#: app/js/appFilters.js:12 app/js/appFilters.js:171 app/js/appFilters.js:212
+msgid "November"
+msgstr ""
+
+#: app/js/appFilters.js:13 app/js/appFilters.js:172 app/js/appFilters.js:213
+msgid "December"
+msgstr ""
+
+#: app/js/appFilters.js:25 app/js/appFilters.js:281 app/js/appFilters.js:293 app/js/appFilters.js:347 app/js/appFilters.js:355 app/js/appFilters.js:375 app/js/appFilters.js:391
+msgid "unknown"
+msgstr ""
+
+#: app/js/appFilters.js:72 app/js/appFilters.js:132
+msgid "second"
+msgstr ""
+
+#: app/js/appFilters.js:72 app/js/appFilters.js:132
+msgid "seconds"
+msgstr ""
+
+#: app/js/appFilters.js:74 app/js/appFilters.js:134
+msgid "minute"
+msgstr ""
+
+#: app/js/appFilters.js:74 app/js/appFilters.js:134
+msgid "minutes"
+msgstr ""
+
+#: app/js/appFilters.js:76 app/js/appFilters.js:136
+msgid "hour"
+msgstr ""
+
+#: app/js/appFilters.js:76 app/js/appFilters.js:136
+msgid "hours"
+msgstr ""
+
+#: app/js/appFilters.js:78 app/js/appFilters.js:138
+msgid "day"
+msgstr ""
+
+#: app/js/appFilters.js:78 app/js/appFilters.js:138
+msgid "days"
+msgstr ""
+
+#: app/js/appFilters.js:150 app/js/appFilters.js:191
+msgid "Yesterday"
+msgstr ""
+
+#: app/js/appFilters.js:152 app/js/appFilters.js:193
+msgid "Sunday"
+msgstr ""
+
+#: app/js/appFilters.js:153 app/js/appFilters.js:194
+msgid "Monday"
+msgstr ""
+
+#: app/js/appFilters.js:154 app/js/appFilters.js:195
+msgid "Tuesday"
+msgstr ""
+
+#: app/js/appFilters.js:155 app/js/appFilters.js:196
+msgid "Wednesday"
+msgstr ""
+
+#: app/js/appFilters.js:156 app/js/appFilters.js:197
+msgid "Thursday"
+msgstr ""
+
+#: app/js/appFilters.js:157 app/js/appFilters.js:198
+msgid "Friday"
+msgstr ""
+
+#: app/js/appFilters.js:158 app/js/appFilters.js:199
+msgid "Saturday"
+msgstr ""
+
+#: app/js/appFilters.js:298
+msgid "Month(s)"
+msgstr ""
+
+#: app/js/appFilters.js:342
+msgid "CONFIDENTIAL"
+msgstr ""
+
+#: app/js/appFilters.js:378
+msgid "Weekly"
+msgstr ""
+
+#: app/js/appFilters.js:381
+msgid "Monthly"
+msgstr ""
+
+#: app/js/appFilters.js:384
+msgid "Quarterly"
+msgstr ""
+
+#: app/js/settings/SettingsController.js:70 app/js/settings/SettingsController.js:81 app/js/settings/SettingsController.js:110 app/js/settings/SettingsController.js:130 app/js/settings/SettingsController.js:141 app/js/settings/SettingsController.js:156 app/js/settings/SettingsController.js:194 app/js/settings/SettingsController.js:205 app/js/settings/SettingsController.js:258 app/js/settings/SettingsController.js:269 app/js/settings/SettingsController.js:325 app/js/settings/SettingsController.js:337 app/js/settings/SettingsController.js:393 app/js/settings/SettingsController.js:405 app/js/settings/SettingsController.js:457 app/js/settings/SettingsController.js:468
+msgid "Data removed successfully."
+msgstr ""
+
+#: app/js/settings/SettingsController.js:74 app/js/settings/SettingsController.js:85 app/js/settings/SettingsController.js:100 app/js/settings/SettingsController.js:114 app/js/settings/SettingsController.js:134 app/js/settings/SettingsController.js:145 app/js/settings/SettingsController.js:160 app/js/settings/SettingsController.js:174 app/js/settings/SettingsController.js:198 app/js/settings/SettingsController.js:209 app/js/settings/SettingsController.js:220 app/js/settings/SettingsController.js:224 app/js/settings/SettingsController.js:238 app/js/settings/SettingsController.js:262 app/js/settings/SettingsController.js:273 app/js/settings/SettingsController.js:284 app/js/settings/SettingsController.js:288 app/js/settings/SettingsController.js:303 app/js/settings/SettingsController.js:329 app/js/settings/SettingsController.js:341 app/js/settings/SettingsController.js:352 app/js/settings/SettingsController.js:356 app/js/settings/SettingsController.js:371 app/js/settings/SettingsController.js:397 app/js/settings/SettingsController.js:409 app/js/settings/SettingsController.js:420 app/js/settings/SettingsController.js:424 app/js/settings/SettingsController.js:437 app/js/settings/SettingsController.js:461 app/js/settings/SettingsController.js:472 app/js/settings/SettingsController.js:483 app/js/settings/SettingsController.js:487 app/js/settings/SettingsController.js:501
+msgid "An unexpected error has occured."
+msgstr ""
+
+#: app/js/settings/SettingsController.js:77
+msgid "Creating new agent"
+msgstr ""
+
+#: app/js/settings/SettingsController.js:126
+msgid "Updating the department"
+msgstr ""
+
+#: app/js/settings/SettingsController.js:137
+msgid "Creating new department"
+msgstr ""
+
+#: app/js/dashboard/main.html:3
+msgid "Equipment and maintenance management module"
+msgstr ""
+
+#: app/js/dashboard/main.html:11
+msgid "Equipments management"
+msgstr ""
+
+#: app/js/dashboard/main.html:16
+msgid "Maintenance management"
+msgstr ""
+
+#: app/js/dashboard/main.html:21
+msgid "Operations Management"
+msgstr ""
+
+#: app/js/dashboard/main.html:25
+msgid "Settings"
+msgstr ""
+
+#: app/js/equipment/equipment.html:7
+msgid "Perform a maintenance on this equipment"
+msgstr ""
+
+#: app/js/equipment/equipment.html:13 app/js/maintenance/request.html:10 app/js/maintenance/schedule.html:7 app/js/operation/operation.html:7
+msgid "General Informations"
+msgstr ""
+
+#: app/js/equipment/equipment.html:24
+msgid "Serial Number"
+msgstr ""
+
+#: app/js/equipment/equipment.html:28 app/js/operation/operation.html:11 app/js/operation/operationApproval.html:12 app/js/settings/departments.html:49 app/js/settings/maintenanceReasons.html:18 app/js/settings/maintenanceReasons.html:54 app/js/settings/sites.html:36 app/js/settings/sites.html:67 app/js/settings/sites.html:106 app/js/settings/sites.html:144 app/js/settings/sites.html:185 app/js/settings/sites.html:223
+msgid "Code"
+msgstr ""
+
+#: app/js/equipment/equipment.html:32 app/js/equipment/equipments.html:25 app/js/maintenance/schedule.html:11
+msgid "Designation"
+msgstr ""
+
+#: app/js/equipment/equipment.html:38 app/js/maintenance/maintenances.html:47 app/js/operation/operation.html:19 app/js/operation/operationApproval.html:20 app/js/operation/operations.html:40
+msgid "Type"
+msgstr ""
+
+#: app/js/equipment/equipment.html:46 app/js/equipment/equipments.html:27 app/js/maintenance/request.html:24 app/js/settings/agents.html:42 app/js/settings/agents.html:85
+msgid "Department"
+msgstr ""
+
+#: app/js/equipment/equipment.html:54 app/js/equipment/equipments.html:28 app/js/maintenance/request.html:44
+msgid "Localization"
+msgstr ""
+
+#: app/js/equipment/equipment.html:60
+msgid "Operating state"
+msgstr ""
+
+#: app/js/equipment/equipment.html:67
+msgid "Please choose an operating state."
+msgstr ""
+
+#: app/js/equipment/equipment.html:73
+msgid "Acquisition date"
+msgstr ""
+
+#: app/js/equipment/equipment.html:77
+msgid "Year of commissionning"
+msgstr ""
+
+#: app/js/equipment/equipment.html:83
+msgid "Comments"
+msgstr ""
+
+#: app/js/equipment/equipment.html:94
+msgid "Tracking"
+msgstr ""
+
+#: app/js/equipment/equipment.html:101
+msgid "Please choose a tracking option."
+msgstr ""
+
+#: app/js/equipment/equipment.html:107
+msgid "Weight"
+msgstr ""
+
+#: app/js/equipment/equipment.html:111
+msgid "Volume"
+msgstr ""
+
+#: app/js/equipment/equipment.html:121 app/js/maintenance/maintenance.html:80 app/js/maintenance/request.html:90 app/js/maintenance/schedule.html:75 app/js/operation/operation.html:76 app/js/settings/agents.html:62 app/js/settings/departments.html:34 app/js/settings/equipmentTypes.html:29 app/js/settings/maintenanceReasons.html:39 app/js/settings/sites.html:52 app/js/settings/sites.html:129 app/js/settings/sites.html:208
+msgid "Save"
+msgstr ""
+
+#: app/js/equipment/equipments.html:11
+msgid "Add new equipment"
+msgstr ""
+
+#: app/js/equipment/equipments.html:24
+msgid "Serial No"
+msgstr ""
+
+#: app/js/equipment/equipments.html:26
+msgid "type"
+msgstr ""
+
+#: app/js/equipment/equipments.html:29 app/js/maintenance/maintenance.html:48
+msgid "Status"
+msgstr ""
+
+#: app/js/equipment/equipments.html:30
+msgid "Last modified"
+msgstr ""
+
+#: app/js/equipment/equipments.html:31 app/js/maintenance/maintenances.html:50 app/js/operation/operations.html:43 app/js/settings/agents.html:86 app/js/settings/departments.html:50 app/js/settings/equipmentTypes.html:44 app/js/settings/maintenanceReasons.html:55 app/js/settings/sites.html:68 app/js/settings/sites.html:146 app/js/settings/sites.html:225
+msgid "Actions"
+msgstr ""
+
+#: app/js/equipment/equipments.html:47
+msgid "View"
+msgstr ""
+
+#: app/js/maintenance/maintenance.html:14
+msgid "Equipment name"
+msgstr ""
+
+#: app/js/maintenance/maintenance.html:18
+msgid "Serial number"
+msgstr ""
+
+#: app/js/maintenance/maintenance.html:30
+msgid "Type of maintenance"
+msgstr ""
+
+#: app/js/maintenance/maintenance.html:38
+msgid "Done by"
+msgstr ""
+
+#: app/js/maintenance/maintenance.html:54
+msgid "Please choose a status."
+msgstr ""
+
+#: app/js/maintenance/maintenance.html:60
+msgid "Reason"
+msgstr ""
+
+#: app/js/maintenance/maintenance.html:66 app/js/maintenance/schedule.html:15
+msgid "Start date"
+msgstr ""
+
+#: app/js/maintenance/maintenance.html:70
+msgid "End date"
+msgstr ""
+
+#: app/js/maintenance/maintenances.html:35 app/js/operation/operations.html:28
+msgid "Search..."
+msgstr ""
+
+#: app/js/maintenance/maintenances.html:9
+msgid "Add a new maintenance"
+msgstr ""
+
+#: app/js/maintenance/maintenances.html:17
+msgid "Request for a maintenance"
+msgstr ""
+
+#: app/js/maintenance/maintenances.html:25
+msgid "Schedule a maintenance"
+msgstr ""
+
+#: app/js/maintenance/maintenances.html:48 app/js/maintenance/request.html:31 app/js/operation/operation.html:15 app/js/operation/operationApproval.html:16 app/js/operation/operations.html:41
+msgid "Date"
+msgstr ""
+
+#: app/js/maintenance/maintenances.html:49 app/js/maintenance/request.html:77 app/js/maintenance/schedule.html:49 app/js/operation/operation.html:63 app/js/operation/operations.html:42
+msgid "Equipments"
+msgstr ""
+
+#: app/js/maintenance/request.html:4
+msgid "Request a maintenance"
+msgstr ""
+
+#: app/js/maintenance/request.html:14
+msgid "System number"
+msgstr ""
+
+#: app/js/maintenance/request.html:18
+msgid "Register number"
+msgstr ""
+
+#: app/js/maintenance/request.html:37
+msgid "Nature of work"
+msgstr ""
+
+#: app/js/maintenance/request.html:51
+msgid "Priority"
+msgstr ""
+
+#: app/js/maintenance/request.html:61 app/js/operation/operation.html:47 app/js/operation/operationApproval.html:36
+msgid "Motif"
+msgstr ""
+
+#: app/js/maintenance/schedule.html:61
+msgid "Equipments categories"
+msgstr ""
+
+#: app/js/maintenance/schedule.html:19
+msgid "Recurrence"
+msgstr ""
+
+#: app/js/maintenance/schedule.html:37
+msgid "Selection mode"
+msgstr ""
+
+#: app/js/operation/operation.html:29 app/js/operation/operationApproval.html:26
+msgid "Source"
+msgstr ""
+
+#: app/js/operation/operation.html:37 app/js/operation/operationApproval.html:30
+msgid "Destination"
+msgstr ""
+
+#: app/js/operation/operationApproval.html:8
+msgid "Operation details"
+msgstr ""
+
+#: app/js/operation/operationApproval.html:47
+msgid "Approve"
+msgstr ""
+
+#: app/js/operation/operationApproval.html:54
+msgid "Decline"
+msgstr ""
+
+#: app/js/operation/operations.html:9
+msgid "New"
+msgstr ""
+
+#: app/js/operation/operations.html:18
+msgid "Approve an operation"
+msgstr ""
+
+#: app/js/settings/agents.html:10
+msgid "Add/Modify agent"
+msgstr ""
+
+#: app/js/settings/agents.html:14
+msgid "External"
+msgstr ""
+
+#: app/js/settings/agents.html:20 app/js/settings/agents.html:84
+msgid "Full name"
+msgstr ""
+
+#: app/js/settings/agents.html:26
+msgid "Phone number"
+msgstr ""
+
+#: app/js/settings/agents.html:30 app/js/settings/agents.html:83
+msgid "Roll N°"
+msgstr ""
+
+#: app/js/settings/agents.html:36
+msgid "Address"
+msgstr ""
+
+#: app/js/settings/agents.html:50
+msgid "Location"
+msgstr ""
+
+#: app/js/settings/agents.html:69
+msgid "Add a new agent"
+msgstr ""
+
+#: app/js/settings/agents.html:77 app/js/settings/departments.html:42 app/js/settings/equipmentTypes.html:37 app/js/settings/maintenanceReasons.html:47 app/js/settings/sites.html:60 app/js/settings/sites.html:137 app/js/settings/sites.html:216
+msgid "List"
+msgstr ""
+
+#: app/js/settings/departments.html:11
+msgid "Add/Modify department"
+msgstr ""
+
+#: app/js/settings/departments.html:15
+msgid "Dpmt. Name"
+msgstr ""
+
+#: app/js/settings/departments.html:19
+msgid "Dpmt. Code"
+msgstr ""
+
+#: app/js/settings/departments.html:27 app/js/settings/maintenanceReasons.html:32
+msgid "Add a new department"
+msgstr ""
+
+#: app/js/settings/departments.html:48 app/js/settings/equipmentTypes.html:43 app/js/settings/maintenanceReasons.html:53 app/js/settings/sites.html:66 app/js/settings/sites.html:143 app/js/settings/sites.html:222
+msgid "Name"
+msgstr ""
+
+#: app/js/settings/equipmentTypes.html:10
+msgid "Add/Modify equipment type"
+msgstr ""
+
+#: app/js/settings/equipmentTypes.html:14
+msgid "Type Name"
+msgstr ""
+
+#: app/js/settings/equipmentTypes.html:22
+msgid "Add a new equipment type"
+msgstr ""
+
+#: app/js/settings/maintenanceReasons.html:10
+msgid "Add/Modify reason"
+msgstr ""
+
+#: app/js/settings/maintenanceReasons.html:14
+msgid "Label"
+msgstr ""
+
+#: app/js/settings/maintenanceReasons.html:24
+msgid "Details"
+msgstr ""
+
+#: app/js/settings/sites.html:7
+msgid "Regions"
+msgstr ""
+
+#: app/js/settings/sites.html:13
+msgid "Districts"
+msgstr ""
+
+#: app/js/settings/sites.html:19
+msgid "Sites"
+msgstr ""
+
+#: app/js/settings/sites.html:28
+msgid "Add/Modify region"
+msgstr ""
+
+#: app/js/settings/sites.html:32
+msgid "Region name"
+msgstr ""
+
+#: app/js/settings/sites.html:45
+msgid "Add a new region"
+msgstr ""
+
+#: app/js/settings/sites.html:96
+msgid "Add/Modify district"
+msgstr ""
+
+#: app/js/settings/sites.html:100
+msgid "District name"
+msgstr ""
+
+#: app/js/settings/sites.html:110 app/js/settings/sites.html:145
+msgid "Region"
+msgstr ""
+
+#: app/js/settings/sites.html:122
+msgid "Add a new district"
+msgstr ""
+
+#: app/js/settings/sites.html:175
+msgid "Add/Modify site"
+msgstr ""
+
+#: app/js/settings/sites.html:179
+msgid "Site name"
+msgstr ""
+
+#: app/js/settings/sites.html:189 app/js/settings/sites.html:224
+msgid "District"
+msgstr ""
+
+#: app/js/settings/sites.html:201
+msgid "Add a new site"
+msgstr ""

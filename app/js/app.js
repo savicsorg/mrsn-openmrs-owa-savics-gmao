@@ -13,12 +13,14 @@ import openmrsContribUiCommons from 'openmrs-contrib-uicommons';
 import routes from './routes.js';
 
 import messagesEn from '../translation/messages_en.json';
+import messagesEs from '../translation/messages_es.json';
 import messagesFr from '../translation/messages_fr.json';
 
 import AngularMaterialCSS from '../../node_modules/angular-material/angular-material.min.css';
 import AngularMaterial from '../../node_modules/angular-material/angular-material.min.js';
 import AngularMaterialdatatableCSS from '../../node_modules/angular-material-data-table/dist/md-data-table.min.css';
 import AngularMaterialdatatableJS from '../../node_modules/angular-material-data-table/dist/md-data-table.min.js';
+import appFilter from './appFilters.js';
 import style from '../css/main.css';
 import fonts from '../css/fonts.css';
 
@@ -40,5 +42,6 @@ export default angular.module('app', [
 
 function translateConfig(openmrsTranslateProvider) {
     openmrsTranslateProvider.addTranslations('en', messagesEn);
+    openmrsTranslateProvider.addTranslations('es', messagesEs);
     openmrsTranslateProvider.addTranslations('fr', messagesFr);
 }

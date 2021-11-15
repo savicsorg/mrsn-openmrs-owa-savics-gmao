@@ -8,18 +8,19 @@
   },
   "dependencies": {
     "@uirouter/angularjs": "1.0.19",
-    "angular": "1.7.2",
+    "angular": "^1.8.2",
     "angular-animate": "1.7.2",
+    "angular-gettext": "2.4.1",
     "angular-jwt": "0.1.10",
+    "angular-messages": "1.7.2",
     "angular-resource": "^1.5.11",
     "angular-route": "1.5.x",
-    "angular-ui-router": "0.3.2",
     "angular-sanitize": "1.7.2",
-    "angular-gettext": "2.4.1",
-    "angular-messages": "1.7.2",
-    "textangularjs": "2.1.2",
+    "angular-ui-router": "0.3.2",
     "oclazyload": "1.1.0",
-    "openmrs-contrib-uicommons": "^0.3.29"
+    "openmrs-contrib-uicommons": "^0.3.29",
+    "textangularjs": "^2.1.2",
+    "underscore": "^1.13.1"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.5",
@@ -43,6 +44,11 @@
     "eslint": "^4.0.0",
     "extract-text-webpack-plugin": "1.x",
     "file-loader": "0.10.0",
+    "grunt": "1.0.3",
+    "grunt-angular-translate-extract": "0.4.5",
+    "grunt-angular-translate": "0.3.0",
+    "grunt-translate-compile": "0.2.0",
+    "grunt-angular-gettext": "2.3.12",
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
     "jasmine-core": "^2.6.4",
@@ -82,6 +88,6 @@
     "Web",
     "App"
   ],
-  "author": "Savics",
+  "author": "leabe",
   "license": "MPL-2.0"
 }
