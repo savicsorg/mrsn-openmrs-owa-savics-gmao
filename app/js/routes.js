@@ -49,9 +49,9 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                 loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
                         var deferred = $q.defer();
                         require.ensure([], function () {
-                            var mod = require('./equipement/EquipementController.js');
+                            var mod = require('./equipment/EquipmentController.js');
                             $ocLazyLoad.load({
-                                name: 'EquipementController'
+                                name: 'EquipmentController'
                             });
                             deferred.resolve(mod.controller);
                         });
@@ -67,9 +67,9 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                 loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
                         var deferred = $q.defer();
                         require.ensure([], function () {
-                            var mod = require('./equipement/EquipementController.js');
+                            var mod = require('./equipment/EquipmentController.js');
                             $ocLazyLoad.load({
-                                name: 'EquipementController'
+                                name: 'EquipmentController'
                             });
                             deferred.resolve(mod.controller);
                         });

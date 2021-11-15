@@ -1,7 +1,7 @@
-angular.module('EquipementController', []).controller('EquipementController', ['$scope', '$rootScope', '$state', '$stateParams', 'openmrsRest', function ($scope, $rootScope, $state, $stateParams, openmrsRest) {
+angular.module('EquipmentController', []).controller('EquipmentController', ['$scope', '$rootScope', '$state', '$stateParams', 'openmrsRest', function ($scope, $rootScope, $state, $stateParams, openmrsRest) {
         $scope.rootscope = $rootScope;
 
-        console.log("EquipementController new form ---")
+        console.log("EquipmentController new form ---")
         $scope.appTitle = "Gestion des equipements";
         $scope.resource = "savicsgmao/agent";
         //Breadcrumbs properties
