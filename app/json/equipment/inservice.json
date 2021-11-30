@@ -1,0 +1,12 @@
+[
+    {
+        "id": 0,
+        "fr": "In service",
+        "en": "En service"
+    },
+    {
+        "id": 1,
+        "en": "Out of service",
+        "fr": "Hors service"
+    }
+]

@@ -37,6 +37,8 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         $scope.save = function () {
             $scope.loading = true;
             var query = JSON.parse(JSON.stringify($scope.equipment));
+            query.status = !query.status ? 0: query.status ;
+            
             if ($scope.equipment && $scope.equipment.serialNumber && $scope.equipment.serialNumber.length >= 3 && $scope.equipment.serialNumber.length <= 120 && $scope.equipment.designation && $scope.equipment.designation != "") {
                 if ($scope.equipment.uuid) {    //Edit
                     openmrsRest.update($scope.resource + "/equipment", query).then(function (response) {

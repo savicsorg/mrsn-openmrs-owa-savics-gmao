@@ -41,6 +41,12 @@
                             </md-option>
                         </md-select>
                     </md-input-container>
+                    <md-input-container class="md-block" flex>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label translate>Site</label>
+                            <input ng-model="equipment.localization">
+                        </md-input-container>
+                    </md-input-container>
                 </div>    
                 <div layout="row" layout-xs="column">      
                     <md-input-container class="md-block md-input-has-value" flex>
@@ -54,7 +60,7 @@
                         <md-radio-group ng-model="equipment.equipmentStatus" layout="row" name="property" required>
                             <md-radio-button value="1" class="md-primary" >Well</md-radio-button>
                             <md-radio-button value="2" class="md-primary" >Defective</md-radio-button>
-                            <md-radio-button value="0" class="md-primary" >Out of order</md-radio-button>
+                            <md-radio-button value="3" class="md-primary" >Out of order</md-radio-button>
                         </md-radio-group>
                         <div ng-messages="form.property.$error">
                             <div ng-message="required" translate>Please choose an operating state.</div>
@@ -116,7 +122,7 @@
                 </md-tooltip>
                 Save
             </md-button>
-            <a href="index.html#!/equipements">
+            <a href="index.html#!/equipments">
                 <md-button aria-label="Add">
                     <md-icon>cencel</md-icon>
                     <span translate>Cencel</span>
