@@ -1,19 +1,19 @@
 <div id="content" class="container-fluid">
     <div class="md-toolbar-tools">
-        <h1 md-truncate="" flex="">Historique des maintenances</h1>
+        <h1 md-truncate="" flex="">Historique des interventions</h1>
         <a href="index.html#!/maintenancemanagement">
             <md-button>
                 <md-icon>arrow_back</md-icon><span translate>Back</span>
             </md-button>
         </a>
-        <a href = "index.html#!/maintenance">
+        <a href = "index.html#!/request">
             <md-button class="md-raised md-primary" aria-label="Add" >
                 <md-icon class="material-icons" role="img" aria-hidden="true">add</md-icon>
                 <md-tooltip md-direction="top">
-                    <span translate>Add a new maintenance</span>
+                    <span translate>Request for intervention</span>
                 </md-tooltip>
             </md-button>
-        </a>
+        </a>        
     </div>
     <md-toolbar class="md-table-toolbar md-default">
         <div class="md-toolbar-tools">
@@ -28,7 +28,7 @@
             <table md-table md-progress="promise">
                 <thead md-head md-order="query.order">
                     <tr md-row>
-                        <th md-column md-order-by="maintenance_type_id"><span translate>Type</span></th>
+                        <th md-column md-order-by="maintenance_type_id"><span translate>Nature of Work</span></th>
                         <th md-column md-order-by="maintenance_date"><span translate>Date</span></th>
                         <th md-column md-order-by="equipments" ><span translate>Equipments</span></th>
                         <th md-column ><span translate>Actions</span></th>
