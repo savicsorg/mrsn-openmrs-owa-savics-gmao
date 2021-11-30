@@ -1,9 +1,11 @@
 <div id="content" class="container-fluid">           
-    <!--<div ng-controller="EquipementController as vm">
-        <openmrs-list resource="vm.resource" columns="vm.columns" actions="vm.actions" list-all="true"></openmrs-list>
-    </div>-->
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="">Equipments management</h1>
+        <a href="index.html#!/equipments">
+            <md-button>
+                <md-icon>arrow_back</md-icon><span translate>Back</span>
+            </md-button>
+        </a>
         <a href = "index.html#!/equipment">
             <md-button class="md-raised md-primary" aria-label="Add" >
                 <md-icon class=" material-icons" role="img" aria-hidden="true">add</md-icon>
@@ -14,45 +16,45 @@
             </md-button>
         </a>       
     </div>   
-    
+    <md-toolbar layout="row" class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools" flex layout="row">
+                <input flex type="search" name="search" ng-model="searchAll" placeholder="{{ 'Search for Refs. / equipement...' | translate }}">
+        </div>
+    </md-toolbar>
     <md-card>
         <md-card-content>
             <md-table-container class="container" fixed-column-table>
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
+                            <th md-order-by="id"><span translate>Ref.</span></th>
                             <th md-column md-order-by="serialnumber"><span translate>Serial No</span></th>
-                            <th md-column md-order-by="designation"><span translate>Designation</span></th>
+                            <th md-column md-order-by="designation"><span translate>Name</span></th>
                             <th md-column md-order-by="type" ><span translate>type</span></th>
-                            <th md-column md-order-by="department" ><span translate>Department</span></th>
                             <th md-column md-order-by="localization"><span translate>Localization</span></th>
-                            <th md-column md-order-by="status"><span translate>Status</span></th>
-                            <th md-column md-order-by="lastModified"><span translate>Last modified</span></th>
+                            <th md-column md-order-by="equipmentStatus"><span translate>Status</span></th>
                             <th md-column md-order-by="actions"><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="data in equipments" >
-                            <td md-cell >{{data.serialNumber}}</td>
-                            <td md-cell>{{data.designation}}</td>
-                            <td md-cell >{{data.equipmentType.typeName}}</td>
-                            <td md-cell >{{data.department.departmentName}}</td>
-                            <td md-cell >{{data.localization}}</td>
-                            <td md-cell >{{data.status}}</td>
-                            <td md-cell>{{data.lastModifiedDate | date:'dd/MM/yyyy'}}</td>
-                            <td md-cell >
-                                <md-button class="md-fab md-raised md-mini" aria-label="View" >
-                                    <md-icon>visibility</md-icon>
-                                    <md-tooltip md-direction="top">
-                                        <span translate>View</span>
-                                    </md-tooltip>
-                                </md-button>
-                            </td>
-                        </tr>
+                        <tr md-row data-ng-repeat="data in equipments | orderBy:'-id' | filter:search | limitTo: query.limit : (query.page -1) * query.limit">
+                            <td md-cell><center>{{data.id}}</center></td>
+                    <td md-cell >{{data.serialNumber}}</td>
+                    <td md-cell>{{data.designation}}</td>
+                    <td md-cell >{{data.equipmentType.typeName}}</td>
+                    <td md-cell >{{data.localization}}</td>
+                    <td md-cell >{{getEquipmentStatusById(data.equipmentStatus)}}</td>
+                    <td md-cell >
+                        <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Add">
+                            <md-icon class="material-icons" role="img" aria-hidden="true">visibility</md-icon>
+                            <md-tooltip md-direction="top"><span translate>View</span></md-tooltip>
+                        </button>
+                    </td>
+                    </tr>
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+            <md-table-pagination md-limit="query.limit" md-limit-options="[25, 50, 100]" md-page="query.page" md-total="{{equipments.count}}" md-page-select="true" md-label="$parent.label">
             </md-table-pagination>
         </md-card-content>
     </md-card>    

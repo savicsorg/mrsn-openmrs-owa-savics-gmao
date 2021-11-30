@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "fr": "Bien",
+        "en": "Well"
+    },
+    {
+        "id": 2,
+        "en": "Defective",
+        "fr": "Défectueux"
+    },
+    {
+        "id": 3,
+        "en": "Out of order",
+        "fr": "Hors service"
+    }
+]
