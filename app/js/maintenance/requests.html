@@ -1,0 +1,55 @@
+<div id="content" class="container-fluid">
+    <div class="md-toolbar-tools">
+        <h1 md-truncate="" flex="">Historique des interventions</h1>
+        <a href="index.html#!/maintenancemanagement">
+            <md-button>
+                <md-icon>arrow_back</md-icon><span translate>Back</span>
+            </md-button>
+        </a>
+        <a href = "index.html#!/request">
+            <md-button class="md-raised md-primary" aria-label="Add" >
+                <md-icon class="material-icons" role="img" aria-hidden="true">add</md-icon>
+                <md-tooltip md-direction="top">
+                    <span translate>Request for intervention</span>
+                </md-tooltip>
+            </md-button>
+        </a> 
+        <a href="">
+            <md-button class="md-raised md-primary" aria-label="Add" ng-click="donwload()">
+                <md-icon>cloud_download</md-icon> <span translate>Export</span>
+            </md-button>
+        </a>       
+    </div>
+    <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
+            <md-icon>search</md-icon>
+            <form flex="">
+                <input type="search" name="search" ng-model="filter.search" placeholder="{{ 'Search...' | translate }}">
+            </form>
+        </div>
+    </md-toolbar>
+    <md-card ng-controller="MaintenanceController as vm">
+        <md-table-container class="container" fixed-column-table>
+            <table md-table md-progress="promise">
+                <thead md-head md-order="query.order">
+                    <tr md-row>
+                        <th md-column md-order-by="maintenance_type_id"><span translate>Nature of Work</span></th>
+                        <th md-column md-order-by="maintenance_date"><span translate>Date</span></th>
+                        <th md-column md-order-by="equipments" ><span translate>Equipments</span></th>
+                        <th md-column ><span translate>Actions</span></th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row data-ng-repeat="data in vm.datas" >
+                        <td md-cell >{{data.type}}</td>
+                        <td md-cell>{{data.date}}</td>
+                        <td md-cell >{{data.equipments}}</td>
+                        <td md-cell >aaa aaaa</td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+        <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+        </md-table-pagination>
+    </md-card>
+</div>

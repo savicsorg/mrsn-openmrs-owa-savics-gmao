@@ -75,6 +75,23 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                     }]
             },
             breadcrumbs: ["Home", "Equipments", "Ajout/Modification"]
+        }).state('home.maintenancemanagement', {
+            url: 'maintenancemanagement',
+            template: require('./maintenance/maintenanceManagement.html'),
+            controller: 'MaintenanceController',
+            resolve: {
+                loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        var mod = require('./maintenance/MaintenanceController.js');
+                        $ocLazyLoad.load({
+                            name: 'MaintenanceController'
+                        });
+                        deferred.resolve(mod.controller);
+                    });
+                    return deferred.promise;
+                }]
+            },
         }).state('home.maintenances', {
             url: 'maintenances',
             template: require('./maintenance/maintenances.html'),
@@ -111,6 +128,24 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                     }]
             },
             breadcrumbs: ["Home", "Maintenances", "Ajout/Modification"]
+        }).state('home.requests', {
+            url: 'requests',
+            template: require('./maintenance/requests.html'),
+            controller: 'MaintenanceController',
+        resolve: {
+            loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
+                var deferred = $q.defer();
+                require.ensure([], function () {
+                            var mod = require('./maintenance/MaintenanceController.js');
+                    $ocLazyLoad.load({
+                                name: 'MaintenanceController'
+                    });
+                    deferred.resolve(mod.controller);
+                });
+                return deferred.promise;
+            }]
+        },
+            breadcrumbs: ["Home", "Maintenances", "Requests"]
         }).state('home.request', {
             url: 'request',
             template: require('./maintenance/request.html'),
@@ -129,6 +164,24 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                     }]
             },
             breadcrumbs: ["Home", "Maintenances", "Request"]
+        }).state('home.schedules', {
+            url: 'schedules',
+            template: require('./maintenance/schedules.html'),
+            controller: 'MaintenanceController',
+        resolve: {
+            loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
+                var deferred = $q.defer();
+                require.ensure([], function () {
+                            var mod = require('./maintenance/MaintenanceController.js');
+                    $ocLazyLoad.load({
+                                name: 'MaintenanceController'
+                    });
+                    deferred.resolve(mod.controller);
+                });
+                return deferred.promise;
+            }]
+        },
+            breadcrumbs: ["Home", "Maintenances", "Schedules"]
         }).state('home.schedule', {
             url: 'schedule',
             template: require('./maintenance/schedule.html'),

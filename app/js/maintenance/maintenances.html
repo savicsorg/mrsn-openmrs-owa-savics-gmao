@@ -1,8 +1,12 @@
 <div id="content" class="container-fluid">
-
     <div class="md-toolbar-tools">
-        <h1 md-truncate="" flex=""> Historique des maintenances</h1>
-        <a href = "index.html#!/maintenance">
+        <h1 md-truncate="" flex="">Historique des maintenances</h1>
+        <a href="index.html#!/maintenancemanagement">
+            <md-button>
+                <md-icon>arrow_back</md-icon><span translate>Back</span>
+            </md-button>
+        </a>
+        <a href="index.html#!/maintenance">
             <md-button class="md-raised md-primary" aria-label="Add" >
                 <md-icon class="material-icons" role="img" aria-hidden="true">add</md-icon>
                 <md-tooltip md-direction="top">
@@ -10,35 +14,17 @@
                 </md-tooltip>
             </md-button>
         </a>
-        <a href = "index.html#!/request">
-            <md-button class="md-raised md-primary" aria-label="Add" >
-                <md-icon class="material-icons" role="img" aria-hidden="true">send</md-icon>
-                <md-tooltip md-direction="top">
-                    <span translate>Request for a maintenance</span>
-                </md-tooltip>
+        <a href="">
+            <md-button class="md-raised md-primary" aria-label="Add" ng-click="donwload()">
+                <md-icon>cloud_download</md-icon> <span translate>Export</span>
             </md-button>
         </a>
-        <a href = "index.html#!/schedule">
-            <md-button class="md-raised md-primary" aria-label="Add" >
-                <md-icon class="material-icons" role="img" aria-hidden="true">alarm</md-icon>
-                <md-tooltip md-direction="top">
-                    <span translate>Schedule a maintenance</span>
-                </md-tooltip>
-            </md-button>
-        </a>
-        
     </div>
-    <md-toolbar class="md-table-toolbar md-default">
-        <div class="md-toolbar-tools">
-            <md-icon>search</md-icon>
-            <form flex="">
-                <input type="search" name="search" ng-model="filter.search" placeholder="{{ 'Search...' | translate }}">
-            </form>
+    <md-toolbar layout="row" class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools" flex layout="row">
+            <input flex type="search" name="search" ng-model="searchAll.equipment.designation" placeholder="{{ 'Recherche par équipement...' | translate }}">
         </div>
     </md-toolbar>
-            <!--<div ng-controller="EquipementController as vm">
-                <openmrs-list resource="vm.resource" columns="vm.columns" actions="vm.actions" list-all="true"></openmrs-list>
-            </div>-->
     <md-card ng-controller="MaintenanceController as vm">
         <md-table-container class="container" fixed-column-table>
             <table md-table md-progress="promise">
@@ -51,16 +37,29 @@
                     </tr>
                 </thead>
                 <tbody md-body>
-                    <tr md-row data-ng-repeat="data in vm.datas" >
-                        <td md-cell >{{data.type}}</td>
-                        <td md-cell>{{data.date}}</td>
-                        <td md-cell >{{data.equipments}}</td>
-                        <td md-cell >aaa aaaa</td>
+                    <tr md-row data-ng-repeat="maintenance in vm.maintenances | orderBy:'-id' | filter:searchAll | limitTo: query.limit : (query.page -1) * query.limit" >
+                        <td md-cell >{{maintenance.type}}</td>
+                        <td md-cell>{{maintenance.date}}</td>
+                        <td md-cell >{{maintenance.equipment.designation}}</td>
+                        <td>
+                            <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove"
+                                ng-click="">
+                                <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
+                                <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
+                            </button>
+                            <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove"
+                                ng-click="" ng-if="account.role === 1">
+                                <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                                <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </md-table-container>
-        <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 50, 100]" md-page="query.page" md-total="{{batches.count}}" md-page-select="true" md-label="$parent.label">
+        <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{vm.maintenances.length}}"
+            md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks" md-limit-options="[25, 50, 100]"
+            md-on-paginate="logPagination" md-label="$parent.label">
         </md-table-pagination>
     </md-card>
 </div>
