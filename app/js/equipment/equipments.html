@@ -16,9 +16,13 @@
             </md-button>
         </a>       
     </div>   
-    <md-toolbar layout="row" class="md-table-toolbar md-default">
-        <div class="md-toolbar-tools" flex layout="row">
-                <input flex type="search" name="search" ng-model="searchAll" placeholder="{{ 'Search for Refs. / equipement...' | translate }}">
+    <md-toolbar class="md-table-toolbar md-default" ng-show="!loading">
+        <div class="md-toolbar-tools">
+            <md-icon style="width: 0px;">search</md-icon>
+            <form flex="">
+                <input flex type="search" name="search" flex ng-model="searchAll" style="min-width: 95%;"
+                    placeholder="{{ 'Search among equipement...' | translate }}">
+            </form>
         </div>
     </md-toolbar>
     <md-card>
@@ -46,7 +50,7 @@
                     <td md-cell >{{getEquipmentStatusById(data.equipmentStatus)}}</td>
                     <td md-cell >
                         <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Add">
-                            <md-icon class="material-icons" role="img" aria-hidden="true">visibility</md-icon>
+                            <md-icon class="material-icons" role="img" aria-hidden="true" style="width: 0px;">visibility</md-icon>
                             <md-tooltip md-direction="top"><span translate>View</span></md-tooltip>
                         </button>
                     </td>
@@ -54,7 +58,7 @@
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-limit-options="[25, 50, 100]" md-page="query.page" md-total="{{equipments.count}}" md-page-select="true" md-label="$parent.label">
+            <md-table-pagination md-limit="query.limit" md-limit-options="[25, 50, 100]" md-page="query.page" md-total="{{equipments.length}}" md-page-select="true" md-label="$parent.label">
             </md-table-pagination>
         </md-card-content>
     </md-card>    

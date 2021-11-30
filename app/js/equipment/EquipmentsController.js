@@ -34,8 +34,6 @@ angular.module('EquipmentsController', ['ngMaterial', 'md.data.table']).controll
         $scope.getAllEquipments();
 
         $scope.getEquipmentStatusById = function (id) {
-            console.log("id = ", id)
-            console.log(dictionary.getEquipmentStatusById(id, $rootScope.selectedLanguage))
             return dictionary.getEquipmentStatusById(id, $rootScope.selectedLanguage);
         };
 
