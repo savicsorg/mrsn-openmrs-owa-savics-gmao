@@ -131,14 +131,14 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         }).state('home.requests', {
             url: 'requests',
             template: require('./maintenance/requests.html'),
-            controller: 'MaintenanceController',
+            controller: 'RequestsController',
         resolve: {
             loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
                 var deferred = $q.defer();
                 require.ensure([], function () {
-                            var mod = require('./maintenance/MaintenanceController.js');
+                            var mod = require('./maintenance/RequestsController.js');
                     $ocLazyLoad.load({
-                                name: 'MaintenanceController'
+                                name: 'RequestsController'
                     });
                     deferred.resolve(mod.controller);
                 });
