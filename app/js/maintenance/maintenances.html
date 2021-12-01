@@ -22,7 +22,7 @@
     </div>
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">
-            <input flex type="search" name="search" ng-model="searchAll.equipment" placeholder="{{ 'Recherche par équipement...' | translate }}">
+            <input flex type="search" name="search" ng-model="searchAll.equipment.designation" placeholder="{{ 'Recherche par équipement...' | translate }}">
         </div>
     </md-toolbar>
     <md-card>
@@ -30,17 +30,17 @@
             <table md-table md-progress="promise">
                 <thead md-head md-order="query.order">
                     <tr md-row>
-                        <th md-column md-order-by="maintenance_type_id"><span translate>Type</span></th>
-                        <th md-column md-order-by="maintenance_date"><span translate>Start Date</span></th>
-                        <th md-column md-order-by="equipments" ><span translate>Equipments</span></th>
+                        <th md-column md-order-by="maintenanceType.typeName"><span translate>Type</span></th>
+                        <th md-column md-order-by="startdate"><span translate>Start Date</span></th>
+                        <th md-column md-order-by="equipment.designation" ><span translate>Equipments</span></th>
                         <th md-column ><span translate>Actions</span></th>
                     </tr>
                 </thead>
                 <tbody md-body>
                     <tr md-row data-ng-repeat="maintenance in maintenances | orderBy:'-id' | filter:searchAll | limitTo: query.limit : (query.page -1) * query.limit" >
-                        <td md-cell >{{maintenance.type}}</td>
-                        <td md-cell>{{maintenance.startdate}}</td>
-                        <td md-cell >{{maintenance.equipment}}</td>
+                        <td md-cell >{{maintenance.maintenanceType.typeName}}</td>
+                        <td md-cell>{{maintenance.startdate | date: 'dd/MM/yyyy'}}</td>
+                        <td md-cell >{{maintenance.equipment.designation}}</td>
                         <td>
                             <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove"
                                 ng-click="">
@@ -48,7 +48,7 @@
                                 <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                             </button>
                             <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove"
-                                ng-click="" ng-if="account.role === 1">
+                                ng-click="">
                                 <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
                                 <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
                             </button>
