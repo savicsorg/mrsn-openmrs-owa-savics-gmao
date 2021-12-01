@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "fr": "Normale",
+        "en": "Normal"
+    },
+    {
+        "id": 2,
+        "en": "Urgent",
+        "fr": "Urgent"
+    }
+]

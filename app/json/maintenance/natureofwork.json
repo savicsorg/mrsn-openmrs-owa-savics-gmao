@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "fr": "Maintenance",
+        "en": "Maintain"
+    },
+    {
+        "id": 2,
+        "en": "Repair",
+        "fr": "Réparration"
+    }
+]

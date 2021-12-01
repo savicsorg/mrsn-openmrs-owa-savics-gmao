@@ -37,6 +37,23 @@ var getEquipmentStatusById = function (id, language) {
 };
 exports.getEquipmentStatusById = getEquipmentStatusById;
 
+var getElementById = function (data, id, language) {
+    var value = id;
+
+    if (id && id !== "") {
+        var found = _.findWhere(data, {id: id});
+        if (found) {
+            if (language === "" || language === null || language === undefined) {
+                value = found['en'];
+            } else {
+                value = ((language !== "" && found[language] !== undefined && found[language] !== "") ? found[language] : found['en']);
+            }
+        }
+    }
+    return value;
+};
+exports.getElementById = getElementById;
+
 
 
 var getIdFromJSON = function (file, value) {
