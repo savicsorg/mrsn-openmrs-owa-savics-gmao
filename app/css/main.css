@@ -79,3 +79,19 @@ header .logo img {
 .instructions {
     align-self: center;
 }*/
+
+.md-button.md-fab.md-mini {
+    line-height: 30px!important;
+    width: 30px!important;
+    height: 30px!important;
+    min-width: 30px!important;
+    min-height: 30px!important;
+}
+
+.md-button.md-fab.md-mini md-icon {
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+    min-height: 20px;
+    min-width: 20px;
+}
