@@ -1,6 +1,6 @@
 <div id="content" class="container-fluid">
     <div class="md-toolbar-tools">
-        <h1 md-truncate="" flex="">Historique des maintenances</h1>
+        <h1 md-truncate="" flex="" translate>History of Maintenances</h1>
         <a href="index.html#!/maintenancemanagement">
             <md-button>
                 <md-icon>arrow_back</md-icon><span translate>Back</span>
@@ -22,7 +22,7 @@
     </div>
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">
-            <input flex type="search" name="search" ng-model="searchAll.equipment.designation" placeholder="{{ 'Recherche par équipement...' | translate }}">
+            <input flex type="search" name="search" ng-model="searchAll.equipment.designation" placeholder="{{ 'Search by equipement...' | translate }}">
         </div>
     </md-toolbar>
     <md-card>
@@ -42,13 +42,11 @@
                         <td md-cell>{{maintenance.startdate | date: 'dd/MM/yyyy'}}</td>
                         <td md-cell >{{maintenance.equipment.designation}}</td>
                         <td>
-                            <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove"
-                                ng-click="">
+                            <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
                                 <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
                                 <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                             </button>
-                            <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove"
-                                ng-click="">
+                            <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
                                 <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
                                 <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
                             </button>

@@ -20,13 +20,9 @@
             </md-button>
         </a>       
     </div>
-    <md-toolbar class="md-table-toolbar md-default" ng-show="!loading">
-        <div class="md-toolbar-tools">
-            <md-icon style="width: 0px;">search</md-icon>
-            <form flex="">
-                <input flex type="search" name="search"  ng-model="searchAll" style="min-width: 95%;"
-                       placeholder="{{ 'Search among maintenance request...' | translate }}">
-            </form>
+    <md-toolbar layout="row" class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools" flex layout="row">
+            <input flex type="search" name="search" ng-model="searchAll.equipment.designation" placeholder="{{ 'Search by equipement...' | translate }}">
         </div>
     </md-toolbar>
     <md-card >
@@ -35,31 +31,25 @@
                 <thead md-head md-order="query.order">
                     <tr md-row>
                         <th md-column md-order-by="id"><span translate>Ref.</span></th>
-                        <th md-column md-order-by="equipment.designation" ><span translate>Equipments</span></th>
                         <th md-column md-order-by="natureOfWork"><span translate>Nature of Work</span></th>
-                        <th md-column md-order-by="requestPriority"><span translate>Priority</span></th>
-                        <th md-column md-order-by="maintenance_date"><span translate>Request date</span></th>
-                        <th md-column ><span translate>Actions</span></th>
+                        <th md-column md-order-by="startdate"><span translate>Date</span></th>
+                        <th md-column md-order-by="equipment.designation" ><span translate>Equipment</span></th>
+                        <th md-column><span translate>Actions</span></th>
                     </tr>
                 </thead>
                 <tbody md-body>
-                    <tr md-row data-ng-repeat="data in requests| orderBy:'-id' | filter:search | limitTo: query.limit : (query.page -1) * query.limit" >
-                        <td md-cell >{{data.id}}</td>
-                        <td md-cell >{{data.equipment.designation}}</td>
-                        <td md-cell >{{data.natureOfWork}}</td>
-                        <td md-cell >{{getEquipmentStatusById(data.requestPriority)}}</td>
-                        <td md-cell>{{data.startdate| date:'dd/MM/yyyy' : 'UTC'}}</td>
-                        <td md-cell >
-                            <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Add">
-                                <md-icon class="material-icons" role="img" aria-hidden="true" style="width: 0px;">visibility</md-icon>
-                                <md-tooltip md-direction="top"><span translate>View</span></md-tooltip>
-                            </button>
-                            <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Add">
-                                <md-icon class="material-icons" role="img" aria-hidden="true" style="width: 0px;">edit</md-icon>
+                    <tr md-row data-ng-repeat="request in requests| orderBy:'-id' | filter:searchAll | limitTo: query.limit : (query.page -1) * query.limit" >
+                        <td md-cell>{{request.id}}</td>
+                        <td md-cell>{{request.natureOfWork}}</td>
+                        <td md-cell>{{request.startdate| date:'dd/MM/yyyy' : 'UTC'}}</td>
+                        <td md-cell>{{request.equipment.designation}}</td>
+                        <td md-cell>
+                            <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit" ng-click="">
+                                <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
                                 <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                             </button>
-                            <button class="md-fab md-mini md-button" type="button" aria-label="Add">
-                                <md-icon class="material-icons" role="img" aria-hidden="true" style="width: 0px;">delete</md-icon>
+                            <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete" ng-click="">
+                                <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
                                 <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
                             </button>
                         </td>

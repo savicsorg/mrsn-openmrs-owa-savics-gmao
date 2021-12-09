@@ -78,7 +78,20 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         }).state('home.maintenancemanagement', {
             url: 'maintenancemanagement',
             template: require('./maintenance/maintenanceManagement.html'),
-            breadcrumbs: ["Home", "Gestion des maintenances"]
+            controller: 'MaintenanceManagementController',
+            resolve: {
+                loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        var mod = require('./maintenance/MaintenanceManagementController.js');
+                        $ocLazyLoad.load({
+                            name: 'MaintenanceManagementController'
+                        });
+                        deferred.resolve(mod.controller);
+                    });
+                    return deferred.promise;
+                }]
+            }
         }).state('home.maintenances', {
             url: 'maintenances',
             template: require('./maintenance/maintenances.html'),
@@ -95,8 +108,7 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                     });
                     return deferred.promise;
                 }]
-            },
-            breadcrumbs: ["Home", "Gestion des maintenances", "Historique des maintenances"]
+            }
         }).state('home.maintenance', {
             url: 'maintenance',
             template: require('./maintenance/maintenance.html'),
@@ -113,8 +125,7 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                     });
                     return deferred.promise;
                 }]
-            },
-            breadcrumbs: ["Home","Gestion des maintenances", "Historique des maintenances", "Ajout/Modification"]
+            }
         }).state('home.requests', {
             url: 'requests',
             template: require('./maintenance/requests.html'),
@@ -131,8 +142,7 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                     });
                     return deferred.promise;
                 }]
-            },
-            breadcrumbs: ["Home","Gestion des maintenances", "Historique des interventions"]
+            }
         }).state('home.request', {
             url: 'request',
             template: require('./maintenance/request.html'),
@@ -149,8 +159,7 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                     });
                     return deferred.promise;
                 }]
-            },
-            breadcrumbs: ["Home","Gestion des maintenances", "Historique des interventions", "Ajout/Modification"]
+            }
         }).state('home.operations', {
             url: 'operations',
             template: require('./operation/operations.html'),

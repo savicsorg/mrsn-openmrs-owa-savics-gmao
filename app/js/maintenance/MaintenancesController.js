@@ -1,27 +1,29 @@
 angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('MaintenancesController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) { 
     $scope.rootscope = $rootScope;
-
-    $scope.maintenances = [];
-    $scope.appTitle = "Historique des maintenances";
-    $scope.resource = "savicsgmao/maintenance";
+    $scope.appTitle = $translate.instant("History of Maintenances");
+    $scope.resource = "savicsgmao";
+    $scope.loading = false;
     //Breadcrumbs properties
-    $rootScope.links = {};
-    $rootScope.links["Home"] = "";
-    $rootScope.links["Maintenances"] = "/maintenances";
+    $rootScope.links = {"GMAO Module": "", "Maintenance Management": "History of Maintenances"};
     $scope.label = {
-        page: $translate.instant("Page")  + $translate.instant(":"),
+        page: $translate.instant("Page") + $translate.instant(":"),
         rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),
         of: $translate.instant("of")
     }
     $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
     $scope.query = {limit: 5, page: 1};
+    $scope.maintenances = [];
     
-    loadMaintenances();
+    getAllMaintenances();
 
-    function loadMaintenances() {
-        openmrsRest.getFull("savicsgmao/maintenance").then(function (response) {
-            $scope.showLoading = false;
+    function getAllMaintenances() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/maintenance").then(function (response) {
+            $scope.loading = false;
             $scope.maintenances = response.results;
-        })
+        }, function (e) {
+            $scope.loading = false;
+            showToast($translate.instant("An unexpected error has occured with getAllMaintenances()."), "error");
+        });
     }
 }]);
