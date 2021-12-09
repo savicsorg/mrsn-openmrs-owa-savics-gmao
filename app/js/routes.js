@@ -160,60 +160,57 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                     return deferred.promise;
                 }]
             }
-        }).state('home.operations', {
-            url: 'operations',
-            template: require('./operation/operations.html'),
-            controller: 'OperationController',
+        }).state('home.movements', {
+            url: 'movements',
+            template: require('./movement/movements.html'),
+            controller: 'MovementsController',
             resolve: {
                 loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
-                        var deferred = $q.defer();
-                        require.ensure([], function () {
-                            var mod = require('./operation/OperationController.js');
-                            $ocLazyLoad.load({
-                                name: 'OperationController'
-                            });
-                            deferred.resolve(mod.controller);
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        var mod = require('./movement/MovementsController.js');
+                        $ocLazyLoad.load({
+                            name: 'MovementsController'
                         });
-                        return deferred.promise;
-                    }]
-            },
-            breadcrumbs: ["Home", "Operations"]
-        }).state('home.operation', {
-            url: 'operation',
-            template: require('./operation/operation.html'),
-            controller: 'OperationController',
+                        deferred.resolve(mod.controller);
+                    });
+                    return deferred.promise;
+                }]
+            }
+        }).state('home.movement', {
+            url: 'movement',
+            template: require('./movement/movement.html'),
+            controller: 'MovementController',
             resolve: {
                 loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
-                        var deferred = $q.defer();
-                        require.ensure([], function () {
-                            var mod = require('./operation/OperationController.js');
-                            $ocLazyLoad.load({
-                                name: 'OperationController'
-                            });
-                            deferred.resolve(mod.controller);
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        var mod = require('./movement/MovementController.js');
+                        $ocLazyLoad.load({
+                            name: 'MovementController'
                         });
-                        return deferred.promise;
-                    }]
-            },
-            breadcrumbs: ["Home", "Operations", "Edit"]
-        }).state('home.operationApproval', {
-            url: 'operationApproval',
-            template: require('./operation/operationApproval.html'),
-            controller: 'OperationController',
+                        deferred.resolve(mod.controller);
+                    });
+                    return deferred.promise;
+                }]
+            }
+        }).state('home.movementApproval', {
+            url: 'movementApproval',
+            template: require('./movement/movementApproval.html'),
+            controller: 'MovementApprovalController',
             resolve: {
                 loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
-                        var deferred = $q.defer();
-                        require.ensure([], function () {
-                            var mod = require('./operation/OperationController.js');
-                            $ocLazyLoad.load({
-                                name: 'OperationController'
-                            });
-                            deferred.resolve(mod.controller);
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        var mod = require('./movement/MovementApprovalController.js');
+                        $ocLazyLoad.load({
+                            name: 'MovementApprovalController'
                         });
-                        return deferred.promise;
-                    }]
-            },
-            breadcrumbs: ["Home", "Operations", "Approval"]
+                        deferred.resolve(mod.controller);
+                    });
+                    return deferred.promise;
+                }]
+            }
         }).state('home.maintenanceReasons', {
             url: 'maintenanceReasons',
             template: require('./settings/maintenanceReasons.html'),
