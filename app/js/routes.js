@@ -151,42 +151,6 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                 }]
             },
             breadcrumbs: ["Home","Gestion des maintenances", "Historique des interventions", "Ajout/Modification"]
-        }).state('home.schedules', {
-            url: 'schedules',
-            template: require('./maintenance/schedules.html'),
-            controller: 'SchedulesController',
-            resolve: {
-                loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
-                    var deferred = $q.defer();
-                    require.ensure([], function () {
-                        var mod = require('./maintenance/SchedulesController.js');
-                        $ocLazyLoad.load({
-                            name: 'SchedulesController'
-                        });
-                        deferred.resolve(mod.controller);
-                    });
-                    return deferred.promise;
-                }]
-            },
-            breadcrumbs: ["Home","Gestion des maintenances", "Historique des planifications"]
-        }).state('home.schedule', {
-            url: 'schedule',
-            template: require('./maintenance/schedule.html'),
-            controller: 'ScheduleController',
-            resolve: {
-                loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
-                        var deferred = $q.defer();
-                        require.ensure([], function () {
-                            var mod = require('./maintenance/ScheduleController.js');
-                            $ocLazyLoad.load({
-                                name: 'ScheduleController'
-                            });
-                            deferred.resolve(mod.controller);
-                        });
-                        return deferred.promise;
-                    }]
-            },
-            breadcrumbs: ["Home","Gestion des maintenances", "Historique des planifications", "Ajout/Modification"]
         }).state('home.operations', {
             url: 'operations',
             template: require('./operation/operations.html'),
