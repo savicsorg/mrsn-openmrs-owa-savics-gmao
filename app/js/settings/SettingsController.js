@@ -1,44 +1,23 @@
 angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('SettingsController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) {
     $scope.rootscope = $rootScope;
-
-    console.log("SettingsController new form ---")
-    $scope.mySettings = [{}];
-    $scope.appTitle = "Gestion des equipements";
+    $scope.appTitle = $translate.instant("Settings");
     $scope.resource = "savicsgmao";
-    //Breadcrumbs properties
-    $rootScope.links = {};
-    $rootScope.links["Home"] = "";
-    $rootScope.links["Settings"] = "settings";
-
-    $scope.ressource = "savicsgmao/";
-
-    $scope.query = {
-        order: '',
-        page: 0,
-        limit: 10
-    }
-
     $scope.loading = false;
-
-    $scope.options = {
-        //autoSelect: true,
-        boundaryLinks: false,
-        //largeEditDialog: true,
-        //pageSelector: true,
-        rowSelection: true
-    };
-
-    $scope.maintenanceReasons = [];
-    $scope.maintenanceReason = {};
+    //Breadcrumbs properties
+    $rootScope.links = {"GMAO Module": "", "Settings": "settings"};
+    $scope.label = {
+        page: $translate.instant("Page") + $translate.instant(":"),
+        rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),
+        of: $translate.instant("of")
+    }
+    $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
+    $scope.query = {limit: 5, page: 1};
 
     $scope.equipmentTypes = [];
     $scope.equipmentType = {};
 
     $scope.departments = [];
     $scope.department = {};
-
-    $scope.agents = [];
-    $scope.agent = {};
 
     $scope.regions = [];
     $scope.region = {};
@@ -60,61 +39,6 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.agent = {};
     }
 
-    $scope.saveAgent = function () {
-        $scope.loading = true;
-        if ($scope.agent && $scope.agent.uuid) {//edit
-            console.log("Updating the agent ", $scope.agent.uuid)
-            openmrsRest.update($scope.ressource + "agent", $scope.agent).then(function (response) {
-                console.log(response);
-                loadAgents();
-                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
-            },function(e){
-                console.error(e);
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-            });
-        } else {//Creation
-            console.log($translate.instant("Creating new agent "))
-            openmrsRest.create($scope.ressource + "agent", $scope.agent).then(function (response) {
-                console.log(response);
-                loadAgents();
-                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
-            },function(e){
-                console.error(e);
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-            });
-        }
-    }
-
-    function loadAgents() {
-        $scope.loading = true;
-        openmrsRest.getFull($scope.ressource + "agent").then(function (response) {
-            $scope.showLoading = false;
-            $scope.agents = response.results;
-            console.log($scope.agents);
-            $scope.loading = false;
-        },function(e){
-            console.error(e);
-            $scope.loading = false;
-            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-        });
-    }
-
-    $scope.deleteAgent = function (agent) {
-        $scope.loading = true;
-        console.log(agent)
-        openmrsRest.remove($scope.ressource + "agent", agent, "Generic Reason").then(function (response) {
-            console.log(response);
-            $scope.loading = false;
-            toastr.success($translate.instant('Data removed successfully.'), 'Success');
-        },function(e){
-            console.error(e);
-            $scope.loading = false;
-            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-        });
-    }
-
     //departments
     $scope.clearDepartment = function () {
         $scope.department = {};
@@ -124,7 +48,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.loading = true;
         if ($scope.department && $scope.department.uuid) {//edit
             console.log($translate.instant("Updating the department "), $scope.department.uuid)
-            openmrsRest.update($scope.ressource + "department", $scope.department).then(function (response) {
+            openmrsRest.update($scope.resource + "/department", $scope.department).then(function (response) {
                 console.log(response);
                 loadDepartments();    
                 toastr.success($translate.instant('Data removed successfully.'), 'Success');              
@@ -135,7 +59,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             });
         } else {//Creation
             console.log($translate.instant("Creating new department "))
-            openmrsRest.create($scope.ressource + "department", $scope.department).then(function (response) {
+            openmrsRest.create($scope.resource + "/department", $scope.department).then(function (response) {
                 console.log(response);
                 loadDepartments();
                 toastr.success($translate.instant('Data removed successfully.'), 'Success');   
@@ -150,7 +74,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.deleteDepartment = function (department) {
         $scope.loading = true;
         console.log(department)
-        openmrsRest.remove($scope.ressource + "department", department, "Generic Reason").then(function (response) {
+        openmrsRest.remove($scope.resource + "/department", department, "Generic Reason").then(function (response) {
             console.log(response);
             loadDepartments();
             toastr.success($translate.instant('Data removed successfully.'), 'Success');   
@@ -163,7 +87,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
 
     function loadDepartments() {
         $scope.loading = true;
-        openmrsRest.getFull($scope.ressource + "department").then(function (response) {
+        openmrsRest.getFull($scope.resource + "/department").then(function (response) {
             $scope.showLoading = false;
             $scope.departments = response.results;
             console.log($scope.departments);
@@ -188,7 +112,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.loading = true;
         if ($scope.equipmentType && $scope.equipmentType.uuid) {//edit
             console.log("Updating the equipmentType ", $scope.equipmentType.uuid)
-            openmrsRest.update($scope.ressource + "equipmentType", $scope.equipmentType).then(function (response) {
+            openmrsRest.update($scope.resource + "/equipmentType", $scope.equipmentType).then(function (response) {
                 console.log(response);
                 loadEquipmentTypes();
                 toastr.success($translate.instant('Data removed successfully.'), 'Success');   
@@ -199,7 +123,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             });
         } else {//Creation
             console.log("Creating new equipmentType ")
-            openmrsRest.create($scope.ressource + "equipmentType", $scope.equipmentType).then(function (response) {
+            openmrsRest.create($scope.resource + "/equipmentType", $scope.equipmentType).then(function (response) {
                 console.log(response);
                 loadEquipmentTypes();
                 toastr.success($translate.instant('Data removed successfully.'), 'Success');   
@@ -214,7 +138,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.deleteEquipmentType = function (equipmentType) {
         $scope.loading = true;
         console.log(equipmentType)
-        openmrsRest.remove($scope.ressource + "equipmentType", equipmentType, "Generic Reason").then(function (response) {
+        openmrsRest.remove($scope.resource + "/equipmentType", equipmentType, "Generic Reason").then(function (response) {
             console.log(response);
             loadEquipmentTypes();
             toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
@@ -227,7 +151,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
 
     function loadEquipmentTypes() {
         $scope.loading = true;
-        openmrsRest.getFull($scope.ressource + "equipmentType").then(function (response) {
+        openmrsRest.getFull($scope.resource + "/equipmentType").then(function (response) {
             $scope.showLoading = false;
             $scope.equipmentTypes = response.results;
             console.log($scope.equipmentTypes);
@@ -252,7 +176,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.loading = true;
         if ($scope.region && $scope.region.uuid) {//edit
             console.log("Updating the region ", $scope.region.uuid)
-            openmrsRest.update($scope.ressource + "region", $scope.region).then(function (response) {
+            openmrsRest.update($scope.resource + "/region", $scope.region).then(function (response) {
                 console.log(response);
                 loadRegions();
                 toastr.success($translate.instant('Data removed successfully.'), 'Success');   
@@ -263,7 +187,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             });
         } else {//Creation
             console.log("Creating new region ")
-            openmrsRest.create($scope.ressource + "region", $scope.region).then(function (response) {
+            openmrsRest.create($scope.resource + "/region", $scope.region).then(function (response) {
                 console.log(response);
                 loadRegions();
                 toastr.success($translate.instant('Data removed successfully.'), 'Success');   
@@ -278,7 +202,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.deleteRegion = function (region) {
         $scope.loading = true;
         console.log(region)
-        openmrsRest.remove($scope.ressource + "region", region, "Generic Reason").then(function (response) {
+        openmrsRest.remove($scope.resource + "/region", region, "Generic Reason").then(function (response) {
             console.log(response);
             loadRegions();
             toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
@@ -291,7 +215,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
 
     function loadRegions() {
         $scope.loading = true;
-        openmrsRest.getFull($scope.ressource + "region").then(function (response) {
+        openmrsRest.getFull($scope.resource + "/region").then(function (response) {
             $scope.showLoading = false;
             $scope.regions = response.results;
             console.log($scope.regions);
@@ -318,7 +242,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.district.region = parseInt($scope.district.region.id);
         if ($scope.district && $scope.district.uuid) {//edit
             console.log("Updating the district ", $scope.district.uuid)
-            openmrsRest.update($scope.ressource + "district", $scope.district).then(function (response) {
+            openmrsRest.update($scope.resource + "/district", $scope.district).then(function (response) {
                 console.log(response);
                 $scope.district = response;
                 loadDistricts();
@@ -330,7 +254,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             });
         } else {//Creation
             console.log("Creating new disctrict ")
-            openmrsRest.create($scope.ressource + "district", $scope.district).then(function (response) {
+            openmrsRest.create($scope.resource + "/district", $scope.district).then(function (response) {
                 console.log(response);
                 $scope.district = response;
                 loadDistricts();
@@ -346,7 +270,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.deleteDistrict = function (disctrict) {
         $scope.loading = true;
         console.log(disctrict)
-        openmrsRest.remove($scope.ressource + "district", disctrict, "Generic Reason").then(function (response) {
+        openmrsRest.remove($scope.resource + "/district", disctrict, "Generic Reason").then(function (response) {
             console.log(response);
             loadDistricts();
             toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
@@ -359,7 +283,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
 
     function loadDistricts() {
         $scope.loading = true;
-        openmrsRest.getFull($scope.ressource + "district").then(function (response) {
+        openmrsRest.getFull($scope.resource + "/district").then(function (response) {
             $scope.showLoading = false;
             $scope.districts = response.results;
             console.log($scope.districts);
@@ -386,7 +310,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.siteLocation.district = parseInt($scope.siteLocation.district.id);
         if ($scope.siteLocation && $scope.siteLocation.uuid) {//edit
             console.log("Updating the SiteLocation ", $scope.siteLocation.uuid)
-            openmrsRest.update($scope.ressource + "siteLocation", $scope.siteLocation).then(function (response) {
+            openmrsRest.update($scope.resource + "/siteLocation", $scope.siteLocation).then(function (response) {
                 console.log(response);
                 $scope.siteLocation = response;
                 loadSiteLocations() ;
@@ -398,7 +322,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             });
         } else {//Creation
             console.log("Creating new siteLocation ")
-            openmrsRest.create($scope.ressource + "siteLocation", $scope.siteLocation).then(function (response) {
+            openmrsRest.create($scope.resource + "/siteLocation", $scope.siteLocation).then(function (response) {
                 console.log(response);
                 $scope.siteLocation = response;
                 loadSiteLocations() ;
@@ -414,7 +338,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.deleteSiteLocation = function (siteLocation) {
         $scope.loading = true;
         console.log(siteLocation)
-        openmrsRest.remove($scope.ressource + "siteLocation", siteLocation, "Generic Reason").then(function (response) {
+        openmrsRest.remove($scope.resource + "/siteLocation", siteLocation, "Generic Reason").then(function (response) {
             console.log(response);
             loadSiteLocations() ;
             toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
@@ -427,7 +351,7 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
 
     function loadSiteLocations() {
         $scope.loading = true;
-        openmrsRest.getFull($scope.ressource + "siteLocation").then(function (response) {
+        openmrsRest.getFull($scope.resource + "/siteLocation").then(function (response) {
             $scope.showLoading = false;
             $scope.siteLocations = response.results;
             console.log($scope.siteLocations)
@@ -442,80 +366,12 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.siteLocation = siteLocation;
     }
 
-    //maintenanceReasons
-    $scope.clearMaintenanceReason = function () {
-        $scope.maintenanceReason = {};
-    }
-
-    $scope.saveMaintenanceReason = function () {
-        $scope.loading = true;
-        if ($scope.maintenanceReason && $scope.maintenanceReason.uuid) {//edit
-            console.log("Updating the maintenanceReason ", $scope.maintenanceReason.uuid)
-            openmrsRest.update($scope.ressource + "maintenanceReason", $scope.maintenanceReason).then(function (response) {
-                console.log(response);
-                loadMaintenanceReasons();
-                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
-            },function(e){
-                console.error(e);
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-            });
-        } else {//Creation
-            console.log("Creating new maintenanceReason ")
-            openmrsRest.create($scope.ressource + "maintenanceReason", $scope.maintenanceReason).then(function (response) {
-                console.log(response);
-                loadMaintenanceReasons();
-                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
-            },function(e){
-                console.error(e);
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-            });
-        }
-    }
-
-    $scope.deleteMaintenanceReason = function (maintenanceReason) {
-        $scope.loading = true;
-        console.log(maintenanceReason)
-        openmrsRest.remove($scope.ressource + "maintenanceReason", maintenanceReason, "Generic Reason").then(function (response) {
-            console.log(response);
-            loadMaintenanceReasons();
-            toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
-        },function(e){
-            console.error(e);
-            $scope.loading = false;
-            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-        });
-    }
-
-    function loadMaintenanceReasons() {
-        $scope.loading = true;
-        openmrsRest.getFull($scope.ressource + "maintenanceReason").then(function (response) {
-            $scope.showLoading = false;
-            $scope.maintenanceReasons = response.results;
-            console.log($scope.maintenanceReasons);
-            $scope.loading = false;
-        },function(e){
-            console.error(e);
-            $scope.loading = false;
-            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-        });
-    }
-
-    $scope.readMaintenanceReason = function (maintenanceReason) {
-        $scope.maintenanceReason = maintenanceReason;
-    }
-
     var loadData = function(){
-        loadAgents();
         loadDepartments();
         loadEquipmentTypes();
         loadRegions();
         loadDistricts();
         loadSiteLocations();
-        loadMaintenanceReasons();
     }
-
     loadData();
-
 }]);

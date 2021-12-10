@@ -1,8 +1,6 @@
 <div id="content" class="container-fluid">
     <div class="md-toolbar-tools">
-        <h1 md-truncate="" flex="">
-            Departments management
-        </h1>
+        <h1 md-truncate="" flex="" translate>Departments management</h1>
     </div>    
     <div layout="row" ng-if="loading" layout-sm="column" layout-align="space-around">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
@@ -26,14 +24,14 @@
                     <md-tooltip md-direction="top">
                         <span translate>Add a new department</span>
                     </md-tooltip>
-                    New
+                    <span translate>New</span>
                 </md-button>
                 <md-button class="md-raised md-primary" aria-label="Add" ng-click="saveDepartment()" >
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Save</span>
                     </md-tooltip>
-                    Save
+                    <span translate>Save</span>
                 </md-button>
             </div>          
         </md-card-content>
@@ -52,18 +50,18 @@
                     </thead>
                     <tbody md-body>
                         <tr md-row data-ng-repeat="data in departments" >
-                            <td md-cell >{{data.departmentName}}</td>
-                            <td md-cell >{{data.departmentCode}}</td>
-                            <td md-cell >
+                            <td md-cell>{{data.departmentName}}</td>
+                            <td md-cell>{{data.departmentCode}}</td>
+                            <td md-cell>
                                 <button ng-click="readDepartment(data)" class=" md-primary md-button"
                                     type="button" aria-label="Add">
                                     <md-icon class=" material-icons" role="img" aria-hidden="true">edit</md-icon>
-                                    Edit
+                                    <span translate>Edit</span>
                                 </button>
                                 <button ng-click="deleteDepartment(data)" class=" md-primary md-button"
                                     type="button" aria-label="Remove">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
-                                    Delete
+                                    <span translate>Delete</span>
                                 </button>
                             </td>
                         </tr>

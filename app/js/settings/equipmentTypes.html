@@ -1,7 +1,7 @@
 <div id="content" class="container-fluid">
 
     <div class="md-toolbar-tools">
-        <h1 md-truncate="" flex="">Equipment types management</h1>
+        <h1 md-truncate="" flex="" translate>Equipment types management</h1>
     </div>    
     <div layout="row" ng-if="loading" layout-sm="column" layout-align="space-around">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
@@ -21,14 +21,14 @@
                     <md-tooltip md-direction="top">
                         <span translate>Add a new equipment type</span>
                     </md-tooltip>
-                    New
+                    <span translate>New</span>
                 </md-button>
                 <md-button class="md-raised md-primary" aria-label="Add" ng-click="saveEquipmentType()" >
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Save</span>
                     </md-tooltip>
-                    Save
+                    <span translate>Save</span>
                 </md-button>
             </div>          
         </md-card-content>
@@ -51,12 +51,12 @@
                                 <button ng-click="readEquipmentType(data)" class=" md-primary md-button"
                                     type="button" aria-label="Add">
                                     <md-icon class=" material-icons" role="img" aria-hidden="true">edit</md-icon>
-                                    Edit
+                                    <span translate>Edit</span>
                                 </button>
                                 <button ng-click="deleteEquipmentType(data)" class=" md-primary md-button"
                                     type="button" aria-label="Remove">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
-                                    Delete
+                                    <span translate>Delete</span>
                                 </button>
                             </td>
                         </tr>
