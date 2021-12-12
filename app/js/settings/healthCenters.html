@@ -1,6 +1,6 @@
 <div id="content" class="container-fluid">
     <div class="md-toolbar-tools">
-        <h1 md-truncate="" flex="" translate>Equipment Types Management</h1>
+        <h1 md-truncate="" flex="" translate>HD/CSIs Management</h1>
         <a href="index.html#!/settings">
             <md-button>
                 <md-icon>arrow_back</md-icon><span translate>Back</span>
@@ -9,21 +9,43 @@
     </div>
     <div layout="row" ng-if="loading" layout-sm="column" layout-align="space-around">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-    </div>   
+    </div>
     <md-card ng-show="!loading">
-        <md-card-title translate>Add/Modify an Equipment Type</md-card-title>
+        <md-card-title translate>Add/Modify an HD/CSI</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
-                <md-input-container class="md-block md-input-has-value" flex="100">
+                <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Name</label>
-                    <input type="text" required ng-model="equipmentType.typeName"/>
-                </md-input-container>  
-            </div>     
+                    <input type="text" required ng-model="healthCenter.name"/>
+                </md-input-container> 
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Code</label>
+                    <input type="text" required ng-model="healthCenter.code"/>
+                </md-input-container> 
+            </div>
+            <div layout="row" layout-xs="column" class="flex flex-col">                    
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>Region</label>
+                    <md-select required ng-model="healthCenter.region.id" >
+                        <md-option ng-repeat="r in regions" ng-value="r.id">
+                            {{r.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block md-input-has-value" flex="50">
+                    <label translate>District</label>
+                    <md-select required ng-model="healthCenter.district.id" >
+                        <md-option ng-repeat="d in districts" ng-value="d.id">
+                            {{d.districtName}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div> 
             <div layout="row" layout-xs="column">
                 <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()" >
                     <md-icon>add</md-icon>
                     <md-tooltip md-direction="top">
-                        <span translate>Add a new Equipment Type</span>
+                        <span translate>Add a new HD/CSI</span>
                     </md-tooltip>
                     <span translate>New</span>
                 </md-button>
@@ -37,26 +59,28 @@
             </div>          
         </md-card-content>
     </md-card>  
-    <md-card  ng-show="!loading">
-        <md-card-title translate>List of Equipment Types</md-card-title>
+    <md-card ng-show="!loading">
+        <md-card-title translate>List of HD/CSIs</md-card-title>
         <md-card-content>
-            <md-table-container class="container" fixed-column-table>
+            <md-table-container >
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
-                            <th md-column md-order-by="typeName"><span translate>Name</span></th>
+                            <th md-column md-order-by="name"><span translate>Name</span></th>
+                            <th md-column md-order-by="code"><span translate>Code</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="equipmentType in equipmentTypes" >
-                            <td md-cell>{{equipmentType.typeName}}</td>
+                        <tr md-row data-ng-repeat="healthCenter in healthCenters" >
+                            <td md-cell>{{healthCenter.name}}</td>
+                            <td md-cell>{{healthCenter.code}}</td>
                             <td md-cell>
-                                <button ng-click="read(equipmentType)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
+                                <button ng-click="read(healthCenter)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                                 </button>
-                                <button ng-click="delete(equipmentType)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
+                                <button ng-click="delete(healthCenter)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
                                 </button>
@@ -65,10 +89,10 @@
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{equipmentTypes.length}}"
+            <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{healthCenters.length}}"
                 md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks" md-limit-options="[25, 50, 100]"
                 md-on-paginate="logPagination" md-label="$parent.label">
-            </md-table-pagination>
+            </md-table-pagination>         
         </md-card-content>
     </md-card>
 </div>
