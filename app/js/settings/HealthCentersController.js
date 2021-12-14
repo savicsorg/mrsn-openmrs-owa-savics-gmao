@@ -22,25 +22,29 @@ angular.module('HealthCentersController', ['ngMaterial', 'ngAnimate', 'toastr', 
     }
 
     $scope.save = function () {
-        $scope.loading = true;
-        if ($scope.healthCenter && $scope.healthCenter.uuid) {//edit
-            openmrsRest.update($scope.resource, $scope.healthCenter).then(function (response) {
-                loadHealthCenters();
-                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
-            },function(e){
-                console.error(e);
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-            });
-        } else {//Creation
-            openmrsRest.create($scope.resource, $scope.healthCenter).then(function (response) {
-                loadHealthCenters();
-                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
-            },function(e){
-                console.error(e);
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-            });
+        if(($scope.healthCenter.code && $scope.healthCenter.code !== "") && ($scope.healthCenter.name && $scope.healthCenter.name !== "") && ($scope.healthCenter.district)){
+            $scope.loading = true;
+            if ($scope.healthCenter && $scope.healthCenter.uuid) {//edit
+                openmrsRest.update($scope.resource, $scope.healthCenter).then(function (response) {
+                    loadHealthCenters();
+                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                },function(e){
+                    console.error(e);
+                    $scope.loading = false;
+                    toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+                });
+            } else {//Creation
+                openmrsRest.create($scope.resource, $scope.healthCenter).then(function (response) {
+                    loadHealthCenters();
+                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                },function(e){
+                    console.error(e);
+                    $scope.loading = false;
+                    toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+                });
+            }
+        } else {
+            toastr.error($translate.instant('All required fields must be filled out.'), 'Error');
         }
     }
 

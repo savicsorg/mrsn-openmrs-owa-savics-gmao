@@ -21,30 +21,34 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
     }
 
     $scope.save = function () {
-        $scope.loading = true;
-        $scope.site.district = parseInt($scope.site.district.id);
-        if ($scope.site && $scope.site.uuid) {//edit
-            openmrsRest.update($scope.resource + "/site", $scope.site).then(function (response) {
-                $scope.loading = false;
-                $scope.site = response;
-                loadSiteLocations() ;
-                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
-            },function(e){
-                console.error(e);
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-            });
-        } else {//Creation
-            openmrsRest.create($scope.resource + "/site", $scope.site).then(function (response) {
-                $scope.loading = false;
-                $scope.site = response;
-                loadSiteLocations() ;
-                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
-            },function(e){
-                console.error(e);
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-            });
+        if(($scope.site.code && $scope.site.code !== "") && ($scope.site.name && $scope.site.name !== "") && $scope.site.service){
+            $scope.loading = true;
+            $scope.site.district = parseInt($scope.site.district.id);
+            if ($scope.site && $scope.site.uuid) {//edit
+                openmrsRest.update($scope.resource + "/site", $scope.site).then(function (response) {
+                    $scope.loading = false;
+                    $scope.site = response;
+                    loadSiteLocations() ;
+                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                },function(e){
+                    console.error(e);
+                    $scope.loading = false;
+                    toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+                });
+            } else {//Creation
+                openmrsRest.create($scope.resource + "/site", $scope.site).then(function (response) {
+                    $scope.loading = false;
+                    $scope.site = response;
+                    loadSiteLocations() ;
+                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                },function(e){
+                    console.error(e);
+                    $scope.loading = false;
+                    toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+                });
+            }
+        } else {
+            toastr.error($translate.instant('All required fields must be filled out.'), 'Error');
         }
     }
 

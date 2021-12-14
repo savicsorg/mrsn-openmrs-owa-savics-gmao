@@ -14,36 +14,39 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
     $scope.query = {limit: 5, page: 1};
 
     $scope.districts = [];
-    $scope.district = {region:{}};
+    $scope.district = {};
 
     //district
     $scope.clear = function () {
-        $scope.district = {region:{}};
+        $scope.district = {};
     }
 
     $scope.save = function () {
-        $scope.loading = true;
-        $scope.district.region = parseInt($scope.district.region.id);
-        if ($scope.district && $scope.district.uuid) {//edit
-            openmrsRest.update($scope.resource + "/district", $scope.district).then(function (response) {
-                $scope.district = response;
-                loadDistricts();
-                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
-            },function(e){
-                console.error(e);
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-            });
-        } else {//Creation
-            openmrsRest.create($scope.resource + "/district", $scope.district).then(function (response) {
-                $scope.district = response;
-                loadDistricts();
-                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
-            },function(e){
-                console.error(e);
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-            });
+        if(($scope.district.code && $scope.district.code !== "") && ($scope.district.name && $scope.district.name !== "") && ($scope.district.regionid && $scope.district.regionid !== "")){
+            $scope.loading = true;
+            if ($scope.district && $scope.district.uuid) {//edit
+                openmrsRest.update($scope.resource + "/district", $scope.district).then(function (response) {
+                    $scope.district = response;
+                    loadDistricts();
+                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                },function(e){
+                    console.error(e);
+                    $scope.loading = false;
+                    toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+                });
+            } else {//Creation
+                openmrsRest.create($scope.resource + "/district", $scope.district).then(function (response) {
+                    $scope.district = response;
+                    loadDistricts();
+                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                },function(e){
+                    console.error(e);
+                    $scope.loading = false;
+                    toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+                });
+            }
+        } else {
+            toastr.error($translate.instant('All required fields must be filled out.'), 'Error');
         }
     }
 

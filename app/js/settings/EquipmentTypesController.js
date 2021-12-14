@@ -22,25 +22,29 @@ angular.module('EquipmentTypesController', ['ngMaterial', 'ngAnimate', 'toastr',
     }
 
     $scope.save = function () {
-        $scope.loading = true;
-        if ($scope.equipmentType && $scope.equipmentType.uuid) {//edit
-            openmrsRest.update($scope.resource + "/equipmentType", $scope.equipmentType).then(function (response) {
-                loadEquipmentTypes();
-                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
-            },function(e){
-                console.error(e);
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-            });
-        } else {//Creation
-            openmrsRest.create($scope.resource + "/equipmentType", $scope.equipmentType).then(function (response) {
-                loadEquipmentTypes();
-                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
-            },function(e){
-                console.error(e);
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-            });
+        if($scope.equipmentType.name && $scope.district.name !== ""){
+            $scope.loading = true;
+            if ($scope.equipmentType && $scope.equipmentType.uuid) {//edit
+                openmrsRest.update($scope.resource + "/equipmentType", $scope.equipmentType).then(function (response) {
+                    loadEquipmentTypes();
+                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                },function(e){
+                    console.error(e);
+                    $scope.loading = false;
+                    toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+                });
+            } else {//Creation
+                openmrsRest.create($scope.resource + "/equipmentType", $scope.equipmentType).then(function (response) {
+                    loadEquipmentTypes();
+                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                },function(e){
+                    console.error(e);
+                    $scope.loading = false;
+                    toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+                });
+            }
+        } else {
+            toastr.error($translate.instant('All required fields must be filled out.'), 'Error');
         }
     }
 
