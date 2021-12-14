@@ -22,7 +22,7 @@
     </div>   
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">
-            <input flex type="search" name="search" ng-model="searchAll.designation" placeholder="{{ 'Search by Designation...' | translate }}">
+            <input flex type="search" name="search" ng-model="searchAll.name" placeholder="{{ 'Search by Name...' | translate }}">
         </div>
     </md-toolbar>
     <md-card>
@@ -33,8 +33,8 @@
                         <tr md-row>
                             <th md-column md-order-by="id"><span translate>Ref.</span></th>
                             <th md-column md-order-by="serialNumber"><span translate>Serial No</span></th>
-                            <th md-column md-order-by="designation"><span translate>Designation</span></th>
-                            <th md-column md-order-by="typeName" ><span translate>Type</span></th>
+                            <th md-column md-order-by="name"><span translate>Designation</span></th>
+                            <th md-column md-order-by="equipmentType.name" ><span translate>Type</span></th>
                             <th md-column><span translate>Actions</span></th>
                         </tr>
                     </thead>
@@ -42,8 +42,8 @@
                         <tr md-row data-ng-repeat="equipment in equipments | orderBy:'-id' | filter:searchAll | limitTo: query.limit : (query.page -1) * query.limit">
                             <td md-cell>{{equipment.id}}</td>
                             <td md-cell>{{equipment.serialNumber}}</td>
-                            <td md-cell>{{equipment.designation}}</td>
-                            <td md-cell>{{equipment.equipmentType.typeName}}</td>
+                            <td md-cell>{{equipment.name}}</td>
+                            <td md-cell>{{equipment.equipmentType.name}}</td>
                             <td>
                                 <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>

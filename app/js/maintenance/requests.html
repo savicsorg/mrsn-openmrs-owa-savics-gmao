@@ -1,6 +1,6 @@
 <div id="content" class="container-fluid">
     <div class="md-toolbar-tools">
-        <h1 md-truncate="" flex="" translate>History of interventions</h1>
+        <h1 md-truncate="" flex="" translate>History of Maintenance Requests</h1>
         <a href="index.html#!/maintenancemanagement">
             <md-button>
                 <md-icon >arrow_back</md-icon><span translate>Back</span>
@@ -22,7 +22,7 @@
     </div>
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">
-            <input flex type="search" name="search" ng-model="searchAll.equipment.designation" placeholder="{{ 'Search by Equipement...' | translate }}">
+            <input flex type="search" name="search" ng-model="searchAll.equipment.name" placeholder="{{ 'Search by Equipement...' | translate }}">
         </div>
     </md-toolbar>
     <md-card >
@@ -32,8 +32,8 @@
                     <tr md-row>
                         <th md-column md-order-by="id"><span translate>Ref.</span></th>
                         <th md-column md-order-by="natureOfWork"><span translate>Nature of Work</span></th>
-                        <th md-column md-order-by="startdate"><span translate>Date</span></th>
-                        <th md-column md-order-by="equipment.designation" ><span translate>Equipment</span></th>
+                        <th md-column md-order-by="creation"><span translate>Date</span></th>
+                        <th md-column md-order-by="equipment.name" ><span translate>Equipment</span></th>
                         <th md-column><span translate>Actions</span></th>
                     </tr>
                 </thead>
@@ -41,8 +41,8 @@
                     <tr md-row data-ng-repeat="request in requests| orderBy:'-id' | filter:searchAll | limitTo: query.limit : (query.page -1) * query.limit" >
                         <td md-cell>{{request.id}}</td>
                         <td md-cell>{{request.natureOfWork}}</td>
-                        <td md-cell>{{request.startdate| date:'dd/MM/yyyy' : 'UTC'}}</td>
-                        <td md-cell>{{request.equipment.designation}}</td>
+                        <td md-cell>{{request.creation| date:'dd/MM/yyyy' : 'UTC'}}</td>
+                        <td md-cell>{{request.equipment.name}}</td>
                         <td md-cell>
                             <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit" ng-click="">
                                 <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>

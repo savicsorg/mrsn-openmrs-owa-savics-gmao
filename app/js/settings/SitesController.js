@@ -24,7 +24,7 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
         $scope.loading = true;
         $scope.site.district = parseInt($scope.site.district.id);
         if ($scope.site && $scope.site.uuid) {//edit
-            openmrsRest.update($scope.resource + "/siteLocation", $scope.site).then(function (response) {
+            openmrsRest.update($scope.resource + "/site", $scope.site).then(function (response) {
                 $scope.loading = false;
                 $scope.site = response;
                 loadSiteLocations() ;
@@ -35,7 +35,7 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
                 toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
             });
         } else {//Creation
-            openmrsRest.create($scope.resource + "/siteLocation", $scope.site).then(function (response) {
+            openmrsRest.create($scope.resource + "/site", $scope.site).then(function (response) {
                 $scope.loading = false;
                 $scope.site = response;
                 loadSiteLocations() ;
@@ -50,7 +50,7 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
 
     $scope.delete = function (site) {
         $scope.loading = true;
-        openmrsRest.remove($scope.resource + "/siteLocation", site, "Generic Reason").then(function (response) {
+        openmrsRest.remove($scope.resource + "/site", site, "Generic Reason").then(function (response) {
             $scope.loading = false;
             loadSiteLocations() ;
             toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
@@ -63,7 +63,7 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
 
     function loadSiteLocations() {
         $scope.loading = true;
-        openmrsRest.getFull($scope.resource + "/siteLocation").then(function (response) {
+        openmrsRest.getFull($scope.resource + "/site").then(function (response) {
             $scope.loading = false;
             $scope.sites = response.results;
         },function(e){

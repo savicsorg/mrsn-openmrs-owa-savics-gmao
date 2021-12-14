@@ -1,7 +1,7 @@
 angular.module('HealthCentersController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('HealthCentersController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) {
     $scope.rootscope = $rootScope;
     $scope.appTitle = $translate.instant("HD/CSIs Management");
-    $scope.resource = "savicsgmao/district";
+    $scope.resource = "savicsgmao/healthcenter";
     $scope.loading = false;
     //Breadcrumbs properties
     $rootScope.links = {"GMAO Module": "", "Settings": "settings", "HD/CSI Management": "healthCenters"};

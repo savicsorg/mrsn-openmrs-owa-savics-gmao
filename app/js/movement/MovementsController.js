@@ -18,7 +18,7 @@ angular.module('MovementsController', ['ngMaterial', 'md.data.table']).controlle
 
     function getAllMovements() {
         $scope.loading = true;
-        openmrsRest.getFull($scope.resource + "/equipmentOperation").then(function (response) {
+        openmrsRest.getFull($scope.resource + "/mouvement").then(function (response) {
             $scope.loading = false;
             $scope.movements = response.results;
         }, function (e) {

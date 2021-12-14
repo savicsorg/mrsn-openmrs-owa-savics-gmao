@@ -1,7 +1,7 @@
 angular.module('ServicesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('ServicesController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) {
     $scope.rootscope = $rootScope;
     $scope.appTitle = $translate.instant("Services in HD/CSI");
-    $scope.resource = "savicsgmao/district";
+    $scope.resource = "savicsgmao/service";
     $scope.loading = false;
     //Breadcrumbs properties
     $rootScope.links = {"GMAO Module": "", "Settings": "settings", "Services in HD/CSI": "services"};
