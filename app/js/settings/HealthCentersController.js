@@ -50,23 +50,27 @@ angular.module('HealthCentersController', ['ngMaterial', 'ngAnimate', 'toastr', 
         }
     }
 
-    $scope.delete = function (healthCenter) {
-        $scope.loading = true;
-        openmrsRest.remove($scope.resource + "/healthcenter", healthCenter, "Generic Reason").then(function (response) {
-            loadHealthCenters();
-            toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
-        },function(e){
-            console.error(e);
-            $scope.loading = false;
-            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+    $scope.delete = function (ev, obj) {
+        var confirm = $mdDialog.confirm()
+            .title($translate.instant('Are you sure you want to delete this item?'))
+            .textContent($translate.instant('If you choose `YES` this item will be deleted and you will not be able to recover it.'))
+            .ariaLabel($translate.instant('Delete Confirmation'))
+            .targetEvent(ev)
+            .ok($translate.instant('Yes'))
+            .cancel($translate.instant('Cancel'));
+        $mdDialog.show(confirm).then(function () {
+            deleteObject(obj);
+        }, function () {
+            $mdDialog.cancel();
         });
-    }
+    };
 
-    function loadHealthCenters() {
+    function deleteObject(healthcenter) {
         $scope.loading = true;
-        openmrsRest.getFull($scope.resource + "/healthcenter").then(function (response) {
-            $scope.healthCenters = response.results;
+        openmrsRest.remove($scope.resource + "/healthcenter", healthcenter, "Generic Reason").then(function (response) {
             $scope.loading = false;
+            loadHealthCenters();
+            toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
         },function(e){
             console.error(e);
             $scope.loading = false;

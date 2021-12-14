@@ -55,11 +55,27 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         $scope.district = district;
     }
 
-    $scope.delete = function (district) {
+    $scope.delete = function (ev, obj) {
+        var confirm = $mdDialog.confirm()
+            .title($translate.instant('Are you sure you want to delete this item?'))
+            .textContent($translate.instant('If you choose `YES` this item will be deleted and you will not be able to recover it.'))
+            .ariaLabel($translate.instant('Delete Confirmation'))
+            .targetEvent(ev)
+            .ok($translate.instant('Yes'))
+            .cancel($translate.instant('Cancel'));
+        $mdDialog.show(confirm).then(function () {
+            deleteObject(obj);
+        }, function () {
+            $mdDialog.cancel();
+        });
+    };
+
+    function deleteObject(district) {
         $scope.loading = true;
         openmrsRest.remove($scope.resource + "/district", district, "Generic Reason").then(function (response) {
+            $scope.loading = false;
             loadDistricts();
-            toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
+            toastr.success($translate.instant('The District has been successfully deleted.'), 'Success');
         },function(e){
             $scope.loading = false;
             console.error(e);

@@ -81,16 +81,16 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="service in services" >
+                        <tr md-row data-ng-repeat="service in services | orderBy:'-id' | limitTo: query.limit : (query.page -1) * query.limit" >
                             <td md-cell>{{service.name}}</td>
                             <td md-cell>{{service.code}}</td>
                             <td md-cell>{{service.healthcenter.name}}</td>
                             <td md-cell>
-                                <button ng-click="read(service)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
+                                <button ng-click="read(service)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                                 </button>
-                                <button ng-click="delete(service)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
+                                <button ng-click="delete($event,service)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
                                 </button>

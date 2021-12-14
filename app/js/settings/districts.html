@@ -65,16 +65,16 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="district in districts" >
+                        <tr md-row data-ng-repeat="district in districts | orderBy:'-id' | limitTo: query.limit : (query.page -1) * query.limit" >
                             <td md-cell>{{district.name}}</td>
                             <td md-cell>{{district.code}}</td>
                             <td md-cell>{{district.regionid}}</td>
                             <td md-cell>
-                                <button ng-click="read(district)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
+                                <button ng-click="read(district)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                                 </button>
-                                <button ng-click="delete(district)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
+                                <button ng-click="delete($event,district)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
                                 </button>

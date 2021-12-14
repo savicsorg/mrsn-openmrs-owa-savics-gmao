@@ -32,7 +32,7 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
                 openmrsRest.update($scope.resource + "/site", $scope.site).then(function (response) {
                     $scope.loading = false;
                     $scope.site = response;
-                    loadSiteLocations() ;
+                    loadSites() ;
                     toastr.success($translate.instant('Data removed successfully.'), 'Success');   
                 },function(e){
                     console.error(e);
@@ -43,7 +43,7 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
                 openmrsRest.create($scope.resource + "/site", $scope.site).then(function (response) {
                     $scope.loading = false;
                     $scope.site = response;
-                    loadSiteLocations() ;
+                    loadSites() ;
                     toastr.success($translate.instant('Data removed successfully.'), 'Success');   
                 },function(e){
                     console.error(e);
@@ -56,12 +56,27 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
         }
     }
 
-    $scope.delete = function (site) {
+    $scope.delete = function (ev, obj) {
+        var confirm = $mdDialog.confirm()
+            .title($translate.instant('Are you sure you want to delete this item?'))
+            .textContent($translate.instant('If you choose `YES` this item will be deleted and you will not be able to recover it.'))
+            .ariaLabel($translate.instant('Delete Confirmation'))
+            .targetEvent(ev)
+            .ok($translate.instant('Yes'))
+            .cancel($translate.instant('Cancel'));
+        $mdDialog.show(confirm).then(function () {
+            deleteObject(obj);
+        }, function () {
+            $mdDialog.cancel();
+        });
+    };
+
+    function deleteObject(site) {
         $scope.loading = true;
         openmrsRest.remove($scope.resource + "/site", site, "Generic Reason").then(function (response) {
             $scope.loading = false;
-            loadSiteLocations() ;
-            toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
+            loadSites() ;
+            toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
         },function(e){
             console.error(e);
             $scope.loading = false;
@@ -117,7 +132,7 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
         });
     }
 
-    function loadSiteLocations() {
+    function loadSites() {
         $scope.loading = true;
         openmrsRest.getFull($scope.resource + "/site").then(function (response) {
             $scope.loading = false;
@@ -133,7 +148,7 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
     loadDistricts();
     loadHealthCenters();
     loadServices();
-    loadSiteLocations();
+    loadSites();
 
     $scope.read = function (site) {
         $scope.site = site;

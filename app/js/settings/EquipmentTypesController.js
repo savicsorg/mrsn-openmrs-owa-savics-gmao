@@ -48,11 +48,28 @@ angular.module('EquipmentTypesController', ['ngMaterial', 'ngAnimate', 'toastr',
         }
     }
 
-    $scope.delete = function (equipmentType) {
+    $scope.delete = function (ev, obj) {
+        var confirm = $mdDialog.confirm()
+            .title($translate.instant('Are you sure you want to delete this item?'))
+            .textContent($translate.instant('If you choose `YES` this item will be deleted and you will not be able to recover it.'))
+            .ariaLabel($translate.instant('Delete Confirmation'))
+            .targetEvent(ev)
+            .ok($translate.instant('Yes'))
+            .cancel($translate.instant('Cancel'));
+        $mdDialog.show(confirm).then(function () {
+            deleteObject(obj);
+        }, function () {
+            $mdDialog.cancel();
+        });
+    };
+
+    function deleteObject(equipmentType) {
+        console.log(equipmentType)
         $scope.loading = true;
         openmrsRest.remove($scope.resource + "/equipmentType", equipmentType, "Generic Reason").then(function (response) {
+            $scope.loading = false;
             loadEquipmentTypes();
-            toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
+            toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
         },function(e){
             console.error(e);
             $scope.loading = false;
