@@ -16,23 +16,23 @@
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
                 <md-input-container class="md-block md-input-has-value" flex="100">
                     <label translate>Name</label>
-                    <input type="text" required ng-model="equipmentType.typeName"/>
+                    <input type="text" required ng-model="equipmentType.name"/>
                 </md-input-container>  
             </div>     
             <div layout="row" layout-xs="column">
-                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()" >
-                    <md-icon>add</md-icon>
-                    <md-tooltip md-direction="top">
-                        <span translate>Add a new Equipment Type</span>
-                    </md-tooltip>
-                    <span translate>New</span>
-                </md-button>
                 <md-button class="md-raised md-primary" aria-label="Add" ng-click="save()" >
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Save</span>
                     </md-tooltip>
                     <span translate>Save</span>
+                </md-button>
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()" >
+                    <md-icon>clear</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Reset all fields</span>
+                    </md-tooltip>
+                    <span translate>Reset</span>
                 </md-button>
             </div>          
         </md-card-content>

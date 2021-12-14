@@ -22,14 +22,14 @@ angular.module('EquipmentTypesController', ['ngMaterial', 'ngAnimate', 'toastr',
     }
 
     $scope.save = function () {
-        if($scope.equipmentType.name && $scope.district.name !== ""){
+        if($scope.equipmentType.name){
             $scope.loading = true;
             if ($scope.equipmentType && $scope.equipmentType.uuid) {//edit
                 openmrsRest.update($scope.resource + "/equipmentType", $scope.equipmentType).then(function (response) {
                     loadEquipmentTypes();
                     toastr.success($translate.instant('Data removed successfully.'), 'Success');   
                 },function(e){
-                    console.error(e);
+                    console.error(e, "openmrsRest.update()");
                     $scope.loading = false;
                     toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
                 });
@@ -38,7 +38,7 @@ angular.module('EquipmentTypesController', ['ngMaterial', 'ngAnimate', 'toastr',
                     loadEquipmentTypes();
                     toastr.success($translate.instant('Data removed successfully.'), 'Success');   
                 },function(e){
-                    console.error(e);
+                    console.error(e, "openmrsRest.create()");
                     $scope.loading = false;
                     toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
                 });

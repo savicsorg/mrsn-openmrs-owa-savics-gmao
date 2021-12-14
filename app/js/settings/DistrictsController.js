@@ -13,6 +13,7 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
     $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
     $scope.query = {limit: 5, page: 1};
 
+    $scope.regions = [];
     $scope.districts = [];
     $scope.district = {};
 
@@ -78,5 +79,18 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         });
     }
 
+    function loadOpenMRSRegions() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/addressHierarchy?level=2").then(function (response) {
+            $scope.loading = false;
+            $scope.regions = response.results;
+        },function(e){
+            $scope.loading = false;
+            console.error(e);
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
+    loadOpenMRSRegions();
     loadDistricts();
 }]);

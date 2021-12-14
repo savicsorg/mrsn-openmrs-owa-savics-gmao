@@ -27,26 +27,26 @@
                 <md-input-container class="md-block md-input-has-value" flex="100">
                     <label translate>Region</label>
                     <md-select required ng-model="district.regionid" >
-                        <md-option ng-repeat="r in regions" ng-value="r.id">
+                        <md-option ng-repeat="r in regions" ng-value="r.addressHierarchyEntryId">
                             {{r.name}}
                         </md-option>
                     </md-select>
                 </md-input-container>
             </div> 
             <div layout="row" layout-xs="column">
-                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()" >
-                    <md-icon>add</md-icon>
-                    <md-tooltip md-direction="top">
-                        <span translate>Add a new Sanitary District</span>
-                    </md-tooltip>
-                    <span translate>New</span>
-                </md-button>
                 <md-button class="md-raised md-primary" aria-label="Add" ng-click="save()" >
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Save</span>
                     </md-tooltip>
                     <span translate>Save</span>
+                </md-button>
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()" >
+                    <md-icon>clear</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Reset all fields</span>
+                    </md-tooltip>
+                    <span translate>Reset</span>
                 </md-button>
             </div>          
         </md-card-content>

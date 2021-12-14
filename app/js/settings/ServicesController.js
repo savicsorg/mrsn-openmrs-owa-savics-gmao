@@ -1,7 +1,7 @@
 angular.module('ServicesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('ServicesController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) {
     $scope.rootscope = $rootScope;
     $scope.appTitle = $translate.instant("Services in HD/CSI");
-    $scope.resource = "savicsgmao/service";
+    $scope.resource = "savicsgmao";
     $scope.loading = false;
     //Breadcrumbs properties
     $rootScope.links = {"GMAO Module": "", "Settings": "settings", "Services in HD/CSI": "services"};
@@ -13,6 +13,9 @@ angular.module('ServicesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
     $scope.query = {limit: 5, page: 1};
 
+    $scope.regions = [];
+    $scope.districts = [];
+    $scope.healthCenters = [];
     $scope.services = [];
     $scope.service = {};
 
@@ -25,7 +28,7 @@ angular.module('ServicesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         if(($scope.service.code && $scope.service.code !== "") && ($scope.service.name && $scope.service.name !== "") && ($scope.service && $scope.service.healthcenter)){
             $scope.loading = true;
             if ($scope.service && $scope.service.uuid) {//edit
-                openmrsRest.update($scope.resource, $scope.service).then(function (response) {
+                openmrsRest.update($scope.resource + "/service", $scope.service).then(function (response) {
                     loadHealthCenters();
                     toastr.success($translate.instant('Data removed successfully.'), 'Success');   
                 },function(e){
@@ -34,7 +37,7 @@ angular.module('ServicesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
                     toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
                 });
             } else {//Creation
-                openmrsRest.create($scope.resource, $scope.service).then(function (response) {
+                openmrsRest.create($scope.resource + "/service", $scope.service).then(function (response) {
                     loadHealthCenters();
                     toastr.success($translate.instant('Data removed successfully.'), 'Success');   
                 },function(e){
@@ -50,7 +53,7 @@ angular.module('ServicesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
 
     $scope.delete = function (service) {
         $scope.loading = true;
-        openmrsRest.remove($scope.resource, service, "Generic Reason").then(function (response) {
+        openmrsRest.remove($scope.resource + "/service", service, "Generic Reason").then(function (response) {
             loadHealthCenters();
             toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
         },function(e){
@@ -60,9 +63,45 @@ angular.module('ServicesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         });
     }
 
+    function loadOpenMRSRegions() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/addressHierarchy?level=2").then(function (response) {
+            $scope.loading = false;
+            $scope.regions = response.results;
+        },function(e){
+            $scope.loading = false;
+            console.error(e);
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
+    function loadDistricts() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/district").then(function (response) {
+            $scope.loading = false;
+            $scope.districts = response.results;
+        },function(e){
+            $scope.loading = false;
+            console.error(e);
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
     function loadHealthCenters() {
         $scope.loading = true;
-        openmrsRest.getFull($scope.resource).then(function (response) {
+        openmrsRest.getFull($scope.resource + "/healthcenter").then(function (response) {
+            $scope.healthCenters = response.results;
+            $scope.loading = false;
+        },function(e){
+            console.error(e);
+            $scope.loading = false;
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
+    function loadServices() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/service").then(function (response) {
             $scope.services = response.results;
             $scope.loading = false;
         },function(e){
@@ -72,7 +111,10 @@ angular.module('ServicesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         });
     }
 
+    loadOpenMRSRegions();
+    loadDistricts();
     loadHealthCenters();
+    loadServices();
 
     $scope.read = function (service) {
         $scope.service = service;

@@ -13,6 +13,10 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
     $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
     $scope.query = {limit: 5, page: 1};
 
+    $scope.regions = [];
+    $scope.districts = [];
+    $scope.healthCenters = [];
+    $scope.services = [];
     $scope.sites = [];
     $scope.site = {district:{}};
 
@@ -65,6 +69,54 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
         });
     }
 
+    function loadOpenMRSRegions() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/addressHierarchy?level=2").then(function (response) {
+            $scope.loading = false;
+            $scope.regions = response.results;
+        },function(e){
+            $scope.loading = false;
+            console.error(e);
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
+    function loadDistricts() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/district").then(function (response) {
+            $scope.loading = false;
+            $scope.districts = response.results;
+        },function(e){
+            $scope.loading = false;
+            console.error(e);
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
+    function loadHealthCenters() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/healthcenter").then(function (response) {
+            $scope.healthCenters = response.results;
+            $scope.loading = false;
+        },function(e){
+            console.error(e);
+            $scope.loading = false;
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
+    function loadServices() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/service").then(function (response) {
+            $scope.services = response.results;
+            $scope.loading = false;
+        },function(e){
+            console.error(e);
+            $scope.loading = false;
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
     function loadSiteLocations() {
         $scope.loading = true;
         openmrsRest.getFull($scope.resource + "/site").then(function (response) {
@@ -77,6 +129,10 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
         });
     }
 
+    loadOpenMRSRegions();
+    loadDistricts();
+    loadHealthCenters();
+    loadServices();
     loadSiteLocations();
 
     $scope.read = function (site) {
