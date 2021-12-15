@@ -30,10 +30,9 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
             $scope.site.district = parseInt($scope.site.district.id);
             if ($scope.site && $scope.site.uuid) {//edit
                 openmrsRest.update($scope.resource + "/site", $scope.site).then(function (response) {
-                    $scope.loading = false;
                     $scope.site = response;
                     loadSites() ;
-                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                    toastr.success($translate.instant('The item has been successfully updated.'), 'Success');
                 },function(e){
                     console.error(e);
                     $scope.loading = false;
@@ -41,10 +40,9 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
                 });
             } else {//Creation
                 openmrsRest.create($scope.resource + "/site", $scope.site).then(function (response) {
-                    $scope.loading = false;
-                    $scope.site = response;
+                    $scope.clear();
                     loadSites() ;
-                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                    toastr.success($translate.instant('The item has been successfully created.'), 'Success');
                 },function(e){
                     console.error(e);
                     $scope.loading = false;

@@ -34,7 +34,7 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
         openmrsRest.remove($scope.resource + "/maintenance", maintenance, "Generic Reason").then(function (response) {
             $scope.loading = false;
             getAllMaintenances();
-            toastr.success($translate.instant('The Maintenance has been successfully deleted.'), 'Success');
+            toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
         },function(e){
             console.error(e);
             $scope.loading = false;

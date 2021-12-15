@@ -33,7 +33,7 @@ angular.module('RequestsController', ['ngMaterial', 'md.data.table']).controller
         $scope.loading = true;
         openmrsRest.remove($scope.resource + "/maintenanceRequest", request, "Generic Reason").then(function (response) {
             getAllRequests();
-            toastr.success($translate.instant('The Maintenance Request has been successfully deleted.'), 'Success');
+            toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
         },function(e){
             console.error(e);
             $scope.loading = false;

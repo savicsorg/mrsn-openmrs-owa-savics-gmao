@@ -24,12 +24,12 @@ angular.module('HealthCentersController', ['ngMaterial', 'ngAnimate', 'toastr', 
     }
 
     $scope.save = function () {
-        if(($scope.healthCenter.code && $scope.healthCenter.code !== "") && ($scope.healthCenter.name && $scope.healthCenter.name !== "") && ($scope.healthCenter.district)){
+        if(($scope.healthCenter.code && $scope.healthCenter.code !== "") && ($scope.healthCenter.name && $scope.healthCenter.name !== "") && $scope.healthCenter.district){
             $scope.loading = true;
             if ($scope.healthCenter && $scope.healthCenter.uuid) {//edit
                 openmrsRest.update($scope.resource + "/healthcenter", $scope.healthCenter).then(function (response) {
                     loadHealthCenters();
-                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                    toastr.success($translate.instant('The item has been successfully updated.'), 'Success');
                 },function(e){
                     console.error(e);
                     $scope.loading = false;
@@ -37,8 +37,9 @@ angular.module('HealthCentersController', ['ngMaterial', 'ngAnimate', 'toastr', 
                 });
             } else {//Creation
                 openmrsRest.create($scope.resource + "/healthcenter", $scope.healthCenter).then(function (response) {
+                    $scope.clear();
                     loadHealthCenters();
-                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                    toastr.success($translate.instant('The item has been successfully created.'), 'Success');
                 },function(e){
                     console.error(e);
                     $scope.loading = false;
@@ -95,6 +96,18 @@ angular.module('HealthCentersController', ['ngMaterial', 'ngAnimate', 'toastr', 
         openmrsRest.getFull($scope.resource + "/district").then(function (response) {
             $scope.loading = false;
             $scope.districts = response.results;
+        },function(e){
+            $scope.loading = false;
+            console.error(e);
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
+    function loadHealthCenters() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/healthcenter").then(function (response) {
+            $scope.loading = false;
+            $scope.healthCenters = response.results;
         },function(e){
             $scope.loading = false;
             console.error(e);

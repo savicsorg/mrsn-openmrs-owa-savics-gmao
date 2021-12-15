@@ -29,7 +29,7 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
                 openmrsRest.update($scope.resource + "/district", $scope.district).then(function (response) {
                     $scope.district = response;
                     loadDistricts();
-                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                    toastr.success($translate.instant('The item has been successfully updated.'), 'Success');
                 },function(e){
                     console.error(e);
                     $scope.loading = false;
@@ -37,9 +37,9 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
                 });
             } else {//Creation
                 openmrsRest.create($scope.resource + "/district", $scope.district).then(function (response) {
-                    $scope.district = response;
+                    $scope.clear();
                     loadDistricts();
-                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                    toastr.success($translate.instant('The item has been successfully created.'), 'Success');
                 },function(e){
                     console.error(e);
                     $scope.loading = false;
@@ -75,7 +75,7 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         openmrsRest.remove($scope.resource + "/district", district, "Generic Reason").then(function (response) {
             $scope.loading = false;
             loadDistricts();
-            toastr.success($translate.instant('The District has been successfully deleted.'), 'Success');
+            toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
         },function(e){
             $scope.loading = false;
             console.error(e);

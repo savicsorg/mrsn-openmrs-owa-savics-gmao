@@ -13,42 +13,44 @@
     <md-card ng-show="!loading">
         <md-card-title translate>Add/Modify a Sanitary District</md-card-title>
         <md-card-content>
-            <div layout="row" layout-xs="column" class="flex flex-col">                                        
-                <md-input-container class="md-block md-input-has-value" flex="50">
-                    <label translate>Name</label>
-                    <input type="text" required ng-model="district.name"/>
-                </md-input-container> 
-                <md-input-container class="md-block md-input-has-value" flex="50">
-                    <label translate>Code</label>
-                    <input type="text" required ng-model="district.code"/>
-                </md-input-container>
-            </div>
-            <div layout="row" layout-xs="column" class="flex flex-col">                    
-                <md-input-container class="md-block md-input-has-value" flex="100">
-                    <label translate>Region</label>
-                    <md-select required ng-model="district.regionid" >
-                        <md-option ng-repeat="r in regions" ng-value="r.addressHierarchyEntryId">
-                            {{r.name}}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
-            </div> 
-            <div layout="row" layout-xs="column">
-                <md-button class="md-raised md-primary" aria-label="Add" ng-click="save()" >
-                    <md-icon>save</md-icon>
-                    <md-tooltip md-direction="top">
+            <form name="myForm">
+                <div layout="row" layout-xs="column" class="flex flex-col">                                        
+                    <md-input-container class="md-block md-input-has-value" flex="50">
+                        <label translate>Name</label>
+                        <input type="text" required ng-model="district.name"/>
+                    </md-input-container> 
+                    <md-input-container class="md-block md-input-has-value" flex="50">
+                        <label translate>Code</label>
+                        <input type="text" required ng-model="district.code"/>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column" class="flex flex-col">                    
+                    <md-input-container class="md-block md-input-has-value" flex="100">
+                        <label translate>Region</label>
+                        <md-select required ng-model="district.regionid" >
+                            <md-option ng-repeat="r in regions" ng-value="r.addressHierarchyEntryId">
+                                {{r.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div> 
+                <div layout="row" layout-xs="column">
+                    <md-button class="md-raised md-primary" aria-label="Add" type="submit" ng-click="save()" >
+                        <md-icon>save</md-icon>
+                        <md-tooltip md-direction="top">
+                            <span translate>Save</span>
+                        </md-tooltip>
                         <span translate>Save</span>
-                    </md-tooltip>
-                    <span translate>Save</span>
-                </md-button>
-                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()" >
-                    <md-icon>clear</md-icon>
-                    <md-tooltip md-direction="top">
-                        <span translate>Reset all fields</span>
-                    </md-tooltip>
-                    <span translate>Reset</span>
-                </md-button>
-            </div>          
+                    </md-button>
+                    <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()" >
+                        <md-icon>clear</md-icon>
+                        <md-tooltip md-direction="top">
+                            <span translate>Reset all fields</span>
+                        </md-tooltip>
+                        <span translate>Reset</span>
+                    </md-button>
+                </div>
+            </form>        
         </md-card-content>
     </md-card>  
     <md-card ng-show="!loading">

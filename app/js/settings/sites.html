@@ -16,11 +16,11 @@
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Name</label>
-                    <input type="text" required ng-model="site.siteName"/>
+                    <input type="text" required ng-model="site.name"/>
                 </md-input-container>
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Code</label>
-                    <input type="text" required ng-model="site.siteCode"/>
+                    <input type="text" required ng-model="site.code"/>
                 </md-input-container>          
             </div>  
             <div layout="row" layout-xs="column" class="flex flex-col">                    
@@ -34,7 +34,7 @@
                 </md-input-container>
                 <md-input-container class="md-block md-input-has-value" flex="33">
                     <label translate>District</label>
-                    <md-select required ng-model="site.district.id">
+                    <md-select required ng-model="site.district">
                         <md-option ng-repeat="d in districts" ng-value="d.id">
                             {{d.name}}
                         </md-option>
@@ -42,7 +42,7 @@
                 </md-input-container>
                 <md-input-container class="md-block md-input-has-value" flex="33">
                     <label translate>HD/CSI</label>
-                    <md-select required ng-model="site.healthCenter.id">
+                    <md-select required ng-model="site.healthCenter">
                         <md-option ng-repeat="hc in healthCenters" ng-value="hc.id">
                             {{hc.name}}
                         </md-option>
@@ -50,7 +50,7 @@
                 </md-input-container>
                 <md-input-container class="md-block md-input-has-value" flex="33">
                     <label translate>Services in HD/CSI</label>
-                    <md-select required ng-model="site.service.id">
+                    <md-select required ng-model="site.service">
                         <md-option ng-repeat="service in services" ng-value="service.id">
                             {{service.name}}
                         </md-option>

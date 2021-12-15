@@ -39,7 +39,7 @@ angular.module('EquipmentsController', ['ngMaterial', 'md.data.table']).controll
         openmrsRest.remove($scope.resource + "/equipment", equipment, "Generic Reason").then(function (response) {
             $scope.loading = false;
             getAllEquipments();
-            toastr.success($translate.instant('The Equipment has been successfully deleted.'), 'Success');
+            toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
         },function(e){
             console.error(e);
             $scope.loading = false;

@@ -25,12 +25,12 @@ angular.module('ServicesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     }
 
     $scope.save = function () {
-        if(($scope.service.code && $scope.service.code !== "") && ($scope.service.name && $scope.service.name !== "") && ($scope.service && $scope.service.healthcenter)){
+        if(($scope.service.code && $scope.service.code !== "") && ($scope.service.name && $scope.service.name !== "") && $scope.service.healthcenter){
             $scope.loading = true;
             if ($scope.service && $scope.service.uuid) {//edit
                 openmrsRest.update($scope.resource + "/service", $scope.service).then(function (response) {
                     loadServices();
-                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                    toastr.success($translate.instant('The item has been successfully updated.'), 'Success');
                 },function(e){
                     console.error(e);
                     $scope.loading = false;
@@ -38,8 +38,9 @@ angular.module('ServicesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
                 });
             } else {//Creation
                 openmrsRest.create($scope.resource + "/service", $scope.service).then(function (response) {
+                    $scope.clear();
                     loadServices();
-                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                    toastr.success($translate.instant('The item has been successfully created.'), 'Success');
                 },function(e){
                     console.error(e);
                     $scope.loading = false;

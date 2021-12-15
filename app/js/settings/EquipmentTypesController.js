@@ -27,7 +27,7 @@ angular.module('EquipmentTypesController', ['ngMaterial', 'ngAnimate', 'toastr',
             if ($scope.equipmentType && $scope.equipmentType.uuid) {//edit
                 openmrsRest.update($scope.resource + "/equipmentType", $scope.equipmentType).then(function (response) {
                     loadEquipmentTypes();
-                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                    toastr.success($translate.instant('The item has been successfully updated.'), 'Success');
                 },function(e){
                     console.error(e, "openmrsRest.update()");
                     $scope.loading = false;
@@ -35,8 +35,9 @@ angular.module('EquipmentTypesController', ['ngMaterial', 'ngAnimate', 'toastr',
                 });
             } else {//Creation
                 openmrsRest.create($scope.resource + "/equipmentType", $scope.equipmentType).then(function (response) {
+                    $scope.clear();
                     loadEquipmentTypes();
-                    toastr.success($translate.instant('Data removed successfully.'), 'Success');   
+                    toastr.success($translate.instant('The item has been successfully created.'), 'Success');
                 },function(e){
                     console.error(e, "openmrsRest.create()");
                     $scope.loading = false;
