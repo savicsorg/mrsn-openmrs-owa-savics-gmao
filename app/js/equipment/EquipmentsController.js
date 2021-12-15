@@ -11,7 +11,7 @@ angular.module('EquipmentsController', ['ngMaterial', 'md.data.table']).controll
         of: $translate.instant("of")
     }
     $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
-    $scope.query = {limit: 5, page: 1};
+    $scope.query = {limit: 5, page: 1, order:'-id'};
     var dictionary = require("../utils/dictionary");
     $scope.equipmentStatus = dictionary.getEquipmentStatus($rootScope.selectedLanguage);
     $scope.getEquipmentStatusById = function (id) {

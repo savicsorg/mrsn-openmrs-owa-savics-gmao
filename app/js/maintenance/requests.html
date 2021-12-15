@@ -32,16 +32,16 @@
                     <tr md-row>
                         <th md-column md-order-by="id"><span translate>Ref.</span></th>
                         <th md-column md-order-by="natureOfWork"><span translate>Nature of Work</span></th>
-                        <th md-column md-order-by="creation"><span translate>Date</span></th>
+                        <th md-column md-order-by="creation | date:'dd/MM/yyyy' : 'UTC'"><span translate>Date</span></th>
                         <th md-column md-order-by="equipment.name" ><span translate>Equipment</span></th>
                         <th md-column><span translate>Actions</span></th>
                     </tr>
                 </thead>
                 <tbody md-body>
-                    <tr md-row data-ng-repeat="request in requests| orderBy:'-id' | filter:searchAll | limitTo: query.limit : (query.page -1) * query.limit" >
+                    <tr md-row data-ng-repeat="request in requests| orderBy:query.order | filter:searchAll | limitTo: query.limit : (query.page -1) * query.limit" >
                         <td md-cell>{{request.id}}</td>
                         <td md-cell>{{request.natureOfWork}}</td>
-                        <td md-cell>{{request.creation| date:'dd/MM/yyyy' : 'UTC'}}</td>
+                        <td md-cell>{{request.creation | date:'dd/MM/yyyy' : 'UTC'}}</td>
                         <td md-cell>{{request.equipment.name}}</td>
                         <td md-cell>
                             <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit" ng-click="">

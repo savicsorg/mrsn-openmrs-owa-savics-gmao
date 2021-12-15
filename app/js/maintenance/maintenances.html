@@ -30,14 +30,16 @@
             <table md-table md-progress="promise">
                 <thead md-head md-order="query.order">
                     <tr md-row>
+                        <th md-column md-order-by="id"><span translate>Ref.</span></th>
                         <th md-column md-order-by="maintenanceType.name"><span translate>Type</span></th>
-                        <th md-column md-order-by="startdate"><span translate>Start Date</span></th>
+                        <th md-column md-order-by="startdate | date: 'dd/MM/yyyy'"><span translate>Start Date</span></th>
                         <th md-column md-order-by="equipment.name" ><span translate>Equipment</span></th>
                         <th md-column ><span translate>Actions</span></th>
                     </tr>
                 </thead>
                 <tbody md-body>
-                    <tr md-row data-ng-repeat="maintenance in maintenances | orderBy:'-id' | filter:searchAll | limitTo: query.limit : (query.page -1) * query.limit" >
+                    <tr md-row data-ng-repeat="maintenance in maintenances | orderBy:query.order | filter:searchAll | limitTo: query.limit : (query.page -1) * query.limit" >
+                        <td md-cell>{{maintenance.id}}</td>
                         <td md-cell >{{maintenance.maintenanceType.name}}</td>
                         <td md-cell>{{maintenance.startdate | date: 'dd/MM/yyyy'}}</td>
                         <td md-cell >{{maintenance.equipment.name}}</td>

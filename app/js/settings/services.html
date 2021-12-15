@@ -74,6 +74,7 @@
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
+                            <th md-column md-order-by="id"><span translate>Ref.</span></th>
                             <th md-column md-order-by="name"><span translate>Name</span></th>
                             <th md-column md-order-by="code"><span translate>Code</span></th>
                             <th md-column md-order-by="healthcenter.name"><span translate>Code</span></th>
@@ -81,7 +82,8 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="service in services | orderBy:'-id' | limitTo: query.limit : (query.page -1) * query.limit" >
+                        <tr md-row data-ng-repeat="service in services | orderBy:query.order | limitTo: query.limit : (query.page -1) * query.limit" >
+                            <td md-cell>{{service.id}}</td>
                             <td md-cell>{{service.name}}</td>
                             <td md-cell>{{service.code}}</td>
                             <td md-cell>{{service.healthcenter.name}}</td>

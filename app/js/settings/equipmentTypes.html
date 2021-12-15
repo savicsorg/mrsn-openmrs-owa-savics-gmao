@@ -44,12 +44,14 @@
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
+                            <th md-column md-order-by="id"><span translate>Ref.</span></th>
                             <th md-column md-order-by="name"><span translate>Name</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="equipmentType in equipmentTypes | orderBy:'-id' | limitTo: query.limit : (query.page -1) * query.limit" >
+                        <tr md-row data-ng-repeat="equipmentType in equipmentTypes | orderBy:query.order | limitTo: query.limit : (query.page -1) * query.limit" >
+                            <td md-cell>{{equipmentType.id}}</td>
                             <td md-cell>{{equipmentType.name}}</td>
                             <td md-cell>
                                 <button ng-click="read(equipmentType)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit">

@@ -11,7 +11,7 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
         of: $translate.instant("of")
     }
     $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
-    $scope.query = {limit: 5, page: 1};
+    $scope.query = {limit: 5, page: 1, order:'-id'};
 
     $scope.regions = [];
     $scope.districts = [];
