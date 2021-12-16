@@ -13,11 +13,10 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
     $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
     $scope.query = {limit: 5, page: 1, order:'-id'};
 
-    $scope.regions = [];
-    $scope.districts = [];
+    $scope.allRegions = [];
+    $scope.allDistricts = [];
     $scope.district = {};
 
-    //district
     $scope.clear = function () {
         $scope.district = {};
     }
@@ -28,7 +27,7 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
             if ($scope.district && $scope.district.uuid) {//edit
                 openmrsRest.update($scope.resource + "/district", $scope.district).then(function (response) {
                     $scope.district = response;
-                    loadDistricts();
+                    loadAllDistricts();
                     toastr.success($translate.instant('The item has been successfully updated.'), 'Success');
                 },function(e){
                     console.error(e);
@@ -38,7 +37,7 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
             } else {//Creation
                 openmrsRest.create($scope.resource + "/district", $scope.district).then(function (response) {
                     $scope.clear();
-                    loadDistricts();
+                    loadAllDistricts();
                     toastr.success($translate.instant('The item has been successfully created.'), 'Success');
                 },function(e){
                     console.error(e);
@@ -74,7 +73,7 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         $scope.loading = true;
         openmrsRest.remove($scope.resource + "/district", district, "Generic Reason").then(function (response) {
             $scope.loading = false;
-            loadDistricts();
+            loadAllDistricts();
             toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
         },function(e){
             $scope.loading = false;
@@ -83,11 +82,11 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         });
     }
 
-    function loadDistricts() {
+    function loadAllDistricts() {
         $scope.loading = true;
         openmrsRest.getFull($scope.resource + "/district").then(function (response) {
             $scope.loading = false;
-            $scope.districts = response.results;
+            $scope.allDistricts = response.results;
         },function(e){
             $scope.loading = false;
             console.error(e);
@@ -95,11 +94,11 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         });
     }
 
-    function loadOpenMRSRegions() {
+    function loadAllOpenMRSRegions() {
         $scope.loading = true;
         openmrsRest.getFull($scope.resource + "/addressHierarchy?level=2").then(function (response) {
             $scope.loading = false;
-            $scope.regions = response.results;
+            $scope.allRegions = response.results;
         },function(e){
             $scope.loading = false;
             console.error(e);
@@ -107,6 +106,6 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         });
     }
 
-    loadOpenMRSRegions();
-    loadDistricts();
+    loadAllOpenMRSRegions();
+    loadAllDistricts();
 }]);
