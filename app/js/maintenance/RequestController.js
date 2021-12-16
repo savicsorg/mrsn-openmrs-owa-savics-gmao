@@ -9,7 +9,11 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
         $rootScope.links["Home"] = "";
         $rootScope.links["Maintenance"] = "/maintenance";
         $scope.equipmentSearchText = "";
-        $scope.request = {};
+        $scope.request = {creation: new Date()};
+        
+        var dictionary = require("../utils/dictionary");
+        var natureofworkjson = require('../../json/maintenance/natureofwork.json');
+        $scope.natureofworks = dictionary.getJsonList(natureofworkjson, $rootScope.selectedLanguage);
 
         $scope.searchEquipments = function (searchText) {
             console.log(searchText)
@@ -24,6 +28,7 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
         };
 
         $scope.selectedEquipmentChange = function (item) {
+            console.log(item)
             $scope.request.equipment = item;
         };
 
@@ -52,11 +57,12 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
         $scope.save = function () {
             if (($scope.request.equipment)) {
                 $scope.loading = true;
+                $scope.request.equipment = $scope.request.equipment.id;
                 if ($scope.request && $scope.request.uuid) {//edit
                     openmrsRest.update($scope.resource + "/maintenanceRequest", $scope.request).then(function (response) {
                         $scope.request = response;
-                        loadRequest();
                         toastr.success($translate.instant('The maintenance request has been successfully updated.'), 'Success');
+                        $state.go('home.requests');
                     }, function (e) {
                         console.error(e);
                         $scope.loading = false;
@@ -64,9 +70,8 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
                     });
                 } else {//Creation
                     openmrsRest.create($scope.resource + "/maintenanceRequest", $scope.request).then(function (response) {
-                        $scope.clear();
-                        loadSites();
                         toastr.success($translate.instant('The maintenance request has been successfully created.'), 'Success');
+                        $state.go('home.requests');
                     }, function (e) {
                         console.error(e);
                         $scope.loading = false;

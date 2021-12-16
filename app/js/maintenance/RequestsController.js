@@ -13,6 +13,13 @@ angular.module('RequestsController', ['ngMaterial', 'md.data.table']).controller
     $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
     $scope.query = {limit: 5, page: 1, order:'-id'};
     $scope.requests = [];
+    
+    var dictionary = require("../utils/dictionary");
+    var natureofworkjson = require('../../json/maintenance/natureofwork.json');
+    $scope.natureofworks = dictionary.getJsonList(natureofworkjson, $rootScope.selectedLanguage);
+    $scope.getElementById = function (id) {
+        return dictionary.getElementById($scope.natureofworks, id, $rootScope.selectedLanguage);
+    };
 
     $scope.delete = function (ev, obj) {
         var confirm = $mdDialog.confirm()
