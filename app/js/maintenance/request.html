@@ -1,96 +1,99 @@
 <div id="content" class="container-fluid">
     <div class="md-toolbar-tools">
-        <h1 md-truncate="" flex="" translate>Request an intervention</h1>
+        <h1 md-truncate="" flex="" translate>Request for maintenance </h1>
         <a href="index.html#!/requests">
             <md-button>
                 <md-icon>arrow_back</md-icon><span translate>Back</span>
             </md-button>
         </a>
     </div>
-    <md-card>
-        <md-card-title translate>General Informations</md-card-title>
-        <md-card-content>  
-            <div layout="row" layout-xs="column"  class="flex flex-col">
-                <md-input-container class="md-block" flex="50">
-                    <label translate>System number</label>
-                    <input disabled ng-model="request.system_number">
-                </md-input-container>
-                <md-input-container  class="md-block" flex="50">
-                    <label translate>Register number</label>
-                    <input  ng-model="request.register_number">
-                </md-input-container>               
-            </div>
-            <div layout="row" layout-xs="column" class="flex flex-col">
-                <md-input-container class="md-block"  flex="50">
-                    <label translate>Department</label>
-                    <md-select ng-model="request.department_id" >
-                        <md-option ng-value="1">Department 1</md-option>
-                        <md-option ng-value="2">Department 2</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container class="md-block"  flex="50">
-                    <label translate>Date</label>
-                    <input type="date" ng-model="request.request_date">
-                </md-input-container>
-            </div>   
-            <div layout="row" layout-xs="column" class="flex flex-col">
-                <md-input-container class="md-block"  flex="33">
-                    <label translate>Nature of work</label>
-                    <md-select ng-model="request.nature_of_work" >
-                        <md-option ng-value="1">Maintain</md-option>
-                        <md-option ng-value="2">Repair</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container class="md-block"  flex="33">
-                    <label translate>Localization</label>
-                    <md-select ng-model="request.site_id" >
-                        <md-option ng-value="1">Gaya</md-option>
-                        <md-option ng-value="2">Gote</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container class="md-block"  flex="33">
-                    <label translate>Priority</label>
-                    <md-select ng-model="request.priority" >
-                        <md-option ng-value="1">Normal</md-option>
-                        <md-option ng-value="2">Urgent</md-option>
-                    </md-select>
-                </md-input-container>
-            </div> 
-              
-            <div layout="row" layout-xs="column"  class="flex flex-col">             
-                <md-input-container class="md-block md-input-has-value" flex="100">
-                    <label translate>Motif</label>
-                    <textarea ng-model="request.motif"></textarea>
-                </md-input-container>                            
-            </div>                
-        </md-card-content>
-    </md-card>
-    <md-card>
-        <md-card-title>
-            Equipments
-        </md-card-title>
-        <md-card-content>
-            <md-chips ng-model="operation.equipments" md-autocomplete-snap>
-                <md-autocomplete md-selected-item="selectedItem"
-                                 md-search-text="searchText"
-                                 md-items="item in equipments"
-                                 md-item-text="item.serial_number"
-                                 placeholder="{{'Equipments' | translate}}">
-                    <span md-highlight-text="searchText">{{item.serial_number}} {{item.designation}}</span>
-                </md-autocomplete>
-                <md-chip-template>
-                    <span>{{$chip.serial_number}} {{$chip.designation}}</span>
-                </md-chip-template>
-            </md-chips>
-        </md-card-content>
-    </md-card>
-    <div layout="row" layout-xs="column">
-        <md-button class="md-raised md-primary" aria-label="Add" >
-            <md-icon>save</md-icon>
-            <md-tooltip md-direction="top">
+    <form name="form" ng-submit="save()" >
+        <md-card>
+            <md-card-title>
+                General information
+            </md-card-title>
+            <md-card-content>
+                <div layout="row" layout-xs="column"  class="flex flex-col">
+                    <md-autocomplete md-selected-item="selectedEquipment" md-search-text="equipmentSearchText"
+                                     md-items="equipment in searchEquipments(equipmentSearchText)" md-item-text="equipment.name"
+                                     class="md-block" flex-gt-sm md-floating-label="{{'Equipment name' | translate}}" md-clear-button="true"
+                                     md-no-cache="true" md-selected-item-change="selectedEquipmentChange(equipment,$index)" flex="100"
+                                     required>
+                        <md-item-template>
+                            <span md-highlight-text="equipmentSearchText">{{equipment.name}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <span translate>No matches found.</span>
+                        </md-not-found>
+                    </md-autocomplete>
+                </div>
+                <div layout="row" layout-xs="column"  class="flex flex-col">
+                    <md-input-container  class="md-block" flex="100">
+                        <label translate>Request by</label>
+                        <input required  ng-model="request.requestedby">
+                    </md-input-container>   
+                </div>
+
+            </md-card-content>
+        </md-card>
+
+        <md-card>
+            <md-card-title translate>Intervention information</md-card-title>
+            <md-card-content>  
+                <div layout="row" layout-xs="column" class="flex flex-col">                    
+                    <md-input-container class="md-block md-input-has-value" flex>
+                        <label translate>Nature of work</label>
+                        <md-select required ng-model="request.natureOfWork" >
+                            <md-option ng-value="1">Maintain</md-option>
+                            <md-option ng-value="2">Repair</md-option>
+                            <md-option ng-value="3">Work</md-option>
+                            <md-option ng-value="4">Other</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block"  flex>
+                        <label translate>Priority</label>
+                        <md-select required ng-model="request.priority" >
+                            <md-option ng-value="1">Normal</md-option>
+                            <md-option ng-value="2">Urgent</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block"  flex="100">
+                        <label translate>Date</label>
+                        <input required type="datetime-local" ng-model="request.creation" ng-model-options="{timezone: 'UTC'}" min="2018-06-07T00:00" max="2022-06-14T00:00">
+                    </md-input-container>
+                </div> 
+                <div layout="row" layout-xs="column"  class="flex flex-col">             
+                    <md-input-container class="md-block md-input-has-value" flex="100">
+                        <label translate>Request’s reason</label>
+                        <textarea required ng-model="request.motif"></textarea>
+                    </md-input-container>                            
+                </div>       
+                <div layout="row" layout-xs="column"  class="flex flex-col">             
+                    <md-input-container class="md-block md-input-has-value" flex="100">
+                        <label translate>Comment</label>
+                        <textarea ng-model="request.comment"></textarea>
+                    </md-input-container>                            
+                </div>       
+            </md-card-content>
+        </md-card>
+
+        <div layout="row" layout-xs="column">
+            <md-button class="md-raised md-primary" aria-label="Add" type="submit" >
+                <md-icon>save</md-icon>
+                <md-tooltip md-direction="top">
+                    <span translate>Save</span>
+                </md-tooltip>
                 <span translate>Save</span>
-            </md-tooltip>
-            Save
-        </md-button>
-    </div> 
+            </md-button>
+            <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()" >
+                <md-icon>clear</md-icon>
+                <md-tooltip md-direction="top">
+                    <span translate>Reset all fields</span>
+                </md-tooltip>
+                <span translate>Reset</span>
+            </md-button>
+        </div> 
+    </form>
 </div>
