@@ -24,37 +24,37 @@
                 </md-input-container> 
             </div>
             <div layout="row" layout-xs="column" class="flex flex-col">                    
-                <md-input-container class="md-block md-input-has-value" flex="50">
+                <md-input-container class="md-block md-input-has-value" flex="100">
                     <label translate>Region</label>
-                    <md-select required ng-model="healthCenter.region.id" >
-                        <md-option ng-repeat="r in regions" ng-value="r.id">
+                    <md-select required ng-model="healthCenter.regionid" ng-change="regionChanged()">
+                        <md-option ng-repeat="r in allRegions" ng-value="r.addressHierarchyEntryId">
                             {{r.name}}
                         </md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>District</label>
-                    <md-select required ng-model="healthCenter.district.id" >
+                    <md-select required ng-model="healthCenter.district" >
                         <md-option ng-repeat="d in districts" ng-value="d.id">
-                            {{d.districtName}}
+                            {{d.name}}
                         </md-option>
                     </md-select>
                 </md-input-container>
             </div> 
             <div layout="row" layout-xs="column">
-                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()" >
-                    <md-icon>add</md-icon>
-                    <md-tooltip md-direction="top">
-                        <span translate>Add a new HD/CSI</span>
-                    </md-tooltip>
-                    <span translate>New</span>
-                </md-button>
                 <md-button class="md-raised md-primary" aria-label="Add" ng-click="save()" >
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Save</span>
                     </md-tooltip>
                     <span translate>Save</span>
+                </md-button>
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()" >
+                    <md-icon>clear</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Reset all fields</span>
+                    </md-tooltip>
+                    <span translate>Reset</span>
                 </md-button>
             </div>          
         </md-card-content>
@@ -66,21 +66,25 @@
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
+                            <th md-column md-order-by="id"><span translate>Ref.</span></th>
                             <th md-column md-order-by="name"><span translate>Name</span></th>
                             <th md-column md-order-by="code"><span translate>Code</span></th>
+                            <th md-column md-order-by="district.name"><span translate>District</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="healthCenter in healthCenters" >
+                        <tr md-row data-ng-repeat="healthCenter in allHealthCenters | orderBy:query.order | limitTo: query.limit : (query.page -1) * query.limit" >
+                            <td md-cell>{{healthCenter.id}}</td>
                             <td md-cell>{{healthCenter.name}}</td>
                             <td md-cell>{{healthCenter.code}}</td>
+                            <td md-cell>{{healthCenter.district.name}}</td>
                             <td md-cell>
-                                <button ng-click="read(healthCenter)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
+                                <button ng-click="read(healthCenter)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                                 </button>
-                                <button ng-click="delete(healthCenter)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
+                                <button ng-click="delete($event,healthCenter)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
                                 </button>
@@ -89,7 +93,7 @@
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{healthCenters.length}}"
+            <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{allHealthCenters.length}}"
                 md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks" md-limit-options="[25, 50, 100]"
                 md-on-paginate="logPagination" md-label="$parent.label">
             </md-table-pagination>         

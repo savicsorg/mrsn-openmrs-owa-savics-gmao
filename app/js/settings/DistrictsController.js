@@ -11,39 +11,42 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         of: $translate.instant("of")
     }
     $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
-    $scope.query = {limit: 5, page: 1};
+    $scope.query = {limit: 5, page: 1, order:'-id'};
 
-    $scope.districts = [];
-    $scope.district = {region:{}};
+    $scope.allRegions = [];
+    $scope.allDistricts = [];
+    $scope.district = {};
 
-    //district
     $scope.clear = function () {
-        $scope.district = {region:{}};
+        $scope.district = {};
     }
 
     $scope.save = function () {
-        $scope.loading = true;
-        $scope.district.region = parseInt($scope.district.region.id);
-        if ($scope.district && $scope.district.uuid) {//edit
-            openmrsRest.update($scope.resource + "/district", $scope.district).then(function (response) {
-                $scope.district = response;
-                loadDistricts();
-                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
-            },function(e){
-                console.error(e);
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-            });
-        } else {//Creation
-            openmrsRest.create($scope.resource + "/district", $scope.district).then(function (response) {
-                $scope.district = response;
-                loadDistricts();
-                toastr.success($translate.instant('Data removed successfully.'), 'Success');   
-            },function(e){
-                console.error(e);
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-            });
+        if(($scope.district.code && $scope.district.code !== "") && ($scope.district.name && $scope.district.name !== "") && ($scope.district.regionid && $scope.district.regionid !== "")){
+            $scope.loading = true;
+            if ($scope.district && $scope.district.uuid) {//edit
+                openmrsRest.update($scope.resource + "/district", $scope.district).then(function (response) {
+                    $scope.district = response;
+                    loadAllDistricts();
+                    toastr.success($translate.instant('The item has been successfully updated.'), 'Success');
+                },function(e){
+                    console.error(e);
+                    $scope.loading = false;
+                    toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+                });
+            } else {//Creation
+                openmrsRest.create($scope.resource + "/district", $scope.district).then(function (response) {
+                    $scope.clear();
+                    loadAllDistricts();
+                    toastr.success($translate.instant('The item has been successfully created.'), 'Success');
+                },function(e){
+                    console.error(e);
+                    $scope.loading = false;
+                    toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+                });
+            }
+        } else {
+            toastr.error($translate.instant('All required fields must be filled out.'), 'Error');
         }
     }
 
@@ -51,11 +54,27 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         $scope.district = district;
     }
 
-    $scope.delete = function (district) {
+    $scope.delete = function (ev, obj) {
+        var confirm = $mdDialog.confirm()
+            .title($translate.instant('Are you sure you want to delete this item?'))
+            .textContent($translate.instant('If you choose `YES` this item will be deleted and you will not be able to recover it.'))
+            .ariaLabel($translate.instant('Delete Confirmation'))
+            .targetEvent(ev)
+            .ok($translate.instant('Yes'))
+            .cancel($translate.instant('Cancel'));
+        $mdDialog.show(confirm).then(function () {
+            deleteObject(obj);
+        }, function () {
+            $mdDialog.cancel();
+        });
+    };
+
+    function deleteObject(district) {
         $scope.loading = true;
         openmrsRest.remove($scope.resource + "/district", district, "Generic Reason").then(function (response) {
-            loadDistricts();
-            toastr.success($translate.instant('An unexpected error has occured.'), 'Success');
+            $scope.loading = false;
+            loadAllDistricts();
+            toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
         },function(e){
             $scope.loading = false;
             console.error(e);
@@ -63,11 +82,11 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         });
     }
 
-    function loadDistricts() {
+    function loadAllDistricts() {
         $scope.loading = true;
         openmrsRest.getFull($scope.resource + "/district").then(function (response) {
             $scope.loading = false;
-            $scope.districts = response.results;
+            $scope.allDistricts = response.results;
         },function(e){
             $scope.loading = false;
             console.error(e);
@@ -75,5 +94,18 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         });
     }
 
-    loadDistricts();
+    function loadAllOpenMRSRegions() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/addressHierarchy?level=2").then(function (response) {
+            $scope.loading = false;
+            $scope.allRegions = response.results;
+        },function(e){
+            $scope.loading = false;
+            console.error(e);
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
+    loadAllOpenMRSRegions();
+    loadAllDistricts();
 }]);

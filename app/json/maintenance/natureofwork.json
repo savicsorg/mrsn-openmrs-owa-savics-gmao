@@ -1,12 +1,22 @@
 [
     {
-        "id": 1,
+        "id": "1",
         "fr": "Maintenance",
         "en": "Maintain"
     },
     {
-        "id": 2,
+        "id": "2",
         "en": "Repair",
         "fr": "Réparration"
+    },
+    {
+        "id": "3",
+        "en": "Work",
+        "fr": "Travail"
+    },
+    {
+        "id": "4",
+        "en": "Other",
+        "fr": "Autre"
     }
 ]

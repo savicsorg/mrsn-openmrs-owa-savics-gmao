@@ -11,7 +11,7 @@ angular.module('EquipmentsController', ['ngMaterial', 'md.data.table']).controll
         of: $translate.instant("of")
     }
     $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
-    $scope.query = {limit: 5, page: 1};
+    $scope.query = {limit: 5, page: 1, order:'-id'};
     var dictionary = require("../utils/dictionary");
     $scope.equipmentStatus = dictionary.getEquipmentStatus($rootScope.selectedLanguage);
     $scope.getEquipmentStatusById = function (id) {
@@ -19,16 +19,31 @@ angular.module('EquipmentsController', ['ngMaterial', 'md.data.table']).controll
     };
     $scope.equipments = [];
     
-    getAllEquipments();
+    $scope.delete = function (ev, obj) {
+        var confirm = $mdDialog.confirm()
+            .title($translate.instant('Are you sure you want to delete this item?'))
+            .textContent($translate.instant('If you choose `YES` this item will be deleted and you will not be able to recover it.'))
+            .ariaLabel($translate.instant('Delete Confirmation'))
+            .targetEvent(ev)
+            .ok($translate.instant('Yes'))
+            .cancel($translate.instant('Cancel'));
+        $mdDialog.show(confirm).then(function () {
+            deleteObject(obj);
+        }, function () {
+            $mdDialog.cancel();
+        });
+    };
 
-    function getAllEquipments() {
+    function deleteObject(equipment) {
         $scope.loading = true;
-        openmrsRest.getFull($scope.resource + "/equipment").then(function (response) {
+        openmrsRest.remove($scope.resource + "/equipment", equipment, "Generic Reason").then(function (response) {
             $scope.loading = false;
-            $scope.equipments = response.results;
-        }, function (e) {
+            getAllEquipments();
+            toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
+        },function(e){
+            console.error(e);
             $scope.loading = false;
-            showToast($translate.instant("An unexpected error has occured with getAllEquipments()."), "error");
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
 
@@ -48,4 +63,17 @@ angular.module('EquipmentsController', ['ngMaterial', 'md.data.table']).controll
             stockMin: data.stockMin
         });
     }
+
+    function getAllEquipments() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/equipment").then(function (response) {
+            $scope.loading = false;
+            $scope.equipments = response.results;
+        }, function (e) {
+            $scope.loading = false;
+            showToast($translate.instant("An unexpected error has occured with getAllEquipments()."), "error");
+        });
+    }
+
+    getAllEquipments();
 }]);

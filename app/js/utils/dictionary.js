@@ -91,6 +91,25 @@ var getEquipmentStatus = function (language) {
 };
 exports.getEquipmentStatus = getEquipmentStatus;
 
+/**
+ * build json list from json file
+ */
+var getJsonList = function (data, language) {
+    language = language.toLowerCase();
+    var result = [];
+    function myLoopA(i) {
+        if (i < data.length) {
+            var item = data[i];
+            data[i].value = ((language && language !== "" && data[i][language] !== undefined && data[i][language] !== "") ? data[i][language] : data[i]['en']);
+            result.push(data[i]);
+            myLoopA(i + 1);
+        }
+    }
+    myLoopA(0);
+    return result;
+};
+exports.getJsonList = getJsonList;
+
 
 var searchInJSON = function (json, query, language) {
     var values = [];

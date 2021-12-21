@@ -16,23 +16,23 @@
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
                 <md-input-container class="md-block md-input-has-value" flex="100">
                     <label translate>Name</label>
-                    <input type="text" required ng-model="equipmentType.typeName"/>
+                    <input type="text" required ng-model="equipmentType.name"/>
                 </md-input-container>  
             </div>     
             <div layout="row" layout-xs="column">
-                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()" >
-                    <md-icon>add</md-icon>
-                    <md-tooltip md-direction="top">
-                        <span translate>Add a new Equipment Type</span>
-                    </md-tooltip>
-                    <span translate>New</span>
-                </md-button>
                 <md-button class="md-raised md-primary" aria-label="Add" ng-click="save()" >
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Save</span>
                     </md-tooltip>
                     <span translate>Save</span>
+                </md-button>
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()" >
+                    <md-icon>clear</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Reset all fields</span>
+                    </md-tooltip>
+                    <span translate>Reset</span>
                 </md-button>
             </div>          
         </md-card-content>
@@ -44,19 +44,21 @@
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
-                            <th md-column md-order-by="typeName"><span translate>Name</span></th>
+                            <th md-column md-order-by="id"><span translate>Ref.</span></th>
+                            <th md-column md-order-by="name"><span translate>Name</span></th>
                             <th md-column ><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="equipmentType in equipmentTypes" >
-                            <td md-cell>{{equipmentType.typeName}}</td>
+                        <tr md-row data-ng-repeat="equipmentType in equipmentTypes | orderBy:query.order | limitTo: query.limit : (query.page -1) * query.limit" >
+                            <td md-cell>{{equipmentType.id}}</td>
+                            <td md-cell>{{equipmentType.name}}</td>
                             <td md-cell>
-                                <button ng-click="read(equipmentType)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
+                                <button ng-click="read(equipmentType)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                                 </button>
-                                <button ng-click="delete(equipmentType)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Remove" ng-click="">
+                                <button ng-click="delete($event,equipmentType)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
                                 </button>
