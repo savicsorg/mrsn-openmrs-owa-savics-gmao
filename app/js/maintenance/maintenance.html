@@ -27,7 +27,7 @@
                 </md-autocomplete>
                 <md-input-container class="md-block" flex-gt-sm flex="50">
                     <label translate>Code</label>
-                    <input ng-model="drug.code" required>
+                    <input ng-model="equipment.code" disabled required>
                 </md-input-container>
             </div>  
         </md-card-content>
@@ -46,11 +46,7 @@
                 </md-input-container>
                 <md-input-container class="md-block" flex="50">
                     <label translate>Done by</label>
-                    <md-select ng-model="maintenance.agent_id" >
-                        <md-option ng-repeat="a in vm.agents" ng-value="a.agent_id">
-                            {{a.full_name}}
-                        </md-option>
-                    </md-select>
+                    <input ng-model="maintenance.doneby" required>
                 </md-input-container>
             </div>  
             <div layout="row" layout-xs="column"  class="flex flex-col">
