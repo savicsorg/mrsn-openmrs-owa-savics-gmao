@@ -140,7 +140,7 @@
                     <md-input-container class="md-block" flex>
                         <label translate>Departement HD/C SI</label>
                         <md-select required ng-model="equipment.departementhdcsi"
-                            ng-change="departementChanged(quipment.departementhdcsi)">
+                            ng-change="departementChanged(equipment.departementhdcsi)">
                             <md-option ng-repeat="d in services" ng-value="d.id">
                                 {{d.name}}
                             </md-option>
