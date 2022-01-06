@@ -154,72 +154,315 @@ msgstr "Mensuel"
 msgid "Quarterly"
 msgstr "Trimestriel"
 
-#: app/js/settings/SettingsController.js:70
-#: app/js/settings/SettingsController.js:81
-#: app/js/settings/SettingsController.js:110
-#: app/js/settings/SettingsController.js:130
-#: app/js/settings/SettingsController.js:141
-#: app/js/settings/SettingsController.js:156
-#: app/js/settings/SettingsController.js:194
-#: app/js/settings/SettingsController.js:205
-#: app/js/settings/SettingsController.js:258
-#: app/js/settings/SettingsController.js:269
-#: app/js/settings/SettingsController.js:325
-#: app/js/settings/SettingsController.js:337
-#: app/js/settings/SettingsController.js:393
-#: app/js/settings/SettingsController.js:405
-#: app/js/settings/SettingsController.js:457
-#: app/js/settings/SettingsController.js:468
-msgid "Data removed successfully."
-msgstr "Données supprimées avec succès."
+#: app/js/equipment/EquipmentController.js:46
+#: app/js/equipment/EquipmentController.js:57
+msgid "Data saved successfully."
+msgstr "Données enregistrées avec succès."
 
-#: app/js/settings/SettingsController.js:74
-#: app/js/settings/SettingsController.js:85
-#: app/js/settings/SettingsController.js:100
-#: app/js/settings/SettingsController.js:114
-#: app/js/settings/SettingsController.js:134
-#: app/js/settings/SettingsController.js:145
-#: app/js/settings/SettingsController.js:160
-#: app/js/settings/SettingsController.js:174
-#: app/js/settings/SettingsController.js:198
-#: app/js/settings/SettingsController.js:209
-#: app/js/settings/SettingsController.js:220
-#: app/js/settings/SettingsController.js:224
-#: app/js/settings/SettingsController.js:238
-#: app/js/settings/SettingsController.js:262
-#: app/js/settings/SettingsController.js:273
-#: app/js/settings/SettingsController.js:284
-#: app/js/settings/SettingsController.js:288
-#: app/js/settings/SettingsController.js:303
-#: app/js/settings/SettingsController.js:329
-#: app/js/settings/SettingsController.js:341
-#: app/js/settings/SettingsController.js:352
-#: app/js/settings/SettingsController.js:356
-#: app/js/settings/SettingsController.js:371
-#: app/js/settings/SettingsController.js:397
-#: app/js/settings/SettingsController.js:409
-#: app/js/settings/SettingsController.js:420
-#: app/js/settings/SettingsController.js:424
-#: app/js/settings/SettingsController.js:437
-#: app/js/settings/SettingsController.js:461
-#: app/js/settings/SettingsController.js:472
-#: app/js/settings/SettingsController.js:483
-#: app/js/settings/SettingsController.js:487
-#: app/js/settings/SettingsController.js:501
+#: app/js/equipment/EquipmentController.js:51
+#: app/js/equipment/EquipmentController.js:63
+#: app/js/equipment/EquipmentsController.js:46
+#: app/js/maintenance/MaintenancesController.js:41
+#: app/js/maintenance/RequestController.js:45
+#: app/js/maintenance/RequestController.js:69
+#: app/js/maintenance/RequestController.js:78
+#: app/js/maintenance/RequestsController.js:47
+#: app/js/movement/MovementsController.js:40
+#: app/js/settings/DistrictsController.js:35
+#: app/js/settings/DistrictsController.js:45
+#: app/js/settings/DistrictsController.js:81
+#: app/js/settings/DistrictsController.js:93
+#: app/js/settings/DistrictsController.js:105
+#: app/js/settings/EquipmentTypesController.js:34
+#: app/js/settings/EquipmentTypesController.js:44
+#: app/js/settings/EquipmentTypesController.js:77
+#: app/js/settings/EquipmentTypesController.js:89
+#: app/js/settings/HealthCentersController.js:37
+#: app/js/settings/HealthCentersController.js:47
+#: app/js/settings/HealthCentersController.js:79
+#: app/js/settings/HealthCentersController.js:91
+#: app/js/settings/HealthCentersController.js:103
+#: app/js/settings/HealthCentersController.js:115
+#: app/js/settings/ServicesController.js:39
+#: app/js/settings/ServicesController.js:49
+#: app/js/settings/ServicesController.js:81
+#: app/js/settings/ServicesController.js:93
+#: app/js/settings/ServicesController.js:105
+#: app/js/settings/ServicesController.js:117
+#: app/js/settings/ServicesController.js:129
+#: app/js/settings/SitesController.js:43 app/js/settings/SitesController.js:53
+#: app/js/settings/SitesController.js:85 app/js/settings/SitesController.js:97
+#: app/js/settings/SitesController.js:109
+#: app/js/settings/SitesController.js:121
+#: app/js/settings/SitesController.js:133
+#: app/js/settings/SitesController.js:145
 msgid "An unexpected error has occured."
 msgstr "Une erreur inattendue s’est produite."
 
-#: app/js/settings/SettingsController.js:77
-msgid "Creating new agent"
-msgstr "Création d’un nouvel agent"
+#: app/js/equipment/EquipmentController.js:51
+#: app/js/equipment/EquipmentController.js:63
+#: app/js/equipment/EquipmentController.js:69
+#: app/js/equipment/EquipmentController.js:72
+#: app/js/equipment/EquipmentController.js:74
+msgid "Error"
+msgstr "Erreur"
 
-#: app/js/settings/SettingsController.js:126
-msgid "Updating the department"
+#: app/js/equipment/EquipmentController.js:69
+msgid "You must fill in the required fields before you proceed."
+msgstr "Vous devez remplir les champs obligatoires avant de continuer."
+
+#: app/js/equipment/EquipmentController.js:72
+msgid "The equipment serialNumber must be between 3 and 120 characters max."
+msgstr ""
+"Le numéro de série de l’équipement doit être compris entre 3 et 120 "
+"caractères maximum."
+
+#: app/js/equipment/EquipmentController.js:74
+msgid "The equipment designation must not be empty."
+msgstr "La désignation de l’équipement ne doit pas être vide."
+
+#: app/js/equipment/EquipmentController.js:3
+msgid "Equipment management"
+msgstr "Gestion de l’équipement"
+
+#: app/js/equipment/EquipmentsController.js:24
+#: app/js/maintenance/MaintenancesController.js:19
+#: app/js/maintenance/RequestsController.js:26
+#: app/js/movement/MovementsController.js:19
+#: app/js/settings/DistrictsController.js:59
+#: app/js/settings/EquipmentTypesController.js:54
+#: app/js/settings/HealthCentersController.js:57
+#: app/js/settings/ServicesController.js:59
+#: app/js/settings/SitesController.js:63
+msgid "Are you sure you want to delete this item?"
+msgstr "Êtes-vous sûr de bien vouloir supprimer cet élément?"
+
+#: app/js/equipment/EquipmentsController.js:25
+#: app/js/maintenance/MaintenancesController.js:20
+#: app/js/maintenance/RequestsController.js:27
+#: app/js/movement/MovementsController.js:20
+#: app/js/settings/DistrictsController.js:60
+#: app/js/settings/EquipmentTypesController.js:55
+#: app/js/settings/HealthCentersController.js:58
+#: app/js/settings/ServicesController.js:60
+#: app/js/settings/SitesController.js:64
+msgid ""
+"If you choose `YES` this item will be deleted and you will not be able to "
+"recover it."
+msgstr ""
+"Si vous choisissez 'OUI', cet élément sera supprimé et vous ne pourrez pas "
+"le récupérer."
+
+#: app/js/equipment/EquipmentsController.js:26
+#: app/js/maintenance/MaintenancesController.js:21
+#: app/js/maintenance/RequestsController.js:28
+#: app/js/movement/MovementsController.js:21
+#: app/js/settings/DistrictsController.js:61
+#: app/js/settings/EquipmentTypesController.js:56
+#: app/js/settings/HealthCentersController.js:59
+#: app/js/settings/ServicesController.js:61
+#: app/js/settings/SitesController.js:65
+msgid "Delete Confirmation"
+msgstr "Confirmation de suppression "
+
+#: app/js/equipment/EquipmentsController.js:28
+#: app/js/maintenance/MaintenancesController.js:23
+#: app/js/maintenance/RequestsController.js:30
+#: app/js/movement/MovementsController.js:23
+#: app/js/settings/DistrictsController.js:63
+#: app/js/settings/EquipmentTypesController.js:58
+#: app/js/settings/HealthCentersController.js:61
+#: app/js/settings/ServicesController.js:63
+#: app/js/settings/SitesController.js:67
+msgid "Yes"
+msgstr "Oui"
+
+#: app/js/equipment/EquipmentsController.js:29
+#: app/js/maintenance/MaintenancesController.js:24
+#: app/js/maintenance/RequestsController.js:31
+#: app/js/movement/MovementsController.js:24
+#: app/js/settings/DistrictsController.js:64
+#: app/js/settings/EquipmentTypesController.js:59
+#: app/js/settings/HealthCentersController.js:62
+#: app/js/settings/ServicesController.js:64
+#: app/js/settings/SitesController.js:68
+msgid "Cancel"
+msgstr "Annuler"
+
+#: app/js/equipment/EquipmentsController.js:42
+#: app/js/maintenance/MaintenancesController.js:37
+#: app/js/maintenance/RequestsController.js:43
+#: app/js/movement/MovementsController.js:36
+#: app/js/settings/DistrictsController.js:77
+#: app/js/settings/EquipmentTypesController.js:73
+#: app/js/settings/HealthCentersController.js:75
+#: app/js/settings/ServicesController.js:77
+#: app/js/settings/SitesController.js:81
+msgid "The item has been successfully deleted."
 msgstr ""
 
-#: app/js/settings/SettingsController.js:137
-msgid "Creating new department"
-msgstr "Création d’un nouveau département"
+#: app/js/equipment/EquipmentsController.js:3
+#: app/js/equipment/equipments.html:3
+msgid "Management of Equipements"
+msgstr "Gestion des équipements"
+
+#: app/js/equipment/EquipmentsController.js:9
+#: app/js/maintenance/MaintenancesController.js:9
+#: app/js/maintenance/RequestsController.js:9
+#: app/js/movement/MovementsController.js:9
+#: app/js/settings/DistrictsController.js:9
+#: app/js/settings/EquipmentTypesController.js:9
+#: app/js/settings/HealthCentersController.js:10
+#: app/js/settings/ServicesController.js:10
+#: app/js/settings/SitesController.js:10
+msgid "Page"
+msgstr "Page"
+
+#: app/js/equipment/EquipmentsController.js:9
+#: app/js/equipment/EquipmentsController.js:10
+#: app/js/maintenance/MaintenancesController.js:9
+#: app/js/maintenance/MaintenancesController.js:10
+#: app/js/maintenance/RequestsController.js:9
+#: app/js/maintenance/RequestsController.js:10
+#: app/js/movement/MovementsController.js:9
+#: app/js/movement/MovementsController.js:10
+#: app/js/settings/DistrictsController.js:9
+#: app/js/settings/DistrictsController.js:10
+#: app/js/settings/EquipmentTypesController.js:9
+#: app/js/settings/EquipmentTypesController.js:10
+#: app/js/settings/HealthCentersController.js:10
+#: app/js/settings/HealthCentersController.js:11
+#: app/js/settings/ServicesController.js:10
+#: app/js/settings/ServicesController.js:11
+#: app/js/settings/SitesController.js:10 app/js/settings/SitesController.js:11
+msgid ":"
+msgstr " :"
+
+#: app/js/equipment/EquipmentsController.js:10
+#: app/js/maintenance/MaintenancesController.js:10
+#: app/js/maintenance/RequestsController.js:10
+#: app/js/movement/MovementsController.js:10
+#: app/js/settings/DistrictsController.js:10
+#: app/js/settings/EquipmentTypesController.js:10
+#: app/js/settings/HealthCentersController.js:11
+#: app/js/settings/ServicesController.js:11
+#: app/js/settings/SitesController.js:11
+msgid "Rows per page"
+msgstr "Lignes par page"
+
+#: app/js/equipment/EquipmentsController.js:11
+#: app/js/maintenance/MaintenancesController.js:11
+#: app/js/maintenance/RequestsController.js:11
+#: app/js/movement/MovementsController.js:11
+#: app/js/settings/DistrictsController.js:11
+#: app/js/settings/EquipmentTypesController.js:11
+#: app/js/settings/HealthCentersController.js:12
+#: app/js/settings/ServicesController.js:12
+#: app/js/settings/SitesController.js:12
+msgid "of"
+msgstr "sur"
+
+#: app/js/equipment/EquipmentsController.js:74
+msgid "An unexpected error has occured with getAllEquipments()."
+msgstr "Une erreur inattendue s’est produite avec getAllEquipments()."
+
+#: app/js/maintenance/MaintenanceController.js:3
+#: app/js/maintenance/maintenance.html:3
+msgid "Perform a Maintenance"
+msgstr "Effectuer une maintenance"
+
+#: app/js/maintenance/MaintenanceManagementController.js:3
+#: app/js/maintenance/maintenanceManagement.html:3
+msgid "Maintenance Management"
+msgstr "Gestion de la maintenance"
+
+#: app/js/maintenance/MaintenancesController.js:3
+#: app/js/maintenance/maintenances.html:3
+msgid "History of Maintenances"
+msgstr "Historique des entretiens"
+
+#: app/js/maintenance/MaintenancesController.js:52
+msgid "An unexpected error has occured with getAllMaintenances()."
+msgstr "Une erreur inattendue s’est produite avec getAllMaintenances()."
+
+#: app/js/maintenance/RequestController.js:64
+msgid "The maintenance request has been successfully updated."
+msgstr "La demande de maintenance a été mise à jour avec succès."
+
+#: app/js/maintenance/RequestController.js:73
+msgid "The maintenance request has been successfully created."
+msgstr "La demande de maintenance a été créée avec succès."
+
+#: app/js/maintenance/RequestController.js:82
+#: app/js/settings/DistrictsController.js:49
+#: app/js/settings/EquipmentTypesController.js:48
+#: app/js/settings/HealthCentersController.js:51
+#: app/js/settings/ServicesController.js:53
+#: app/js/settings/SitesController.js:57
+msgid "All required fields must be filled out."
+msgstr "Tous les champs obligatoires doivent être remplis."
+
+#: app/js/maintenance/RequestsController.js:3
+#: app/js/maintenance/requests.html:3
+msgid "History of Maintenance Requests"
+msgstr "Historique des demandes de maintenance"
+
+#: app/js/maintenance/RequestsController.js:58
+msgid "An unexpected error has occured with getAllRequests()."
+msgstr "Une erreur inattendue s’est produite avec getAllRequests()."
+
+#: app/js/movement/MovementsController.js:3 app/js/movement/movements.html:3
+msgid "History of Movements"
+msgstr "Histoire des mouvements"
+
+#: app/js/movement/MovementsController.js:51
+msgid "An unexpected error has occured with getAllMovements()."
+msgstr "Une erreur inattendue s’est produite avec getAllMovements()."
+
+#: app/js/settings/DistrictsController.js:31
+#: app/js/settings/EquipmentTypesController.js:30
+#: app/js/settings/HealthCentersController.js:33
+#: app/js/settings/ServicesController.js:35
+#: app/js/settings/SitesController.js:39
+msgid "The item has been successfully updated."
+msgstr "L’élément a été mis à jour avec succès."
+
+#: app/js/settings/DistrictsController.js:41
+#: app/js/settings/EquipmentTypesController.js:40
+#: app/js/settings/HealthCentersController.js:43
+#: app/js/settings/ServicesController.js:45
+#: app/js/settings/SitesController.js:49
+msgid "The item has been successfully created."
+msgstr "L’élément a été créé avec succès."
+
+#: app/js/settings/DistrictsController.js:3 app/js/settings/districts.html:3
+msgid "Sanitary District Management"
+msgstr "Gestion du district sanitaire"
+
+#: app/js/settings/EquipmentTypesController.js:3
+#: app/js/settings/equipmentTypes.html:3
+msgid "Equipment Types Management"
+msgstr "Gestion des types d’équipement"
+
+#: app/js/settings/HealthCentersController.js:4
+#: app/js/settings/healthCenters.html:3
+msgid "HD/CSIs Management"
+msgstr "Gestion HD/ICS"
+
+#: app/js/settings/ServicesController.js:4 app/js/settings/services.html:3
+#: app/js/settings/settings.html:24 app/js/settings/sites.html:52
+msgid "Services in HD/CSI"
+msgstr "Services en HD/CSI"
+
+#: app/js/settings/SettingsController.js:3 app/js/dashboard/main.html:25
+#: app/js/settings/settings.html:3
+msgid "Settings"
+msgstr "Paramètres"
+
+#: app/js/settings/SitesController.js:4 app/js/settings/settings.html:28
+#: app/js/settings/sites.html:3
+msgid "Sites in the HD/CSI service"
+msgstr "Sites dans le service HD/CSI"
 
 #: app/js/dashboard/main.html:3
 msgid "Equipment and maintenance management module"
@@ -234,142 +477,179 @@ msgid "Maintenance management"
 msgstr "Gestion de la maintenance"
 
 #: app/js/dashboard/main.html:21
-msgid "Operations Management"
-msgstr "Gestion des opérations"
-
-#: app/js/dashboard/main.html:25
-msgid "Settings"
-msgstr "Paramètres"
+msgid "Movements management"
+msgstr "Gestion des mouvements"
 
 #: app/js/equipment/equipment.html:7
 msgid "Perform a maintenance on this equipment"
 msgstr "Effectuer une maintenance sur cet équipement"
 
-#: app/js/equipment/equipment.html:13 app/js/maintenance/request.html:10
-#: app/js/maintenance/schedule.html:7 app/js/operation/operation.html:7
+#: app/js/equipment/equipment.html:15 app/js/movement/movement.html:7
 msgid "General Informations"
 msgstr "Informations générales"
 
-#: app/js/equipment/equipment.html:24
-msgid "Serial Number"
-msgstr "Numéro de série"
-
-#: app/js/equipment/equipment.html:28 app/js/operation/operation.html:11
-#: app/js/operation/operationApproval.html:12
-#: app/js/settings/departments.html:49
-#: app/js/settings/maintenanceReasons.html:18
-#: app/js/settings/maintenanceReasons.html:54 app/js/settings/sites.html:36
-#: app/js/settings/sites.html:67 app/js/settings/sites.html:106
-#: app/js/settings/sites.html:144 app/js/settings/sites.html:185
-#: app/js/settings/sites.html:223
-msgid "Code"
-msgstr "Code"
-
-#: app/js/equipment/equipment.html:32 app/js/equipment/equipments.html:25
-#: app/js/maintenance/schedule.html:11
-msgid "Designation"
-msgstr "Désignation"
-
-#: app/js/equipment/equipment.html:38 app/js/maintenance/maintenances.html:47
-#: app/js/operation/operation.html:19
-#: app/js/operation/operationApproval.html:20
-#: app/js/operation/operations.html:40
-msgid "Type"
-msgstr "Type"
-
-#: app/js/equipment/equipment.html:46 app/js/equipment/equipments.html:27
-#: app/js/maintenance/request.html:24 app/js/settings/agents.html:42
-#: app/js/settings/agents.html:85
-msgid "Department"
-msgstr "Département"
-
-#: app/js/equipment/equipment.html:54 app/js/equipment/equipments.html:28
-#: app/js/maintenance/request.html:44
-msgid "Localization"
-msgstr "Localisation"
-
-#: app/js/equipment/equipment.html:60
-msgid "Operating state"
-msgstr "État de fonctionnement"
-
-#: app/js/equipment/equipment.html:67
-msgid "Please choose an operating state."
-msgstr "Veuillez choisir un état de fonctionnement."
-
-#: app/js/equipment/equipment.html:73
-msgid "Acquisition date"
-msgstr "Date d'acquisition"
-
-#: app/js/equipment/equipment.html:77
-msgid "Year of commissionning"
-msgstr "Année de mise en service"
-
-#: app/js/equipment/equipment.html:83
-msgid "Comments"
-msgstr "Commentaires"
-
-#: app/js/equipment/equipment.html:94
-msgid "Tracking"
-msgstr "Suivi"
-
-#: app/js/equipment/equipment.html:101
-msgid "Please choose a tracking option."
-msgstr "Veuillez choisir une option de suivi."
-
-#: app/js/equipment/equipment.html:107
-msgid "Weight"
-msgstr "Poids"
-
-#: app/js/equipment/equipment.html:111
-msgid "Volume"
-msgstr "Volume"
-
-#: app/js/equipment/equipment.html:121 app/js/maintenance/maintenance.html:80
-#: app/js/maintenance/request.html:90 app/js/maintenance/schedule.html:75
-#: app/js/operation/operation.html:76 app/js/settings/agents.html:62
-#: app/js/settings/departments.html:34 app/js/settings/equipmentTypes.html:29
-#: app/js/settings/maintenanceReasons.html:39 app/js/settings/sites.html:52
-#: app/js/settings/sites.html:129 app/js/settings/sites.html:208
-msgid "Save"
-msgstr "Enregistrer"
-
-#: app/js/equipment/equipments.html:11
-msgid "Add new equipment"
-msgstr "Ajouter un nouvel équipement"
-
-#: app/js/equipment/equipments.html:24
-msgid "Serial No"
-msgstr "Numéro de série"
-
-#: app/js/equipment/equipments.html:26
-msgid "type"
-msgstr "type"
-
-#: app/js/equipment/equipments.html:29 app/js/maintenance/maintenance.html:48
-msgid "Status"
-msgstr "Statut"
-
-#: app/js/equipment/equipments.html:30
-msgid "Last modified"
-msgstr "Dernière mise à jour"
-
-#: app/js/equipment/equipments.html:31 app/js/maintenance/maintenances.html:50
-#: app/js/operation/operations.html:43 app/js/settings/agents.html:86
-#: app/js/settings/departments.html:50 app/js/settings/equipmentTypes.html:44
-#: app/js/settings/maintenanceReasons.html:55 app/js/settings/sites.html:68
-#: app/js/settings/sites.html:146 app/js/settings/sites.html:225
-msgid "Actions"
-msgstr "Actions"
-
-#: app/js/equipment/equipments.html:47
-msgid "View"
-msgstr "Détail"
-
-#: app/js/maintenance/maintenance.html:14
+#: app/js/equipment/equipment.html:19 app/js/maintenance/maintenance.html:15
+#: app/js/maintenance/request.html:19
 msgid "Equipment name"
 msgstr "Nom de l’équipement"
 
-#: app/js/maintenance/maintenance.html:18
+#: app/js/equipment/equipment.html:23
+msgid "Serial Number"
+msgstr "Numéro de série"
+
+#: app/js/equipment/equipment.html:29
+msgid "Equipment type"
+msgstr "Type d’équipement"
+
+#: app/js/equipment/equipment.html:37
+msgid "Department"
+msgstr "Département"
+
+#: app/js/equipment/equipment.html:46
+msgid "Site"
+msgstr "Site"
+
+#: app/js/equipment/equipment.html:53 app/js/maintenance/maintenance.html:48
+msgid "Status"
+msgstr "Statut"
+
+#: app/js/equipment/equipment.html:59
+msgid "Operating state"
+msgstr "État de fonctionnement"
+
+#: app/js/equipment/equipment.html:66
+msgid "Please choose an operating state."
+msgstr "Veuillez choisir un état de fonctionnement."
+
+#: app/js/equipment/equipment.html:72
+msgid "Acquisition date"
+msgstr "Date d'acquisition"
+
+#: app/js/equipment/equipment.html:76
+msgid "Year of commissionning"
+msgstr "Année de mise en service"
+
+#: app/js/equipment/equipment.html:82
+msgid "Comments"
+msgstr "Commentaires"
+
+#: app/js/equipment/equipment.html:93
+msgid "Tracking"
+msgstr "Suivi"
+
+#: app/js/equipment/equipment.html:100
+msgid "Please choose a tracking option."
+msgstr "Veuillez choisir une option de suivi."
+
+#: app/js/equipment/equipment.html:106
+msgid "Weight (Klg)"
+msgstr "Poids (Klg)"
+
+#: app/js/equipment/equipment.html:110
+msgid "Volume (cubic meters)"
+msgstr "Volume (mètres cubes)"
+
+#: app/js/equipment/equipment.html:121 app/js/maintenance/maintenance.html:80
+#: app/js/maintenance/request.html:85 app/js/maintenance/request.html:87
+#: app/js/movement/movement.html:76 app/js/settings/districts.html:41
+#: app/js/settings/districts.html:43 app/js/settings/equipmentTypes.html:26
+#: app/js/settings/equipmentTypes.html:28 app/js/settings/healthCenters.html:48
+#: app/js/settings/healthCenters.html:50 app/js/settings/services.html:56
+#: app/js/settings/services.html:58 app/js/settings/sites.html:64
+#: app/js/settings/sites.html:66
+msgid "Save"
+msgstr "Enregistrer"
+
+#: app/js/equipment/equipment.html:128
+msgid "Cencel"
+msgstr "Cencel"
+
+#: app/js/equipment/equipments.html:25
+msgid "Search by Name..."
+msgstr "Recherche par nom..."
+
+#: app/js/equipment/equipments.html:6 app/js/maintenance/maintenance.html:6
+#: app/js/maintenance/maintenanceManagement.html:6
+#: app/js/maintenance/maintenances.html:6 app/js/maintenance/request.html:6
+#: app/js/maintenance/requests.html:6 app/js/movement/movements.html:6
+#: app/js/settings/districts.html:6 app/js/settings/equipmentTypes.html:6
+#: app/js/settings/healthCenters.html:6 app/js/settings/services.html:6
+#: app/js/settings/settings.html:6 app/js/settings/sites.html:6
+msgid "Back"
+msgstr "Retour"
+
+#: app/js/equipment/equipments.html:13
+msgid "Add a new equipment"
+msgstr "Ajouter un nouvel équipement"
+
+#: app/js/equipment/equipments.html:19 app/js/maintenance/maintenances.html:19
+#: app/js/maintenance/requests.html:19 app/js/movement/movements.html:19
+msgid "Export"
+msgstr "Exporter"
+
+#: app/js/equipment/equipments.html:34 app/js/maintenance/maintenances.html:33
+#: app/js/maintenance/requests.html:33 app/js/movement/movements.html:33
+#: app/js/settings/districts.html:63 app/js/settings/equipmentTypes.html:47
+#: app/js/settings/healthCenters.html:69 app/js/settings/services.html:77
+#: app/js/settings/sites.html:85
+msgid "Ref."
+msgstr "Réf."
+
+#: app/js/equipment/equipments.html:35
+msgid "Serial No"
+msgstr "Numéro de série"
+
+#: app/js/equipment/equipments.html:36
+msgid "Designation"
+msgstr "Désignation"
+
+#: app/js/equipment/equipments.html:37 app/js/maintenance/maintenances.html:34
+#: app/js/movement/movement.html:19 app/js/movement/movementApproval.html:20
+#: app/js/movement/movements.html:34
+msgid "Type"
+msgstr "Type"
+
+#: app/js/equipment/equipments.html:38 app/js/maintenance/maintenances.html:37
+#: app/js/maintenance/requests.html:37 app/js/movement/movements.html:37
+#: app/js/settings/districts.html:67 app/js/settings/equipmentTypes.html:49
+#: app/js/settings/healthCenters.html:73 app/js/settings/services.html:81
+#: app/js/settings/sites.html:89
+msgid "Actions"
+msgstr "Actions"
+
+#: app/js/equipment/equipments.html:50 app/js/maintenance/maintenances.html:49
+#: app/js/maintenance/requests.html:49 app/js/movement/movements.html:49
+#: app/js/settings/districts.html:79 app/js/settings/equipmentTypes.html:59
+#: app/js/settings/healthCenters.html:85 app/js/settings/services.html:93
+#: app/js/settings/sites.html:101
+msgid "Edit"
+msgstr "Editer"
+
+#: app/js/equipment/equipments.html:54
+msgid "Move"
+msgstr "Déplacer"
+
+#: app/js/equipment/equipments.html:58
+msgid "Maintain"
+msgstr "Maintenir"
+
+#: app/js/equipment/equipments.html:62
+msgid "History"
+msgstr "Historique"
+
+#: app/js/equipment/equipments.html:66 app/js/maintenance/maintenances.html:53
+#: app/js/maintenance/requests.html:53 app/js/movement/movements.html:53
+#: app/js/settings/districts.html:83 app/js/settings/equipmentTypes.html:63
+#: app/js/settings/healthCenters.html:89 app/js/settings/services.html:97
+#: app/js/settings/sites.html:105
+msgid "Delete"
+msgstr "Supprimer"
+
+#: app/js/maintenance/maintenance.html:11
+msgid "Equipment information"
+msgstr "Informations sur l’équipement"
+
+#: app/js/maintenance/maintenance.html:19
 msgid "Serial number"
 msgstr "N° de série"
 
@@ -389,7 +669,7 @@ msgstr "Veuillez choisir un statut."
 msgid "Reason"
 msgstr "Raison"
 
-#: app/js/maintenance/maintenance.html:66 app/js/maintenance/schedule.html:15
+#: app/js/maintenance/maintenance.html:66
 msgid "Start date"
 msgstr "Date de début"
 
@@ -397,279 +677,325 @@ msgstr "Date de début"
 msgid "End date"
 msgstr "Date de fin"
 
-#: app/js/maintenance/maintenances.html:35 app/js/operation/operations.html:28
-msgid "Search..."
-msgstr "Rechercher..."
+#: app/js/maintenance/maintenanceManagement.html:16
+msgid "Maintenance"
+msgstr "Maintenance"
 
-#: app/js/maintenance/maintenances.html:9
+#: app/js/maintenance/maintenanceManagement.html:20
+msgid "Request for Maintenance"
+msgstr "Demande de maintenance"
+
+#: app/js/maintenance/maintenances.html:25 app/js/maintenance/requests.html:25
+#: app/js/movement/movements.html:25
+msgid "Search by Equipement..."
+msgstr "Recherche par Equipement..."
+
+#: app/js/maintenance/maintenances.html:13
 msgid "Add a new maintenance"
 msgstr "Ajouter une nouvelle maintenance"
 
-#: app/js/maintenance/maintenances.html:17
-msgid "Request for a maintenance"
+#: app/js/maintenance/maintenances.html:35
+msgid "Start Date"
+msgstr "Date de début"
+
+#: app/js/maintenance/maintenances.html:36 app/js/maintenance/requests.html:36
+#: app/js/movement/movements.html:36
+msgid "Equipment"
+msgstr "Equipement"
+
+#: app/js/maintenance/request.html:3
+msgid "Request for maintenance"
 msgstr "Demande de maintenance"
 
-#: app/js/maintenance/maintenances.html:25
-msgid "Schedule a maintenance"
-msgstr "Planifier une maintenance"
+#: app/js/maintenance/request.html:26
+msgid "No matches found."
+msgstr "Aucun résultat trouvé."
 
-#: app/js/maintenance/maintenances.html:48 app/js/maintenance/request.html:31
-#: app/js/operation/operation.html:15
-#: app/js/operation/operationApproval.html:16
-#: app/js/operation/operations.html:41
-msgid "Date"
-msgstr "Date"
+#: app/js/maintenance/request.html:32
+msgid "Request by"
+msgstr "Demandeur"
 
-#: app/js/maintenance/maintenances.html:49 app/js/maintenance/request.html:77
-#: app/js/maintenance/schedule.html:49 app/js/operation/operation.html:63
-#: app/js/operation/operations.html:42
-msgid "Equipments"
-msgstr "Équipements"
-
-#: app/js/maintenance/request.html:4
-msgid "Request a maintenance"
-msgstr "Demander une maintenance"
-
-#: app/js/maintenance/request.html:14
-msgid "System number"
-msgstr "Numéro du système"
-
-#: app/js/maintenance/request.html:18
+#: app/js/maintenance/request.html:36
 msgid "Register number"
-msgstr "Numéro d’enregistrement"
+msgstr "Numéro de registre"
 
-#: app/js/maintenance/request.html:37
+#: app/js/maintenance/request.html:45
+msgid "Intervention information"
+msgstr "Renseignements sur l’intervention"
+
+#: app/js/maintenance/request.html:49
 msgid "Nature of work"
 msgstr "Nature du travail"
 
-#: app/js/maintenance/request.html:51
+#: app/js/maintenance/request.html:58
 msgid "Priority"
 msgstr "Priorité"
 
-#: app/js/maintenance/request.html:61 app/js/operation/operation.html:47
-#: app/js/operation/operationApproval.html:36
-msgid "Motif"
-msgstr "Motif"
+#: app/js/maintenance/request.html:67 app/js/maintenance/requests.html:35
+#: app/js/movement/movement.html:15 app/js/movement/movementApproval.html:16
+#: app/js/movement/movements.html:35
+msgid "Date"
+msgstr "Date"
 
-#: app/js/maintenance/schedule.html:61
-msgid "Equipments categories"
-msgstr "Catégories d’équipements"
+#: app/js/maintenance/request.html:73
+msgid "Request’s reason"
+msgstr "Raison de la demande"
 
-#: app/js/maintenance/schedule.html:19
-msgid "Recurrence"
-msgstr "Récurrence"
+#: app/js/maintenance/request.html:92 app/js/settings/districts.html:48
+#: app/js/settings/equipmentTypes.html:33 app/js/settings/healthCenters.html:55
+#: app/js/settings/services.html:63 app/js/settings/sites.html:71
+msgid "Reset all fields"
+msgstr "Réinitialiser les champs"
 
-#: app/js/maintenance/schedule.html:37
-msgid "Selection mode"
-msgstr ""
+#: app/js/maintenance/request.html:94 app/js/settings/districts.html:50
+#: app/js/settings/equipmentTypes.html:35 app/js/settings/healthCenters.html:57
+#: app/js/settings/services.html:65 app/js/settings/sites.html:73
+msgid "Reset"
+msgstr "Réinitialiser"
 
-#: app/js/operation/operation.html:29
-#: app/js/operation/operationApproval.html:26
+#: app/js/maintenance/requests.html:13
+msgid "Request for an intervention"
+msgstr "Demande d’intervention"
+
+#: app/js/maintenance/requests.html:34
+msgid "Nature of Work"
+msgstr "Nature du travail"
+
+#: app/js/movement/movement.html:63
+msgid "Equipments"
+msgstr "Équipements"
+
+#: app/js/movement/movement.html:11 app/js/movement/movementApproval.html:12
+#: app/js/settings/districts.html:23 app/js/settings/districts.html:65
+#: app/js/settings/healthCenters.html:22 app/js/settings/healthCenters.html:71
+#: app/js/settings/services.html:22 app/js/settings/services.html:79
+#: app/js/settings/sites.html:22 app/js/settings/sites.html:87
+msgid "Code"
+msgstr "Code"
+
+#: app/js/movement/movement.html:29 app/js/movement/movementApproval.html:26
 msgid "Source"
-msgstr ""
+msgstr "Source"
 
-#: app/js/operation/operation.html:37
-#: app/js/operation/operationApproval.html:30
-#, fuzzy
-#| msgid "Designation"
+#: app/js/movement/movement.html:37 app/js/movement/movementApproval.html:30
 msgid "Destination"
 msgstr "Désignation"
 
-#: app/js/operation/operationApproval.html:8
-#, fuzzy
-#| msgid "Transaction details"
-msgid "Operation details"
-msgstr "Détails de la transaction"
+#: app/js/movement/movement.html:47 app/js/movement/movementApproval.html:36
+msgid "Motif"
+msgstr "Motif"
 
-#: app/js/operation/operationApproval.html:47
+#: app/js/movement/movementApproval.html:8
+msgid "Operation details"
+msgstr "Détails de l’opération"
+
+#: app/js/movement/movementApproval.html:47
 msgid "Approve"
 msgstr "Approuver"
 
-#: app/js/operation/operationApproval.html:54
+#: app/js/movement/movementApproval.html:54
 msgid "Decline"
-msgstr ""
+msgstr "Décliner"
 
-#: app/js/operation/operations.html:9
-msgid "New"
-msgstr "Nouveau"
+#: app/js/movement/movements.html:13
+msgid "Add a new movement"
+msgstr "Ajouter un nouveau mouvement"
 
-#: app/js/operation/operations.html:18
-#, fuzzy
-#| msgid "Approved on"
-msgid "Approve an operation"
-msgstr "Validé le"
+#: app/js/settings/districts.html:14
+msgid "Add/Modify a Sanitary District"
+msgstr "Ajouter/Modifier un district sanitaire"
 
-#: app/js/settings/agents.html:10
-#, fuzzy
-#| msgid "Add/Modify a drug"
-msgid "Add/Modify agent"
-msgstr "Ajouter/modifier un médicament"
-
-#: app/js/settings/agents.html:14
-msgid "External"
-msgstr ""
-
-#: app/js/settings/agents.html:20 app/js/settings/agents.html:84
-msgid "Full name"
-msgstr ""
-
-#: app/js/settings/agents.html:26
-#, fuzzy
-#| msgid "November"
-msgid "Phone number"
-msgstr "Novembre"
-
-#: app/js/settings/agents.html:30 app/js/settings/agents.html:83
-msgid "Roll N°"
-msgstr ""
-
-#: app/js/settings/agents.html:36
-msgid "Address"
-msgstr "Adresse"
-
-#: app/js/settings/agents.html:50
-msgid "Location"
-msgstr "Emplacement"
-
-#: app/js/settings/agents.html:69
-#, fuzzy
-#| msgid "Add New batch"
-msgid "Add a new agent"
-msgstr "Ajouter un nouveau lot"
-
-#: app/js/settings/agents.html:77 app/js/settings/departments.html:42
-#: app/js/settings/equipmentTypes.html:37
-#: app/js/settings/maintenanceReasons.html:47 app/js/settings/sites.html:60
-#: app/js/settings/sites.html:137 app/js/settings/sites.html:216
-msgid "List"
-msgstr ""
-
-#: app/js/settings/departments.html:11
-#, fuzzy
-#| msgid "Add/Modify a drug"
-msgid "Add/Modify department"
-msgstr "Ajouter/modifier un médicament"
-
-#: app/js/settings/departments.html:15
-#, fuzzy
-#| msgid "Item Name"
-msgid "Dpmt. Name"
-msgstr "Nom du produit"
-
-#: app/js/settings/departments.html:19
-msgid "Dpmt. Code"
-msgstr ""
-
-#: app/js/settings/departments.html:27
-#: app/js/settings/maintenanceReasons.html:32
-msgid "Add a new department"
-msgstr ""
-
-#: app/js/settings/departments.html:48 app/js/settings/equipmentTypes.html:43
-#: app/js/settings/maintenanceReasons.html:53 app/js/settings/sites.html:66
-#: app/js/settings/sites.html:143 app/js/settings/sites.html:222
+#: app/js/settings/districts.html:19 app/js/settings/districts.html:64
+#: app/js/settings/equipmentTypes.html:18
+#: app/js/settings/equipmentTypes.html:48 app/js/settings/healthCenters.html:18
+#: app/js/settings/healthCenters.html:70 app/js/settings/services.html:18
+#: app/js/settings/services.html:78 app/js/settings/sites.html:18
+#: app/js/settings/sites.html:86
 msgid "Name"
 msgstr "Nom"
 
-#: app/js/settings/equipmentTypes.html:10
-msgid "Add/Modify equipment type"
-msgstr ""
+#: app/js/settings/districts.html:29 app/js/settings/healthCenters.html:28
+#: app/js/settings/services.html:28 app/js/settings/sites.html:28
+msgid "Region"
+msgstr "Région"
+
+#: app/js/settings/districts.html:57
+msgid "List of Districts"
+msgstr "Liste des districts"
+
+#: app/js/settings/districts.html:66
+msgid "Region Ref."
+msgstr "Région Réf."
 
 #: app/js/settings/equipmentTypes.html:14
-#, fuzzy
-#| msgid "Item Name"
-msgid "Type Name"
-msgstr "Nom du produit"
+msgid "Add/Modify an Equipment Type"
+msgstr "Ajouter/modifier un type d’équipement"
 
-#: app/js/settings/equipmentTypes.html:22
-msgid "Add a new equipment type"
-msgstr ""
+#: app/js/settings/equipmentTypes.html:41
+msgid "List of Equipment Types"
+msgstr "Liste des types d’équipement"
 
-#: app/js/settings/maintenanceReasons.html:10
-#, fuzzy
-#| msgid "Add/Modify a drug"
-msgid "Add/Modify reason"
-msgstr "Ajouter/modifier un médicament"
+#: app/js/settings/healthCenters.html:14
+msgid "Add/Modify an HD/CSI"
+msgstr "Ajouter/Modifier un HD/CSI"
 
-#: app/js/settings/maintenanceReasons.html:14
-msgid "Label"
-msgstr "Étiquette"
-
-#: app/js/settings/maintenanceReasons.html:24
-#, fuzzy
-#| msgid "Dispense Details"
-msgid "Details"
-msgstr "Détail de la dispense"
-
-#: app/js/settings/sites.html:7
-#, fuzzy
-#| msgid "Receptions"
-msgid "Regions"
-msgstr "Réceptions"
-
-#: app/js/settings/sites.html:13
-msgid "Districts"
-msgstr ""
-
-#: app/js/settings/sites.html:19
-msgid "Sites"
-msgstr ""
-
-#: app/js/settings/sites.html:28
-#, fuzzy
-#| msgid "Add/Modify a drug"
-msgid "Add/Modify region"
-msgstr "Ajouter/modifier un médicament"
-
-#: app/js/settings/sites.html:32
-#, fuzzy
-#| msgid "Reception Date"
-msgid "Region name"
-msgstr "Date de réception"
-
-#: app/js/settings/sites.html:45
-#, fuzzy
-#| msgid "Add a line"
-msgid "Add a new region"
-msgstr "Ajouter une ligne"
-
-#: app/js/settings/sites.html:96
-#, fuzzy
-#| msgid "Add/Modify a drug"
-msgid "Add/Modify district"
-msgstr "Ajouter/modifier un médicament"
-
-#: app/js/settings/sites.html:100
-msgid "District name"
-msgstr ""
-
-#: app/js/settings/sites.html:110 app/js/settings/sites.html:145
-msgid "Region"
-msgstr ""
-
-#: app/js/settings/sites.html:122
-msgid "Add a new district"
-msgstr ""
-
-#: app/js/settings/sites.html:175
-#, fuzzy
-#| msgid "Add/Modify a drug"
-msgid "Add/Modify site"
-msgstr "Ajouter/modifier un médicament"
-
-#: app/js/settings/sites.html:179
-msgid "Site name"
-msgstr ""
-
-#: app/js/settings/sites.html:189 app/js/settings/sites.html:224
+#: app/js/settings/healthCenters.html:36 app/js/settings/healthCenters.html:72
+#: app/js/settings/services.html:36 app/js/settings/sites.html:36
 msgid "District"
-msgstr ""
+msgstr "District"
 
-#: app/js/settings/sites.html:201
+#: app/js/settings/healthCenters.html:63
+msgid "List of HD/CSIs"
+msgstr "Liste des HD/ICS"
+
+#: app/js/settings/services.html:14
+msgid "Add/Modify a Service"
+msgstr "Ajouter/modifier un service"
+
+#: app/js/settings/services.html:44 app/js/settings/settings.html:20
+#: app/js/settings/sites.html:44
+msgid "HD/CSI"
+msgstr "HD/CSI"
+
+#: app/js/settings/services.html:71
+msgid "List of Services"
+msgstr "Liste de services"
+
+#: app/js/settings/services.html:80
+msgid "Health Center"
+msgstr "Health Center"
+
+#: app/js/settings/settings.html:16
+msgid "Sanitary District"
+msgstr "District sanitaire"
+
+#: app/js/settings/settings.html:32
+msgid "Equipment types"
+msgstr "Types d’équipement"
+
+#: app/js/settings/sites.html:14
+msgid "Add/Modify a Site"
+msgstr "Ajouter/Modifier un site"
+
+#: app/js/settings/sites.html:79
+msgid "List of Sites"
+msgstr "Liste des sites"
+
+#: app/js/settings/sites.html:88
+msgid "Service"
+msgstr "Service"
+
+#~ msgid "Data removed successfully."
+#~ msgstr "Données supprimées avec succès."
+
+#~ msgid "Creating new agent"
+#~ msgstr "Création d’un nouvel agent"
+
+#~ msgid "Creating new department"
+#~ msgstr "Création d’un nouveau département"
+
+#~ msgid "Operations Management"
+#~ msgstr "Gestion des opérations"
+
+#~ msgid "Localization"
+#~ msgstr "Localisation"
+
+#~ msgid "Volume"
+#~ msgstr "Volume"
+
+#~ msgid "type"
+#~ msgstr "type"
+
+#~ msgid "Last modified"
+#~ msgstr "Dernière mise à jour"
+
+#~ msgid "View"
+#~ msgstr "Détail"
+
+#~ msgid "Search..."
+#~ msgstr "Rechercher..."
+
+#~ msgid "Schedule a maintenance"
+#~ msgstr "Planifier une maintenance"
+
+#~ msgid "Request a maintenance"
+#~ msgstr "Demander une maintenance"
+
+#~ msgid "System number"
+#~ msgstr "Numéro du système"
+
+#~ msgid "Equipments categories"
+#~ msgstr "Catégories d’équipements"
+
+#~ msgid "Recurrence"
+#~ msgstr "Récurrence"
+
+#~ msgid "New"
+#~ msgstr "Nouveau"
+
 #, fuzzy
-#| msgid "Add a line"
-msgid "Add a new site"
-msgstr "Ajouter une ligne"
+#~| msgid "Approved on"
+#~ msgid "Approve an operation"
+#~ msgstr "Validé le"
+
+#, fuzzy
+#~| msgid "November"
+#~ msgid "Phone number"
+#~ msgstr "Novembre"
+
+#~ msgid "Address"
+#~ msgstr "Adresse"
+
+#~ msgid "Location"
+#~ msgstr "Emplacement"
+
+#, fuzzy
+#~| msgid "Add/Modify a drug"
+#~ msgid "Add/Modify department"
+#~ msgstr "Ajouter/modifier un médicament"
+
+#, fuzzy
+#~| msgid "Item Name"
+#~ msgid "Dpmt. Name"
+#~ msgstr "Nom du produit"
+
+#, fuzzy
+#~| msgid "Item Name"
+#~ msgid "Type Name"
+#~ msgstr "Nom du produit"
+
+#, fuzzy
+#~| msgid "Add/Modify a drug"
+#~ msgid "Add/Modify reason"
+#~ msgstr "Ajouter/modifier un médicament"
+
+#~ msgid "Label"
+#~ msgstr "Étiquette"
+
+#, fuzzy
+#~| msgid "Dispense Details"
+#~ msgid "Details"
+#~ msgstr "Détail de la dispense"
+
+#, fuzzy
+#~| msgid "Receptions"
+#~ msgid "Regions"
+#~ msgstr "Réceptions"
+
+#, fuzzy
+#~| msgid "Add/Modify a drug"
+#~ msgid "Add/Modify region"
+#~ msgstr "Ajouter/modifier un médicament"
+
+#, fuzzy
+#~| msgid "Add a line"
+#~ msgid "Add a new region"
+#~ msgstr "Ajouter une ligne"
+
+#, fuzzy
+#~| msgid "Add a line"
+#~ msgid "Add a new site"
+#~ msgstr "Ajouter une ligne"
 
 #~ msgid "Toast dismissed."
 #~ msgstr "Toast rejeté."
@@ -695,29 +1021,8 @@ msgstr "Ajouter une ligne"
 #~ msgid "Would you like to delete your data?"
 #~ msgstr "Vous souhaitez supprimer vos données ?"
 
-#~ msgid "If you choose `Yes` this record will be deleted and you will not be able to recover it"
-#~ msgstr "Si vous choisissez 'Oui', cet enregistrement sera supprimé et vous ne pourrez pas le récupérer"
-
 #~ msgid "Lucky day"
 #~ msgstr "Jour de chance"
-
-#~ msgid "Yes"
-#~ msgstr "Oui"
-
-#~ msgid "Cancel"
-#~ msgstr "Annuler"
-
-#~ msgid "Page"
-#~ msgstr "Page"
-
-#~ msgid ":"
-#~ msgstr " :"
-
-#~ msgid "Rows per page"
-#~ msgstr "Lignes par page"
-
-#~ msgid "of"
-#~ msgstr "sur"
 
 #~ msgid "New type entry"
 #~ msgstr "Nouveau type"
@@ -740,17 +1045,8 @@ msgstr "Ajouter une ligne"
 #~ msgid "New Supplier entry"
 #~ msgstr "Entrée d’un nouveau fournisseur"
 
-#~ msgid "Data saved successfully."
-#~ msgstr "Données enregistrées avec succès."
-
 #~ msgid "Do you really want to delete this dispense ?"
 #~ msgstr "Voulez-vous vraiment supprimer cette dispense ?"
-
-#~ msgid "Do you really want to delete this line ?"
-#~ msgstr "Voulez-vous vraiment supprimer cette ligne ?"
-
-#~ msgid "Confirmation"
-#~ msgstr "Confirmation"
 
 #~ msgid "Do you really want to validate this dispense ?"
 #~ msgstr "Voulez-vous vraiment valider cette dispense ?"
@@ -773,20 +1069,29 @@ msgstr "Ajouter une ligne"
 #~ msgid "Drugs dispensing management"
 #~ msgstr "Gestion de la distribution des médicaments"
 
-#~ msgid "Error"
-#~ msgstr "Erreur"
-
-#~ msgid "Attention, the drug code you entered is already used. Please use another one."
-#~ msgstr "Attention, le code que vous avez entré est déjà utilisé. Veuillez en utiliser un autre."
+#~ msgid ""
+#~ "Attention, the drug code you entered is already used. Please use another "
+#~ "one."
+#~ msgstr ""
+#~ "Attention, le code que vous avez entré est déjà utilisé. Veuillez en "
+#~ "utiliser un autre."
 
 #~ msgid "Database constraint violation"
 #~ msgstr "Violation des contraintes de base de données"
 
 #~ msgid "You cannot delete a drug that has existing batches."
-#~ msgstr "Vous ne pouvez pas supprimer un médicament qui a des lots existants."
+#~ msgstr ""
+#~ "Vous ne pouvez pas supprimer un médicament qui a des lots existants."
 
-#~ msgid "Attention, you cannot make new transactions while you already have old one(s) waiting for approval. Please, go to drug history and approve or reject all previous transactions before proceeding."
-#~ msgstr "Attention, vous ne pouvez pas effectuer de nouvelles transactions alors que vous avez déjà d’anciennes transactions en attente d’approbation. S’il vous plaît, allez à l’historique des médicaments et approuvez ou rejetez toutes les transactions précédentes avant de continuer."
+#~ msgid ""
+#~ "Attention, you cannot make new transactions while you already have old "
+#~ "one(s) waiting for approval. Please, go to drug history and approve or "
+#~ "reject all previous transactions before proceeding."
+#~ msgstr ""
+#~ "Attention, vous ne pouvez pas effectuer de nouvelles transactions alors "
+#~ "que vous avez déjà d’anciennes transactions en attente d’approbation. "
+#~ "S’il vous plaît, allez à l’historique des médicaments et approuvez ou "
+#~ "rejetez toutes les transactions précédentes avant de continuer."
 
 #~ msgid "Transaction type are missing."
 #~ msgstr "Le type de transaction est manquant."
@@ -800,8 +1105,12 @@ msgstr "Ajouter une ligne"
 #~ msgid "Success"
 #~ msgstr "Succès"
 
-#~ msgid "Do you really want to delete this reception ? This will impact available stock"
-#~ msgstr "Voulez-vous vraiment supprimer cette réception ? Cela aura un impact sur le stock disponible"
+#~ msgid ""
+#~ "Do you really want to delete this reception ? This will impact available "
+#~ "stock"
+#~ msgstr ""
+#~ "Voulez-vous vraiment supprimer cette réception ? Cela aura un impact sur "
+#~ "le stock disponible"
 
 #~ msgid "Do you really want to reject this adjustment ?"
 #~ msgstr "Voulez-vous vraiment rejeter cet ajustement ?"
@@ -846,7 +1155,8 @@ msgstr "Ajouter une ligne"
 #~ msgstr "Voulez-vous vraiment créer une nouvelle commande ?"
 
 #~ msgid "No supplier registered. Please add from Settings"
-#~ msgstr "Aucun fournisseur enregistré. Veuillez ajouter à partir des paramètres"
+#~ msgstr ""
+#~ "Aucun fournisseur enregistré. Veuillez ajouter à partir des paramètres"
 
 #~ msgid "Orders"
 #~ msgstr "Commandes"
@@ -875,9 +1185,6 @@ msgstr "Ajouter une ligne"
 #~ msgid "Search for Customers name..."
 #~ msgstr "Rechercher le nom des clients..."
 
-#~ msgid "Back"
-#~ msgstr "Retour"
-
 #~ msgid "Add New"
 #~ msgstr "Ajouter"
 
@@ -886,12 +1193,6 @@ msgstr "Ajouter une ligne"
 
 #~ msgid "Search for Locations name..."
 #~ msgstr "Rechercher le nom des emplacements..."
-
-#~ msgid "Drugs Management"
-#~ msgstr "Gestion des médicaments"
-
-#~ msgid "Units Management"
-#~ msgstr "Gestion des formes galéniques"
 
 #~ msgid "Routes Management"
 #~ msgstr "Gestion - voie d’admission"
@@ -938,12 +1239,6 @@ msgstr "Ajouter une ligne"
 #~ msgid "Dispense Drugs"
 #~ msgstr "Dispense de médicaments"
 
-#~ msgid "No matches found."
-#~ msgstr "Aucun résultat trouvé."
-
-#~ msgid "List of drugs"
-#~ msgstr "Liste des médicaments"
-
 #~ msgid "Batch n°"
 #~ msgstr "Lot n°"
 
@@ -965,9 +1260,6 @@ msgstr "Ajouter une ligne"
 #~ msgid "Stock at risk"
 #~ msgstr "Stock à risque"
 
-#~ msgid "Ref."
-#~ msgstr "Réf."
-
 #~ msgid "Type Dispensation"
 #~ msgstr "Type de dispense"
 
@@ -976,12 +1268,6 @@ msgstr "Ajouter une ligne"
 
 #~ msgid "Amount"
 #~ msgstr "Montant"
-
-#~ msgid "Edit"
-#~ msgstr "Editer"
-
-#~ msgid "Delete"
-#~ msgstr "Supprimer"
 
 #~ msgid "Dispense Detail"
 #~ msgstr "Détail de la distribution"
@@ -994,9 +1280,6 @@ msgstr "Ajouter une ligne"
 
 #~ msgid "Route"
 #~ msgstr "Voie d’admission"
-
-#~ msgid "Inventory Informations"
-#~ msgstr "Informations sur l’inventaire"
 
 #~ msgid "Buying Price"
 #~ msgstr "Prix d’achat"
@@ -1015,9 +1298,6 @@ msgstr "Ajouter une ligne"
 
 #~ msgid "Search for Drugs name..."
 #~ msgstr "Rechercher le nom des médicaments..."
-
-#~ msgid "Export"
-#~ msgstr "Exporter"
 
 #~ msgid "General Information"
 #~ msgstr "Informations générales"
@@ -1106,9 +1386,6 @@ msgstr "Ajouter une ligne"
 #~ msgid "Expired"
 #~ msgstr "Expiré"
 
-#~ msgid "History"
-#~ msgstr "Historique"
-
 #~ msgid "Stocktake"
 #~ msgstr "Inventaire"
 
@@ -1175,9 +1452,6 @@ msgstr "Ajouter une ligne"
 #~ msgid "Receive"
 #~ msgstr "Réceptionner"
 
-#~ msgid "List of Drugs"
-#~ msgstr "Liste des médicaments"
-
 #~ msgid "New order details"
 #~ msgstr "Détails de la nouvelle commande"
 
@@ -1219,9 +1493,6 @@ msgstr "Ajouter une ligne"
 
 #~ msgid "Received"
 #~ msgstr "Réceptionné"
-
-#~ msgid "Search by name and code..."
-#~ msgstr "Rechercher par nom et code.."
 
 #~ msgid "Stocks at risk management"
 #~ msgstr "Gestion du stock à risque"
