@@ -40,7 +40,7 @@
                 <tbody md-body>
                     <tr md-row data-ng-repeat="request in requests| orderBy:query.order | filter:searchAll | limitTo: query.limit : (query.page -1) * query.limit" >
                         <td md-cell>{{request.id}}</td>
-                        <td md-cell>{{request.natureOfWork}}</td>
+                        <td md-cell>{{getElementById(request.natureOfWork)}}</td>
                         <td md-cell>{{request.creation | date:'dd/MM/yyyy' : 'UTC'}}</td>
                         <td md-cell>{{request.equipment.name}}</td>
                         <td md-cell>

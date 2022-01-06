@@ -26,15 +26,15 @@
             <div layout="row" layout-xs="column" class="flex flex-col">                    
                 <md-input-container class="md-block md-input-has-value" flex="100">
                     <label translate>Region</label>
-                    <md-select required ng-model="site.regionid" >
-                        <md-option ng-repeat="r in regions" ng-value="r.addressHierarchyEntryId">
+                    <md-select required ng-model="site.regionid" ng-change="regionChanged()">
+                        <md-option ng-repeat="r in allRegions" ng-value="r.addressHierarchyEntryId">
                             {{r.name}}
                         </md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container class="md-block md-input-has-value" flex="33">
                     <label translate>District</label>
-                    <md-select required ng-model="site.district">
+                    <md-select required ng-model="site.district" ng-change="districtChanged()">
                         <md-option ng-repeat="d in districts" ng-value="d.id">
                             {{d.name}}
                         </md-option>
@@ -42,7 +42,7 @@
                 </md-input-container>
                 <md-input-container class="md-block md-input-has-value" flex="33">
                     <label translate>HD/CSI</label>
-                    <md-select required ng-model="site.healthCenter">
+                    <md-select required ng-model="site.healthcenter" ng-change="healthCenterChanged()">
                         <md-option ng-repeat="hc in healthCenters" ng-value="hc.id">
                             {{hc.name}}
                         </md-option>
@@ -90,7 +90,7 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="site in sites | orderBy:query.order | limitTo: query.limit : (query.page -1) * query.limit" >
+                        <tr md-row data-ng-repeat="site in allSites | orderBy:query.order | limitTo: query.limit : (query.page -1) * query.limit" >
                             <td md-cell>{{site.id}}</td>
                             <td md-cell >{{site.name}}</td>
                             <td md-cell >{{site.code}}</td>
@@ -109,7 +109,7 @@
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{sites.length}}"
+            <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{allSites.length}}"
                 md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks" md-limit-options="[25, 50, 100]"
                 md-on-paginate="logPagination" md-label="$parent.label">
             </md-table-pagination>
