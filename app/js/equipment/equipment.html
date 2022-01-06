@@ -50,7 +50,7 @@
                     </md-input-container>
                     <md-input-container class="md-block md-input-has-value" flex>
                         <label translate>After sale service</label>
-                        <md-switch ng-model="equipment.inService" aria-label="After sale service ?">
+                        <md-switch ng-model="equipment.aftersaleservice" aria-label="After sale service ?">
                             After sale service ?
                         </md-switch>
                     </md-input-container>
@@ -86,7 +86,7 @@
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block" flex>
                         <label translate>Replacement components</label>
-                        <md-select ng-model="equipment.replacementComponent">
+                        <md-select ng-model="equipment.replacementcomponent">
                             <md-option ng-repeat="r in replacementComponents" ng-value="r.value">
                                 {{r.name}}
                             </md-option>
@@ -94,13 +94,17 @@
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <label translate>Explain</label>
-                        <input ng-model="equipment.yesExplain">
+                        <input ng-model="equipment.comment">
                     </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block" flex>
                         <label translate>Disposable manuals</label>
-                        <input ng-model="equipment.disposable">
+                        <md-select ng-model="equipment.manuals">
+                            <md-option ng-repeat="d in disposableManuals" ng-value="d.value">
+                                {{d.name}}
+                            </md-option>
+                        </md-select>
                     </md-input-container>
                 </div>
             </md-card-content>
@@ -148,7 +152,7 @@
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <label translate>Site in departement</label>
-                        <md-select required ng-model="equipment.siteDepartement">
+                        <md-select required ng-model="equipment.site">
                             <md-option ng-repeat="s in sites" ng-value="s.id">
                                 {{s.name}}
                             </md-option>
@@ -172,7 +176,7 @@
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <label translate>Acquisition value</label>
-                        <input ng-model="equipment.acquisitionValue">
+                        <input type="number" ng-model="equipment.acquisitionValue">
                     </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column">
@@ -197,7 +201,6 @@
                         <md-radio-group ng-model="equipment.tracking" layout="row" name="property" required>
                             <md-radio-button value="1" class="md-primary">By unique serial number</md-radio-button>
                             <md-radio-button value="2" class="md-primary">By lots</md-radio-button>
-                            <md-radio-button value="0" class="md-primary">No tracking</md-radio-button>
                         </md-radio-group>
                         <div ng-messages="form.property.$error">
                             <div ng-message="required" translate>Please choose a tracking option.</div>
@@ -206,8 +209,8 @@
                 </div>
                 <div layout="row" layout-xs="column">
                     <md-input-container class="md-block" flex>
-                        <label translate>Weight (Klg)</label>
-                        <input type="number" ng-model="equipment.equipmentWeight">
+                        <label translate>Weight (Kg)</label>
+                        <input type="number" ng-model="equipment.weight">
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <label translate>Volume (cubic meters)</label>

@@ -21,6 +21,12 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         { name: $translate.instant("purchase"), value: "purchase" },
         { name: $translate.instant("unknown"), value: "unknown" }];
 
+    $scope.disposableManuals = [
+        { name: $translate.instant("user manuals"), value: "user manuals" },
+        { name: $translate.instant("maintenance manuals"), value: "maintenance manuals" },
+        { name: $translate.instant("unknown"), value: "unknown" },
+        { name: $translate.instant("other"), value: "other" }];
+
     $scope.allRegions = [];
     var allDistricts = [];
     $scope.districts = [];
@@ -156,10 +162,13 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
     $scope.save = function () {
         $scope.loading = true;
         var query = JSON.parse(JSON.stringify($scope.equipment));
-        console.log("-------------------------------------");
-        console.log(query);
-        console.log("-------------------------------------");
-        query.status = !query.status ? 0 : query.status;
+        query.type = query.equipmentType;
+        query.manuals = true;
+        delete query.country;
+        delete query.countrySanitary;
+        delete query.hdcsi;
+        delete query.departementhdcsi;
+        delete query.tracking;
         if ($scope.equipment && $scope.equipment.serialNumber && $scope.equipment.serialNumber.length >= 3 && $scope.equipment.serialNumber.length <= 120 && $scope.equipment.name && $scope.equipment.name != "") {
             if ($scope.equipment.uuid) {    //Edit
                 openmrsRest.update($scope.resource + "/equipment", query).then(function (response) {
