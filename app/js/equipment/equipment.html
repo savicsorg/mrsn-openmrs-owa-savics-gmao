@@ -18,7 +18,7 @@
                 <div layout="row" layout-xs="column">
                     <md-input-container class="md-block" flex>
                         <label translate>Equipment name</label>
-                        <input ng-model="equipment.designation" required>
+                        <input ng-model="equipment.name" required>
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <label translate>Serial Number</label>
@@ -58,7 +58,7 @@
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block" flex>
                         <label translate>Person responsible of the equipment</label>
-                        <input ng-model="equipment.person">
+                        <input ng-model="equipment.responsibleperson">
                     </md-input-container>
                 </div>
             </md-card-content>
@@ -70,7 +70,7 @@
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block" flex>
                         <label translate>Equipment user</label>
-                        <input ng-model="equipment.equipmentUser">
+                        <input ng-model="equipment.useraffectedto">
                     </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column" class="flex flex-col">
@@ -168,7 +168,7 @@
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <label translate>Year of commissionning</label>
-                        <input type="number" ng-model="equipment.commisionningYear">
+                        <input ng-model="equipment.commisionningYear">
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <label translate>Acquisition value</label>

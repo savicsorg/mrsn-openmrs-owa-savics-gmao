@@ -156,9 +156,11 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
     $scope.save = function () {
         $scope.loading = true;
         var query = JSON.parse(JSON.stringify($scope.equipment));
+        console.log("-------------------------------------");
         console.log(query);
+        console.log("-------------------------------------");
         query.status = !query.status ? 0 : query.status;
-        if ($scope.equipment && $scope.equipment.serialNumber && $scope.equipment.serialNumber.length >= 3 && $scope.equipment.serialNumber.length <= 120 && $scope.equipment.designation && $scope.equipment.designation != "") {
+        if ($scope.equipment && $scope.equipment.serialNumber && $scope.equipment.serialNumber.length >= 3 && $scope.equipment.serialNumber.length <= 120 && $scope.equipment.name && $scope.equipment.name != "") {
             if ($scope.equipment.uuid) {    //Edit
                 openmrsRest.update($scope.resource + "/equipment", query).then(function (response) {
                     $scope.equipment = response;
@@ -186,13 +188,13 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
             }
         } else {
             $scope.loading = false;
-            if (!$scope.equipment.serialNumber || !$scope.equipment.designation) {
+            if (!$scope.equipment.serialNumber || !$scope.equipment.name) {
                 toastr.error($translate.instant('You must fill in the required fields before you proceed.'), $translate.instant('Error'));
             }
             if ($scope.equipment.serialNumber && ($scope.equipment.serialNumber.length <= 3 || $scope.equipment.serialNumber.length > 120)) {
                 toastr.error($translate.instant('The equipment serialNumber must be between 3 and 120 characters max.'), $translate.instant('Error'));
-            } else if ($scope.equipment.designation && $scope.equipment.designation == "") {
-                toastr.error($translate.instant('The equipment designation must not be empty.'), $translate.instant('Error'));
+            } else if ($scope.equipment.name && $scope.equipment.name == "") {
+                toastr.error($translate.instant('The equipment name must not be empty.'), $translate.instant('Error'));
             }
         }
     }
