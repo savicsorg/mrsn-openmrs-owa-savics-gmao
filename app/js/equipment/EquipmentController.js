@@ -27,7 +27,7 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
     $scope.sites = [];
     $scope.site = { district: {} };
 
-    if ($stateParams.equipement_id) {
+    if ($stateParams.equipment_id) {
         $scope.equipment = $stateParams.data;
     }
 
