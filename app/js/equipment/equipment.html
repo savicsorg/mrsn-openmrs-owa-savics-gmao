@@ -87,22 +87,22 @@
                     <md-input-container class="md-block" flex>
                         <label translate>Replacement components</label>
                         <md-select ng-model="equipment.replacementcomponent">
-                            <md-option ng-repeat="r in replacementComponents" ng-value="r.value">
-                                {{r.name}}
+                            <md-option ng-repeat="r in replacementComponents" ng-value="r.id">
+                                {{r.en}}
                             </md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <label translate>Explain</label>
-                        <input ng-model="equipment.comment">
+                        <input ng-model="equipment.explain">
                     </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block" flex>
                         <label translate>Disposable manuals</label>
                         <md-select ng-model="equipment.manuals">
-                            <md-option ng-repeat="d in disposableManuals" ng-value="d.value">
-                                {{d.name}}
+                            <md-option ng-repeat="d in disposableManuals" ng-value="d.id">
+                                {{d.en}}
                             </md-option>
                         </md-select>
                     </md-input-container>
@@ -183,8 +183,8 @@
                     <md-input-container class="md-block" flex>
                         <label translate>Acquisition mode</label>
                         <md-select ng-model="equipment.acquisitionMode">
-                            <md-option ng-repeat="a in acquisitionModes" ng-value="a.value">
-                                {{a.name}}
+                            <md-option ng-repeat="a in acquisitionModes" ng-value="a.id">
+                                {{a.en}}
                             </md-option>
                         </md-select>
                     </md-input-container>
