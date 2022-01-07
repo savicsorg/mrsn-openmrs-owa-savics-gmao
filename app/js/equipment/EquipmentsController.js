@@ -4,21 +4,21 @@ angular.module('EquipmentsController', ['ngMaterial', 'md.data.table']).controll
     $scope.resource = "savicsgmao";
     $scope.loading = false;
     //Breadcrumbs properties
-    $rootScope.links = {"GMAO Module": "", "Equipments": "equipments"};
+    $rootScope.links = { "GMAO Module": "", "Equipments": "equipments" };
     $scope.label = {
         page: $translate.instant("Page") + $translate.instant(":"),
         rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),
         of: $translate.instant("of")
     }
-    $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
-    $scope.query = {limit: 5, page: 1, order:'-id'};
+    $scope.options = { autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true };
+    $scope.query = { limit: 5, page: 1, order: '-id' };
     var dictionary = require("../utils/dictionary");
     $scope.equipmentStatus = dictionary.getEquipmentStatus($rootScope.selectedLanguage);
     $scope.getEquipmentStatusById = function (id) {
         return dictionary.getEquipmentStatusById(id, $rootScope.selectedLanguage);
     };
     $scope.equipments = [];
-    
+
     $scope.delete = function (ev, obj) {
         var confirm = $mdDialog.confirm()
             .title($translate.instant('Are you sure you want to delete this item?'))
@@ -40,7 +40,7 @@ angular.module('EquipmentsController', ['ngMaterial', 'md.data.table']).controll
             $scope.loading = false;
             getAllEquipments();
             toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
-        },function(e){
+        }, function (e) {
             console.error(e);
             $scope.loading = false;
             toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
@@ -49,18 +49,8 @@ angular.module('EquipmentsController', ['ngMaterial', 'md.data.table']).controll
 
     $scope.openEdit = function (data) {
         $state.go('home.equipment', {
-            code: data.code,
-            name: data.name,
-            uuid: data.uuid,
-            description: data.description,
-            route: data.route,
-            unit: data.unit,
-            sellPrice: data.sellPrice,
-            buyPrice: data.buyPrice,
-            soh: data.soh,
-            virtualstock: data.virtualstock,
-            stockMax: data.stockMax,
-            stockMin: data.stockMin
+            equipment_id: data.id,
+            data: data,
         });
     }
 
