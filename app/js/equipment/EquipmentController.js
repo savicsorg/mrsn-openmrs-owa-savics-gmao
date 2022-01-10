@@ -1,5 +1,6 @@
 angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('EquipmentController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) {
     var _ = require("underscore");
+    var moment = require('moment');
     $scope.rootscope = $rootScope;
     $scope.appTitle = $translate.instant("Equipment management");
     $scope.resource = "savicsgmao";
@@ -29,7 +30,16 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
 
     if ($stateParams.equipment_id) {
         $scope.equipment = $stateParams.data;
+        $scope.equipment.equipmentType = $stateParams.data.equipmentType.id;
+        $scope.equipment.acquisitionDate = new Date(moment(new Date($stateParams.data.acquisitionDate)).format('MM/DD/YYYY'));
+        $scope.equipment.country = $stateParams.data.site.service.healthcenter.district.regionid;
+        $scope.equipment.countrySanitary = $stateParams.data.site.service.healthcenter.district.id;
+        $scope.equipment.hdcsi = $stateParams.data.site.service.healthcenter.id;
+        $scope.equipment.departementhdcsi = $stateParams.data.site.service.id;
+        $scope.equipment.site = $stateParams.data.site.id;
     }
+
+    console.log($scope.equipment);
 
     $scope.regionChanged = function (id) {
         $scope.healthCenters = [];
@@ -122,6 +132,7 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         openmrsRest.getFull($scope.resource + "/district").then(function (response) {
             $scope.loading = false;
             allDistricts = response.results;
+            $scope.districts = response.results;
         }, function (e) {
             $scope.loading = false;
             console.error(e);
@@ -133,6 +144,7 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         $scope.loading = true;
         openmrsRest.getFull($scope.resource + "/healthcenter").then(function (response) {
             allHealthCenters = response.results;
+            $scope.healthCenters = response.results;
             $scope.loading = false;
         }, function (e) {
             console.error(e);
@@ -145,6 +157,7 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         $scope.loading = true;
         openmrsRest.getFull($scope.resource + "/service").then(function (response) {
             allServices = response.results;
+            $scope.services = response.results;
             $scope.loading = false;
         }, function (e) {
             console.error(e);
@@ -158,6 +171,7 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         openmrsRest.getFull($scope.resource + "/site").then(function (response) {
             $scope.loading = false;
             allSites = response.results;
+            $scope.sites = response.results;
         }, function (e) {
             $scope.loading = false;
             console.error(e);
