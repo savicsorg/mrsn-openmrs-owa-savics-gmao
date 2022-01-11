@@ -78,7 +78,7 @@
                         <label translate>Service status</label>
                         <md-select required ng-model="equipment.serviceStatus">
                             <md-option ng-repeat="e in equipmentServices" ng-value="e.id">
-                                {{e.name}}
+                                {{e.value}}
                             </md-option>
                         </md-select>
                     </md-input-container>
@@ -89,7 +89,7 @@
                         <md-select ng-model="equipment.replacementcomponent"
                             ng-change="ReplacementChanged(equipment.replacementcomponent)">
                             <md-option ng-repeat="r in replacementComponents" ng-value="r.id">
-                                {{r.en}}
+                                {{r.value}}
                             </md-option>
                         </md-select>
                     </md-input-container>
@@ -103,7 +103,7 @@
                         <label translate>Disposable manuals</label>
                         <md-select ng-model="equipment.manuals">
                             <md-option ng-repeat="d in disposableManuals" ng-value="d.id">
-                                {{d.en}}
+                                {{d.value}}
                             </md-option>
                         </md-select>
                     </md-input-container>
@@ -185,7 +185,7 @@
                         <label translate>Acquisition mode</label>
                         <md-select ng-model="equipment.acquisitionMode">
                             <md-option ng-repeat="a in acquisitionModes" ng-value="a.id">
-                                {{a.en}}
+                                {{a.value}}
                             </md-option>
                         </md-select>
                     </md-input-container>

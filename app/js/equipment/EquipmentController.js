@@ -13,10 +13,16 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
     $rootScope.links["Equipements"] = "/equipements";
     $scope.equipement = {};
 
-    $scope.replacementComponents = require('../../json/equipment/replacementComponents.json');
-    $scope.acquisitionModes = require('../../json/equipment/acquisitionModes.json');
-    $scope.disposableManuals = require('../../json/equipment/disposableManuals.json');
-    $scope.equipmentServices = require('../../json/equipment/equipmentStatus.json');
+    var dictionary = require("../utils/dictionary");
+
+    var replacementComponentsjson = require('../../json/equipment/replacementComponents.json');
+    var acquisitionModesjson = require('../../json/equipment/acquisitionModes.json');
+    var disposableManualsjson = require('../../json/equipment/disposableManuals.json');
+    var equipmentServicesjson = require('../../json/equipment/equipmentStatus.json');
+    $scope.replacementComponents = dictionary.getJsonList(replacementComponentsjson, $rootScope.selectedLanguage);
+    $scope.acquisitionModes = dictionary.getJsonList(acquisitionModesjson, $rootScope.selectedLanguage);
+    $scope.disposableManuals = dictionary.getJsonList(disposableManualsjson, $rootScope.selectedLanguage);
+    $scope.equipmentServices = dictionary.getJsonList(equipmentServicesjson, $rootScope.selectedLanguage);
 
     $scope.allRegions = [];
     var allDistricts = [];
@@ -45,7 +51,9 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         $scope.services = [];
         $scope.districts = [];
         $scope.sites = [];
-        $scope.districts = _.where(allDistricts, { regionid: id });
+        $scope.districts = _.filter(allDistricts, function (item) {
+            return item.regionid === id;
+        });
     }
 
     $scope.districtChanged = function (id) {
