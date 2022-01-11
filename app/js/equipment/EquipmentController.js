@@ -35,18 +35,14 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
     $scope.sites = [];
     $scope.site = { district: {} };
 
-    if ($stateParams.equipment_id) {
-        $scope.equipment = $stateParams.data;
-        $scope.equipment.equipmentType = $stateParams.data.equipmentType.id;
-        $scope.equipment.acquisitionDate = new Date(moment(new Date($stateParams.data.acquisitionDate)).format('MM/DD/YYYY'));
-        $scope.equipment.country = $stateParams.data.site.service.healthcenter.district.regionid;
-        $scope.equipment.countrySanitary = $stateParams.data.site.service.healthcenter.district.id;
-        $scope.equipment.hdcsi = $stateParams.data.site.service.healthcenter.id;
-        $scope.equipment.departementhdcsi = $stateParams.data.site.service.id;
-        $scope.equipment.site = $stateParams.data.site.id;
-    }
 
     $scope.regionChanged = function (id) {
+        console.log(allDistricts);
+        console.log(id);
+        $scope.equipment.district = undefined;
+        $scope.equipment.healthcenter = undefined;
+        $scope.equipment.service = undefined;
+        $scope.equipment.site = undefined;
         $scope.healthCenters = [];
         $scope.services = [];
         $scope.districts = [];
@@ -54,9 +50,14 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         $scope.districts = _.filter(allDistricts, function (item) {
             return item.regionid === id;
         });
+
+        console.log($scope.districts);
     }
 
     $scope.districtChanged = function (id) {
+        $scope.equipment.healthcenter = undefined;
+        $scope.equipment.service = undefined;
+        $scope.equipment.site = undefined;
         $scope.services = [];
         $scope.healthCenters = [];
         $scope.sites = [];
@@ -66,6 +67,8 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
     }
 
     $scope.healthCenterChanged = function (id) {
+        $scope.equipment.service = undefined;
+        $scope.equipment.site = undefined;
         $scope.services = [];
         $scope.sites = [];
         $scope.services = _.filter(allServices, function (item) {
@@ -74,10 +77,111 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
     }
 
     $scope.departementChanged = function (id) {
+        $scope.equipment.site = undefined;
         $scope.sites = [];
         $scope.sites = _.filter(allSites, function (item) {
             return item.service.id === id;
         });
+    }
+
+    function loadAllOpenMRSRegions() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/addressHierarchy?level=2").then(function (response) {
+            $scope.loading = false;
+            $scope.allRegions = response.results;
+        }, function (e) {
+            $scope.loading = false;
+            console.error(e);
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
+    function loadAllDistricts() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/district").then(function (response) {
+            $scope.loading = false;
+            allDistricts = response.results;
+            if ($stateParams.equipment_id) {
+                $scope.districts = response.results;
+            }
+        }, function (e) {
+            $scope.loading = false;
+            console.error(e);
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
+    function loadAllHealthCenters() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/healthcenter").then(function (response) {
+            allHealthCenters = response.results;
+            $scope.loading = false;
+            if ($stateParams.equipment_id) {
+                $scope.healthCenters = response.results;
+            }
+        }, function (e) {
+            console.error(e);
+            $scope.loading = false;
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
+    function loadAllServices() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/service").then(function (response) {
+            allServices = response.results;
+            $scope.loading = false;
+            if ($stateParams.equipment_id) {
+                $scope.services = response.results;
+            }
+        }, function (e) {
+            console.error(e);
+            $scope.loading = false;
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
+    function loadAllSites() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/site").then(function (response) {
+            $scope.loading = false;
+            allSites = response.results;
+            if ($stateParams.equipment_id) {
+                $scope.sites = response.results;
+            }
+        }, function (e) {
+            $scope.loading = false;
+            console.error(e);
+            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
+    function loadEquipmentTypes() {
+        return openmrsRest.getFull($scope.resource + "/equipmentType").then(function (response) {
+            $scope.equipmentTypes = response.results;
+        }, function (e) {
+            $scope.equipmentTypes = [];
+        });
+    };
+
+    loadAllOpenMRSRegions();
+    loadAllDistricts();
+    loadAllHealthCenters();
+    loadAllServices();
+    loadAllSites();
+    loadEquipmentTypes();
+
+
+    if ($stateParams.equipment_id) {
+        $scope.equipment = $stateParams.data;
+        // $scope.site = $stateParams.data.site;
+        $scope.equipment.equipmentType = $stateParams.data.equipmentType.id;
+        $scope.equipment.acquisitionDate = new Date(moment(new Date($stateParams.data.acquisitionDate)).format('MM/DD/YYYY'));
+        $scope.equipment.country = $stateParams.data.site.service.healthcenter.district.regionid;
+        $scope.equipment.countrySanitary = $stateParams.data.site.service.healthcenter.district.id;
+        $scope.equipment.hdcsi = $stateParams.data.site.service.healthcenter.id;
+        $scope.equipment.departementhdcsi = $stateParams.data.site.service.id;
+        $scope.equipment.site = $stateParams.data.site.id;
     }
 
     $scope.save = function () {
@@ -122,79 +226,6 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         }
     }
 
-    function loadAllOpenMRSRegions() {
-        $scope.loading = true;
-        openmrsRest.getFull($scope.resource + "/addressHierarchy?level=2").then(function (response) {
-            $scope.loading = false;
-            $scope.allRegions = response.results;
-        }, function (e) {
-            $scope.loading = false;
-            console.error(e);
-            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-        });
-    }
 
-    function loadAllDistricts() {
-        $scope.loading = true;
-        openmrsRest.getFull($scope.resource + "/district").then(function (response) {
-            $scope.loading = false;
-            allDistricts = response.results;
-        }, function (e) {
-            $scope.loading = false;
-            console.error(e);
-            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-        });
-    }
-
-    function loadAllHealthCenters() {
-        $scope.loading = true;
-        openmrsRest.getFull($scope.resource + "/healthcenter").then(function (response) {
-            allHealthCenters = response.results;
-            $scope.loading = false;
-        }, function (e) {
-            console.error(e);
-            $scope.loading = false;
-            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-        });
-    }
-
-    function loadAllServices() {
-        $scope.loading = true;
-        openmrsRest.getFull($scope.resource + "/service").then(function (response) {
-            allServices = response.results;
-            $scope.loading = false;
-        }, function (e) {
-            console.error(e);
-            $scope.loading = false;
-            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-        });
-    }
-
-    function loadAllSites() {
-        $scope.loading = true;
-        openmrsRest.getFull($scope.resource + "/site").then(function (response) {
-            $scope.loading = false;
-            allSites = response.results;
-        }, function (e) {
-            $scope.loading = false;
-            console.error(e);
-            toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
-        });
-    }
-
-    function loadEquipmentTypes() {
-        return openmrsRest.getFull($scope.resource + "/equipmentType").then(function (response) {
-            $scope.equipmentTypes = response.results;
-        }, function (e) {
-            $scope.equipmentTypes = [];
-        });
-    };
-
-    loadAllOpenMRSRegions();
-    loadAllDistricts();
-    loadAllHealthCenters();
-    loadAllServices();
-    loadAllSites();
-    loadEquipmentTypes();
 
 }]);
