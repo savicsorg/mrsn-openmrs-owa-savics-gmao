@@ -3,122 +3,107 @@
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="">Operation on equipment(s)</h1>
     </div>
-    <md-card>
-        <md-card-title>
-            Equipments
-        </md-card-title>
-        <md-card-content>
-            <div layout="row" layout-xs="column" class="flex flex-col">
-                <md-chips ng-model="operation.equipments" md-autocomplete-snap>
-                    <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText"
-                        md-items="item in equipments" md-item-text="item.serial_number"
-                        placeholder="{{'Equipments' | translate}}" required>
-                        <span md-highlight-text="searchText">{{item.serial_number}} {{item.designation}}</span>
+    <form name="movementForm" ng-submit="save()">
+        <md-card>
+            <md-card-title translate> Equipments </md-card-title>
+            <md-card-content>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-autocomplete class="md-block" ng-model="operation.name" flex-gt-sm
+                        md-floating-label="{{'Search Equipment'| translate}}" md-selected-item="selectedItem"
+                        md-search-text="searchText" md-items="operation in equipments" md-item-text="operation.name"
+                        md-clear-button="true" required flex="50">
+                        <md-item-template>
+                            <span md-highlight-text="searchText">{{operation.name}} {{operation.serialNumber}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <span translate>No matches found.</span>
+                        </md-not-found>
                     </md-autocomplete>
-                    <md-chip-template>
-                        <span>{{$chip.serial_number}} {{$chip.designation}}</span>
-                    </md-chip-template>
-                </md-chips>
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label translate>Serial number</label>
-                    <input disabled ng-model="operation.equipment_serial_number" required>
-                </md-input-container>
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label translate>ID number</label>
-                    <input disabled ng-model="operation.equipment_id_number" required>
-                </md-input-container>
-            </div>
-            <div layout="row" layout-xs="column" data-ng-repeat="l in lines" class="flex flex-col">
-                <md-chips ng-model="operation.equipments" md-autocomplete-snap ng-required>
-                    <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText"
-                        md-items="item in equipments" md-item-text="item.serial_number"
-                        placeholder="{{'Equipments' | translate}}">
-                        <span md-highlight-text="searchText">{{item.serial_number}} {{item.designation}}</span>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label translate>Serial number</label>
+                        <input disabled ng-model="operation.serialNumber" required>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label translate>ID number</label>
+                        <input disabled ng-model="operation.id" required>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column" data-ng-repeat="l in lines" class="flex flex-col">
+                    <md-autocomplete class="md-block" ng-model="l.operation.name" flex-gt-sm
+                        md-floating-label="{{'Search Equipment'| translate}}" md-selected-item="selectedItem"
+                        md-search-text="searchText" md-items="operation in equipments" md-item-text="operation.name"
+                        md-clear-button="true" required flex="50">
+                        <md-item-template>
+                            <span md-highlight-text="searchText">{{operation.name}} {{operation.serialNumber}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <span translate>No matches found.</span>
+                        </md-not-found>
                     </md-autocomplete>
-                    <md-chip-template>
-                        <span>{{$chip.serial_number}} {{$chip.designation}}</span>
-                    </md-chip-template>
-                </md-chips>
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label translate>Serial number</label>
-                    <input disabled ng-model="l.operation.equipment_serial_number" required>
-                </md-input-container>
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label translate>ID number</label>
-                    <input disabled ng-model="l.operation.equipment_id_number" required>
-                </md-input-container>
-                <md-input-container class="md-block" flex-gt-sm flex="7">
-                    <md-button class="md-fab md-mini md-danger md-button" aria-label="remove"
-                        ng-click="deleteSendingDetail(l, $index)">
-                        <md-icon>remove</md-icon>
-                    </md-button>
-                </md-input-container>
-            </div>
-            <md-button class="md-raised md-primary" ng-click="addSendingLine()">
-                <md-icon>add</md-icon> <span translate>Add a line</span>
-            </md-button>
-        </md-card-content>
-    </md-card>
-    <md-card>
-        <md-card-title translate>General Informations</md-card-title>
-        <md-card-content>
-            <div layout="row" layout-xs="column" class="flex flex-col">
-                <md-input-container class="md-block" flex="33">
-                    <label translate>Code</label>
-                    <input disabled ng-model="operation.code" required>
-                </md-input-container>
-                <md-input-container class="md-block" flex="33">
-                    <label translate>Date</label>
-                    <input type="date" ng-model="operation.code" ng-model-options="{timezone: 'UTC'}" required>
-                </md-input-container>
-                <md-input-container class="md-block" flex="33">
-                    <label translate>Type</label>
-                    <md-select ng-model="operation.operation_type_id" required>
-                        <md-option ng-value="1">Output</md-option>
-                        <md-option ng-value="2">Transfert</md-option>
-                    </md-select>
-                </md-input-container>
-            </div>
-            <div layout="row" layout-xs="column" class="flex flex-col">
-                <md-input-container class="md-block" flex="100" ng-if="operation.operation_type_id == 2">
-                    <label translate>Source</label>
-                    <md-select ng-model="operation.source_department_id" required>
-                        <md-option ng-repeat="s in sites" ng-value="s.site_id">
-                            {{s.name}}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container class="md-block" flex="33" ng-if="operation.operation_type_id == 2">
-                    <label translate>Destination</label>
-                    <md-select ng-model="operation.destination_department_id" required>
-                        <md-option ng-repeat="s in sites" ng-value="s.site_id">
-                            {{s.name}}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
-            </div>
-            <div layout="row" layout-xs="column" class="flex flex-col">
-                <md-input-container class="md-block md-input-has-value" flex="100">
-                    <label translate>Motif</label>
-                    <textarea ng-model="operation.motif"></textarea>
-                </md-input-container>
-            </div>
-        </md-card-content>
-    </md-card>
 
-    <div layout="row" layout-xs="column">
-        <md-button class="md-raised md-primary" aria-label="Add">
-            <md-icon>save</md-icon>
-            <md-tooltip md-direction="top">
-                <span translate>Save</span>
-            </md-tooltip>
-            Save
-        </md-button>
-        <a href="index.html#!/movements">
-            <md-button aria-label="Add">
-                <md-icon>cancel</md-icon>
-                <span translate>Cancel</span>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label translate>Serial number</label>
+                        <input disabled ng-model="l.operation.serialNumber" required>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label translate>ID number</label>
+                        <input disabled ng-model="l.operation.id" required>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm flex="7">
+                        <md-button class="md-fab md-mini md-danger md-button" aria-label="remove"
+                            ng-click="deleteSendingDetail(l, $index)">
+                            <md-icon>remove</md-icon>
+                        </md-button>
+                    </md-input-container>
+                </div>
+                <md-button class="md-raised md-primary" ng-click="addSendingLine()">
+                    <md-icon>add</md-icon> <span translate>Add a line</span>
+                </md-button>
+            </md-card-content>
+        </md-card>
+        <md-card>
+            <md-card-title translate>General Informations</md-card-title>
+            <md-card-content>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block" flex="33">
+                        <label translate>Code</label>
+                        <input disabled ng-model="operation.code" required>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex="33">
+                        <label translate>Date</label>
+                        <input type="date" ng-model="operation.date" required>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex="33">
+                        <label translate>Type</label>
+                        <md-select ng-model="operation.type" required>
+                            <md-option ng-value="1">Output</md-option>
+                            <md-option ng-value="2">Transfert</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block md-input-has-value" flex="100">
+                        <label translate>Motif</label>
+                        <textarea ng-model="operation.motif"></textarea>
+                    </md-input-container>
+                </div>
+            </md-card-content>
+        </md-card>
+
+        <div layout="row" layout-xs="column">
+            <md-button class="md-raised md-primary" type="submit" aria-label="Add">
+                <md-icon>save</md-icon>
+                <md-tooltip md-direction="top">
+                    <span translate>Save</span>
+                </md-tooltip>
+                Save
             </md-button>
-        </a>
-    </div>
+            <a href="index.html#!/movements">
+                <md-button aria-label="Add">
+                    <md-icon>cancel</md-icon>
+                    <span translate>Cancel</span>
+                </md-button>
+            </a>
+        </div>
+    </form>
 </div>
