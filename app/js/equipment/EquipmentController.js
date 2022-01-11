@@ -16,6 +16,7 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
     $scope.replacementComponents = require('../../json/equipment/replacementComponents.json');
     $scope.acquisitionModes = require('../../json/equipment/acquisitionModes.json');
     $scope.disposableManuals = require('../../json/equipment/disposableManuals.json');
+    $scope.equipmentServices = require('../../json/equipment/equipmentStatus.json');
 
     $scope.allRegions = [];
     var allDistricts = [];
@@ -69,10 +70,6 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         $scope.sites = _.filter(allSites, function (item) {
             return item.service.id === id;
         });
-    }
-
-    $scope.ReplacementChanged = function (id) {
-
     }
 
     $scope.save = function () {
@@ -134,7 +131,6 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         openmrsRest.getFull($scope.resource + "/district").then(function (response) {
             $scope.loading = false;
             allDistricts = response.results;
-            $scope.districts = response.results;
         }, function (e) {
             $scope.loading = false;
             console.error(e);
@@ -146,7 +142,6 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         $scope.loading = true;
         openmrsRest.getFull($scope.resource + "/healthcenter").then(function (response) {
             allHealthCenters = response.results;
-            $scope.healthCenters = response.results;
             $scope.loading = false;
         }, function (e) {
             console.error(e);
@@ -159,7 +154,6 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         $scope.loading = true;
         openmrsRest.getFull($scope.resource + "/service").then(function (response) {
             allServices = response.results;
-            $scope.services = response.results;
             $scope.loading = false;
         }, function (e) {
             console.error(e);
@@ -173,7 +167,6 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         openmrsRest.getFull($scope.resource + "/site").then(function (response) {
             $scope.loading = false;
             allSites = response.results;
-            $scope.sites = response.results;
         }, function (e) {
             $scope.loading = false;
             console.error(e);
@@ -189,19 +182,11 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         });
     };
 
-    function loadServiceStatus() {
-        return openmrsRest.getFull($scope.resource + "/service").then(function (response) {
-            $scope.equipmentServices = response.results;
-        }, function (e) {
-            $scope.equipmentServices = [];
-        });
-    };
-
     loadAllOpenMRSRegions();
     loadAllDistricts();
     loadAllHealthCenters();
     loadAllServices();
     loadAllSites();
     loadEquipmentTypes();
-    loadServiceStatus();
+
 }]);
