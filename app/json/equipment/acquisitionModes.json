@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "en": "Donation",
+        "fr": "Don"
+    },
+    {
+        "id": 2,
+        "en": "Purchase",
+        "fr": "Acheter"
+    },
+    {
+        "id": 3,
+        "en": "unknown",
+        "fr": "inconnue"
+    }
+]
