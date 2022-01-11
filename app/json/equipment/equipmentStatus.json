@@ -1,17 +1,32 @@
 [
     {
         "id": 1,
-        "fr": "Bien",
-        "en": "Well"
+        "fr": "Disposé et en service",
+        "en": "Disposed and in service"
     },
     {
         "id": 2,
-        "en": "Defective",
-        "fr": "Défectueux"
+        "fr": "Disposé mais pas en service",
+        "en": "Disposed but not in service"
     },
     {
         "id": 3,
-        "en": "Out of order",
-        "fr": "Hors service"
+        "fr": "Bien",
+        "en": "Disposé mais à réparer"
+    },
+    {
+        "id": 4,
+        "en": "En panne et à réparer",
+        "fr": "Out of order and to be repaired"
+    },
+    {
+        "id": 5,
+        "fr": "En panne et à remplacer",
+        "en": "Out of order and to be replaced"
+    },
+    {
+        "id": 6,
+        "fr": "Transféré",
+        "en": "Transfered"
     }
 ]

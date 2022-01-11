@@ -39,8 +39,6 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         $scope.equipment.site = $stateParams.data.site.id;
     }
 
-    console.log($scope.equipment);
-
     $scope.regionChanged = function (id) {
         $scope.healthCenters = [];
         $scope.services = [];
@@ -71,6 +69,10 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         $scope.sites = _.filter(allSites, function (item) {
             return item.service.id === id;
         });
+    }
+
+    $scope.ReplacementChanged = function (id) {
+
     }
 
     $scope.save = function () {

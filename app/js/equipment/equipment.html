@@ -86,13 +86,14 @@
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block" flex>
                         <label translate>Replacement components</label>
-                        <md-select ng-model="equipment.replacementcomponent">
+                        <md-select ng-model="equipment.replacementcomponent"
+                            ng-change="ReplacementChanged(equipment.replacementcomponent)">
                             <md-option ng-repeat="r in replacementComponents" ng-value="r.id">
                                 {{r.en}}
                             </md-option>
                         </md-select>
                     </md-input-container>
-                    <md-input-container class="md-block" flex>
+                    <md-input-container class="md-block" ng-class="{hidden: equipment.replacementcomponent!=1}" flex>
                         <label translate>Explain</label>
                         <input ng-model="equipment.explainMore">
                     </md-input-container>
