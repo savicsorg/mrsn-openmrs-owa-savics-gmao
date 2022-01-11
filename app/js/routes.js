@@ -57,6 +57,10 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         }
     }).state('home.equipment', {
         url: 'equipment',
+        params: {
+            equipment_id: undefined,
+            data: undefined
+        },
         template: require('./equipment/equipment.html'),
         controller: 'EquipmentController',
         resolve: {
