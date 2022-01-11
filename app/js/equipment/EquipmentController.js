@@ -105,7 +105,7 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
                     $scope.loading = false;
                 }, function (e) {
                     $scope.loading = false;
-                    console.log(e)
+                    console.error(e)
                     toastr.error($translate.instant('An unexpected error has occured.'), $translate.instant('Error'));
                 });
             }
