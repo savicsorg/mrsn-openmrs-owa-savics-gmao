@@ -8,8 +8,10 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $rootScope.links = {};
     $rootScope.links["Home"] = "";
     $rootScope.links["Movement"] = "/movements";
-    $scope.operation = {};
-    $scope.lines = [];
+    $scope.operation = {
+        lines: []
+    };
+
 
     function getAllEquipments() {
         $scope.loading = true;
@@ -24,12 +26,18 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
 
     getAllEquipments();
 
+    $scope.selectedItemChange = function (item, index) {
+        if (item) {
+            $scope.operation.lines[index].name = item.name;
+            $scope.operation.lines[index].id = item.id;
+            $scope.operation.lines[index].serialNumber = item.serialNumber;
+        }
+    }
 
     $scope.save = function () {
         $scope.loading = true;
-        var query = JSON.parse(JSON.stringify($scope.operation));
+        var query = JSON.stringify($scope.operation);
         console.log(query);
-        console.log($scope.lines);
         return;
         if ($scope.operation && $scope.equipment.serialNumber && $scope.equipment.serialNumber.length >= 3 && $scope.equipment.serialNumber.length <= 120 && $scope.equipment.designation && $scope.equipment.designation != "") {
             if ($scope.equipment.uuid) {    //Edit
@@ -71,9 +79,7 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     }
 
     $scope.addSendingLine = function () {
-        $scope.lines.push({
-            operation: { name: "", id: "", serialNumber: "" }
-        });
+        $scope.operation.lines.push({ name: "", id: "", serialNumber: "" });
     }
 
     $scope.deleteSendingDetail = function (sendingDetail, index) {
@@ -83,7 +89,7 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             .ok('Yes')
             .cancel('Cancel');
         $mdDialog.show(confirm).then(function () {
-            $scope.lines.splice(index, 1);
+            $scope.operation.lines.splice(index, 1);
         }, function () {
 
         });

@@ -7,57 +7,35 @@
         <md-card>
             <md-card-title translate> Equipments </md-card-title>
             <md-card-content>
-                <div layout="row" layout-xs="column" class="flex flex-col">
-                    <md-autocomplete class="md-block" ng-model="operation.name" flex-gt-sm
-                        md-floating-label="{{'Search Equipment'| translate}}" md-selected-item="selectedItem"
-                        md-search-text="searchText" md-items="operation in equipments" md-item-text="operation.name"
-                        md-clear-button="true" required flex="50">
+                <div layout="row" layout-xs="column" data-ng-repeat="op in operation.lines" class="flex flex-col">
+                    <md-autocomplete class="md-block" flex-gt-sm md-floating-label="{{'Search Equipment'| translate}}"
+                        md-selected-item="selectedItem" md-search-text="searchText" md-items="item in equipments"
+                        md-item-text="item.name" md-clear-button="true" required flex="50" ng-model="item.name"
+                        md-selected-item-change="selectedItemChange(item,$index)">
                         <md-item-template>
-                            <span md-highlight-text="searchText">{{operation.name}} {{operation.serialNumber}}</span>
+                            <span md-highlight-text="searchText">{{item.name}} {{item.serialNumber}}</span>
                         </md-item-template>
                         <md-not-found>
                             <span translate>No matches found.</span>
                         </md-not-found>
                     </md-autocomplete>
                     <md-input-container class="md-block" flex-gt-sm>
-                        <label translate>Serial number</label>
-                        <input disabled ng-model="operation.serialNumber" required>
+                        <label translate>Serial number </label>
+                        <input disabled ng-model="op.serialNumber" required>
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm>
                         <label translate>ID number</label>
-                        <input disabled ng-model="operation.id" required>
-                    </md-input-container>
-                </div>
-                <div layout="row" layout-xs="column" data-ng-repeat="l in lines" class="flex flex-col">
-                    <md-autocomplete class="md-block" ng-model="l.operation.name" flex-gt-sm
-                        md-floating-label="{{'Search Equipment'| translate}}" md-selected-item="selectedItem"
-                        md-search-text="searchText" md-items="operation in equipments" md-item-text="operation.name"
-                        md-clear-button="true" required flex="50">
-                        <md-item-template>
-                            <span md-highlight-text="searchText">{{operation.name}} {{operation.serialNumber}}</span>
-                        </md-item-template>
-                        <md-not-found>
-                            <span translate>No matches found.</span>
-                        </md-not-found>
-                    </md-autocomplete>
-
-                    <md-input-container class="md-block" flex-gt-sm>
-                        <label translate>Serial number</label>
-                        <input disabled ng-model="l.operation.serialNumber" required>
-                    </md-input-container>
-                    <md-input-container class="md-block" flex-gt-sm>
-                        <label translate>ID number</label>
-                        <input disabled ng-model="l.operation.id" required>
+                        <input disabled ng-model="op.id" required>
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm flex="7">
                         <md-button class="md-fab md-mini md-danger md-button" aria-label="remove"
-                            ng-click="deleteSendingDetail(l, $index)">
+                            ng-click="deleteSendingDetail(op, $index)">
                             <md-icon>remove</md-icon>
                         </md-button>
                     </md-input-container>
                 </div>
                 <md-button class="md-raised md-primary" ng-click="addSendingLine()">
-                    <md-icon>add</md-icon> <span translate>Add a line</span>
+                    <md-icon>add</md-icon> <span translate>Add an equipment</span>
                 </md-button>
             </md-card-content>
         </md-card>
