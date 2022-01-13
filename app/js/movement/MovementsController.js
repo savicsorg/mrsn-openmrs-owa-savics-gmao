@@ -4,16 +4,16 @@ angular.module('MovementsController', ['ngMaterial', 'md.data.table']).controlle
     $scope.resource = "savicsgmao";
     $scope.loading = false;
     //Breadcrumbs properties
-    $rootScope.links = {"GMAO Module": "", "Movements": "movements"};
+    $rootScope.links = { "GMAO Module": "", "Movements": "movements" };
     $scope.label = {
         page: $translate.instant("Page") + $translate.instant(":"),
         rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),
         of: $translate.instant("of")
     }
-    $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
-    $scope.query = {limit: 5, page: 1, order:'-id'};
+    $scope.options = { autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true };
+    $scope.query = { limit: 5, page: 1, order: '-id' };
     $scope.movements = [];
-    
+
     $scope.delete = function (ev, obj) {
         var confirm = $mdDialog.confirm()
             .title($translate.instant('Are you sure you want to delete this item?'))
@@ -34,7 +34,7 @@ angular.module('MovementsController', ['ngMaterial', 'md.data.table']).controlle
         openmrsRest.remove($scope.resource + "/mouvement", movement, "Generic Reason").then(function (response) {
             getAllMovements();
             toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
-        },function(e){
+        }, function (e) {
             console.error(e);
             $scope.loading = false;
             toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
@@ -53,4 +53,13 @@ angular.module('MovementsController', ['ngMaterial', 'md.data.table']).controlle
     }
 
     getAllMovements();
+
+
+
+    $scope.edit = function (data) {
+        $state.go('home.movement', {
+            operation_id: data.id,
+            data: data,
+        });
+    };
 }]);
