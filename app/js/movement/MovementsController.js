@@ -56,7 +56,8 @@ angular.module('MovementsController', ['ngMaterial', 'md.data.table']).controlle
 
 
 
-    $scope.edit = function (data) {
+    $scope.edit = function (data, selectedItem) {
+        data.selectedItem = selectedItem;
         $state.go('home.movement', {
             operation_id: data.id,
             data: data,

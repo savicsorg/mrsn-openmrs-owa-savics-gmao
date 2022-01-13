@@ -21,15 +21,25 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     var allSites = [];
     $scope.sites = [];
 
-    $scope.operation.district = undefined;
-    $scope.operation.hd = undefined;
-    $scope.operation.service = undefined;
-    $scope.operation.site = undefined;
+    $scope.operation.d_district = undefined;
+    $scope.operation.d_hd = undefined;
+    $scope.operation.d_service = undefined;
+    $scope.operation.d_site = undefined;
+    $scope.operation.s_district = undefined;
+    $scope.operation.s_hd = undefined;
+    $scope.operation.s_service = undefined;
+    $scope.operation.s_site = undefined;
 
-    $scope.districtChanged = function (id) {
-        $scope.operation.hd = undefined;
-        $scope.operation.service = undefined;
-        $scope.operation.site = undefined;
+    $scope.districtChanged = function (mode, id) {
+        if (mode = "source") {
+            $scope.operation.s_hd = undefined;
+            $scope.operation.s_service = undefined;
+            $scope.operation.s_site = undefined;
+        } else {
+            $scope.operation.d_hd = undefined;
+            $scope.operation.d_service = undefined;
+            $scope.operation.d_site = undefined;
+        }
         $scope.services = [];
         $scope.healthCenters = [];
         $scope.sites = [];
@@ -38,9 +48,14 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         });
     }
 
-    $scope.healthCenterChanged = function (id) {
-        $scope.operation.service = undefined;
-        $scope.operation.site = undefined;
+    $scope.healthCenterChanged = function (mode, id) {
+        if (mode = "source") {
+            $scope.operation.s_service = undefined;
+            $scope.operation.s_site = undefined;
+        } else {
+            $scope.operation.d_service = undefined;
+            $scope.operation.d_site = undefined;
+        }
         $scope.services = [];
         $scope.sites = [];
         $scope.services = _.filter(allServices, function (item) {
@@ -48,14 +63,29 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         });
     }
 
-    $scope.departementChanged = function (id) {
-        $scope.operation.site = undefined;
+    $scope.departementChanged = function (mode, id) {
+        if (mode = "source") {
+            $scope.operation.s_site = undefined;
+        } else {
+            $scope.operation.d_site = undefined;
+        }
         $scope.sites = [];
         $scope.sites = _.filter(allSites, function (item) {
             return item.service.id === id;
         });
     }
 
+    function getAllEquipments() {
+        $scope.loading = true;
+        openmrsRest.getFull($scope.resource + "/equipment").then(function (response) {
+            $scope.loading = false;
+            $scope.equipments = response.results;
+            console.log($scope.equipments);
+        }, function (e) {
+            $scope.loading = false;
+            showToast($translate.instant("An unexpected error has occured with getAllEquipments()."), "error");
+        });
+    }
 
     function loadAllDistricts() {
         $scope.loading = true;
@@ -107,57 +137,44 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
         });
     }
-
+    getAllEquipments();
     loadAllDistricts();
     loadAllHealthCenters();
     loadAllServices();
     loadAllSites();
 
-
-    function getAllEquipments() {
-        $scope.loading = true;
-        openmrsRest.getFull($scope.resource + "/equipment").then(function (response) {
-            $scope.loading = false;
-            $scope.equipments = response.results;
-        }, function (e) {
-            $scope.loading = false;
-            showToast($translate.instant("An unexpected error has occured with getAllEquipments()."), "error");
-        });
-    }
-
-    getAllEquipments();
-
     if ($stateParams.operation_id) {
         $scope.operation = $stateParams.data;
-        $scope.operation.district = $stateParams.data.siteBySourceId.service.healthcenter.district.id;
-        $scope.operation.hd = $stateParams.data.siteBySourceId.service.healthcenter.id;
-        $scope.operation.service = $stateParams.data.siteBySourceId.service.id;
-        $scope.operation.site = $stateParams.data.siteBySourceId.id;
+        $scope.operation.s_district = $stateParams.data.siteBySourceId.service.healthcenter.district.id;
+        $scope.operation.s_hd = $stateParams.data.siteBySourceId.service.healthcenter.id;
+        $scope.operation.s_service = $stateParams.data.siteBySourceId.service.id;
+        $scope.operation.s_site = $stateParams.data.siteBySourceId.id;
+        $scope.operation.d_district = $stateParams.data.siteByDestinationId.service.healthcenter.district.id;
+        $scope.operation.d_hd = $stateParams.data.siteByDestinationId.service.healthcenter.id;
+        $scope.operation.d_service = $stateParams.data.siteByDestinationId.service.id;
+        $scope.operation.d_site = $stateParams.data.siteByDestinationId.id;
         $scope.operation.equipment = $stateParams.data.id;
         $scope.operation.siteBySource = $stateParams.data.siteBySourceId.id;
-        $scope.operation.siteByDestination = $stateParams.data.siteBySourceId.id;
+        $scope.operation.siteByDestination = $stateParams.data.siteByDestinationId.id;
         $scope.operation.date = new Date(moment(new Date($stateParams.data.date)).format('MM/DD/YYYY'));
-
+        $scope.selectedItem = $stateParams.data.selectedItem;
     }
 
     $scope.selectedItemChange = function (item) {
         if (item) {
-            $scope.operation.district = item.site.service.healthcenter.district.id;
-            $scope.operation.hd = item.site.service.healthcenter.id;
-            $scope.operation.service = item.site.service.id;
-            $scope.operation.site = item.site.id;
+            $scope.operation.s_district = item.site.service.healthcenter.district.id;
+            $scope.operation.s_hd = item.site.service.healthcenter.id;
+            $scope.operation.s_service = item.site.service.id;
+            $scope.operation.s_site = item.site.id;
             $scope.operation.equipment = item.id;
             $scope.operation.siteBySource = item.site.id;
-            $scope.operation.siteByDestination = item.site.id;
-
         } else {
-            $scope.operation.district = undefined;
-            $scope.operation.hd = undefined;
-            $scope.operation.service = undefined;
-            $scope.operation.site = undefined;
+            $scope.operation.s_district = undefined;
+            $scope.operation.s_hd = undefined;
+            $scope.operation.s_service = undefined;
+            $scope.operation.s_site = undefined;
             $scope.operation.equipment = undefined;
             $scope.operation.siteBySource = undefined;
-            $scope.operation.siteByDestination = undefined;
             $scope.operation.localapproval = undefined;
             $scope.operation.localapprover = undefined;
             $scope.operation.centralapproval = undefined;
@@ -168,11 +185,14 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.save = function () {
         $scope.loading = true;
         var query = JSON.parse(JSON.stringify($scope.operation));
-        delete query.district;
-        delete query.hd;
-        delete query.service;
-        delete query.site;
-        delete query.country;
+        delete query.s_district;
+        delete query.s_hd;
+        delete query.s_service;
+        delete query.s_site;
+        delete query.d_district;
+        delete query.d_hd;
+        delete query.d_service;
+        query.siteByDestination = query.d_site;
         query.localapproval = query.date;
         query.localapprover = "";
         query.centralapproval = query.date;
