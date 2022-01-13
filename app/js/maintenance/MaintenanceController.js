@@ -39,7 +39,7 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
             openmrsRest.update($scope.resource + "/maintenance", query).then(function (response) {
                 $scope.maintenance = response;
                 $scope.getData();
-                $state.go('home.maintenancemanagement', { });  
+                $state.go('home.maintenances', { });  
             },function(e){
                 $scope.loading = false;
                 toastr.error($translate.instant('An unexpected error has occured.'), $translate.instant('Error'));
@@ -48,7 +48,7 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
             openmrsRest.create($scope.resource + "/maintenance", query).then(function (response) {
                 $scope.maintenance = response;
                 $scope.getData();
-                $state.go('home.maintenancemanagement', { });  
+                $state.go('home.maintenances', { });  
             },function(e){
                 $scope.loading = false;
                 toastr.error($translate.instant('An unexpected error has occured.'), $translate.instant('Error'));
