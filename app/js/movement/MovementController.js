@@ -11,6 +11,7 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $rootScope.links["Home"] = "";
     $rootScope.links["Movement"] = "/movements";
     $scope.operation = {};
+    $scope.equipments = [];
 
     $scope.districts = [];
     var allHealthCenters = [];
@@ -136,10 +137,7 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.operation.siteBySource = $stateParams.data.siteBySourceId.id;
         $scope.operation.siteByDestination = $stateParams.data.siteBySourceId.id;
         $scope.operation.date = new Date(moment(new Date($stateParams.data.date)).format('MM/DD/YYYY'));
-        $scope.item.name = $scope.equipments.map((e) => {
-            return e.id == $stateParams.data.id
-        });
-        console.log($scope.item.name);
+
     }
 
     $scope.selectedItemChange = function (item) {
