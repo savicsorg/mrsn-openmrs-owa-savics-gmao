@@ -20,7 +20,7 @@
                                      md-no-cache="true" md-selected-item-change="selectedEquipmentChange(equipment,$index)" flex="100"
                                      required>
                         <md-item-template>
-                            <span md-highlight-text="equipmentSearchText">{{equipment.name}}</span>
+                            <span md-highlight-text="equipmentSearchText">{{equipment.name}} | Location: {{equipment.site.name}}, {{equipment.site.service.name}}, {{equipment.site.service.healthcenter.name}}, {{equipment.site.service.healthcenter.district.name}}</span>
                         </md-item-template>
                         <md-not-found>
                             <span translate>No matches found.</span>

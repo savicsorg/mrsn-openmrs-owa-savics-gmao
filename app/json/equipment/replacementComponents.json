@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "en": "Yes",
+        "fr": "Oui"
+    },
+    {
+        "id": 2,
+        "en": "No",
+        "fr": "Non"
+    },
+    {
+        "id": 3,
+        "en": "Unknown",
+        "fr": "inconnue"
+    }
+]

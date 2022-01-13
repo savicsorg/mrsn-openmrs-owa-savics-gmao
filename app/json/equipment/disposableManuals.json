@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "en": "User manuals",
+        "fr": "Manuels d'utilisation"
+    },
+    {
+        "id": 2,
+        "en": "maintenance manuals",
+        "fr": "manuels d'entretien"
+    },
+    {
+        "id": 3,
+        "en": "Unknown",
+        "fr": "inconnue"
+    },
+    {
+        "id": 3,
+        "en": "Other",
+        "fr": "Autre"
+    }
+]

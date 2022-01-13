@@ -8,83 +8,191 @@
             </md-tooltip>
             <span translate>New maintenance</span>
         </md-button>
-    </div>    
+    </div>
 
     <form name="drugForm" ng-submit="save()">
-        <md-card >
+        <!-- General Informations section -->
+        <md-card>
             <md-card-title translate>General Informations</md-card-title>
             <md-card-content>
                 <div layout="row" layout-xs="column">
-                    <md-input-container  class="md-block" flex-gt-sm>
+                    <md-input-container class="md-block" flex>
                         <label translate>Equipment name</label>
-                        <input ng-model="equipment.designation" required>
-                    </md-input-container>  
-                    <md-input-container class="md-block" flex-gt-sm>
+                        <input ng-model="equipment.name" required>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex>
                         <label translate>Serial Number</label>
-                        <input ng-model="equipment.serialNumber">
+                        <input ng-model="equipment.serialNumber" required>
                     </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block" flex>
                         <label translate>Equipment type</label>
-                        <md-select ng-model="equipment.equipmentType" >
+                        <md-select ng-model="equipment.equipmentType">
                             <md-option ng-repeat="t in equipmentTypes" ng-value="t.id">
-                                {{t.typeName}}
+                                {{t.name}}
                             </md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container class="md-block" flex>
-                        <label translate>Department</label>
-                        <md-select ng-model="equipment.department" >
-                            <md-option ng-repeat="d in departments" ng-value="d.id">
-                                {{d.departmentName}}
-                            </md-option>
-                        </md-select>
+                        <label translate>Model</label>
+                        <input ng-model="equipment.model">
                     </md-input-container>
                     <md-input-container class="md-block" flex>
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label translate>Site</label>
-                            <input ng-model="equipment.localization">
-                        </md-input-container>
+                        <label translate>Supplier</label>
+                        <input ng-model="equipment.supplier">
                     </md-input-container>
-                </div>    
-                <div layout="row" layout-xs="column">      
+                </div>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block" flex>
+                        <label translate>Required power</label>
+                        <input ng-model="equipment.power">
+                    </md-input-container>
                     <md-input-container class="md-block md-input-has-value" flex>
-                        <label translate>Status</label>
-                        <md-switch ng-model="equipment.inService" aria-label="In service ?">
-                            In service ?
+                        <label translate>After sale service</label>
+                        <md-switch ng-model="equipment.aftersaleservice" aria-label="After sale service ?">
+                            After sale service ?
                         </md-switch>
-                    </md-input-container> 
-                    <md-input-container class="md-block md-input-has-value" flex>
-                        <label translate>Operating state</label>
-                        <md-radio-group ng-model="equipment.equipmentStatus" layout="row" name="property" required>
-                            <md-radio-button value="1" class="md-primary" >Well</md-radio-button>
-                            <md-radio-button value="2" class="md-primary" >Defective</md-radio-button>
-                            <md-radio-button value="3" class="md-primary" >Out of order</md-radio-button>
-                        </md-radio-group>
-                        <div ng-messages="form.property.$error">
-                            <div ng-message="required" translate>Please choose an operating state.</div>
-                        </div>
-                    </md-input-container>                            
-                </div>     
-                <div layout="row" layout-xs="column" class="flex flex-col">                                        
-                    <md-input-container class="md-block md-input-has-value" flex="50">
-                        <label translate>Acquisition date</label>
-                        <input type="date" ng-model="equipment.acquisitionDate"/>
-                    </md-input-container> 
-                    <md-input-container  class="md-block" flex-gt-sm flex="50">
-                        <label translate>Year of commissionning</label>
-                        <input type="number" ng-model="equipment.commisionningYear">
                     </md-input-container>
-                </div>    
-                <div layout="row" layout-xs="column">                                        
-                    <md-input-container  class="md-block" flex-gt-sm>
-                        <label translate>Comments</label>
-                        <textarea ng-model="equipment.comments"></textarea>
+                </div>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block" flex>
+                        <label translate>Person responsible of the equipment</label>
+                        <input ng-model="equipment.responsibleperson">
                     </md-input-container>
-                </div>               
+                </div>
             </md-card-content>
-        </md-card>   
+        </md-card>
+        <!-- Use section -->
+        <md-card>
+            <md-card-title translate>Use</md-card-title>
+            <md-card-content>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block" flex>
+                        <label translate>Equipment user</label>
+                        <input ng-model="equipment.useraffectedto">
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block" flex>
+                        <label translate>Service status</label>
+                        <md-select required ng-model="equipment.serviceStatus">
+                            <md-option ng-repeat="e in equipmentServices" ng-value="e.id">
+                                {{e.value}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block" flex>
+                        <label translate>Replacement components</label>
+                        <md-select ng-model="equipment.replacementcomponent"
+                            ng-change="ReplacementChanged(equipment.replacementcomponent)">
+                            <md-option ng-repeat="r in replacementComponents" ng-value="r.id">
+                                {{r.value}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" ng-class="{hide: equipment.replacementcomponent!=1}" flex>
+                        <label translate>Explain</label>
+                        <input ng-model="equipment.explainMore">
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block" flex>
+                        <label translate>Disposable manuals</label>
+                        <md-select ng-model="equipment.manuals">
+                            <md-option ng-repeat="d in disposableManuals" ng-value="d.id">
+                                {{d.value}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </md-card-content>
+        </md-card>
+        <!-- Localisation section -->
+        <md-card>
+            <md-card-title translate>Localisation</md-card-title>
+            <md-card-content>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block" flex>
+                        <label translate>Country region</label>
+                        <md-select required ng-model="equipment.country" ng-change="regionChanged(equipment.country)">
+                            <md-option ng-repeat="c in allRegions" ng-value="c.addressHierarchyEntryId">
+                                {{c.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex>
+                        <label translate>Country sanitary district</label>
+                        <md-select required ng-model="equipment.countrySanitary"
+                            ng-change="districtChanged(equipment.countrySanitary)">
+                            <md-option ng-repeat="s in districts" ng-value="s.id">
+                                {{s.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex>
+                        <label translate>HD/C SI</label>
+                        <md-select required ng-model="equipment.hdcsi" ng-change="healthCenterChanged(equipment.hdcsi)">
+                            <md-option ng-repeat="h in healthCenters" ng-value="h.id">
+                                {{h.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block" flex>
+                        <label translate>Departement HD/C SI</label>
+                        <md-select required ng-model="equipment.departementhdcsi"
+                            ng-change="departementChanged(equipment.departementhdcsi)">
+                            <md-option ng-repeat="d in services" ng-value="d.id">
+                                {{d.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex>
+                        <label translate>Site in departement</label>
+                        <md-select required ng-model="equipment.site">
+                            <md-option ng-repeat="s in sites" ng-value="s.id">
+                                {{s.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </md-card-content>
+        </md-card>
+        <!-- Acquisition section -->
+        <md-card>
+            <md-card-title translate>Acquisition</md-card-title>
+            <md-card-content>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block md-input-has-value">
+                        <label translate>Acquisition date</label>
+                        <input type="date" ng-model="equipment.acquisitionDate" />
+                    </md-input-container>
+                    <md-input-container class="md-block" flex>
+                        <label translate>Year of commissionning</label>
+                        <input ng-model="equipment.commisionningYear">
+                    </md-input-container>
+                    <md-input-container class="md-block" flex>
+                        <label translate>Acquisition value</label>
+                        <input type="number" ng-model="equipment.acquisitionValue">
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <md-input-container class="md-block" flex>
+                        <label translate>Acquisition mode</label>
+                        <md-select ng-model="equipment.acquisitionMode">
+                            <md-option ng-repeat="a in acquisitionModes" ng-value="a.id">
+                                {{a.value}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </md-card-content>
+        </md-card>
+        <!-- Inventory section -->
         <md-card>
             <md-card-title>Inventory</md-card-title>
             <md-card-content>
@@ -92,30 +200,29 @@
                     <md-input-container class="md-block md-input-has-value">
                         <label translate>Tracking</label>
                         <md-radio-group ng-model="equipment.tracking" layout="row" name="property" required>
-                            <md-radio-button value="1" class="md-primary" >By unique serial number</md-radio-button>
-                            <md-radio-button value="2" class="md-primary" >By lots</md-radio-button>
-                            <md-radio-button value="0" class="md-primary" >No tracking</md-radio-button>
+                            <md-radio-button value="1" class="md-primary">By unique serial number</md-radio-button>
+                            <md-radio-button value="2" class="md-primary">By lots</md-radio-button>
                         </md-radio-group>
                         <div ng-messages="form.property.$error">
                             <div ng-message="required" translate>Please choose a tracking option.</div>
                         </div>
                     </md-input-container>
-                </div>    
+                </div>
                 <div layout="row" layout-xs="column">
-                    <md-input-container class="md-block" flex-gt-sm>
-                        <label translate>Weight (Klg)</label>
-                        <input type="number" ng-model="equipment.equipmentWeight" >
+                    <md-input-container class="md-block" flex>
+                        <label translate>Weight (Kg)</label>
+                        <input type="number" ng-model="equipment.weight">
                     </md-input-container>
-                    <md-input-container class="md-block" flex-gt-sm>
+                    <md-input-container class="md-block" flex>
                         <label translate>Volume (cubic meters)</label>
-                        <input type="number" ng-model="equipment.volume" >
+                        <input type="number" ng-model="equipment.volume">
                     </md-input-container>
-                </div>        
+                </div>
             </md-card-content>
-        </md-card>  
+        </md-card>
 
         <div layout="row" layout-xs="column">
-            <md-button class="md-raised md-primary" type="submit" aria-label="Add" >
+            <md-button class="md-raised md-primary" type="submit" aria-label="Add">
                 <md-icon>save</md-icon>
                 <md-tooltip md-direction="top">
                     <span translate>Save</span>
@@ -124,10 +231,11 @@
             </md-button>
             <a href="index.html#!/equipments">
                 <md-button aria-label="Add">
-                    <md-icon>cencel</md-icon>
-                    <span translate>Cencel</span>
+                    <md-icon>cancel</md-icon>
+                    <span translate>Cancel</span>
                 </md-button>
             </a>
-        </div> 
+        </div>
+
     </form>
 </div>
