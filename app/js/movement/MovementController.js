@@ -13,13 +13,17 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.operation = {};
     $scope.equipments = [];
 
-    $scope.districts = [];
+    $scope.s_districts = [];
+    $scope.d_districts = [];
     var allHealthCenters = [];
-    $scope.healthCenters = [];
+    $scope.s_healthCenters = [];
+    $scope.d_healthCenters = [];
     var allServices = [];
-    $scope.services = [];
+    $scope.s_services = [];
+    $scope.d_services = [];
     var allSites = [];
-    $scope.sites = [];
+    $scope.s_sites = [];
+    $scope.d_sites = [];
 
     $scope.operation.d_district = undefined;
     $scope.operation.d_hd = undefined;
@@ -31,48 +35,66 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.operation.s_site = undefined;
 
     $scope.districtChanged = function (mode, id) {
-        if (mode = "source") {
+        if (mode == "source") {
             $scope.operation.s_hd = undefined;
             $scope.operation.s_service = undefined;
             $scope.operation.s_site = undefined;
+            $scope.s_services = [];
+            $scope.s_healthCenters = [];
+            $scope.s_sites = [];
+            $scope.s_healthCenters = _.filter(allHealthCenters, function (item) {
+                return item.district.id === id;
+            });
         } else {
             $scope.operation.d_hd = undefined;
             $scope.operation.d_service = undefined;
             $scope.operation.d_site = undefined;
+            $scope.d_services = [];
+            $scope.d_healthCenters = [];
+            $scope.d_sites = [];
+            $scope.d_healthCenters = _.filter(allHealthCenters, function (item) {
+                return item.district.id === id;
+            });
         }
-        $scope.services = [];
-        $scope.healthCenters = [];
-        $scope.sites = [];
-        $scope.healthCenters = _.filter(allHealthCenters, function (item) {
-            return item.district.id === id;
-        });
+
     }
 
     $scope.healthCenterChanged = function (mode, id) {
-        if (mode = "source") {
+        if (mode == "source") {
             $scope.operation.s_service = undefined;
             $scope.operation.s_site = undefined;
+            $scope.s_services = [];
+            $scope.s_sites = [];
+            $scope.s_services = _.filter(allServices, function (item) {
+                return item.healthcenter.id === id;
+            });
         } else {
             $scope.operation.d_service = undefined;
             $scope.operation.d_site = undefined;
+            $scope.d_services = [];
+            $scope.d_sites = [];
+            $scope.d_services = _.filter(allServices, function (item) {
+                return item.healthcenter.id === id;
+            });
         }
-        $scope.services = [];
-        $scope.sites = [];
-        $scope.services = _.filter(allServices, function (item) {
-            return item.healthcenter.id === id;
-        });
+
     }
 
     $scope.departementChanged = function (mode, id) {
-        if (mode = "source") {
+        if (mode == "source") {
             $scope.operation.s_site = undefined;
+            $scope.s_sites = [];
+            $scope.s_sites = _.filter(allSites, function (item) {
+                return item.service.id === id;
+            });
         } else {
             $scope.operation.d_site = undefined;
+            $scope.d_sites = [];
+            $scope.d_sites = _.filter(allSites, function (item) {
+                return item.service.id === id;
+            });
         }
-        $scope.sites = [];
-        $scope.sites = _.filter(allSites, function (item) {
-            return item.service.id === id;
-        });
+
     }
 
     function getAllEquipments() {
@@ -90,7 +112,8 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.loading = true;
         openmrsRest.getFull($scope.resource + "/district").then(function (response) {
             $scope.loading = false;
-            $scope.districts = response.results;
+            $scope.s_districts = response.results;
+            $scope.d_districts = response.results;
         }, function (e) {
             $scope.loading = false;
             console.error(e);
@@ -103,7 +126,8 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         openmrsRest.getFull($scope.resource + "/healthcenter").then(function (response) {
             allHealthCenters = response.results;
             $scope.loading = false;
-            $scope.healthCenters = response.results;
+            $scope.s_healthCenters = response.results;
+            $scope.d_healthCenters = response.results;
         }, function (e) {
             console.error(e);
             $scope.loading = false;
@@ -116,7 +140,8 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         openmrsRest.getFull($scope.resource + "/service").then(function (response) {
             allServices = response.results;
             $scope.loading = false;
-            $scope.services = response.results;
+            $scope.s_services = response.results;
+            $scope.d_services = response.results;
         }, function (e) {
             console.error(e);
             $scope.loading = false;
@@ -129,7 +154,8 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         openmrsRest.getFull($scope.resource + "/site").then(function (response) {
             $scope.loading = false;
             allSites = response.results;
-            $scope.sites = response.results;
+            $scope.s_sites = response.results;
+            $scope.d_sites = response.results;
         }, function (e) {
             $scope.loading = false;
             console.error(e);

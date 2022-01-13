@@ -48,7 +48,7 @@
                         <label translate>District</label>
                         <md-select required ng-model="operation.s_district"
                             ng-change="districtChanged('source',operation.s_district)">
-                            <md-option ng-repeat="s in districts" ng-value="s.id">
+                            <md-option ng-repeat="s in s_districts" ng-value="s.id">
                                 {{s.name}}
                             </md-option>
                         </md-select>
@@ -57,7 +57,7 @@
                         <label translate>HD</label>
                         <md-select required ng-model="operation.s_hd"
                             ng-change="healthCenterChanged('source',operation.s_hd)">
-                            <md-option ng-repeat="h in healthCenters" ng-value="h.id">
+                            <md-option ng-repeat="h in s_healthCenters" ng-value="h.id">
                                 {{h.name}}
                             </md-option>
                         </md-select>
@@ -66,7 +66,7 @@
                         <label translate>Service</label>
                         <md-select required ng-model="operation.s_service"
                             ng-change="departementChanged('source',operation.s_service)">
-                            <md-option ng-repeat="d in services" ng-value="d.id">
+                            <md-option ng-repeat="d in s_services" ng-value="d.id">
                                 {{d.name}}
                             </md-option>
                         </md-select>
@@ -74,7 +74,7 @@
                     <md-input-container class="md-block" flex>
                         <label translate>Site</label>
                         <md-select required ng-model="operation.s_site">
-                            <md-option ng-repeat="s in sites" ng-value="s.id">
+                            <md-option ng-repeat="s in s_sites" ng-value="s.id">
                                 {{s.name}}
                             </md-option>
                         </md-select>
@@ -91,7 +91,7 @@
                         <label translate>District</label>
                         <md-select required ng-model="operation.d_district"
                             ng-change="districtChanged('destination',operation.d_district)">
-                            <md-option ng-repeat="s in districts" ng-value="s.id">
+                            <md-option ng-repeat="s in d_districts" ng-value="s.id">
                                 {{s.name}}
                             </md-option>
                         </md-select>
@@ -100,7 +100,7 @@
                         <label translate>HD</label>
                         <md-select required ng-model="operation.d_hd"
                             ng-change="healthCenterChanged('destination',operation.d_hd)">
-                            <md-option ng-repeat="h in healthCenters" ng-value="h.id">
+                            <md-option ng-repeat="h in d_healthCenters" ng-value="h.id">
                                 {{h.name}}
                             </md-option>
                         </md-select>
@@ -109,7 +109,7 @@
                         <label translate>Service</label>
                         <md-select required ng-model="operation.d_service"
                             ng-change="departementChanged('destination',operation.d_service)">
-                            <md-option ng-repeat="d in services" ng-value="d.id">
+                            <md-option ng-repeat="d in d_services" ng-value="d.id">
                                 {{d.name}}
                             </md-option>
                         </md-select>
@@ -117,7 +117,7 @@
                     <md-input-container class="md-block" flex>
                         <label translate>Site</label>
                         <md-select required ng-model="operation.d_site">
-                            <md-option ng-repeat="s in sites" ng-value="s.id">
+                            <md-option ng-repeat="s in d_sites" ng-value="s.id">
                                 {{s.name}}
                             </md-option>
                         </md-select>
