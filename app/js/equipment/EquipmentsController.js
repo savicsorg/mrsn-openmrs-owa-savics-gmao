@@ -66,4 +66,13 @@ angular.module('EquipmentsController', ['ngMaterial', 'md.data.table']).controll
     }
 
     getAllEquipments();
+    
+    
+        $scope.donwload = function () {
+            let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/equipment/export";
+            localStorage.setItem("export_link", link);
+            window.location = link;
+        }
+
+
 }]);

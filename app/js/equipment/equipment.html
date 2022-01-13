@@ -1,12 +1,12 @@
 <div id="content" class="container-fluid">
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="">{{appTitle}}</h1>
-        <md-button class="md-raised md-primary" aria-label="Add">
+        <md-button class="md-raised md-primary" aria-label="Add" ng-if="equipment.uuid">
             <md-icon>build</md-icon>
             <md-tooltip md-direction="top">
                 <span translate>Perform a maintenance on this equipment</span>
             </md-tooltip>
-            Do maintenance
+            <span translate>New maintenance</span>
         </md-button>
     </div>
 
