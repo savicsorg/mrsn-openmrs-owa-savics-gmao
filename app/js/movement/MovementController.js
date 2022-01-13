@@ -80,7 +80,6 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         openmrsRest.getFull($scope.resource + "/equipment").then(function (response) {
             $scope.loading = false;
             $scope.equipments = response.results;
-            console.log($scope.equipments);
         }, function (e) {
             $scope.loading = false;
             showToast($translate.instant("An unexpected error has occured with getAllEquipments()."), "error");
@@ -167,7 +166,6 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             $scope.operation.s_service = item.site.service.id;
             $scope.operation.s_site = item.site.id;
             $scope.operation.equipment = item.id;
-            $scope.operation.siteBySource = item.site.id;
         } else {
             $scope.operation.s_district = undefined;
             $scope.operation.s_hd = undefined;
@@ -184,6 +182,8 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
 
     $scope.save = function () {
         $scope.loading = true;
+        $scope.operation.siteBySource = $scope.operation.s_site;
+        $scope.operation.siteByDestination = $scope.operation.d_site;
         var query = JSON.parse(JSON.stringify($scope.operation));
         delete query.s_district;
         delete query.s_hd;
