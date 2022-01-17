@@ -9,7 +9,7 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
         $rootScope.links["Home"] = "";
         $rootScope.links["Maintenance"] = "/maintenance";
         $scope.equipmentSearchText = "";
-        $scope.request = {creation: new Date()};
+        $scope.request = {};
         
         var dictionary = require("../utils/dictionary");
         var natureofworkjson = require('../../json/maintenance/natureofwork.json');

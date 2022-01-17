@@ -65,7 +65,7 @@
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block"  flex="100">
                         <label translate>Date</label>
-                        <input required type="datetime-local" ng-model="request.creation" >
+                        <input required type="datetime-local" ng-model="request.creation" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}">
                     </md-input-container>
                 </div> 
                 <div layout="row" layout-xs="column"  class="flex flex-col">             
