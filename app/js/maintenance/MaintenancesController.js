@@ -1,17 +1,17 @@
-angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('MaintenancesController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) { 
+angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('MaintenancesController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) {
     $scope.rootscope = $rootScope;
     $scope.appTitle = $translate.instant("History of Maintenances");
     $scope.resource = "savicsgmao";
     $scope.loading = false;
     //Breadcrumbs properties
-    $rootScope.links = {"GMAO Module": "", "Maintenance Management": "History of Maintenances"};
+    $rootScope.links = { "GMAO Module": "", "Maintenance Management": "History of Maintenances" };
     $scope.label = {
         page: $translate.instant("Page") + $translate.instant(":"),
         rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),
         of: $translate.instant("of")
     }
-    $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
-    $scope.query = {limit: 5, page: 1, order:'-id'};
+    $scope.options = { autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true };
+    $scope.query = { limit: 5, page: 1, order: '-id' };
     $scope.maintenances = [];
 
     $scope.delete = function (ev, obj) {
@@ -35,10 +35,17 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
             $scope.loading = false;
             getAllMaintenances();
             toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
-        },function(e){
+        }, function (e) {
             console.error(e);
             $scope.loading = false;
             toastr.error($translate.instant('An unexpected error has occured.'), 'Error');
+        });
+    }
+
+    $scope.openEdit = function (data) {
+        $state.go('home.maintenance', {
+            maintenance_id: data.id,
+            data: data,
         });
     }
 
