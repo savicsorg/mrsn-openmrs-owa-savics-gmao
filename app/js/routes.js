@@ -184,6 +184,10 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         }
     }).state('home.movement', {
         url: 'movement',
+        params: {
+            operation_id: undefined,
+            data: undefined
+        },
         template: require('./movement/movement.html'),
         controller: 'MovementController',
         resolve: {
