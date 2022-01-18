@@ -112,6 +112,10 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         }
     }).state('home.maintenance', {
         url: 'maintenance',
+        params: {
+            maintenance_id: undefined,
+            data: undefined
+        },
         template: require('./maintenance/maintenance.html'),
         controller: 'MaintenanceController',
         resolve: {
