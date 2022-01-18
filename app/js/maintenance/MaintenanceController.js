@@ -16,6 +16,7 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
         console.log($scope.maintenance);
         $scope.maintenance.startdate = new Date(moment(new Date($stateParams.data.startdate)).format('MM/DD/YYYY'));
         $scope.maintenance.enddate = new Date(moment(new Date($stateParams.data.enddate)).format('MM/DD/YYYY'));
+        $scope.equipment.site = $stateParams.data.site.id;
         // $scope.maintenance.equipmentType = $stateParams.data.equipmentType.id;
         // $scope.equipment.acquisitionDate = new Date(moment(new Date($stateParams.data.acquisitionDate)).format('MM/DD/YYYY'));
         // $scope.equipment.country = $stateParams.data.site.service.healthcenter.district.regionid;
