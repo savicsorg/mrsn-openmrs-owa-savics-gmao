@@ -46,7 +46,7 @@
                     </md-autocomplete>
                     <md-input-container class="md-block" flex>
                         <label translate>District</label>
-                        <md-select required ng-model="operation.s_district"
+                        <md-select disabled required ng-model="operation.s_district"
                             ng-change="districtChanged('source',operation.s_district)">
                             <md-option ng-repeat="s in s_districts" ng-value="s.id">
                                 {{s.name}}
@@ -55,7 +55,7 @@
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <label translate>HD</label>
-                        <md-select required ng-model="operation.s_hd"
+                        <md-select disabled required ng-model="operation.s_hd"
                             ng-change="healthCenterChanged('source',operation.s_hd)">
                             <md-option ng-repeat="h in s_healthCenters" ng-value="h.id">
                                 {{h.name}}
@@ -64,7 +64,7 @@
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <label translate>Service</label>
-                        <md-select required ng-model="operation.s_service"
+                        <md-select disabled required ng-model="operation.s_service"
                             ng-change="departementChanged('source',operation.s_service)">
                             <md-option ng-repeat="d in s_services" ng-value="d.id">
                                 {{d.name}}
@@ -73,7 +73,7 @@
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <label translate>Site</label>
-                        <md-select required ng-model="operation.s_site">
+                        <md-select disabled required ng-model="operation.s_site">
                             <md-option ng-repeat="s in s_sites" ng-value="s.id">
                                 {{s.name}}
                             </md-option>
