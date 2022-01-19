@@ -74,7 +74,7 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="healthCenter in allHealthCenters | orderBy:query.order | limitTo: query.limit : (query.page -1) * query.limit" >
+                        <tr md-row data-ng-repeat="healthCenter in allHealthCenters | orderBy:query.order " >
                             <td md-cell>{{healthCenter.id}}</td>
                             <td md-cell>{{healthCenter.name}}</td>
                             <td md-cell>{{healthCenter.code}}</td>
@@ -93,7 +93,7 @@
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{allHealthCenters.length}}"
+            <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.count}}"
                 md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks" md-limit-options="[25, 50, 100]"
                 md-on-paginate="logPagination" md-label="$parent.label">
             </md-table-pagination>         

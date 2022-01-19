@@ -1,4 +1,4 @@
-angular.module('RequestsController', ['ngMaterial', 'md.data.table']).controller('RequestsController', ['$scope', '$state', '$stateParams', '$rootScope', '$mdToast', 'openmrsRest', '$mdDialog', '$translate', function ($scope, $state, $stateParams, $rootScope, $mdToast, openmrsRest, $mdDialog, $translate) {
+angular.module('RequestsController', ['ngMaterial', 'md.data.table']).controller('RequestsController', ['$scope', '$state', '$stateParams', '$rootScope', '$mdToast', 'openmrsRest', '$mdDialog', '$q', '$translate', function ($scope, $state, $stateParams, $rootScope, $mdToast, openmrsRest, $mdDialog, $q, $translate) {
         $scope.rootscope = $rootScope;
         $scope.appTitle = $translate.instant("History of Maintenance Requests");
         $scope.resource = "savicsgmao";
@@ -11,7 +11,7 @@ angular.module('RequestsController', ['ngMaterial', 'md.data.table']).controller
             of: $translate.instant("of")
         }
         $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
-        $scope.query = {limit: 5, page: 1, order: '-id'};
+        $scope.query = {limit: 50, page: 1, startIndex: 0, count: 0, order: '-id'};
         $scope.requests = [];
 
         var dictionary = require("../utils/dictionary");
@@ -50,9 +50,22 @@ angular.module('RequestsController', ['ngMaterial', 'md.data.table']).controller
 
         function getAllRequests() {
             $scope.loading = true;
-            openmrsRest.getFull($scope.resource + "/maintenanceRequest").then(function (response) {
+            var deferred = $q.defer();
+            $scope.promise = deferred.promise;
+            $scope.query.startIndex = $scope.query.limit * ($scope.query.page - 1);
+            openmrsRest.getFull($scope.resource + "/maintenanceRequest?limit=" + $scope.query.limit + "&startIndex=" + $scope.query.startIndex).then(function (response) {
                 $scope.loading = false;
                 $scope.requests = response.results;
+                openmrsRest.get($scope.resource + "/maintenanceRequest/count").then(function (response) {
+                    if (response.count) {
+                        $scope.query.count = response.count;
+                    }
+                    $rootScope.kernel.loading = 100;
+                    deferred.resolve(response.results);
+                }, function (e) {
+                    $scope.loading = false;
+                    showToast($translate.instant("An unexpected error has occured."), "error");
+                });
             }, function (e) {
                 $scope.loading = false;
                 showToast($translate.instant("An unexpected error has occured with getAllRequests()."), "error");

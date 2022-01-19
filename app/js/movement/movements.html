@@ -40,7 +40,7 @@
                 </thead>
                 <tbody md-body>
                     <tr md-row
-                        data-ng-repeat="movement in movements | orderBy:query.order | filter:searchAll | limitTo: query.limit : (query.page -1) * query.limit">
+                        data-ng-repeat="movement in movements | orderBy:query.order | filter:searchAll ">
                         <td md-cell>{{movement.id}}</td>
                         <td md-cell><span>{{movement.type==1 ? 'Output' : 'Transfert'}}</span></td>
                         <td md-cell>{{movement.date | date: 'dd/MM/yyyy'}}</td>
@@ -61,7 +61,7 @@
                 </tbody>
             </table>
         </md-table-container>
-        <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{movements.length}}"
+        <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.count}}"
             md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
             md-limit-options="[25, 50, 100]" md-on-paginate="logPagination" md-label="$parent.label">
         </md-table-pagination>
