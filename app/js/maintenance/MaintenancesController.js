@@ -61,4 +61,12 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
     }
 
     getAllMaintenances();
+    
+    
+
+    $scope.donwload = function () {
+        let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/maintenances/export";
+        localStorage.setItem("export_link", link);
+        window.location = link;
+    }
 }]);
