@@ -150,6 +150,10 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         }
     }).state('home.request', {
         url: 'request',
+        params: {
+            request_id: undefined,
+            data: undefined
+        },
         template: require('./maintenance/request.html'),
         controller: 'RequestController',
         resolve: {

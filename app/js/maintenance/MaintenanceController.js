@@ -12,18 +12,9 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
 
     if ($stateParams.maintenance_id) {
         $scope.maintenance = $stateParams.data;
-        console.log("..........................");
-        console.log($scope.maintenance);
         $scope.maintenance.startdate = new Date(moment(new Date($stateParams.data.startdate)).format('MM/DD/YYYY'));
         $scope.maintenance.enddate = new Date(moment(new Date($stateParams.data.enddate)).format('MM/DD/YYYY'));
         $scope.equipment.site = $stateParams.data.site.id;
-        // $scope.maintenance.equipmentType = $stateParams.data.equipmentType.id;
-        // $scope.equipment.acquisitionDate = new Date(moment(new Date($stateParams.data.acquisitionDate)).format('MM/DD/YYYY'));
-        // $scope.equipment.country = $stateParams.data.site.service.healthcenter.district.regionid;
-        // $scope.equipment.countrySanitary = $stateParams.data.site.service.healthcenter.district.id;
-        // $scope.equipment.hdcsi = $stateParams.data.site.service.healthcenter.id;
-        // $scope.equipment.departementhdcsi = $stateParams.data.site.service.id;
-        // $scope.equipment.site = $stateParams.data.site.id;
     }
 
     $scope.getData = function () {
