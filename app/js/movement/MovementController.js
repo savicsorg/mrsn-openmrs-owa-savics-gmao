@@ -223,6 +223,7 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         query.localapprover = "";
         query.centralapproval = query.date;
         query.centralapprover = "";
+        query.motif = !query.motif ? "" : query.motif;
         if ($stateParams.operation_id) {    //Edit
             openmrsRest.update($scope.resource + "/mouvement", query).then(function (response) {
                 $scope.operation = response;

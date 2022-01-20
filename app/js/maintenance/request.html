@@ -7,35 +7,38 @@
             </md-button>
         </a>
     </div>
-    <form name="form" ng-submit="save()" >
+    <form name="form" ng-submit="save()">
         <md-card>
             <md-card-title>
                 General information
             </md-card-title>
             <md-card-content>
-                <div layout="row" layout-xs="column"  class="flex flex-col">
+                <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-autocomplete md-selected-item="selectedEquipment" md-search-text="equipmentSearchText"
-                                     md-items="equipment in searchEquipments(equipmentSearchText)" md-item-text="equipment.name"
-                                     class="md-block" flex-gt-sm md-floating-label="{{'Equipment name' | translate}}" md-clear-button="true"
-                                     md-no-cache="true" md-selected-item-change="selectedEquipmentChange(equipment,$index)" flex="100"
-                                     required>
+                        md-items="equipment in searchEquipments(equipmentSearchText)" md-item-text="equipment.name"
+                        class="md-block" flex-gt-sm md-floating-label="{{'Equipment name' | translate}}"
+                        md-clear-button="true" md-no-cache="true"
+                        md-selected-item-change="selectedEquipmentChange(equipment,$index)" flex="100" required>
                         <md-item-template>
-                            <span md-highlight-text="equipmentSearchText">{{equipment.name}} | Location: {{equipment.site.name}}, {{equipment.site.service.name}}, {{equipment.site.service.healthcenter.name}}, {{equipment.site.service.healthcenter.district.name}}</span>
+                            <span md-highlight-text="equipmentSearchText">{{equipment.name}} | Location:
+                                {{equipment.site.name}}, {{equipment.site.service.name}},
+                                {{equipment.site.service.healthcenter.name}},
+                                {{equipment.site.service.healthcenter.district.name}}</span>
                         </md-item-template>
                         <md-not-found>
                             <span translate>No matches found.</span>
                         </md-not-found>
                     </md-autocomplete>
                 </div>
-                <div layout="row" layout-xs="column"  class="flex flex-col">
-                    <md-input-container  class="md-block" flex>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block" flex>
                         <label translate>Request by</label>
-                        <input required  ng-model="request.requestedby">
-                    </md-input-container>   
-                    <md-input-container  class="md-block" flex>
+                        <input required ng-model="request.requestedby">
+                    </md-input-container>
+                    <md-input-container class="md-block" flex>
                         <label translate>Register number</label>
-                        <input required  ng-model="request.registerNumber">
-                    </md-input-container>   
+                        <input required ng-model="request.registerNumber">
+                    </md-input-container>
                 </div>
 
             </md-card-content>
@@ -43,56 +46,56 @@
 
         <md-card>
             <md-card-title translate>Intervention information</md-card-title>
-            <md-card-content>  
-                <div layout="row" layout-xs="column" class="flex flex-col">                    
+            <md-card-content>
+                <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block md-input-has-value" flex>
                         <label translate>Nature of work</label>
-                        <md-select required ng-model="request.natureOfWork" >
+                        <md-select required ng-model="request.natureOfWork">
                             <md-option ng-value="'1'">Maintain</md-option>
                             <md-option ng-value="'2'">Repair</md-option>
                             <md-option ng-value="'3'">Work</md-option>
                             <md-option ng-value="'4'">Other</md-option>
                         </md-select>
                     </md-input-container>
-                    <md-input-container class="md-block"  flex>
+                    <md-input-container class="md-block" flex>
                         <label translate>Priority</label>
-                        <md-select required ng-model="request.priority" >
+                        <md-select required ng-model="request.priority">
                             <md-option ng-value="1">Normal</md-option>
                             <md-option ng-value="2">Urgent</md-option>
                         </md-select>
                     </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column" class="flex flex-col">
-                    <md-input-container class="md-block"  flex="100">
+                    <md-input-container class="md-block" flex="100">
                         <label translate>Date of request for intervention</label>
-                        <input required type="datetime-local" ng-model="request.creation" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}">
+                        <input required type="datetime-local" ng-model="request.creation"
+                            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}">
                     </md-input-container>
-                </div> 
-                <div layout="row" layout-xs="column"  class="flex flex-col">             
+                </div>
+                <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block md-input-has-value" flex="100">
                         <label translate>Request’s reason</label>
                         <textarea required ng-model="request.motif"></textarea>
-                    </md-input-container>                            
-                </div>       
-                     
+                    </md-input-container>
+                </div>
+
             </md-card-content>
         </md-card>
 
         <div layout="row" layout-xs="column">
-            <md-button class="md-raised md-primary" aria-label="Add" type="submit" >
+            <md-button class="md-raised md-primary" aria-label="Add" type="submit">
                 <md-icon>save</md-icon>
                 <md-tooltip md-direction="top">
                     <span translate>Save</span>
                 </md-tooltip>
                 <span translate>Save</span>
             </md-button>
-            <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()" >
-                <md-icon>clear</md-icon>
-                <md-tooltip md-direction="top">
-                    <span translate>Reset all fields</span>
-                </md-tooltip>
-                <span translate>Reset</span>
-            </md-button>
-        </div> 
+            <a href="index.html#!/requests">
+                <md-button aria-label="Add">
+                    <md-icon>cancel</md-icon>
+                    <span translate>Cancel</span>
+                </md-button>
+            </a>
+        </div>
     </form>
 </div>

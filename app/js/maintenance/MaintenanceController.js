@@ -12,17 +12,8 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
 
     if ($stateParams.maintenance_id) {
         $scope.maintenance = $stateParams.data;
-        console.log("..........................");
-        console.log($scope.maintenance);
         $scope.maintenance.startdate = new Date(moment(new Date($stateParams.data.startdate)).format('MM/DD/YYYY'));
         $scope.maintenance.enddate = new Date(moment(new Date($stateParams.data.enddate)).format('MM/DD/YYYY'));
-        // $scope.maintenance.equipmentType = $stateParams.data.equipmentType.id;
-        // $scope.equipment.acquisitionDate = new Date(moment(new Date($stateParams.data.acquisitionDate)).format('MM/DD/YYYY'));
-        // $scope.equipment.country = $stateParams.data.site.service.healthcenter.district.regionid;
-        // $scope.equipment.countrySanitary = $stateParams.data.site.service.healthcenter.district.id;
-        // $scope.equipment.hdcsi = $stateParams.data.site.service.healthcenter.id;
-        // $scope.equipment.departementhdcsi = $stateParams.data.site.service.id;
-        // $scope.equipment.site = $stateParams.data.site.id;
     }
 
     $scope.getData = function () {
@@ -51,6 +42,9 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
         query.maintenanceType = parseInt($scope.maintenance.maintenanceType.id);
         query.equipment = parseInt($scope.equipment.id);
         query.status = parseInt($scope.status);
+        query.description = !query.description ? "" : query.description;
+        query.reason = !query.reason ? "" : query.reason;
+        //query.enddate = !query.enddate ? query.startdate : query.enddate;
         if ($scope.maintenance && $scope.maintenance.uuid) {    //Edit
             openmrsRest.update($scope.resource + "/maintenance", query).then(function (response) {
                 $scope.maintenance = response;

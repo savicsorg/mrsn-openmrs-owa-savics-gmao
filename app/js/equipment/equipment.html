@@ -28,7 +28,7 @@
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block" flex>
                         <label translate>Equipment type</label>
-                        <md-select ng-model="equipment.equipmentType">
+                        <md-select ng-model="equipment.equipmentType" required>
                             <md-option ng-repeat="t in equipmentTypes" ng-value="t.id">
                                 {{t.name}}
                             </md-option>

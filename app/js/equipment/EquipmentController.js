@@ -37,8 +37,6 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
 
 
     $scope.regionChanged = function (id) {
-        console.log(allDistricts);
-        console.log(id);
         $scope.equipment.district = undefined;
         $scope.equipment.healthcenter = undefined;
         $scope.equipment.service = undefined;
@@ -50,8 +48,6 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
         $scope.districts = _.filter(allDistricts, function (item) {
             return item.regionid === id;
         });
-
-        console.log($scope.districts);
     }
 
     $scope.districtChanged = function (id) {
@@ -215,7 +211,7 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
             }
         } else {
             $scope.loading = false;
-            if (!$scope.equipment.serialNumber || !$scope.equipment.name) {
+            if (!$scope.equipment.serialNumber || !$scope.equipment.name || !$scope.equipment.equipmentType || !$scope.equipment.serviceStatus || !$scope.equipment.site) {
                 toastr.error($translate.instant('You must fill in the required fields before you proceed.'), $translate.instant('Error'));
             }
             if ($scope.equipment.serialNumber && ($scope.equipment.serialNumber.length <= 3 || $scope.equipment.serialNumber.length > 120)) {
