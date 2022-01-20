@@ -61,14 +61,9 @@
                 </tbody>
             </table>
         </md-table-container>
-        <<<<<<< HEAD <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{requests.length}}"
+        <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.count}}"
             md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
             md-limit-options="[25, 50, 100]" md-on-paginate="logPagination" md-label="$parent.label">
-            =======
-            <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.count}}"
-                md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
-                md-limit-options="[25, 50, 100]" md-on-paginate="logPagination" md-label="$parent.label">
-                >>>>>>> dev
-            </md-table-pagination>
+        </md-table-pagination>
     </md-card>
 </div>
