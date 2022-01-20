@@ -200,8 +200,10 @@
                     <md-input-container class="md-block md-input-has-value">
                         <label translate>Tracking</label>
                         <md-radio-group ng-model="equipment.tracking" layout="row" name="property" required>
-                            <md-radio-button value="1" class="md-primary">By unique serial number</md-radio-button>
-                            <md-radio-button value="2" class="md-primary">By lots</md-radio-button>
+                            <md-radio-button value="1" class="md-primary"><span translate>By unique serial number</span>
+                            </md-radio-button>
+                            <md-radio-button value="2" class="md-primary"><span translate>By lots</span>
+                            </md-radio-button>
                         </md-radio-group>
                         <div ng-messages="form.property.$error">
                             <div ng-message="required" translate>Please choose a tracking option.</div>

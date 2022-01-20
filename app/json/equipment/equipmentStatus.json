@@ -1,32 +1,32 @@
 [
     {
         "id": 1,
-        "fr": "Disposé et en service",
-        "en": "Disposed and in service"
+        "fr": "Fonctionnel et en service",
+        "en": "Functional and in use"
     },
     {
         "id": 2,
-        "fr": "Disposé mais pas en service",
-        "en": "Disposed but not in service"
+        "fr": "Fonctionnel et hors service",
+        "en": "Functional and out of service"
     },
     {
         "id": 3,
-        "fr": "Disposé mais à réparer",
-        "en": "Disposed but to be repaired"
+        "fr": "Fonctionnel mais à réparer",
+        "en": "Functional but to be repaired"
     },
     {
         "id": 4,
-        "en": "En panne et à réparer",
-        "fr": "Out of order and to be repaired"
+        "en": "Hors service mais à réparer",
+        "fr": "Out of service but to be repaired"
     },
     {
         "id": 5,
-        "fr": "En panne et à remplacer",
-        "en": "Out of order and to be replaced"
+        "fr": "A remplacer",
+        "en": "Replaced"
     },
     {
         "id": 6,
-        "fr": "Transféré",
-        "en": "Transfered"
+        "fr": "Existance d'un SAV",
+        "en": "Existence of a SAV"
     }
 ]
