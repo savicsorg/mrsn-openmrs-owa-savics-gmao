@@ -61,6 +61,7 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
         if (($scope.request.equipment)) {
             $scope.loading = true;
             $scope.request.equipment = $scope.request.equipment.id;
+            console.log($scope.request);
             if ($scope.request && $scope.request.uuid) {//edit
                 openmrsRest.update($scope.resource + "/maintenanceRequest", $scope.request).then(function (response) {
                     $scope.request = response;
