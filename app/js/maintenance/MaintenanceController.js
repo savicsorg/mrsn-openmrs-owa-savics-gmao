@@ -50,7 +50,7 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
         var query = JSON.parse(JSON.stringify($scope.maintenance));
         query.maintenanceType = parseInt($scope.maintenance.maintenanceType.id);
         query.equipment = parseInt($scope.equipment.id);
-        query.status = parseInt($scope.status);
+        query.status = parseInt($scope.maintenance.status);
         if ($scope.maintenance && $scope.maintenance.uuid) {    //Edit
             openmrsRest.update($scope.resource + "/maintenance", query).then(function (response) {
                 $scope.maintenance = response;
