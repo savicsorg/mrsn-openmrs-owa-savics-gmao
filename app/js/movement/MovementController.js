@@ -185,10 +185,11 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
 
         if ($stateParams.operation_id) {
             $scope.operation = $stateParams.data;
-            $scope.operation.s_district = $stateParams.data.siteBySourceId.service.healthcenter.district.id;
-            $scope.operation.s_hd = $stateParams.data.siteBySourceId.service.healthcenter.id;
-            $scope.operation.s_service = $stateParams.data.siteBySourceId.service.id;
-            $scope.operation.s_site = $stateParams.data.siteBySourceId.id;
+            $scope.operation.s_district = $stateParams.data.equipment.site.service.healthcenter.district.id;
+            $scope.operation.s_hd = $stateParams.data.equipment.site.service.healthcenter.id;
+            $scope.operation.s_service = $stateParams.data.equipment.site.service.id;
+            $scope.operation.s_site = $stateParams.data.equipment.site.id;
+            
             $scope.operation.d_district = $stateParams.data.siteByDestinationId.service.healthcenter.district.id;
             $scope.operation.d_hd = $stateParams.data.siteByDestinationId.service.healthcenter.id;
             $scope.operation.d_service = $stateParams.data.siteByDestinationId.service.id;
