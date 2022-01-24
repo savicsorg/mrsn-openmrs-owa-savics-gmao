@@ -1,18 +1,13 @@
 [
     {
         "id": 1,
-        "en": "User manuals",
-        "fr": "Manuels d'utilisation"
+        "en": "Use & maintenance manual",
+        "fr": "Manuel d'utilisation & d'entretien"
     },
     {
         "id": 2,
-        "en": "maintenance manuals",
-        "fr": "manuels d'entretien"
-    },
-    {
-        "id": 3,
-        "en": "Unknown",
-        "fr": "inconnue"
+        "en": "Service Manual",
+        "fr": "Manuel de maintenance"
     },
     {
         "id": 3,

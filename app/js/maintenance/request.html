@@ -60,8 +60,9 @@
                     <md-input-container class="md-block" flex>
                         <label translate>Priority</label>
                         <md-select required ng-model="request.priority">
-                            <md-option ng-value="1">Normal</md-option>
-                            <md-option ng-value="2">Urgent</md-option>
+                            <md-option ng-repeat="p in prioritys" ng-value="p.id">
+                                {{p.value}}
+                            </md-option>
                         </md-select>
                     </md-input-container>
                 </div>

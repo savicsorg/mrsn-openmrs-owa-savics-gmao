@@ -13,10 +13,14 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
 
     var dictionary = require("../utils/dictionary");
     var natureofworkjson = require('../../json/maintenance/natureofwork.json');
+    var priorityjson = require('../../json/maintenance/priority.json');
     $scope.natureofworks = dictionary.getJsonList(natureofworkjson, $rootScope.selectedLanguage);
+    $scope.prioritys = dictionary.getJsonList(priorityjson, $rootScope.selectedLanguage);
 
     $scope.searchEquipments = function (searchText) {
+        console.log(searchText)
         return openmrsRest.getFull($scope.resource + "/equipment?name=" + searchText).then(function (response) {
+            console.log(response);
             return response.results.filter(function (item) {
                 return item.name.toLowerCase().includes(searchText.toLowerCase())
             });

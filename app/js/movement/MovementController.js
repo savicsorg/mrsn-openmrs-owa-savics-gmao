@@ -12,6 +12,21 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $rootScope.links["Movement"] = "/movements";
     $scope.operation = {};
     $scope.equipments = [];
+    $scope.isEditable = true;
+    $scope.validateBtn = {
+        text: $translate.instant("Validate"),
+        enabled: false,
+        visible: false
+    };
+
+    $scope.cancelBtn = {
+        text: $translate.instant("Cancel"),
+        status: $translate.instant("Initiated"),
+        canceled: false,
+        visible: false,
+        enabled: false,
+        background: "#ccc"
+    };
 
     $scope.s_districts = [];
     $scope.d_districts = [];
@@ -170,19 +185,36 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
 
     if ($stateParams.operation_id) {
         $scope.operation = $stateParams.data;
-        $scope.operation.s_district = $stateParams.data.siteBySourceId.service.healthcenter.district.id;
-        $scope.operation.s_hd = $stateParams.data.siteBySourceId.service.healthcenter.id;
-        $scope.operation.s_service = $stateParams.data.siteBySourceId.service.id;
-        $scope.operation.s_site = $stateParams.data.siteBySourceId.id;
+        $scope.operation.s_district = $stateParams.data.equipment.site.service.healthcenter.district.id;
+        $scope.operation.s_hd = $stateParams.data.equipment.site.service.healthcenter.id;
+        $scope.operation.s_service = $stateParams.data.equipment.site.service.id;
+        $scope.operation.s_site = $stateParams.data.equipment.site.id;
+
         $scope.operation.d_district = $stateParams.data.siteByDestinationId.service.healthcenter.district.id;
         $scope.operation.d_hd = $stateParams.data.siteByDestinationId.service.healthcenter.id;
         $scope.operation.d_service = $stateParams.data.siteByDestinationId.service.id;
         $scope.operation.d_site = $stateParams.data.siteByDestinationId.id;
-        $scope.operation.equipment = $stateParams.data.id;
+        $scope.operation.equipment = $stateParams.data.equipment.id;
         $scope.operation.siteBySource = $stateParams.data.siteBySourceId.id;
         $scope.operation.siteByDestination = $stateParams.data.siteByDestinationId.id;
         $scope.operation.date = new Date(moment(new Date($stateParams.data.date)).format('MM/DD/YYYY'));
         $scope.selectedItem = $stateParams.data.selectedItem;
+
+        if ($stateParams.data.status == "VALID") {
+            $scope.isEditable = false;
+            $scope.validateBtn.text = $translate.instant("Validated on ") + new Date($scope.operation.localapproval).toLocaleDateString();
+            $scope.validateBtn.enabled = false;
+            $scope.validateBtn.visible = true;
+        } else if ($stateParams.data.status == "REJECT") {
+            $scope.isEditable = false;
+            $scope.validateBtn.text = $translate.instant("Rejected on ") + new Date($scope.operation.localapproval).toLocaleDateString();
+            $scope.validateBtn.enabled = false;
+            $scope.validateBtn.visible = true;
+        } else {
+
+            $scope.validateBtn.enabled = true;
+            $scope.validateBtn.visible = true;
+        }
     }
 
     $scope.selectedItemChange = function (item) {
@@ -221,9 +253,9 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         query.siteByDestination = query.d_site;
         query.localapproval = query.date;
         query.localapprover = "";
-        query.centralapproval = query.date;
+
+        //query.centralapproval = query.date;
         query.centralapprover = "";
-        query.motif = !query.motif ? "" : query.motif;
         if ($stateParams.operation_id) {    //Edit
             openmrsRest.update($scope.resource + "/mouvement", query).then(function (response) {
                 $scope.operation = response;
@@ -235,6 +267,7 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
                 toastr.error($translate.instant('An unexpected error has occured.'), $translate.instant('Error'));
             });
         } else {    //Creation
+            query.status = "INIT";
             openmrsRest.create($scope.resource + "/mouvement", query).then(function (response) {
                 toastr.success($translate.instant('Data saved successfully.'), 'Success');
                 $state.go('home.movements');
@@ -258,6 +291,38 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
                 $log.log($translate.instant('Toast dismissed.'));
             }).catch(function () {
                 $log.log($translate.instant('Toast failed or was forced to close early by another toast.'));
+            });
+    }
+
+    $scope.reject = function () {
+        $mdDialog.show($mdDialog.confirm()
+            .title('Confirmation')
+            .textContent($translate.instant('Do you really want to reject this movement ?'))
+            .ok($translate.instant('Yes'))
+            .cancel($translate.instant('Cancel'))).then(function () {
+                $scope.loading = true;
+                $scope.operation.localapproval = new Date();
+                $scope.operation.status = "REJECT";
+                $scope.save();
+
+            }, function () {
+
+            });
+    }
+
+
+    $scope.approve = function () {
+        $mdDialog.show($mdDialog.confirm()
+            .title('Confirmation')
+            .textContent($translate.instant('Do you really want to approve this movement ?'))
+            .ok($translate.instant('Yes'))
+            .cancel($translate.instant('Cancel'))).then(function () {
+                $scope.loading = true;
+                $scope.operation.localapproval = new Date();
+                $scope.operation.status = "VALID";
+                $scope.save();
+            }, function () {
+
             });
     }
 

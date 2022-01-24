@@ -1,29 +1,55 @@
 <div id="content" class="container-fluid">
-
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="">Operation on equipment(s)</h1>
+        <a href="index.html#!/">
+            <md-button>
+                <md-icon>arrow_back</md-icon><span translate>Back</span>
+            </md-button>
+        </a>
+        <md-button class="md-raised md-primary" aria-label="Add"
+            ng-if='operation.siteByDestination && validateBtn.visible'
+            ng-disabled="!validateBtn.enabled"
+            ng-click="approve()">
+            <md-icon class=" material-icons" role="img" aria-hidden="true">check_circle</md-icon>
+            <md-tooltip md-direction="top">
+                <span translate>{{validateBtn.text}}</span>
+            </md-tooltip>
+            {{validateBtn.text}}
+        </md-button>
+
+        <md-button class="md-raised md-accent" aria-label="Add"
+            ng-if='operation.siteByDestination && validateBtn.enabled'
+            ng-click="reject()">
+            <md-icon class=" material-icons" role="img" aria-hidden="true">cancel</md-icon>
+            <md-tooltip md-direction="top">
+                <span translate>Cancel</span>
+            </md-tooltip>
+            {{'Cancel' | translate}}
+        </md-button>
+        
     </div>
+    
     <form name="movementForm" ng-submit="save()">
         <md-card>
             <md-card-title translate>General Informations</md-card-title>
             <md-card-content>
                 <div layout="row" layout-xs="column" class="flex flex-col">
-                    <md-input-container class="md-block" flex="50">
+                    <md-input-container class="md-block" flex="50" ng-disabled="!isEditable">
                         <label translate>Type</label>
-                        <md-select ng-model="operation.type" required>
-                            <md-option ng-value="1">Output</md-option>
-                            <md-option ng-value="2">Transfert</md-option>
+                        <md-select ng-model="operation.type" required ng-disabled="!isEditable">
+                            <md-option ng-value="1" translate>Output</md-option>
+                            <md-option ng-value="2" translate>Transfer</md-option>
                         </md-select>
                     </md-input-container>
-                    <md-input-container class="md-block" flex="50">
+                    <md-input-container class="md-block" flex="50" ng-disabled="!isEditable">
                         <label translate>Date</label>
-                        <input type="date" ng-model="operation.date" required>
+                        <input type="date" ng-model="operation.date" required ng-disabled="!isEditable">
                     </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column" class="flex flex-col">
-                    <md-input-container class="md-block md-input-has-value" flex="100">
+                    <md-input-container class="md-block md-input-has-value" flex="100" ng-disabled="!isEditable">
                         <label translate>Motif</label>
-                        <textarea ng-model="operation.motif"></textarea>
+                        <textarea ng-model="operation.motif" ng-disabled="!isEditable"></textarea>
                     </md-input-container>
                 </div>
             </md-card-content>
@@ -36,7 +62,7 @@
                     <md-autocomplete class="md-block" flex-gt-sm md-floating-label="{{'Search Equipment'| translate}}"
                         md-selected-item="selectedItem" md-search-text="searchText" md-items="item in equipments"
                         md-item-text="item.name" md-clear-button="true" required ng-model="item.name"
-                        md-selected-item-change="selectedItemChange(item)">
+                        md-selected-item-change="selectedItemChange(item)" ng-disabled="!isEditable">
                         <md-item-template>
                             <span md-highlight-text="searchText">{{item.name}} {{item.serialNumber}}</span>
                         </md-item-template>
@@ -87,36 +113,36 @@
             <md-card-title translate> Equipment destination</md-card-title>
             <md-card-content>
                 <div layout="row" layout-xs="column" class="flex flex-col">
-                    <md-input-container class="md-block" flex>
+                    <md-input-container class="md-block" flex >
                         <label translate>District</label>
-                        <md-select required ng-model="operation.d_district"
+                        <md-select required ng-model="operation.d_district" ng-disabled="!isEditable"
                             ng-change="districtChanged('destination',operation.d_district)">
                             <md-option ng-repeat="s in d_districts" ng-value="s.id">
                                 {{s.name}}
                             </md-option>
                         </md-select>
                     </md-input-container>
-                    <md-input-container class="md-block" flex>
+                    <md-input-container class="md-block" flex >
                         <label translate>HD</label>
-                        <md-select required ng-model="operation.d_hd"
+                        <md-select required ng-model="operation.d_hd" ng-disabled="!isEditable"
                             ng-change="healthCenterChanged('destination',operation.d_hd)">
                             <md-option ng-repeat="h in d_healthCenters" ng-value="h.id">
                                 {{h.name}}
                             </md-option>
                         </md-select>
                     </md-input-container>
-                    <md-input-container class="md-block" flex>
+                    <md-input-container class="md-block" flex >
                         <label translate>Service</label>
-                        <md-select required ng-model="operation.d_service"
+                        <md-select required ng-model="operation.d_service" ng-disabled="!isEditable"
                             ng-change="departementChanged('destination',operation.d_service)">
                             <md-option ng-repeat="d in d_services" ng-value="d.id">
                                 {{d.name}}
                             </md-option>
                         </md-select>
                     </md-input-container>
-                    <md-input-container class="md-block" flex>
+                    <md-input-container class="md-block" flex >
                         <label translate>Site</label>
-                        <md-select required ng-model="operation.d_site">
+                        <md-select required ng-model="operation.d_site" ng-disabled="!isEditable">
                             <md-option ng-repeat="s in d_sites" ng-value="s.id">
                                 {{s.name}}
                             </md-option>
@@ -126,15 +152,15 @@
             </md-card-content>
         </md-card>
         <div layout="row" layout-xs="column">
-            <md-button class="md-raised md-primary" type="submit" aria-label="Add">
+            <md-button class="md-raised md-primary" type="submit" aria-label="Add" ng-disabled="!isEditable">
                 <md-icon>save</md-icon>
                 <md-tooltip md-direction="top">
                     <span translate>Save</span>
                 </md-tooltip>
                 Save
             </md-button>
-            <a href="index.html#!/movements">
-                <md-button aria-label="Add">
+            <a href="index.html#!/movements" ng-disabled="!isEditable">
+                <md-button aria-label="Add" ng-disabled="!isEditable">
                     <md-icon>cancel</md-icon>
                     <span translate>Cancel</span>
                 </md-button>

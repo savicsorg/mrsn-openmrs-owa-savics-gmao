@@ -25,7 +25,9 @@
                         <span translate>No matches found.</span>
                     </md-not-found>
                 </md-autocomplete>
+
             </div>
+
         </md-card-content>
     </md-card>
     <md-card ng-if="!loading">
@@ -76,8 +78,9 @@
                 <md-input-container class="md-block md-input-has-value">
                     <label translate>Status</label>
                     <md-radio-group ng-model="equipment.status" layout="row" name="property" required>
-                        <md-radio-button value="1" class="md-primary">In Progress</md-radio-button>
-                        <md-radio-button value="2" class="md-primary">Completed</md-radio-button>
+                        <md-radio-button value="1" class="md-primary"><span translate>In Progress</span>
+                        </md-radio-button>
+                        <md-radio-button value="2" class="md-primary"><span translate>Completed</span></md-radio-button>
                     </md-radio-group>
                     <div ng-messages="form.property.$error">
                         <div ng-message="required" translate>Please choose a status.</div>
