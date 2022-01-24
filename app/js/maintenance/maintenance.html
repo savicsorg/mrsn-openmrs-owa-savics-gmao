@@ -89,9 +89,10 @@
             <div layout="row" layout-xs="column" class="flex flex-col">
                 <md-input-container class="md-block md-input-has-value">
                     <label translate>Status</label>
-                    <md-radio-group ng-model="maintenance.status" layout="row" name="property" required>
-                        <md-radio-button value="1" class="md-primary">In Progress</md-radio-button>
-                        <md-radio-button value="2" class="md-primary">Completed</md-radio-button>
+                    <md-radio-group ng-model="equipment.status" layout="row" name="property" required>
+                        <md-radio-button value="1" class="md-primary"><span translate>In Progress</span>
+                        </md-radio-button>
+                        <md-radio-button value="2" class="md-primary"><span translate>Completed</span></md-radio-button>
                     </md-radio-group>
                     <div ng-messages="form.property.$error">
                         <div ng-message="required" translate>Please choose a status.</div>

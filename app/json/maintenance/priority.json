@@ -6,6 +6,11 @@
     },
     {
         "id": 2,
+        "en": "Intermediate",
+        "fr": "Intermediaire"
+    },
+    {
+        "id": 3,
         "en": "Urgent",
         "fr": "Urgent"
     }

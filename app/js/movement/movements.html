@@ -23,8 +23,11 @@
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">
             <input flex type="search" name="search" ng-model="searchAll.equipment.name"
-                placeholder="{{ 'Search by Equipement...' | translate }}">
+                   placeholder="{{ 'Search by Equipement...' | translate }}">
         </div>
+        <md-switch flex ng-model="movementValidated" aria-label="Validated">
+            <span translate>Validated</span>
+        </md-switch>
     </md-toolbar>
     <md-card>
         <md-table-container class="container" fixed-column-table>
@@ -35,24 +38,34 @@
                         <th md-column md-order-by="type"><span translate>Type</span></th>
                         <th md-column md-order-by="date | date: 'dd/MM/yyyy'"><span translate>Date</span></th>
                         <th md-column md-order-by="equipment.name"><span translate>Equipment</span></th>
+                        <th><span translate>Status</span></th>
                         <th md-column><span translate>Actions</span></th>
                     </tr>
                 </thead>
                 <tbody md-body>
                     <tr md-row
-                        data-ng-repeat="movement in movements | orderBy:query.order | filter:searchAll ">
+                        data-ng-repeat="movement in movements| orderBy:query.order | filter:search ">
                         <td md-cell>{{movement.id}}</td>
                         <td md-cell><span>{{movement.type==1 ? 'Output' : 'Transfert'}}</span></td>
-                        <td md-cell>{{movement.date | date: 'dd/MM/yyyy'}}</td>
+                        <td md-cell>{{movement.date| date: 'dd/MM/yyyy'}}</td>
                         <td md-cell>{{movement.equipment.name}}</td>
+                        <td style="text-align: center">
+
+                            <md-icon style="color:{{movement.status == 'REJECT' ? 'red': movement.status == 'VALID' ?'green':'#ccc'}}">
+                                <md-tooltip>
+                                    <span translate>Validated</span> 
+                                </md-tooltip>
+                                fiber_manual_record
+                            </md-icon>
+                        </td>
                         <td>
                             <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit"
-                                ng-click="edit(movement,movement.equipment.name)">
+                                    ng-click="edit(movement, movement.equipment.name)">
                                 <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
                                 <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                             </button>
                             <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete"
-                                ng-click="delete($event,movement)">
+                                    ng-click="delete($event, movement)">
                                 <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
                                 <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
                             </button>
@@ -62,8 +75,8 @@
             </table>
         </md-table-container>
         <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.count}}"
-            md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
-            md-limit-options="[25, 50, 100]" md-on-paginate="logPagination" md-label="$parent.label">
+                             md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+                             md-limit-options="[25, 50, 100]" md-on-paginate="logPagination" md-label="$parent.label">
         </md-table-pagination>
     </md-card>
 </div>

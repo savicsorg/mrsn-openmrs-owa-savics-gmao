@@ -1,6 +1,6 @@
 angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('RequestController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) {
-    var moment = require('moment');
     $scope.rootscope = $rootScope;
+    var moment = require('moment');
     $scope.maintenances = [];
     $scope.appTitle = "Request an intervention";
     $scope.resource = "savicsgmao";
@@ -13,7 +13,9 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
 
     var dictionary = require("../utils/dictionary");
     var natureofworkjson = require('../../json/maintenance/natureofwork.json');
+    var priorityjson = require('../../json/maintenance/priority.json');
     $scope.natureofworks = dictionary.getJsonList(natureofworkjson, $rootScope.selectedLanguage);
+    $scope.prioritys = dictionary.getJsonList(priorityjson, $rootScope.selectedLanguage);
 
     $scope.searchEquipments = function (searchText) {
         console.log(searchText)
@@ -31,6 +33,7 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
         console.log(item)
         $scope.request.equipment = item;
     };
+
 
     $scope.LoadRequest = function () {
         $scope.loading = true;
@@ -57,11 +60,11 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
         $scope.request.creation = new Date(moment(new Date($stateParams.data.creation)).format('MM/DD/YYYY, h:mm A'));
         $scope.selectedEquipment = $stateParams.data.equipment.name;
     }
+
     $scope.save = function () {
         if (($scope.request.equipment)) {
             $scope.loading = true;
             $scope.request.equipment = $scope.request.equipment.id;
-            console.log($scope.request);
             if ($scope.request && $scope.request.uuid) {//edit
                 openmrsRest.update($scope.resource + "/maintenanceRequest", $scope.request).then(function (response) {
                     $scope.request = response;
