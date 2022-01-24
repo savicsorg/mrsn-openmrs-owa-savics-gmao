@@ -13,6 +13,8 @@ angular.module('MovementsController', ['ngMaterial', 'md.data.table']).controlle
         $scope.options = {autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true};
         $scope.query = {limit: 50, page: 1, startIndex: 0, count: 0, order: '-id'};
         $scope.movements = [];
+        $scope.movementValidated = false
+        $scope.searchAll = "";
 
         $scope.delete = function (ev, obj) {
             var confirm = $mdDialog.confirm()
@@ -67,6 +69,22 @@ angular.module('MovementsController', ['ngMaterial', 'md.data.table']).controlle
 
         getAllMovements();
 
+        $scope.search = function (item) {
+            if ($scope.searchAll == "" || ($scope.searchAll.length > 0 && item.equipment.name.toLowerCase().indexOf($scope.searchAll.toLowerCase()) > -1)) {
+                if ($scope.movementValidated === true) {
+//                    if (item.status != "VALID"){
+//                        //$scope.query.count = $scope.query.count -1;
+//                    }
+                    return item.status == "VALID";
+                } else {
+                    
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        };
+
 
 
         $scope.edit = function (data, selectedItem) {
@@ -76,4 +94,10 @@ angular.module('MovementsController', ['ngMaterial', 'md.data.table']).controlle
                 data: data,
             });
         };
+
+        $scope.donwload = function () {
+            let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/mouvement/export?movementValidated=" + $scope.movementValidated;
+            localStorage.setItem("export_link", link);
+            window.location = link;
+        }
     }]);
