@@ -44,24 +44,29 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
         query.description = !query.description ? "" : query.description;
         query.reason = !query.reason ? "" : query.reason;
         query.status = parseInt($scope.maintenance.status);
-        if ($scope.maintenance && $scope.maintenance.uuid) {    //Edit
-            openmrsRest.update($scope.resource + "/maintenance", query).then(function (response) {
-                $scope.maintenance = response;
-                $scope.getData();
-                $state.go('home.maintenances', {});
-            }, function (e) {
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), $translate.instant('Error'));
-            });
-        } else {    //Creation
-            openmrsRest.create($scope.resource + "/maintenance", query).then(function (response) {
-                $scope.maintenance = response;
-                $scope.getData();
-                $state.go('home.maintenances', {});
-            }, function (e) {
-                $scope.loading = false;
-                toastr.error($translate.instant('An unexpected error has occured.'), $translate.instant('Error'));
-            });
+        if ($scope.maintenance && query.status) {
+            if ($scope.maintenance && $scope.maintenance.uuid) {    //Edit
+                openmrsRest.update($scope.resource + "/maintenance", query).then(function (response) {
+                    $scope.maintenance = response;
+                    $scope.getData();
+                    $state.go('home.maintenances', {});
+                }, function (e) {
+                    $scope.loading = false;
+                    toastr.error($translate.instant('An unexpected error has occured.'), $translate.instant('Error'));
+                });
+            } else {    //Creation
+                openmrsRest.create($scope.resource + "/maintenance", query).then(function (response) {
+                    $scope.maintenance = response;
+                    $scope.getData();
+                    $state.go('home.maintenances', {});
+                }, function (e) {
+                    $scope.loading = false;
+                    toastr.error($translate.instant('An unexpected error has occured.'), $translate.instant('Error'));
+                });
+            }
+        } else {
+            $scope.loading = false;
+            toastr.error($translate.instant('You must fill in the required fields before you proceed.'), $translate.instant('Error'));
         }
     }
 
