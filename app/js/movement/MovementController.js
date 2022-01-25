@@ -252,7 +252,6 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         delete query.d_hd;
         delete query.d_service;
         query.siteByDestination = query.d_site;
-        query.localapproval = query.date;
         query.localapprover = "";
 
         //query.centralapproval = query.date;
@@ -302,7 +301,8 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             .ok($translate.instant('Yes'))
             .cancel($translate.instant('Cancel'))).then(function () {
                 $scope.loading = true;
-                $scope.operation.localapproval = new Date();
+                //$scope.operation.localapproval = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+                $scope.operation.localapproval = moment(new Date($stateParams.data.date)).format("YYYY-MM-D hh:mm:ss");
                 $scope.operation.status = "REJECT";
                 $scope.save();
 
@@ -319,7 +319,7 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             .ok($translate.instant('Yes'))
             .cancel($translate.instant('Cancel'))).then(function () {
                 $scope.loading = true;
-                $scope.operation.localapproval = new Date();
+                $scope.operation.localapproval = moment(new Date($stateParams.data.date)).format("YYYY-MM-D hh:mm:ss");
                 $scope.operation.status = "VALID";
                 $scope.save();
             }, function () {
