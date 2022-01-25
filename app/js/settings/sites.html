@@ -6,27 +6,27 @@
                 <md-icon>arrow_back</md-icon><span translate>Back</span>
             </md-button>
         </a>
-    </div>    
+    </div>
     <div layout="row" ng-if="loading" layout-sm="column" layout-align="space-around">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-    </div> 
+    </div>
     <md-card ng-show="!loading">
         <md-card-title translate>Add/Modify a Site</md-card-title>
         <md-card-content>
-            <div layout="row" layout-xs="column" class="flex flex-col">                                        
+            <div layout="row" layout-xs="column" class="flex flex-col">
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Name</label>
-                    <input type="text" required ng-model="site.name"/>
+                    <input type="text" required ng-model="site.name" />
                 </md-input-container>
                 <md-input-container class="md-block md-input-has-value" flex="50">
                     <label translate>Code</label>
-                    <input type="text" required ng-model="site.code"/>
-                </md-input-container>          
-            </div>  
-            <div layout="row" layout-xs="column" class="flex flex-col">                    
+                    <input type="text" required ng-model="site.code" />
+                </md-input-container>
+            </div>
+            <div layout="row" layout-xs="column" class="flex flex-col">
                 <md-input-container class="md-block md-input-has-value" flex="100">
                     <label translate>Region</label>
-                    <md-select required ng-model="site.regionid" ng-change="regionChanged()">
+                    <md-select required ng-model="site.regionid" ng-change="regionChanged('html')">
                         <md-option ng-repeat="r in allRegions" ng-value="r.addressHierarchyEntryId">
                             {{r.name}}
                         </md-option>
@@ -34,7 +34,7 @@
                 </md-input-container>
                 <md-input-container class="md-block md-input-has-value" flex="33">
                     <label translate>District</label>
-                    <md-select required ng-model="site.district" ng-change="districtChanged()">
+                    <md-select required ng-model="site.district" ng-change="districtChanged('html')">
                         <md-option ng-repeat="d in districts" ng-value="d.id">
                             {{d.name}}
                         </md-option>
@@ -42,7 +42,7 @@
                 </md-input-container>
                 <md-input-container class="md-block md-input-has-value" flex="33">
                     <label translate>HD/CSI</label>
-                    <md-select required ng-model="site.healthcenter" ng-change="healthCenterChanged()">
+                    <md-select required ng-model="site.healthcenter" ng-change="healthCenterChanged('html')">
                         <md-option ng-repeat="hc in healthCenters" ng-value="hc.id">
                             {{hc.name}}
                         </md-option>
@@ -50,31 +50,31 @@
                 </md-input-container>
                 <md-input-container class="md-block md-input-has-value" flex="33">
                     <label translate>Services in HD/CSI</label>
-                    <md-select required ng-model="site.service">
+                    <md-select required ng-model="site.serviceId">
                         <md-option ng-repeat="service in services" ng-value="service.id">
                             {{service.name}}
                         </md-option>
                     </md-select>
                 </md-input-container>
-            </div> 
+            </div>
             <div layout="row" layout-xs="column">
-                <md-button class="md-raised md-primary" aria-label="Add" ng-click="save()" >
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="save()">
                     <md-icon>save</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Save</span>
                     </md-tooltip>
                     <span translate>Save</span>
                 </md-button>
-                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()" >
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="clear()">
                     <md-icon>clear</md-icon>
                     <md-tooltip md-direction="top">
                         <span translate>Reset all fields</span>
                     </md-tooltip>
                     <span translate>Reset</span>
                 </md-button>
-            </div>          
+            </div>
         </md-card-content>
-    </md-card>  
+    </md-card>
     <md-card ng-show="!loading">
         <md-card-title translate>List of Sites</md-card-title>
         <md-card-content>
@@ -86,21 +86,23 @@
                             <th md-column md-order-by="name"><span translate>Name</span></th>
                             <th md-column md-order-by="code"><span translate>Code</span></th>
                             <th md-column md-order-by="service.name"><span translate>Service</span></th>
-                            <th md-column ><span translate>Actions</span></th>
+                            <th md-column><span translate>Actions</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="site in allSites | orderBy:query.order " >
+                        <tr md-row data-ng-repeat="site in allSites | orderBy:query.order ">
                             <td md-cell>{{site.id}}</td>
-                            <td md-cell >{{site.name}}</td>
-                            <td md-cell >{{site.code}}</td>
-                            <td md-cell >{{site.service.name}}</td>
-                            <td md-cell >
-                                <button ng-click="read(site)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit">
+                            <td md-cell>{{site.name}}</td>
+                            <td md-cell>{{site.code}}</td>
+                            <td md-cell>{{site.service.name}}</td>
+                            <td md-cell>
+                                <button ng-click="read(site)" class="md-fab md-mini md-primary md-button" type="button"
+                                    aria-label="Edit">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                                 </button>
-                                <button ng-click="delete($event,site)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete">
+                                <button ng-click="delete($event,site)" class="md-fab md-mini md-primary md-button"
+                                    type="button" aria-label="Delete">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
                                 </button>
@@ -110,11 +112,9 @@
                 </table>
             </md-table-container>
             <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.count}}"
-                md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks" md-limit-options="[25, 50, 100]"
-                md-on-paginate="logPagination" md-label="$parent.label">
+                md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+                md-limit-options="[25, 50, 100]" md-on-paginate="logPagination" md-label="$parent.label">
             </md-table-pagination>
         </md-card-content>
     </md-card>
 </div>
-
-
