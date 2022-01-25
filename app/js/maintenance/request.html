@@ -10,7 +10,7 @@
     <form name="form" ng-submit="save()">
         <md-card>
             <md-card-title>
-                General information
+                <span translate>General information</span>
             </md-card-title>
             <md-card-content>
                 <div layout="row" layout-xs="column" class="flex flex-col">
@@ -20,7 +20,7 @@
                         md-clear-button="true" md-no-cache="true"
                         md-selected-item-change="selectedEquipmentChange(equipment,$index)" flex="100" required>
                         <md-item-template>
-                            <span md-highlight-text="equipmentSearchText">{{equipment.name}} | Location:
+                            <span md-highlight-text="equipmentSearchText">{{equipment.name}} | <span translate>Location</span><span translate>:</span>
                                 {{equipment.site.name}}, {{equipment.site.service.name}},
                                 {{equipment.site.service.healthcenter.name}},
                                 {{equipment.site.service.healthcenter.district.name}}</span>
@@ -51,10 +51,10 @@
                     <md-input-container class="md-block md-input-has-value" flex>
                         <label translate>Nature of work</label>
                         <md-select required ng-model="request.natureOfWork">
-                            <md-option ng-value="'1'">Maintain</md-option>
-                            <md-option ng-value="'2'">Repair</md-option>
-                            <md-option ng-value="'3'">Work</md-option>
-                            <md-option ng-value="'4'">Other</md-option>
+                            <md-option ng-value="'1'"><span translate>Maintain</span></md-option>
+                            <md-option ng-value="'2'"><span translate>Repair</span></md-option>
+                            <md-option ng-value="'3'"><span translate>Work</span></md-option>
+                            <md-option ng-value="'4'"><span translate>Other</span></md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container class="md-block" flex>

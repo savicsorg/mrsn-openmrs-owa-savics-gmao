@@ -1,7 +1,7 @@
 <div id="content" class="container-fluid">
 
     <div class="md-toolbar-tools">
-        <h1 md-truncate="" flex="">Operation approval</h1>
+        <h1 md-truncate="" flex="" translate>Operation approval</h1>
     </div>    
           
     <md-card >
@@ -33,7 +33,7 @@
             </div>    
             <div layout="row" layout-xs="column"  class="flex flex-col">             
                 <md-input-container class="md-block md-input-has-value" flex="100">
-                    <label translate>Motif</label>
+                    <label translate>Reason</label>
                     <textarea disabled ng-model="operation.motif"></textarea>
                 </md-input-container>                            
             </div>                
@@ -46,14 +46,14 @@
             <md-tooltip md-direction="top">
                 <span translate>Approve</span>
             </md-tooltip>
-            Approve
+            <span translate>Approve</span>
         </md-button>
         <md-button class="md-raised md-accent" >
             <md-icon>close</md-icon>
             <md-tooltip md-direction="top">
                 <span translate>Decline</span>
             </md-tooltip>
-            Decline
+            <span translate>Decline</span>
         </md-button>
     </div>   
 </div>
