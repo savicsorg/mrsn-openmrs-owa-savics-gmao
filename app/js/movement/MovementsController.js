@@ -72,20 +72,14 @@ angular.module('MovementsController', ['ngMaterial', 'md.data.table']).controlle
         $scope.search = function (item) {
             if ($scope.searchAll == "" || ($scope.searchAll.length > 0 && item.equipment.name.toLowerCase().indexOf($scope.searchAll.toLowerCase()) > -1)) {
                 if ($scope.movementValidated === true) {
-//                    if (item.status != "VALID"){
-//                        //$scope.query.count = $scope.query.count -1;
-//                    }
                     return item.status == "VALID";
                 } else {
-                    
                     return true;
                 }
             } else {
                 return false;
             }
         };
-
-
 
         $scope.edit = function (data, selectedItem) {
             data.selectedItem = selectedItem;
