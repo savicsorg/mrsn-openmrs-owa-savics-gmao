@@ -28,58 +28,6 @@
                         </md-not-found>
                     </md-autocomplete>
 
-<<<<<<< HEAD
-            <div layout="row" layout-xs="column">
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label translate>Reason</label>
-                    <textarea ng-model="maintenance.reason"></textarea>
-                </md-input-container>
-            </div>
-            <div layout="row" layout-xs="column">
-                <md-input-container class="md-block" flex="50">
-                    <label translate>Task name</label>
-                    <textarea ng-model="maintenance.name" required></textarea>
-                </md-input-container>
-                <md-input-container class="md-block" flex="50">
-                    <label translate>Task description</label>
-                    <textarea ng-model="maintenance.description"></textarea>
-                </md-input-container>
-            </div>
-            <div layout="row" layout-xs="column">
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label translate>Start date</label>
-                    <input type="datetime-local" required ng-model="maintenance.startdate" />
-                </md-input-container>
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label translate>End date</label>
-                    <input type="datetime-local" required ng-model="maintenance.enddate" />
-                </md-input-container>
-            </div>
-            <div layout="row" layout-xs="column" class="flex flex-col">
-                <md-input-container class="md-block md-input-has-value">
-                    <label translate>Status</label>
-                    <md-radio-group ng-model="maintenance.status" layout="row" name="property" required>
-                        <md-radio-button value="1" class="md-primary"><span translate>In Progress</span>
-                        </md-radio-button>
-                        <md-radio-button value="2" class="md-primary"><span translate>Completed</span></md-radio-button>
-                    </md-radio-group>
-                    <div ng-messages="form.property.$error">
-                        <div ng-message="required" translate>Please choose a status.</div>
-                    </div>
-                </md-input-container>
-            </div>
-            </md-card_content>
-    </md-card>
-    <div layout="row" layout-xs="column" ng-if="!loading">
-        <md-button class="md-raised md-primary" aria-label="Add" ng-click="save()">
-            <md-icon>save</md-icon>
-            <md-tooltip md-direction="top">
-                <span translate>Save</span>
-            </md-tooltip>
-            Save
-        </md-button>
-    </div>
-=======
                 </div>
 
             </md-card-content>
@@ -154,5 +102,4 @@
             </md-button>
         </div>
     </form>
->>>>>>> dev
 </div>
