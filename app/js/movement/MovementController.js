@@ -197,7 +197,8 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.operation.equipment = $stateParams.data.equipment.id;
         $scope.operation.siteBySource = $stateParams.data.siteBySourceId.id;
         $scope.operation.siteByDestination = $stateParams.data.siteByDestinationId.id;
-        $scope.operation.date = new Date(moment(new Date($stateParams.data.date)).format('MM/DD/YYYY'));
+        $scope.operation.date = new Date($stateParams.data.date);
+        
         $scope.selectedItem = $stateParams.data.selectedItem;
 
         if ($stateParams.data.status == "VALID") {
