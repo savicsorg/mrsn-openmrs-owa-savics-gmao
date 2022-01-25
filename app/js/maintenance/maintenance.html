@@ -10,56 +10,25 @@
     <div layout="row" ng-if="loading" layout-sm="column" layout-align="space-around">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>
-    <md-card ng-if="!loading">
-        <md-card-title translate>Equipment information</md-card-title>
-        <md-card-content>
-            <div layout="row" layout-xs="column" class="flex flex-col">
-                <md-autocomplete autoFocus class="md-block" flex-gt-sm
-                    md-floating-label="{{'Search equipment'| translate}}" md-selected-item="selectedItem"
-                    md-search-text="searchText" md-items="item in getEquipments(searchText)" md-item-text="item.name"
-                    md-clear-button="true" md-selected-item-change="selectedEquipmentChange(item)" required flex="50">
-                    <md-item-template>
-                        <span md-highlight-text="searchText">{{item.name}}</span>
-                    </md-item-template>
-                    <md-not-found>
-                        <span translate>No matches found.</span>
-                    </md-not-found>
-                </md-autocomplete>
-                <md-input-container class="md-block" flex-gt-sm flex="50" ng-if="equipment.uuid">
-                    <label translate>Serial n°</label>
-                    <input ng-model="equipment.serialNumber" disabled>
-                </md-input-container>
-            </div>
-            <div layout="row" layout-xs="column" class="flex flex-col" ng-if="equipment.uuid">
-                <md-input-container class="md-block" flex-gt-sm flex="50">
-                    <label translate>Site</label>
-                    <input ng-model="equipment.site.name" disabled>
-                </md-input-container>
-                <md-input-container class="md-block" flex-gt-sm flex="50">
-                    <label translate>Service</label>
-                    <input ng-model="equipment.site.service.name" disabled>
-                </md-input-container>
-            </div>
-        </md-card-content>
-    </md-card>
-    <md-card ng-if="!loading">
-        <md-card-title>Maintenance information</md-card-title>
-        <md-card-content>
-            <div layout="row" layout-xs="column" class="flex flex-col">
-                <md-input-container class="md-block" flex="50">
-                    <label translate>Type of maintenance</label>
-                    <md-select ng-model="maintenance.maintenanceType.id" required>
-                        <md-option ng-repeat="t in maintenance_types" ng-value="t.id">
-                            {{t.name}}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container class="md-block" flex="50">
-                    <label translate>Done by</label>
-                    <input ng-model="maintenance.doneby" required>
-                </md-input-container>
-            </div>
+    <form name="maintenanceForm" ng-submit="save()">
+        <md-card ng-if="!loading">
+            <md-card-title translate>Equipment information</md-card-title>
+            <md-card-content>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-autocomplete autoFocus class="md-block" flex-gt-sm
+                        md-floating-label="{{'Search equipment'| translate}}" md-selected-item="selectedItem"
+                        md-search-text="searchText" md-items="item in getEquipments(searchText)"
+                        md-item-text="item.name" md-clear-button="true"
+                        md-selected-item-change="selectedEquipmentChange(item)" required flex>
+                        <md-item-template>
+                            <span md-highlight-text="searchText">{{item.name}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <span translate>No matches found.</span>
+                        </md-not-found>
+                    </md-autocomplete>
 
+<<<<<<< HEAD
             <div layout="row" layout-xs="column">
                 <md-input-container class="md-block" flex-gt-sm>
                     <label translate>Reason</label>
@@ -110,4 +79,80 @@
             Save
         </md-button>
     </div>
+=======
+                </div>
+
+            </md-card-content>
+        </md-card>
+        <md-card ng-if="!loading">
+            <md-card-title>Maintenance information</md-card-title>
+            <md-card-content>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block" flex="50">
+                        <label translate>Type of maintenance</label>
+                        <md-select ng-model="maintenance.maintenanceType.id" required>
+                            <md-option ng-repeat="t in maintenance_types" ng-value="t.id">
+                                {{t.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex="50">
+                        <label translate>Done by</label>
+                        <input ng-model="maintenance.doneby" required>
+                    </md-input-container>
+                </div>
+
+                <div layout="row" layout-xs="column">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label translate>Reason</label>
+                        <textarea ng-model="maintenance.reason"></textarea>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <md-input-container class="md-block" flex="50">
+                        <label translate>Task name</label>
+                        <textarea ng-model="maintenance.name" required></textarea>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex="50">
+                        <label translate>Task description</label>
+                        <textarea ng-model="maintenance.description"></textarea>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label translate>Start date</label>
+                        <input type="datetime-local" required ng-model="maintenance.startdate" />
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label translate>End date</label>
+                        <input type="datetime-local" ng-model="maintenance.enddate" />
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-input-container class="md-block md-input-has-value">
+                        <label translate>Status *</label>
+                        <md-radio-group ng-model="maintenance.status" layout="row" name="property" required>
+                            <md-radio-button value="1" class="md-primary"><span translate>In Progress</span>
+                            </md-radio-button>
+                            <md-radio-button value="2" class="md-primary"><span translate>Completed</span>
+                            </md-radio-button>
+                        </md-radio-group>
+                        <div ng-messages="form.property.$error">
+                            <div ng-message="required" translate>Please choose a status.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                </md-card_content>
+        </md-card>
+        <div layout="row" layout-xs="column" ng-if="!loading">
+            <md-button class="md-raised md-primary" aria-label="Add" type="submit">
+                <md-icon>save</md-icon>
+                <md-tooltip md-direction="top">
+                    <span translate>Save</span>
+                </md-tooltip>
+                Save
+            </md-button>
+        </div>
+    </form>
+>>>>>>> dev
 </div>

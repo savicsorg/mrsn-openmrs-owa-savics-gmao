@@ -30,7 +30,6 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
     };
 
     $scope.selectedEquipmentChange = function (item) {
-        console.log(item)
         $scope.request.equipment = item;
     };
 
@@ -55,14 +54,17 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
 
     $scope.LoadRequest();
 
+<<<<<<< HEAD
     if ($stateParams.request_id) {
         $scope.request = $stateParams.data;
         $scope.request.creation = new Date(moment(new Date($stateParams.data.creation)).format('MM/DD/YYYY, h:mm A'));
         $scope.selectedEquipment = $stateParams.data.equipment.name;
     }
 
+=======
+>>>>>>> dev
     $scope.save = function () {
-        if (($scope.request.equipment)) {
+        if ($scope.request.equipment) {
             $scope.loading = true;
             $scope.request.equipment = $scope.request.equipment.id;
             if ($scope.request && $scope.request.uuid) {//edit

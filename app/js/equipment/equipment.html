@@ -28,7 +28,7 @@
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block" flex>
                         <label translate>Equipment type</label>
-                        <md-select ng-model="equipment.equipmentType">
+                        <md-select ng-model="equipment.equipmentType" required>
                             <md-option ng-repeat="t in equipmentTypes" ng-value="t.id">
                                 {{t.name}}
                             </md-option>
@@ -50,8 +50,8 @@
                     </md-input-container>
                     <md-input-container class="md-block md-input-has-value" flex>
                         <label translate>After sale service</label>
-                        <md-switch ng-model="equipment.aftersaleservice" aria-label="After sale service ?">
-                            After sale service ?
+                        <md-switch ng-model="equipment.aftersaleservice" aria-label="After sale service">
+                            <span translate>After sale service</span>
                         </md-switch>
                     </md-input-container>
                 </div>
@@ -172,7 +172,7 @@
                         <input type="date" ng-model="equipment.acquisitionDate" />
                     </md-input-container>
                     <md-input-container class="md-block" flex>
-                        <label translate>Year of commissionning</label>
+                        <label translate>Year of commissioning</label>
                         <input ng-model="equipment.commisionningYear">
                     </md-input-container>
                     <md-input-container class="md-block" flex>
