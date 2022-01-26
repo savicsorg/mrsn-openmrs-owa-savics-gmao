@@ -197,7 +197,8 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.operation.equipment = $stateParams.data.equipment.id;
         $scope.operation.siteBySource = $stateParams.data.siteBySourceId.id;
         $scope.operation.siteByDestination = $stateParams.data.siteByDestinationId.id;
-        $scope.operation.date = new Date(moment(new Date($stateParams.data.date)).format('MM/DD/YYYY'));
+        $scope.operation.date = new Date($stateParams.data.date);
+        
         $scope.selectedItem = $stateParams.data.selectedItem;
 
         if ($stateParams.data.status == "VALID") {
@@ -251,7 +252,6 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         delete query.d_hd;
         delete query.d_service;
         query.siteByDestination = query.d_site;
-        query.localapproval = query.date;
         query.localapprover = "";
 
         //query.centralapproval = query.date;
@@ -301,7 +301,8 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             .ok($translate.instant('Yes'))
             .cancel($translate.instant('Cancel'))).then(function () {
                 $scope.loading = true;
-                $scope.operation.localapproval = new Date();
+                //$scope.operation.localapproval = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+                $scope.operation.localapproval = moment(new Date($stateParams.data.date)).format("YYYY-MM-D hh:mm:ss");
                 $scope.operation.status = "REJECT";
                 $scope.save();
 
@@ -318,7 +319,7 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             .ok($translate.instant('Yes'))
             .cancel($translate.instant('Cancel'))).then(function () {
                 $scope.loading = true;
-                $scope.operation.localapproval = new Date();
+                $scope.operation.localapproval = moment(new Date($stateParams.data.date)).format("YYYY-MM-D hh:mm:ss");
                 $scope.operation.status = "VALID";
                 $scope.save();
             }, function () {

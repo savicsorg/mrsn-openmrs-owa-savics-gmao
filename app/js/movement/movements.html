@@ -22,7 +22,7 @@
     </div>
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">
-            <input flex type="search" name="search" ng-model="searchAll.equipment.name"
+            <input flex type="search" name="search" ng-model="searchAll"
                    placeholder="{{ 'Search by Equipement...' | translate }}">
         </div>
         <md-switch flex ng-model="movementValidated" aria-label="Validated">
@@ -44,7 +44,7 @@
                 </thead>
                 <tbody md-body>
                     <tr md-row
-                        data-ng-repeat="movement in movements| orderBy:query.order | filter:search ">
+                        data-ng-repeat="movement in movements| orderBy:query.order | filter:search">
                         <td md-cell>{{movement.id}}</td>
                         <td md-cell><span>{{movement.type==1 ? ('Output' | translate) : ('Transfer' | translate)}}</span></td>
                         <td md-cell>{{movement.date| date: 'dd/MM/yyyy'}}</td>
