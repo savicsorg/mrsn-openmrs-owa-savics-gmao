@@ -206,15 +206,24 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             $scope.validateBtn.text = $translate.instant("Validated on ") + new Date($scope.operation.localapproval).toLocaleDateString();
             $scope.validateBtn.enabled = false;
             $scope.validateBtn.visible = true;
+            $scope.cancelBtn.visible = true;
         } else if ($stateParams.data.status == "REJECT") {
             $scope.isEditable = false;
             $scope.validateBtn.text = $translate.instant("Rejected on ") + new Date($scope.operation.localapproval).toLocaleDateString();
             $scope.validateBtn.enabled = false;
             $scope.validateBtn.visible = true;
+            $scope.cancelBtn.visible = true;
         } else {
 
             $scope.validateBtn.enabled = true;
             $scope.validateBtn.visible = true;
+        }
+        if ($stateParams.canBeValidated == true){
+            $scope.validateBtn.visible = true;
+            $scope.cancelBtn.visible = true;
+        }else{
+            $scope.validateBtn.visible = false;
+            $scope.cancelBtn.visible = false;
         }
     }
 

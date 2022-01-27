@@ -15,6 +15,7 @@ angular.module('MovementsController', ['ngMaterial', 'md.data.table']).controlle
         $scope.movements = [];
         $scope.movementValidated = false
         $scope.searchAll = "";
+        $scope.canBeValidated = false;
 
         $scope.delete = function (ev, obj) {
             var confirm = $mdDialog.confirm()
@@ -81,10 +82,16 @@ angular.module('MovementsController', ['ngMaterial', 'md.data.table']).controlle
             }
         };
 
-        $scope.edit = function (data, selectedItem) {
+        $scope.edit = function (data, selectedItem, canValidate) {
+            var canBeValidated = false;
+            if (canValidate){
+                canBeValidated = canValidate;
+            }
+            
             data.selectedItem = selectedItem;
             $state.go('home.movement', {
                 operation_id: data.id,
+                canBeValidated: canBeValidated,
                 data: data,
             });
         };

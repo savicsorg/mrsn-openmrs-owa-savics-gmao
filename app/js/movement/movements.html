@@ -46,36 +46,45 @@
                     <tr md-row
                         data-ng-repeat="movement in movements| orderBy:query.order | filter:search">
                         <td md-cell>{{movement.id}}</td>
-                        <td md-cell><span>{{movement.type==1 ? ('Output' | translate) : ('Transfer' | translate)}}</span></td>
+                        <td md-cell><span>{{movement.type == 1 ? ('Output' | translate) : ('Transfer' | translate)}}</span></td>
                         <td md-cell>{{movement.date| date: 'dd/MM/yyyy'}}</td>
                         <td md-cell>{{movement.equipment.name}}</td>
                         <td style="text-align: center">
 
-                            <md-icon style="color:{{movement.status == 'REJECT' ? 'red': movement.status == 'VALID' ?'green':'#ccc'}}">
-                                <md-tooltip>
-                                    <span translate>Validated</span> 
-                                </md-tooltip>
-                                fiber_manual_record
-                            </md-icon>
-                        </td>
-                        <td>
-                            <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit" ng-if="!movement.localapproval"
-                                    ng-click="edit(movement, movement.equipment.name)">
-                                <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
-                                <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
-                            </button>
-                            <button ng-if="movement.localapproval" class="md-fab md-mini md-primary md-button"
-                                type="button" aria-label="History" ng-click="edit(movement, movement.equipment.name)">
-                                <md-icon class="material-icons" role="img" aria-hidden="true">visibility</md-icon>
-                                <md-tooltip md-direction="top"><span translate>Movement Detail</span></md-tooltip>
-                            </button>
-                            <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete"
-                                    ng-click="delete($event, movement)">
-                                <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
-                                <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
-                            </button>
-                        </td>
-                    </tr>
+                <md-icon style="color:{{movement.status == 'REJECT' ? 'red': movement.status == 'VALID' ?'green':'#ccc'}}">
+                    <md-tooltip>
+                        <span translate>Validated</span> 
+                    </md-tooltip>
+                    fiber_manual_record
+                </md-icon>
+                </td>
+                <td>
+                    <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit" ng-if="!movement.localapproval"
+                            ng-click="edit(movement, movement.equipment.name)">
+                        <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
+                        <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
+                    </button>
+                <button ng-if="movement.localapproval" class="md-fab md-mini md-primary md-button"
+                        type="button" aria-label="History" ng-click="edit(movement, movement.equipment.name, true)">
+                    <md-icon class="material-icons" role="img" aria-hidden="true">visibility</md-icon>
+                    <md-tooltip md-direction="top"><span translate>Movement Detail</span></md-tooltip>
+                </button>
+                    
+                <md-button class="md-fab md-mini md-primary md-button" aria-label="add"
+                           ng-if="!movement.localapproval"
+                           ng-click="edit(movement, movement.equipment.name, true)">
+                    <md-icon>check_circle</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Approve or cancel</span>
+                    </md-tooltip>
+                </md-button>
+                <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete"
+                        ng-click="delete($event, movement)">
+                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                    <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
+                </button>
+                </td>
+                </tr>
                 </tbody>
             </table>
         </md-table-container>
