@@ -88,5 +88,11 @@ angular.module('EquipmentsController', ['ngMaterial', 'md.data.table']).controll
             window.location = link;
         }
 
+        $scope.maintain = function(equipment){
+            $state.go('home.maintenance', {
+                data: { equipment: equipment}
+            });
+        }
+
 
     }]);
