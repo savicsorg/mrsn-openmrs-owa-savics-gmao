@@ -40,8 +40,7 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row
-                            data-ng-repeat="equipment in equipments | orderBy:query.order | filter:searchAll ">
+                        <tr md-row data-ng-repeat="equipment in equipments | orderBy:query.order | filter:searchAll ">
                             <td md-cell>{{equipment.id}}</td>
                             <td md-cell>{{equipment.serialNumber}}</td>
                             <td md-cell>{{equipment.name}}</td>
@@ -53,7 +52,7 @@
                                     <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                                 </button>
                                 <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Move"
-                                    ng-click="">
+                                    ng-click="openMovement(equipment)">
                                     <md-icon class="material-icons" role="img" aria-hidden="true">zoom_out_map</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Move</span></md-tooltip>
                                 </button>
@@ -79,7 +78,7 @@
             </md-table-container>
             <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.count}}"
                 md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
-                md-limit-options="[25, 50, 100]"  md-on-paginate="logPagination" md-label="$parent.label">
+                md-limit-options="[25, 50, 100]" md-on-paginate="logPagination" md-label="$parent.label">
             </md-table-pagination>
         </md-card-content>
     </md-card>
