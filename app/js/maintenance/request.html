@@ -51,10 +51,9 @@
                     <md-input-container class="md-block md-input-has-value" flex>
                         <label translate>Nature of work</label>
                         <md-select required ng-model="request.natureOfWork">
-                            <md-option ng-value="'1'"><span translate>Maintain</span></md-option>
-                            <md-option ng-value="'2'"><span translate>Repair</span></md-option>
-                            <md-option ng-value="'3'"><span translate>Work</span></md-option>
-                            <md-option ng-value="'4'"><span translate>Other</span></md-option>
+                            <md-option ng-repeat="n in natureofworks" ng-value="n.id">
+                                {{n.value}}
+                            </md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container class="md-block" flex>

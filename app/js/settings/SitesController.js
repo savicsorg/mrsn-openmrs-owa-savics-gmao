@@ -5,7 +5,7 @@ angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data
     $scope.resource = "savicsgmao";
     $scope.loading = false;
     //Breadcrumbs properties
-    $rootScope.links = { "GMAO Module": "", "Settings": "settings", "Sites in the HD/CSI service": "sites" };
+    $rootScope.links = { "Module GMAO": "", "Settings": "settings", "Sites in the HD/CSI service": "sites" };
     $scope.label = {
         page: $translate.instant("Page") + $translate.instant(":"),
         rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),

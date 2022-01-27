@@ -163,23 +163,23 @@ msgstr "Trimestriel"
 #: app/js/equipment/EquipmentController.js:209
 #: app/js/equipment/EquipmentsController.js:47
 #: app/js/equipment/EquipmentsController.js:74
-#: app/js/maintenance/MaintenanceController.js:30
-#: app/js/maintenance/MaintenanceController.js:35
-#: app/js/maintenance/MaintenanceController.js:55
-#: app/js/maintenance/MaintenanceController.js:64
+#: app/js/maintenance/MaintenanceController.js:31
+#: app/js/maintenance/MaintenanceController.js:36
+#: app/js/maintenance/MaintenanceController.js:56
+#: app/js/maintenance/MaintenanceController.js:65
 #: app/js/maintenance/MaintenancesController.js:41
 #: app/js/maintenance/MaintenancesController.js:68
-#: app/js/maintenance/RequestController.js:46
-#: app/js/maintenance/RequestController.js:69
-#: app/js/maintenance/RequestController.js:78
+#: app/js/maintenance/RequestController.js:44
+#: app/js/maintenance/RequestController.js:73
+#: app/js/maintenance/RequestController.js:82
 #: app/js/maintenance/RequestsController.js:47
-#: app/js/maintenance/RequestsController.js:67
-#: app/js/movement/MovementController.js:135
-#: app/js/movement/MovementController.js:149
-#: app/js/movement/MovementController.js:163
-#: app/js/movement/MovementController.js:177
-#: app/js/movement/MovementController.js:267
-#: app/js/movement/MovementController.js:278
+#: app/js/maintenance/RequestsController.js:73
+#: app/js/movement/MovementController.js:132
+#: app/js/movement/MovementController.js:146
+#: app/js/movement/MovementController.js:160
+#: app/js/movement/MovementController.js:174
+#: app/js/movement/MovementController.js:264
+#: app/js/movement/MovementController.js:275
 #: app/js/movement/MovementsController.js:42
 #: app/js/movement/MovementsController.js:62
 #: app/js/settings/DistrictsController.js:35
@@ -192,35 +192,35 @@ msgstr "Trimestriel"
 #: app/js/settings/EquipmentTypesController.js:44
 #: app/js/settings/EquipmentTypesController.js:77
 #: app/js/settings/EquipmentTypesController.js:89
-#: app/js/settings/HealthCentersController.js:37
-#: app/js/settings/HealthCentersController.js:47
-#: app/js/settings/HealthCentersController.js:79
-#: app/js/settings/HealthCentersController.js:91
-#: app/js/settings/HealthCentersController.js:103
-#: app/js/settings/HealthCentersController.js:128
-#: app/js/settings/HealthCentersController.js:123
-#: app/js/settings/ServicesController.js:39
-#: app/js/settings/ServicesController.js:49
-#: app/js/settings/ServicesController.js:81
-#: app/js/settings/ServicesController.js:93
-#: app/js/settings/ServicesController.js:105
-#: app/js/settings/ServicesController.js:117
-#: app/js/settings/ServicesController.js:142
-#: app/js/settings/ServicesController.js:137
-#: app/js/settings/SitesController.js:43 app/js/settings/SitesController.js:53
-#: app/js/settings/SitesController.js:85 app/js/settings/SitesController.js:97
-#: app/js/settings/SitesController.js:109
-#: app/js/settings/SitesController.js:121
-#: app/js/settings/SitesController.js:133
-#: app/js/settings/SitesController.js:158
-#: app/js/settings/SitesController.js:153
+#: app/js/settings/HealthCentersController.js:38
+#: app/js/settings/HealthCentersController.js:48
+#: app/js/settings/HealthCentersController.js:80
+#: app/js/settings/HealthCentersController.js:92
+#: app/js/settings/HealthCentersController.js:104
+#: app/js/settings/HealthCentersController.js:129
+#: app/js/settings/HealthCentersController.js:124
+#: app/js/settings/ServicesController.js:40
+#: app/js/settings/ServicesController.js:50
+#: app/js/settings/ServicesController.js:82
+#: app/js/settings/ServicesController.js:94
+#: app/js/settings/ServicesController.js:106
+#: app/js/settings/ServicesController.js:118
+#: app/js/settings/ServicesController.js:143
+#: app/js/settings/ServicesController.js:138
+#: app/js/settings/SitesController.js:44 app/js/settings/SitesController.js:54
+#: app/js/settings/SitesController.js:86 app/js/settings/SitesController.js:98
+#: app/js/settings/SitesController.js:110
+#: app/js/settings/SitesController.js:122
+#: app/js/settings/SitesController.js:134
+#: app/js/settings/SitesController.js:159
+#: app/js/settings/SitesController.js:154
 msgid "An unexpected error has occured."
 msgstr "Une erreur inattendue s’est produite."
 
 #: app/js/equipment/EquipmentController.js:194
 #: app/js/equipment/EquipmentController.js:203
-#: app/js/movement/MovementController.js:262
-#: app/js/movement/MovementController.js:272
+#: app/js/movement/MovementController.js:259
+#: app/js/movement/MovementController.js:269
 msgid "Data saved successfully."
 msgstr "Données enregistrées avec succès."
 
@@ -229,18 +229,18 @@ msgstr "Données enregistrées avec succès."
 #: app/js/equipment/EquipmentController.js:215
 #: app/js/equipment/EquipmentController.js:218
 #: app/js/equipment/EquipmentController.js:220
-#: app/js/maintenance/MaintenanceController.js:30
-#: app/js/maintenance/MaintenanceController.js:35
-#: app/js/maintenance/MaintenanceController.js:55
-#: app/js/maintenance/MaintenanceController.js:64
-#: app/js/maintenance/MaintenanceController.js:69
-#: app/js/movement/MovementController.js:267
-#: app/js/movement/MovementController.js:278
+#: app/js/maintenance/MaintenanceController.js:31
+#: app/js/maintenance/MaintenanceController.js:36
+#: app/js/maintenance/MaintenanceController.js:56
+#: app/js/maintenance/MaintenanceController.js:65
+#: app/js/maintenance/MaintenanceController.js:70
+#: app/js/movement/MovementController.js:264
+#: app/js/movement/MovementController.js:275
 msgid "Error"
 msgstr "Erreur"
 
 #: app/js/equipment/EquipmentController.js:215
-#: app/js/maintenance/MaintenanceController.js:69
+#: app/js/maintenance/MaintenanceController.js:70
 msgid "You must fill in the required fields before you proceed."
 msgstr "Vous devez remplir les champs obligatoires avant de continuer."
 
@@ -264,9 +264,9 @@ msgstr "Gestion de l’équipement"
 #: app/js/movement/MovementsController.js:21
 #: app/js/settings/DistrictsController.js:59
 #: app/js/settings/EquipmentTypesController.js:54
-#: app/js/settings/HealthCentersController.js:57
-#: app/js/settings/ServicesController.js:59
-#: app/js/settings/SitesController.js:63
+#: app/js/settings/HealthCentersController.js:58
+#: app/js/settings/ServicesController.js:60
+#: app/js/settings/SitesController.js:64
 msgid "Are you sure you want to delete this item?"
 msgstr "Êtes-vous sûr de bien vouloir supprimer cet élément?"
 
@@ -276,9 +276,9 @@ msgstr "Êtes-vous sûr de bien vouloir supprimer cet élément?"
 #: app/js/movement/MovementsController.js:22
 #: app/js/settings/DistrictsController.js:60
 #: app/js/settings/EquipmentTypesController.js:55
-#: app/js/settings/HealthCentersController.js:58
-#: app/js/settings/ServicesController.js:60
-#: app/js/settings/SitesController.js:64
+#: app/js/settings/HealthCentersController.js:59
+#: app/js/settings/ServicesController.js:61
+#: app/js/settings/SitesController.js:65
 msgid ""
 "If you choose `YES` this item will be deleted and you will not be able to "
 "recover it."
@@ -292,38 +292,38 @@ msgstr ""
 #: app/js/movement/MovementsController.js:23
 #: app/js/settings/DistrictsController.js:61
 #: app/js/settings/EquipmentTypesController.js:56
-#: app/js/settings/HealthCentersController.js:59
-#: app/js/settings/ServicesController.js:61
-#: app/js/settings/SitesController.js:65
+#: app/js/settings/HealthCentersController.js:60
+#: app/js/settings/ServicesController.js:62
+#: app/js/settings/SitesController.js:66
 msgid "Delete Confirmation"
 msgstr "Confirmation de suppression"
 
 #: app/js/equipment/EquipmentsController.js:29
 #: app/js/maintenance/MaintenancesController.js:23
 #: app/js/maintenance/RequestsController.js:30
-#: app/js/movement/MovementController.js:301
-#: app/js/movement/MovementController.js:319
+#: app/js/movement/MovementController.js:298
+#: app/js/movement/MovementController.js:316
 #: app/js/movement/MovementsController.js:25
 #: app/js/settings/DistrictsController.js:63
 #: app/js/settings/EquipmentTypesController.js:58
-#: app/js/settings/HealthCentersController.js:61
-#: app/js/settings/ServicesController.js:63
-#: app/js/settings/SitesController.js:67
+#: app/js/settings/HealthCentersController.js:62
+#: app/js/settings/ServicesController.js:64
+#: app/js/settings/SitesController.js:68
 msgid "Yes"
 msgstr "Oui"
 
 #: app/js/equipment/EquipmentsController.js:30
 #: app/js/maintenance/MaintenancesController.js:24
 #: app/js/maintenance/RequestsController.js:31
-#: app/js/movement/MovementController.js:302
-#: app/js/movement/MovementController.js:320
-#: app/js/movement/MovementController.js:23
+#: app/js/movement/MovementController.js:299
+#: app/js/movement/MovementController.js:317
+#: app/js/movement/MovementController.js:20
 #: app/js/movement/MovementsController.js:26
 #: app/js/settings/DistrictsController.js:64
 #: app/js/settings/EquipmentTypesController.js:59
-#: app/js/settings/HealthCentersController.js:62
-#: app/js/settings/ServicesController.js:64
-#: app/js/settings/SitesController.js:68 app/js/equipment/equipment.html:237
+#: app/js/settings/HealthCentersController.js:63
+#: app/js/settings/ServicesController.js:65
+#: app/js/settings/SitesController.js:69 app/js/equipment/equipment.html:236
 #: app/js/maintenance/request.html:97 app/js/movement/movement.html:27
 #: app/js/movement/movement.html:25 app/js/movement/movement.html:165
 msgid "Cancel"
@@ -335,9 +335,9 @@ msgstr "Annuler"
 #: app/js/movement/MovementsController.js:38
 #: app/js/settings/DistrictsController.js:77
 #: app/js/settings/EquipmentTypesController.js:73
-#: app/js/settings/HealthCentersController.js:75
-#: app/js/settings/ServicesController.js:77
-#: app/js/settings/SitesController.js:81
+#: app/js/settings/HealthCentersController.js:76
+#: app/js/settings/ServicesController.js:78
+#: app/js/settings/SitesController.js:82
 msgid "The item has been successfully deleted."
 msgstr "L’élément a été supprimé avec succès."
 
@@ -404,7 +404,7 @@ msgid "of"
 msgstr "sur"
 
 #: app/js/equipment/EquipmentsController.js:78
-#: app/js/movement/MovementController.js:122
+#: app/js/movement/MovementController.js:119
 msgid "An unexpected error has occured with getAllEquipments()."
 msgstr "Une erreur inattendue s’est produite avec getAllEquipments()."
 
@@ -422,20 +422,20 @@ msgstr "Historique des entretiens"
 msgid "An unexpected error has occured with getAllMaintenances()."
 msgstr "Une erreur inattendue s’est produite avec getAllMaintenances()."
 
-#: app/js/maintenance/RequestController.js:64
+#: app/js/maintenance/RequestController.js:68
 msgid "The maintenance request has been successfully updated."
 msgstr "La demande de maintenance a été mise à jour avec succès."
 
-#: app/js/maintenance/RequestController.js:73
+#: app/js/maintenance/RequestController.js:77
 msgid "The maintenance request has been successfully created."
 msgstr "La demande de maintenance a été créée avec succès."
 
-#: app/js/maintenance/RequestController.js:82
+#: app/js/maintenance/RequestController.js:86
 #: app/js/settings/DistrictsController.js:49
 #: app/js/settings/EquipmentTypesController.js:48
-#: app/js/settings/HealthCentersController.js:51
-#: app/js/settings/ServicesController.js:53
-#: app/js/settings/SitesController.js:57
+#: app/js/settings/HealthCentersController.js:52
+#: app/js/settings/ServicesController.js:54
+#: app/js/settings/SitesController.js:58
 msgid "All required fields must be filled out."
 msgstr "Tous les champs obligatoires doivent être remplis."
 
@@ -444,43 +444,43 @@ msgstr "Tous les champs obligatoires doivent être remplis."
 msgid "History of Maintenance Requests"
 msgstr "Historique des demandes de maintenance"
 
-#: app/js/maintenance/RequestsController.js:71
+#: app/js/maintenance/RequestsController.js:77
 msgid "An unexpected error has occured with getAllRequests()."
 msgstr "Une erreur inattendue s’est produite avec getAllRequests()."
 
-#: app/js/movement/MovementController.js:291
+#: app/js/movement/MovementController.js:288
 msgid "Toast dismissed."
 msgstr "Toast rejeté."
 
-#: app/js/movement/MovementController.js:293
+#: app/js/movement/MovementController.js:290
 msgid "Toast failed or was forced to close early by another toast."
 msgstr "Toast a échoué ou a été forcé de fermer tôt par un autre toast."
 
-#: app/js/movement/MovementController.js:300
+#: app/js/movement/MovementController.js:297
 msgid "Do you really want to reject this movement ?"
 msgstr "Voulez-vous vraiment rejeter ce mouvement ?"
 
-#: app/js/movement/MovementController.js:318
+#: app/js/movement/MovementController.js:315
 msgid "Do you really want to approve this movement ?"
 msgstr "Voulez-vous vraiment approuver ce mouvement ?"
 
-#: app/js/movement/MovementController.js:5
+#: app/js/movement/MovementController.js:5 app/js/movement/movement.html:3
 msgid "Equipment movement"
 msgstr "Mouvement de l’équipement"
 
-#: app/js/movement/MovementController.js:17
+#: app/js/movement/MovementController.js:14
 msgid "Validate"
 msgstr "Valider"
 
-#: app/js/movement/MovementController.js:24
+#: app/js/movement/MovementController.js:21
 msgid "Initiated"
 msgstr "Initié"
 
-#: app/js/movement/MovementController.js:206
+#: app/js/movement/MovementController.js:203
 msgid "Validated on"
 msgstr "Validé le"
 
-#: app/js/movement/MovementController.js:211
+#: app/js/movement/MovementController.js:208
 msgid "Rejected on"
 msgstr "Rejeté le"
 
@@ -494,17 +494,17 @@ msgstr "Une erreur inattendue s’est produite avec getAllMovements()."
 
 #: app/js/settings/DistrictsController.js:31
 #: app/js/settings/EquipmentTypesController.js:30
-#: app/js/settings/HealthCentersController.js:33
-#: app/js/settings/ServicesController.js:35
-#: app/js/settings/SitesController.js:39
+#: app/js/settings/HealthCentersController.js:34
+#: app/js/settings/ServicesController.js:36
+#: app/js/settings/SitesController.js:40
 msgid "The item has been successfully updated."
 msgstr "L’élément a été mis à jour avec succès."
 
 #: app/js/settings/DistrictsController.js:41
 #: app/js/settings/EquipmentTypesController.js:40
-#: app/js/settings/HealthCentersController.js:43
-#: app/js/settings/ServicesController.js:45
-#: app/js/settings/SitesController.js:49
+#: app/js/settings/HealthCentersController.js:44
+#: app/js/settings/ServicesController.js:46
+#: app/js/settings/SitesController.js:50
 msgid "The item has been successfully created."
 msgstr "L’élément a été créé avec succès."
 
@@ -519,8 +519,8 @@ msgstr "Gestion des types d’équipement"
 
 #: app/js/settings/HealthCentersController.js:4
 #: app/js/settings/healthCenters.html:3
-msgid "HD/CSIs Management"
-msgstr "Gestion HD/ICS"
+msgid "HD/CSI Management"
+msgstr "Gestion HD/CSI"
 
 #: app/js/settings/ServicesController.js:4 app/js/settings/services.html:3
 #: app/js/settings/settings.html:24 app/js/settings/sites.html:52
@@ -539,7 +539,7 @@ msgstr "Sites dans le service HD/CSI"
 
 #: app/js/dashboard/main.html:3
 msgid "Equipment and maintenance management module"
-msgstr "Module de gestion de l’équipement et de la maintenance"
+msgstr "Module de gestion de l’équipement et de la maintenance (GMAO)"
 
 #: app/js/dashboard/main.html:11
 msgid "Equipments management"
@@ -665,6 +665,10 @@ msgstr "Valeur d’acquisition"
 msgid "Acquisition mode"
 msgstr "Mode d’acquisition"
 
+#: app/js/equipment/equipment.html:197
+msgid "Inventory"
+msgstr "Inventaire"
+
 #: app/js/equipment/equipment.html:201
 msgid "Tracking"
 msgstr "Suivi"
@@ -689,9 +693,11 @@ msgstr "Poids (kg)"
 msgid "Volume (cubic meters)"
 msgstr "Volume (mètres cubes)"
 
-#: app/js/equipment/equipment.html:230 app/js/maintenance/maintenance.html:99
-#: app/js/maintenance/request.html:90 app/js/maintenance/request.html:92
-#: app/js/movement/movement.html:158 app/js/settings/districts.html:41
+#: app/js/equipment/equipment.html:229 app/js/equipment/equipment.html:231
+#: app/js/maintenance/maintenance.html:99
+#: app/js/maintenance/maintenance.html:101 app/js/maintenance/request.html:90
+#: app/js/maintenance/request.html:92 app/js/movement/movement.html:158
+#: app/js/movement/movement.html:160 app/js/settings/districts.html:41
 #: app/js/settings/districts.html:43 app/js/settings/equipmentTypes.html:26
 #: app/js/settings/equipmentTypes.html:28 app/js/settings/healthCenters.html:48
 #: app/js/settings/healthCenters.html:50 app/js/settings/services.html:56
@@ -725,7 +731,7 @@ msgid "Export"
 msgstr "Exporter"
 
 #: app/js/equipment/equipments.html:35 app/js/maintenance/maintenances.html:34
-#: app/js/maintenance/requests.html:33 app/js/movement/movements.html:37
+#: app/js/maintenance/requests.html:34 app/js/movement/movements.html:37
 #: app/js/settings/districts.html:63 app/js/settings/equipmentTypes.html:47
 #: app/js/settings/healthCenters.html:69 app/js/settings/services.html:77
 #: app/js/settings/sites.html:85
@@ -746,19 +752,19 @@ msgstr "Désignation"
 msgid "Type"
 msgstr "Type"
 
-#: app/js/equipment/equipments.html:39 app/js/maintenance/maintenances.html:39
-#: app/js/maintenance/requests.html:37 app/js/movement/movements.html:42
+#: app/js/equipment/equipments.html:39 app/js/maintenance/maintenances.html:40
+#: app/js/maintenance/requests.html:39 app/js/movement/movements.html:42
 #: app/js/settings/districts.html:67 app/js/settings/equipmentTypes.html:49
 #: app/js/settings/healthCenters.html:73 app/js/settings/services.html:81
 #: app/js/settings/sites.html:89
 msgid "Actions"
 msgstr "Actions"
 
-#: app/js/equipment/equipments.html:53 app/js/maintenance/maintenances.html:53
-#: app/js/maintenance/requests.html:49 app/js/movement/movements.html:65
+#: app/js/equipment/equipments.html:53 app/js/maintenance/maintenances.html:57
+#: app/js/maintenance/requests.html:52 app/js/movement/movements.html:65
 #: app/js/settings/districts.html:79 app/js/settings/equipmentTypes.html:59
-#: app/js/settings/healthCenters.html:85 app/js/settings/services.html:93
-#: app/js/settings/sites.html:101
+#: app/js/settings/healthCenters.html:86 app/js/settings/services.html:94
+#: app/js/settings/sites.html:102
 msgid "Edit"
 msgstr "Editer"
 
@@ -774,11 +780,11 @@ msgstr "Maintenir"
 msgid "History"
 msgstr "Historique"
 
-#: app/js/equipment/equipments.html:73 app/js/maintenance/maintenances.html:58
-#: app/js/maintenance/requests.html:53 app/js/movement/movements.html:70
+#: app/js/equipment/equipments.html:73 app/js/maintenance/maintenances.html:62
+#: app/js/maintenance/requests.html:57 app/js/movement/movements.html:75
 #: app/js/settings/districts.html:83 app/js/settings/equipmentTypes.html:63
-#: app/js/settings/healthCenters.html:89 app/js/settings/services.html:97
-#: app/js/settings/sites.html:105
+#: app/js/settings/healthCenters.html:91 app/js/settings/services.html:99
+#: app/js/settings/sites.html:107
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -829,10 +835,12 @@ msgid "Status *"
 msgstr "Statut *"
 
 #: app/js/maintenance/maintenance.html:83
+#: app/js/maintenance/maintenances.html:50
 msgid "In Progress"
 msgstr "En cours"
 
 #: app/js/maintenance/maintenance.html:85
+#: app/js/maintenance/maintenances.html:50
 msgid "Completed"
 msgstr "Terminé"
 
@@ -848,7 +856,7 @@ msgstr "Maintenance"
 msgid "Request for Maintenance"
 msgstr "Demande de maintenance"
 
-#: app/js/maintenance/maintenances.html:26 app/js/maintenance/requests.html:25
+#: app/js/maintenance/maintenances.html:26 app/js/maintenance/requests.html:26
 #: app/js/movement/movements.html:26
 msgid "Search by Equipement..."
 msgstr "Recherche par Equipement..."
@@ -861,7 +869,15 @@ msgstr "Ajouter une nouvelle maintenance"
 msgid "Start Date"
 msgstr "Date de début"
 
-#: app/js/maintenance/maintenances.html:38 app/js/maintenance/requests.html:36
+#: app/js/maintenance/maintenances.html:37
+msgid "End Date"
+msgstr "Date de fin"
+
+#: app/js/maintenance/maintenances.html:38 app/js/movement/movements.html:41
+msgid "Status"
+msgstr "Statut"
+
+#: app/js/maintenance/maintenances.html:39 app/js/maintenance/requests.html:38
 #: app/js/movement/movements.html:40
 msgid "Equipment"
 msgstr "Equipement"
@@ -922,11 +938,11 @@ msgstr "Raison de la demande"
 msgid "Request for an intervention"
 msgstr "Demande d’intervention"
 
-#: app/js/maintenance/requests.html:34
+#: app/js/maintenance/requests.html:35
 msgid "Nature of Work"
 msgstr "Nature du travail"
 
-#: app/js/maintenance/requests.html:35 app/js/movement/movement.html:45
+#: app/js/maintenance/requests.html:36 app/js/movement/movement.html:45
 #: app/js/movement/movementApproval.html:16 app/js/movement/movements.html:39
 msgid "Date"
 msgstr "Date"
@@ -934,10 +950,6 @@ msgstr "Date"
 #: app/js/movement/movement.html:62
 msgid "Search Equipment"
 msgstr "Rechercher un équipement"
-
-#: app/js/movement/movement.html:3
-msgid "Operation on equipment(s)"
-msgstr "Intervention sur équipement(s)"
 
 #: app/js/movement/movement.html:40
 msgid "Output"
@@ -1016,9 +1028,9 @@ msgstr "Ajouter un nouveau mouvement"
 msgid "Validated"
 msgstr "Validé"
 
-#: app/js/movement/movements.html:41
-msgid "Status"
-msgstr "Statut"
+#: app/js/movement/movements.html:70
+msgid "Movement Detail"
+msgstr "Détail du mouvement"
 
 #: app/js/settings/districts.html:14
 msgid "Add/Modify a Sanitary District"
@@ -1071,8 +1083,8 @@ msgid "Add/Modify an HD/CSI"
 msgstr "Ajouter/Modifier un HD/CSI"
 
 #: app/js/settings/healthCenters.html:63
-msgid "List of HD/CSIs"
-msgstr "Liste des HD/ICS"
+msgid "List of HD/CSI"
+msgstr "Liste des HD/CSI"
 
 #: app/js/settings/services.html:14
 msgid "Add/Modify a Service"
@@ -1106,6 +1118,3 @@ msgstr "Ajouter/Modifier un site"
 #: app/js/settings/sites.html:79
 msgid "List of Sites"
 msgstr "Liste des sites"
-
-#~ msgid "Serial n°"
-#~ msgstr "Numéro de série"

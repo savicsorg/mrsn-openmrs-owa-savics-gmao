@@ -4,7 +4,7 @@ angular.module('MovementsController', ['ngMaterial', 'md.data.table']).controlle
         $scope.resource = "savicsgmao";
         $scope.loading = false;
         //Breadcrumbs properties
-        $rootScope.links = {"GMAO Module": "", "Movements": "movements"};
+        $rootScope.links = {"Module GMAO": "", "History of Movements": "movements"};
         $scope.label = {
             page: $translate.instant("Page") + $translate.instant(":"),
             rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),

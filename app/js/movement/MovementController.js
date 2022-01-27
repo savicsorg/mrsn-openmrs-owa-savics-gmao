@@ -4,12 +4,9 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.rootscope = $rootScope;
     $scope.appTitle = $translate.instant("Equipment movement");
     $scope.resource = "savicsgmao";
-    $rootScope.links = { "gmao management module": "", "movement": "movements", "Edit": "movement" };
+    $rootScope.links = {"Module GMAO": "", "History of Movements": "movements", "Equipment movement": "movement"};
     $scope.loading = false;
     //Breadcrumbs properties
-    $rootScope.links = {};
-    $rootScope.links["Home"] = "";
-    $rootScope.links["Movement"] = "/movements";
     $scope.operation = {};
     $scope.equipments = [];
     $scope.isEditable = true;

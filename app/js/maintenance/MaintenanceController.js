@@ -3,7 +3,7 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
     $scope.rootscope = $rootScope;
     $scope.resource = "savicsgmao";
     $scope.loading = false;
-    $rootScope.links = { "GMAO Module": "", "Maintenance Management": "maintenancemanagement" };
+    $rootScope.links = { "Module GMAO": "", "Maintenance Management": "maintenancemanagement" };
     $scope.maintenance = { maintenanceType: {} };
     $scope.equipment = {};
     $scope.item = null;

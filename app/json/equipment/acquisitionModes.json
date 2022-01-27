@@ -7,11 +7,11 @@
     {
         "id": 2,
         "en": "Purchase",
-        "fr": "Acheter"
+        "fr": "Achat"
     },
     {
         "id": 3,
-        "en": "unknown",
+        "en": "Unknown",
         "fr": "Inconnue"
     }
 ]

@@ -4,7 +4,7 @@ angular.module('RequestsController', ['ngMaterial', 'md.data.table']).controller
     $scope.resource = "savicsgmao";
     $scope.loading = false;
     //Breadcrumbs properties
-    $rootScope.links = { "GMAO Module": "", "Maintenance Management": "History of Maintenance Requests" };
+    $rootScope.links = { "Module GMAO": "", "Maintenance Management": "History of Maintenance Requests" };
     $scope.label = {
         page: $translate.instant("Page") + $translate.instant(":"),
         rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),

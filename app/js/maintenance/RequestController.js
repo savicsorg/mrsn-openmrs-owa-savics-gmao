@@ -5,9 +5,7 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
     $scope.appTitle = "Request an intervention";
     $scope.resource = "savicsgmao";
     //Breadcrumbs properties
-    $rootScope.links = {};
-    $rootScope.links["Home"] = "";
-    $rootScope.links["Maintenance"] = "/maintenance";
+    $rootScope.links = { "Module GMAO": "", "Maintenance Management": "maintenancemanagement" };
     $scope.equipmentSearchText = "";
     $scope.request = {};
 

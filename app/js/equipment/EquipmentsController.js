@@ -4,7 +4,7 @@ angular.module('EquipmentsController', ['ngMaterial', 'md.data.table']).controll
         $scope.resource = "savicsgmao";
         $scope.loading = false;
         //Breadcrumbs properties
-        $rootScope.links = {"GMAO Module": "", "Equipments": "equipments"};
+        $rootScope.links = {"Module GMAO": "", "Equipments": "equipments"};
         $scope.label = {
             page: $translate.instant("Page") + $translate.instant(":"),
             rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),

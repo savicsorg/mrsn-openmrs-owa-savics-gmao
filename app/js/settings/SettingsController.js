@@ -4,5 +4,5 @@ angular.module('SettingsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.resource = "savicsgmao";
     $scope.loading = false;
     //Breadcrumbs properties
-    $rootScope.links = {"GMAO Module": "", "Settings": "settings"};
+    $rootScope.links = {"Module GMAO": "", "Settings": "settings"};
 }]);
