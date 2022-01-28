@@ -4,7 +4,7 @@ angular.module('EquipmentsController', ['ngMaterial', 'md.data.table']).controll
         $scope.resource = "savicsgmao";
         $scope.loading = false;
         //Breadcrumbs properties
-        $rootScope.links = {"GMAO Module": "", "Equipments": "equipments"};
+        $rootScope.links = {"Module GMAO": "", "Equipments": "equipments"};
         $scope.label = {
             page: $translate.instant("Page") + $translate.instant(":"),
             rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),
@@ -86,6 +86,12 @@ angular.module('EquipmentsController', ['ngMaterial', 'md.data.table']).controll
             let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/equipment/export";
             localStorage.setItem("export_link", link);
             window.location = link;
+        }
+
+        $scope.maintain = function(equipment){
+            $state.go('home.maintenance', {
+                data: { equipment: equipment}
+            });
         }
 
 

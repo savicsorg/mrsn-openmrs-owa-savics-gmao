@@ -4,7 +4,7 @@ angular.module('EquipmentTypesController', ['ngMaterial', 'ngAnimate', 'toastr',
     $scope.resource = "savicsgmao";
     $scope.loading = false;
     //Breadcrumbs properties
-    $rootScope.links = {"GMAO Module": "", "Settings": "settings", "Equipment Types Management": "equipmentTypes"};
+    $rootScope.links = {"Module GMAO": "", "Settings": "settings", "Equipment Types Management": "equipmentTypes"};
     $scope.label = {
         page: $translate.instant("Page") + $translate.instant(":"),
         rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),

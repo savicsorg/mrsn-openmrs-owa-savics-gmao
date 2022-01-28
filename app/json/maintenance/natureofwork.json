@@ -1,13 +1,13 @@
 [
     {
         "id": "1",
-        "en": "Maintain",
+        "en": "Preventive Maintenance",
         "fr": "Maintenance Préventive"
     },
     {
         "id": "2",
         "en": "Repair",
-        "fr": "Réparration"
+        "fr": "Réparation"
     },
     {
         "id": "3",

@@ -4,7 +4,7 @@ angular.module('DistrictsController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
     $scope.resource = "savicsgmao";
     $scope.loading = false;
     //Breadcrumbs properties
-    $rootScope.links = { "GMAO Module": "", "Settings": "settings", "Sanitary District Management": "districts" };
+    $rootScope.links = { "Module GMAO": "", "Settings": "settings", "Sanitary District Management": "districts" };
     $scope.label = {
         page: $translate.instant("Page") + $translate.instant(":"),
         rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),

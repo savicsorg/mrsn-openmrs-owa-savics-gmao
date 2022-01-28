@@ -1,11 +1,11 @@
 angular.module('HealthCentersController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('HealthCentersController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$q', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $q, $translate) {
     var _ = require("underscore");
     $scope.rootscope = $rootScope;
-    $scope.appTitle = $translate.instant("HD/CSIs Management");
+    $scope.appTitle = $translate.instant("HD/CSI Management");
     $scope.resource = "savicsgmao";
     $scope.loading = false;
     //Breadcrumbs properties
-    $rootScope.links = { "GMAO Module": "", "Settings": "settings", "HD/CSI Management": "healthCenters" };
+    $rootScope.links = { "Module GMAO": "", "Settings": "settings", "HD/CSI Management": "healthCenters" };
     $scope.label = {
         page: $translate.instant("Page") + $translate.instant(":"),
         rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),

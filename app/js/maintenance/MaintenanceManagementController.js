@@ -4,5 +4,5 @@ angular.module('MaintenanceManagementController', ['ngMaterial', 'ngAnimate', 't
     $scope.resource = "savicsgmao";
     $scope.loading = false;
     //Breadcrumbs properties
-    $rootScope.links = {"GMAO Module": "", "Maintenance Management": ""};
+    $rootScope.links = {"Module GMAO": "", "Maintenance Management": ""};
 }]);

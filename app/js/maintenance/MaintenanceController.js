@@ -3,7 +3,7 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
     $scope.rootscope = $rootScope;
     $scope.resource = "savicsgmao";
     $scope.loading = false;
-    $rootScope.links = { "GMAO Module": "", "Maintenance Management": "maintenancemanagement" };
+    $rootScope.links = { "Module GMAO": "", "Maintenance Management": "maintenancemanagement" };
     $scope.maintenance = { maintenanceType: {} };
     $scope.equipment = {};
     $scope.item = null;
@@ -14,6 +14,9 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
         $scope.maintenance = $stateParams.data;
         $scope.maintenance.startdate = new Date(moment(new Date($stateParams.data.startdate)).format('MM/DD/YYYY, h:mm A'));
         $scope.maintenance.enddate = new Date(moment(new Date($stateParams.data.enddate)).format('MM/DD/YYYY, h:mm A'));
+        $scope.selectedItem = $stateParams.data.equipment.name;
+    } else if($stateParams.data && $stateParams.data.equipment){
+        $scope.equipment = $stateParams.data.equipment;
         $scope.selectedItem = $stateParams.data.equipment.name;
     }
 

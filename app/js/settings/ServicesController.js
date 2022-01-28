@@ -5,7 +5,7 @@ angular.module('ServicesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.resource = "savicsgmao";
     $scope.loading = false;
     //Breadcrumbs properties
-    $rootScope.links = { "GMAO Module": "", "Settings": "settings", "Services in HD/CSI": "services" };
+    $rootScope.links = { "Module GMAO": "", "Settings": "settings", "Services in HD/CSI": "services" };
     $scope.label = {
         page: $translate.instant("Page") + $translate.instant(":"),
         rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),

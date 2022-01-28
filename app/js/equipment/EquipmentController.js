@@ -4,13 +4,10 @@ angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.
     $scope.rootscope = $rootScope;
     $scope.appTitle = $translate.instant("Equipment management");
     $scope.resource = "savicsgmao";
-    $rootScope.links = { "Pharmacy management module": "", "Equipment": "equipments", "Edit": "equipment" };
+    $rootScope.links = { "Module GMAO": "", "Equipments": "equipments", "Edit": "equipment" };
     $scope.loading = false;
     $scope.equipment = {};
     //Breadcrumbs properties
-    $rootScope.links = {};
-    $rootScope.links["Home"] = "";
-    $rootScope.links["Equipements"] = "/equipements";
     $scope.equipement = {};
 
     var dictionary = require("../utils/dictionary");
