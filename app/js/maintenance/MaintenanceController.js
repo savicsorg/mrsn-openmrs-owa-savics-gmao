@@ -15,6 +15,9 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
         $scope.maintenance.startdate = new Date(moment(new Date($stateParams.data.startdate)).format('MM/DD/YYYY, h:mm A'));
         $scope.maintenance.enddate = new Date(moment(new Date($stateParams.data.enddate)).format('MM/DD/YYYY, h:mm A'));
         $scope.selectedItem = $stateParams.data.equipment.name;
+    } else if($stateParams.data && $stateParams.data.equipment){
+        $scope.equipment = $stateParams.data.equipment;
+        $scope.selectedItem = $stateParams.data.equipment.name;
     }
 
     $scope.getData = function () {

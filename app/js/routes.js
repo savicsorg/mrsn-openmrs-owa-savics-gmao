@@ -191,6 +191,7 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         params: {
             operation_id: undefined,
             equipment_id: undefined,
+            canBeValidated: undefined,
             data: undefined
         },
         template: require('./movement/movement.html'),
