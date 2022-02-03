@@ -182,6 +182,7 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
 
     if ($stateParams.equipment_id) {
         $scope.selectedItem = $stateParams.data.name;
+        $scope.operation.equipment = $stateParams.equipment_id;
         $scope.operation.s_district = $stateParams.data.site.service.healthcenter.district.id;
         $scope.operation.s_hd = $stateParams.data.site.service.healthcenter.id;
         $scope.operation.s_service = $stateParams.data.site.service.id;
@@ -223,10 +224,10 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             $scope.validateBtn.enabled = true;
             $scope.validateBtn.visible = true;
         }
-        if ($stateParams.canBeValidated == true){
+        if ($stateParams.canBeValidated == true) {
             $scope.validateBtn.visible = true;
             $scope.cancelBtn.visible = true;
-        }else{
+        } else {
             $scope.validateBtn.visible = false;
             $scope.cancelBtn.visible = false;
         }
@@ -267,6 +268,7 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         delete query.d_service;
         query.siteByDestination = query.d_site;
         query.localapprover = "";
+        query.motif = (query.motif === undefined || query.motif === null) ? '' : query.motif;
 
         //query.centralapproval = query.date;
         query.centralapprover = "";
