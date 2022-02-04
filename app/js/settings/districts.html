@@ -10,7 +10,7 @@
     <div layout="row" ng-if="loading" layout-sm="column" layout-align="space-around">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>
-    <md-card ng-show="!loading">
+    <md-card ng-show="!loading"  ng-if="account.role == 1 || account.role == 2" >
         <md-card-title translate>Add/Modify a Sanitary District</md-card-title>
         <md-card-content>
             <form name="myForm">
@@ -74,11 +74,11 @@
                             <td md-cell>{{district.code}}</td>
                             <td md-cell>{{district.regionid}}</td>
                             <td md-cell>
-                                <button ng-click="read(district)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit">
+                                <button ng-click="read(district)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit"  ng-if="account.role == 1 || account.role == 2" >
                                     <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                                 </button>
-                                <button ng-click="delete($event,district)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete">
+                                <button ng-click="delete($event,district)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete"  ng-if="account.role == 1 || account.role == 2" >
                                     <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
                                 </button>

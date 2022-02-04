@@ -353,6 +353,35 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         console.error(e);
     });
 
+    if (!$rootScope.selectedLanguage) {
+        $rootScope.selectedLanguage = 'en';
+    }
+
+    if (!$rootScope.account) {
+        $rootScope.account = {};
+    }
+
+    $rootScope.changeLanguage($rootScope.selectedLanguage);
+
+    openmrsRest.getFull("session").then(function (response) {
+        $rootScope.account = response.user;
+        if (_.some(response.user.roles, function (item) {
+            return item.display === "GMAO: Administrateur" || item.name === "GMAO: Administrateur" || item.name === "System Developer";
+        })) {
+            $rootScope.account.role = 1;
+        } else if (_.some(response.user.roles, function (item) {
+            return item.display === "GMAO: Responsable" || item.name === "GMAO: Responsable";
+        })) {
+            $rootScope.account.role = 2;
+        } else if (_.some(response.user.roles, function (item) {
+            return item.display === "GMAO: Gestionnaire" || item.name === "GMAO: Gestionnaire";
+        })) {
+            $rootScope.account.role = 3;
+        } 
+    }, function (e) {
+        console.log(e);
+    });
+
     //$state.go('home.dashboard.main');
     $transitions.onStart({}, function (trans) {
         var nextState = trans.to();
