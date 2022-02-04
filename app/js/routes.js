@@ -379,6 +379,8 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         })) {
             $rootScope.account.role = 3;
         } 
+        console.log('$rootScope.account=');
+        console.log($rootScope.account);
     }, function (e) {
         console.log(e);
     });

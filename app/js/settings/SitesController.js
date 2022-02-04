@@ -1,6 +1,6 @@
 angular.module('SitesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('SitesController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$q', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $q, $translate) {
     var _ = require("underscore");
-    $scope.rootscope = $rootScope;
+    $scope.rootScope = $rootScope;
     $scope.appTitle = $translate.instant("Sites in the HD/CSI service");
     $scope.resource = "savicsgmao";
     $scope.loading = false;
