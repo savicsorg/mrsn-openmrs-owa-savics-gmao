@@ -4,7 +4,7 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.rootscope = $rootScope;
     $scope.appTitle = $translate.instant("Equipment movement");
     $scope.resource = "savicsgmao";
-    $rootScope.links = {"Module GMAO": "", "History of Movements": "movements", "Equipment movement": "movement"};
+    $rootScope.links = { "Module GMAO": "", "History of Movements": "movements", "Equipment movement": "movement" };
     $scope.loading = false;
     //Breadcrumbs properties
     $scope.operation = {};
@@ -180,6 +180,14 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     loadAllServices();
     loadAllSites();
 
+    if ($stateParams.equipment_id) {
+        $scope.selectedItem = $stateParams.data.name;
+        $scope.operation.s_district = $stateParams.data.site.service.healthcenter.district.id;
+        $scope.operation.s_hd = $stateParams.data.site.service.healthcenter.id;
+        $scope.operation.s_service = $stateParams.data.site.service.id;
+        $scope.operation.s_site = $stateParams.data.site.id;
+    }
+
     if ($stateParams.operation_id) {
         $scope.operation = $stateParams.data;
         $scope.operation.s_district = $stateParams.data.equipment.site.service.healthcenter.district.id;
@@ -195,7 +203,7 @@ angular.module('MovementController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.operation.siteBySource = $stateParams.data.siteBySourceId.id;
         $scope.operation.siteByDestination = $stateParams.data.siteByDestinationId.id;
         $scope.operation.date = new Date($stateParams.data.date);
-        
+
         $scope.selectedItem = $stateParams.data.selectedItem;
 
         if ($stateParams.data.status == "VALID") {

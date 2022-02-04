@@ -190,6 +190,7 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         url: 'movement',
         params: {
             operation_id: undefined,
+            equipment_id: undefined,
             canBeValidated: undefined,
             data: undefined
         },
