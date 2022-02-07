@@ -22,9 +22,12 @@
     </div>
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">
-            <input flex type="search" name="search" ng-model="searchAll.equipment.name"
-                placeholder="{{ 'Search by Equipement...' | translate }}">
+            <input flex type="search" name="search" ng-model="searchAll"
+                   placeholder="{{ 'Search by Equipement...' | translate }}">
         </div>
+        <md-switch flex ng-model="requestValidated" aria-label="Validated">
+            <span translate>Validated</span>
+        </md-switch>
     </md-toolbar>
     <md-card>
         <md-table-container class="container" fixed-column-table>
@@ -36,34 +39,58 @@
                         <th md-column md-order-by="creation | date:'dd/MM/yyyy' : 'UTC'"><span translate>Date</span>
                         </th>
                         <th md-column md-order-by="equipment.name"><span translate>Equipment</span></th>
+                        <th><span translate>Status</span></th>
                         <th md-column><span translate>Actions</span></th>
                     </tr>
                 </thead>
                 <tbody md-body>
-                    <tr md-row data-ng-repeat="request in requests| orderBy:query.order | filter:searchAll ">
+                    <tr md-row data-ng-repeat="request in requests| orderBy:query.order | filter:search ">
                         <td md-cell>{{request.id}}</td>
                         <td md-cell>{{getElementById(request.natureOfWork)}}</td>
-                        <td md-cell>{{request.creation | date:'dd/MM/yyyy, h:mma' : 'UTC'}}</td>
+                        <td md-cell>{{request.creation| date:'dd/MM/yyyy, h:mma' : 'UTC'}}</td>
                         <td md-cell>{{request.equipment.name}}</td>
-                        <td md-cell>
-                            <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit"
-                                ng-click="openEdit(request)">
-                                <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
-                                <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
-                            </button>
-                            <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete"
-                                ng-click="delete($event,request)">
-                                <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
-                                <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
-                            </button>
-                        </td>
-                    </tr>
+                        <td style="text-align: center">
+
+                <md-icon style="color:{{request.status == 'REJECT' ? 'red': request.status == 'VALID' ?'green':'#ccc'}}">
+                    <md-tooltip>
+                        <span translate>Validated</span> 
+                    </md-tooltip>
+                    fiber_manual_record
+                </md-icon>
+                </td>
+                <td md-cell>
+                    <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit"
+                            ng-click="openEdit(request)" ng-if="!request.approval">
+                        <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
+                        <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
+                    </button>
+                    <button ng-if="request.approval" class="md-fab md-mini md-primary md-button"
+                            type="button" aria-label="History" ng-click="openEdit(request, true)">
+                        <md-icon class="material-icons" role="img" aria-hidden="true">visibility</md-icon>
+                        <md-tooltip md-direction="top"><span translate>Request detail</span></md-tooltip>
+                    </button>
+
+                <md-button class="md-fab md-mini md-primary md-button" aria-label="add"
+                           ng-if="!request.approval"
+                           ng-click="openEdit(request, true)">
+                    <md-icon>check_circle</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Approve or cancel</span>
+                    </md-tooltip>
+                </md-button>
+                <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete"
+                        ng-click="delete($event, request)">
+                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                    <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
+                </button>
+                </td>
+                </tr>
                 </tbody>
             </table>
         </md-table-container>
         <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.count}}"
-            md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
-            md-limit-options="[25, 50, 100]" md-on-paginate="logPagination" md-label="$parent.label">
+                             md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+                             md-limit-options="[25, 50, 100]" md-on-paginate="logPagination" md-label="$parent.label">
         </md-table-pagination>
     </md-card>
 </div>

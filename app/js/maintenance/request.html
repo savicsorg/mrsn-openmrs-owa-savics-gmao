@@ -6,6 +6,26 @@
                 <md-icon>arrow_back</md-icon><span translate>Back</span>
             </md-button>
         </a>
+        <md-button class="md-raised md-primary" aria-label="Add"
+            ng-if='validateBtn.visible  '
+            ng-disabled="!validateBtn.enabled"
+            ng-click="approve()">
+            <md-icon class=" material-icons" role="img" aria-hidden="true">check_circle</md-icon>
+            <md-tooltip md-direction="top">
+                <span>{{validateBtn.text}}</span>
+            </md-tooltip>
+            {{validateBtn.text}}
+        </md-button>
+
+        <md-button class="md-raised md-accent" aria-label="Add"
+            ng-if='validateBtn.enabled && validateBtn.visible '
+            ng-click="reject()">
+            <md-icon class=" material-icons" role="img" aria-hidden="true">cancel</md-icon>
+            <md-tooltip md-direction="top">
+                <span translate>Cancel</span>
+            </md-tooltip>
+            {{'Cancel' | translate}}
+        </md-button>
     </div>
     <form name="form" ng-submit="save()">
         <md-card>
@@ -14,7 +34,7 @@
             </md-card-title>
             <md-card-content>
                 <div layout="row" layout-xs="column" class="flex flex-col">
-                    <md-autocomplete md-selected-item="selectedEquipment" md-search-text="equipmentSearchText"
+                    <md-autocomplete ng-disabled="!isEditable" md-selected-item="selectedEquipment" md-search-text="equipmentSearchText"
                         md-items="equipment in searchEquipments(equipmentSearchText)" md-item-text="equipment.name"
                         class="md-block" flex-gt-sm md-floating-label="{{'Equipment name' | translate}}"
                         md-clear-button="true" md-no-cache="true"
@@ -33,11 +53,11 @@
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block" flex>
                         <label translate>Request by</label>
-                        <input required ng-model="request.requestedby">
+                        <input ng-disabled="!isEditable" required ng-model="request.requestedby">
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <label translate>Register number</label>
-                        <input required ng-model="request.registerNumber">
+                        <input ng-disabled="!isEditable" required ng-model="request.registerNumber">
                     </md-input-container>
                 </div>
 
@@ -50,7 +70,7 @@
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block md-input-has-value" flex>
                         <label translate>Nature of work</label>
-                        <md-select required ng-model="request.natureOfWork">
+                        <md-select ng-disabled="!isEditable" required ng-model="request.natureOfWork">
                             <md-option ng-repeat="n in natureofworks" ng-value="n.id">
                                 {{n.value}}
                             </md-option>
@@ -58,7 +78,7 @@
                     </md-input-container>
                     <md-input-container class="md-block" flex>
                         <label translate>Priority</label>
-                        <md-select required ng-model="request.priority">
+                        <md-select ng-disabled="!isEditable" required ng-model="request.priority">
                             <md-option ng-repeat="p in prioritys" ng-value="p.id">
                                 {{p.value}}
                             </md-option>
@@ -68,14 +88,14 @@
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block" flex="100">
                         <label translate>Date of request for intervention</label>
-                        <input required type="datetime-local" ng-model="request.creation"
+                        <input ng-disabled="!isEditable" required type="datetime-local" ng-model="request.creation"
                             pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}">
                     </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block md-input-has-value" flex="100">
                         <label translate>Request’s reason</label>
-                        <textarea required ng-model="request.motif"></textarea>
+                        <textarea ng-disabled="!isEditable" required ng-model="request.motif"></textarea>
                     </md-input-container>
                 </div>
 
@@ -83,7 +103,7 @@
         </md-card>
 
         <div layout="row" layout-xs="column">
-            <md-button class="md-raised md-primary" aria-label="Add" type="submit">
+            <md-button ng-disabled="!isEditable" class="md-raised md-primary" aria-label="Add" type="submit">
                 <md-icon>save</md-icon>
                 <md-tooltip md-direction="top">
                     <span translate>Save</span>

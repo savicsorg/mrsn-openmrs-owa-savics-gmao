@@ -152,6 +152,7 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         url: 'request',
         params: {
             request_id: undefined,
+            canBeValidated: undefined,
             data: undefined
         },
         template: require('./maintenance/request.html'),
