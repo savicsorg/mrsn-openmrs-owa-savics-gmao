@@ -10,7 +10,7 @@
     <div layout="row" ng-if="loading" layout-sm="column" layout-align="space-around">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>   
-    <md-card ng-show="!loading">
+    <md-card ng-show="!loading"  ng-if="account.role == 1 || account.role == 2 || account.role == 3" >
         <md-card-title translate>Add/Modify an Equipment Type</md-card-title>
         <md-card-content>
             <div layout="row" layout-xs="column" class="flex flex-col">                                        
@@ -54,11 +54,13 @@
                             <td md-cell>{{equipmentType.id}}</td>
                             <td md-cell>{{equipmentType.name}}</td>
                             <td md-cell>
-                                <button ng-click="read(equipmentType)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit">
+                                <button ng-click="read(equipmentType)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit"
+                                ng-if="account.role == 1 || account.role == 2 || account.role == 3" >
                                     <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                                 </button>
-                                <button ng-click="delete($event,equipmentType)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete">
+                                <button ng-click="delete($event,equipmentType)" class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete"
+                                ng-if="account.role == 1 || account.role == 2 || account.role == 3" >
                                     <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
                                 </button>

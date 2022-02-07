@@ -1,7 +1,7 @@
 angular.module('EquipmentController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('EquipmentController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) {
     var _ = require("underscore");
     var moment = require('moment');
-    $scope.rootscope = $rootScope;
+    $scope.rootScope = $rootScope;
     $scope.appTitle = $translate.instant("Equipment management");
     $scope.resource = "savicsgmao";
     $rootScope.links = { "Module GMAO": "", "Equipments": "equipments", "Edit": "equipment" };

@@ -191,6 +191,7 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         url: 'movement',
         params: {
             operation_id: undefined,
+            equipment_id: undefined,
             canBeValidated: undefined,
             data: undefined
         },
@@ -352,6 +353,37 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
         $rootScope.account = response.user;
     }, function (e) {
         console.error(e);
+    });
+
+    if (!$rootScope.selectedLanguage) {
+        $rootScope.selectedLanguage = 'en';
+    }
+
+    if (!$rootScope.account) {
+        $rootScope.account = {};
+    }
+
+    $rootScope.changeLanguage($rootScope.selectedLanguage);
+
+    openmrsRest.getFull("session").then(function (response) {
+        $rootScope.account = response.user;
+        if (_.some(response.user.roles, function (item) {
+            return item.display === "GMAO: Administrateur" || item.name === "GMAO: Administrateur" || item.name === "System Developer";
+        })) {
+            $rootScope.account.role = 1;
+        } else if (_.some(response.user.roles, function (item) {
+            return item.display === "GMAO: Responsable" || item.name === "GMAO: Responsable";
+        })) {
+            $rootScope.account.role = 2;
+        } else if (_.some(response.user.roles, function (item) {
+            return item.display === "GMAO: Gestionnaire" || item.name === "GMAO: Gestionnaire";
+        })) {
+            $rootScope.account.role = 3;
+        } 
+        console.log('$rootScope.account=');
+        console.log($rootScope.account);
+    }, function (e) {
+        console.log(e);
     });
 
     //$state.go('home.dashboard.main');

@@ -1,5 +1,5 @@
 angular.module('EquipmentTypesController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('EquipmentTypesController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) {
-    $scope.rootscope = $rootScope;
+    $scope.rootScope = $rootScope;
     $scope.appTitle = $translate.instant("Equipment Types Management");
     $scope.resource = "savicsgmao";
     $scope.loading = false;
