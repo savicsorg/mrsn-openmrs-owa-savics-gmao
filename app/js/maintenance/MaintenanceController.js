@@ -1,6 +1,6 @@
 angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('MaintenanceController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) {
     var moment = require('moment');
-    $scope.rootscope = $rootScope;
+    $scope.rootScope = $rootScope;
     $scope.resource = "savicsgmao";
     $scope.loading = false;
     $rootScope.links = { "Module GMAO": "", "Maintenance Management": "maintenancemanagement" };

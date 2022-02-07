@@ -71,7 +71,7 @@
                 </button>
                     
                 <md-button class="md-fab md-mini md-primary md-button" aria-label="add"
-                           ng-if="!movement.localapproval"
+                           ng-if="!movement.localapproval && (account.role == 1 || account.role == 2)"
                            ng-click="edit(movement, movement.equipment.name, true)">
                     <md-icon>check_circle</md-icon>
                     <md-tooltip md-direction="top">

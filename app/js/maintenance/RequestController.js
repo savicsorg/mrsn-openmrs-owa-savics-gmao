@@ -1,5 +1,5 @@
 angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('RequestController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $translate) {
-    $scope.rootscope = $rootScope;
+    $scope.rootScope = $rootScope;
     var moment = require('moment');
     $scope.maintenances = [];
     $scope.appTitle = "Request an intervention";

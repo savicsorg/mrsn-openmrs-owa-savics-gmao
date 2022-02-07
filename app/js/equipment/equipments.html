@@ -6,7 +6,7 @@
                 <md-icon>arrow_back</md-icon><span translate>Back</span>
             </md-button>
         </a>
-        <a href="index.html#!/equipment">
+        <a href="index.html#!/equipment"  ng-if="account.role == 1 || account.role == 2 || account.role == 3" >
             <md-button class="md-raised md-primary" aria-label="Add">
                 <md-icon class="material-icons" role="img" aria-hidden="true">add</md-icon>
                 <md-tooltip md-direction="top">
@@ -47,7 +47,7 @@
                             <td md-cell>{{equipment.equipmentType.name}}</td>
                             <td>
                                 <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit"
-                                    ng-click="openEdit(equipment)">
+                                    ng-click="openEdit(equipment)" ng-if="account.role == 1 || account.role == 2" >
                                     <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                                 </button>
@@ -62,7 +62,7 @@
                                     <md-tooltip md-direction="top"><span translate>Maintain</span></md-tooltip>
                                 </button>
                                 <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete"
-                                    ng-click="delete($event,equipment)">
+                                    ng-click="delete($event,equipment)"  ng-if="account.role == 1 || account.role == 2" >
                                     <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
                                     <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
                                 </button>

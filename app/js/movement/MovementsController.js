@@ -1,5 +1,5 @@
 angular.module('MovementsController', ['ngMaterial', 'md.data.table']).controller('MovementsController', ['$scope', '$state', '$stateParams', '$rootScope', '$mdToast', 'openmrsRest', '$mdDialog', '$q', '$translate', function ($scope, $state, $stateParams, $rootScope, $mdToast, openmrsRest, $mdDialog, $q, $translate) {
-        $scope.rootscope = $rootScope;
+        $scope.rootScope = $rootScope;
         $scope.appTitle = $translate.instant("History of Movements");
         $scope.resource = "savicsgmao";
         $scope.loading = false;

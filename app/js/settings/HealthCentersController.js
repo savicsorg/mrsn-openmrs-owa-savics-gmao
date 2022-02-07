@@ -1,6 +1,6 @@
 angular.module('HealthCentersController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.data.table']).controller('HealthCentersController', ['$scope', '$rootScope', '$mdToast', '$state', '$stateParams', '$mdDialog', 'openmrsRest', 'toastr', '$q', '$translate', function ($scope, $rootScope, $mdToast, $state, $stateParams, $mdDialog, openmrsRest, toastr, $q, $translate) {
     var _ = require("underscore");
-    $scope.rootscope = $rootScope;
+    $scope.rootScope = $rootScope;
     $scope.appTitle = $translate.instant("HD/CSI Management");
     $scope.resource = "savicsgmao";
     $scope.loading = false;
