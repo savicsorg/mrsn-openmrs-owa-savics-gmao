@@ -71,7 +71,7 @@
                     </button>
 
                 <md-button class="md-fab md-mini md-primary md-button" aria-label="add"
-                           ng-if="!request.approval"
+                           ng-if="!request.approval && (account.role == 1 || account.role == 2)"
                            ng-click="openEdit(request, true)">
                     <md-icon>check_circle</md-icon>
                     <md-tooltip md-direction="top">
