@@ -1,32 +1,55 @@
 <div id="content" class="container-fluid">
     <div class="row">
-    <h1> {{"Equipment and maintenance management module" | translate}} </h1>
+        <h1> {{"Equipment and maintenance management module" | translate}} </h1>
     </div>
-   <br/>
     <div id="content" class="container-fluid">
         <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 homeNotification">
+                <div>
+                    <div class="note-container" ng-class="{'hidden': hasPendingRequest == false}">
+                        <div class="note warning">
+                            <div class="d-flex text">
+                                <i class="icon-warning-sign medium"></i>
+                                <p>You have one or more maintenance request(s) which is/are waiting to be validated or
+                                    which must be carried out
+                                    <a href="" ng-click="hideWarning()" class="font-weight-bold">X</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 homeList" id="apps">
-                <a id="coreapps-activeVisitsHomepageLink-coreapps-activeVisitsHomepageLink-extension" href="index.html#!/equipments" class="btn btn-default btn-lg button app big align-self-center" type="button">
+                <a id="coreapps-activeVisitsHomepageLink-coreapps-activeVisitsHomepageLink-extension"
+                    href="index.html#!/equipments" class="btn btn-default btn-lg button app big align-self-center"
+                    type="button">
                     <i class="icon-shopping-cart"></i>
                     {{"Equipments management" | translate}}
                 </a>
 
-                <a id="org-openmrs-module-coreapps-activeVisitsHomepageLink-org-openmrs-module-coreapps-activeVisitsHomepageLink-extension" href="index.html#!/maintenancemanagement" class="btn btn-default btn-lg button app big align-self-center" type="button">
+                <a id="org-openmrs-module-coreapps-activeVisitsHomepageLink-org-openmrs-module-coreapps-activeVisitsHomepageLink-extension"
+                    href="index.html#!/maintenancemanagement"
+                    class="btn btn-default btn-lg button app big align-self-center" type="button">
                     <i class="icon-briefcase"></i>
                     {{"Maintenance management" | translate}}
                 </a>
 
-                <a id="referenceapplication-registrationapp-registerPatient-homepageLink-referenceapplication-registrationapp-registerPatient-homepageLink-extension" href="index.html#!/movements" class="btn btn-default btn-lg button app big align-self-center" type="button">
+                <a id="referenceapplication-registrationapp-registerPatient-homepageLink-referenceapplication-registrationapp-registerPatient-homepageLink-extension"
+                    href="index.html#!/movements" class="btn btn-default btn-lg button app big align-self-center"
+                    type="button">
                     <i class="icon-move"></i>
                     {{"Movements management" | translate}}
                 </a>
-                <a id="coreapps-systemadministration-homepageLink-coreapps-systemadministration-homepageLink-extension" href="index.html#!/settings" class="btn btn-default btn-lg button app big align-self-center" type="button">
+                <a id="coreapps-systemadministration-homepageLink-coreapps-systemadministration-homepageLink-extension"
+                    href="index.html#!/settings" class="btn btn-default btn-lg button app big align-self-center"
+                    type="button">
                     <i class="icon-cogs"></i>
                     {{"Settings" | translate}}
-                </a> 
+                </a>
             </div>
         </div>
     </div>
-    <br/><br/>
+    <br /><br />
 </div>
-

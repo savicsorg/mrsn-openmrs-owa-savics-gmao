@@ -108,23 +108,5 @@ angular.module('RequestsController', ['ngMaterial', 'md.data.table']).controller
         window.location = link;
     }
 
-    $scope.openRequest = function (requests) {
-        let evens = _.filter(requests, function (obj) {
-            return obj.status == null || obj.status == "VALID" || obj.status == "INIT";
-        });
-        let can_go_to_next = (evens.length >= 1) ? false : true;
-        if (can_go_to_next) {
-            $state.go('home.request');
-        } else {
-            alert = $mdDialog.alert({
-                title: $translate.instant('Attention'),
-                textContent: $translate.instant('You have one or more maintenance request(s) which is/are waiting to be validated or which must be carried out'),
-                ok: $translate.instant('Close')
-            });
 
-            $mdDialog.show(alert).finally(function () {
-                alert = undefined;
-            });
-        }
-    }
 }]);
