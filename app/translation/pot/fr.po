@@ -154,6 +154,11 @@ msgstr "Mensuel"
 msgid "Quarterly"
 msgstr "Trimestriel"
 
+#: app/js/dashboard/DashboardController.js:17
+#: app/js/maintenance/RequestsController.js:85
+msgid "An unexpected error has occured with getAllRequests()."
+msgstr "Une erreur inattendue s’est produite avec getAllRequests()."
+
 #: app/js/equipment/EquipmentController.js:88
 #: app/js/equipment/EquipmentController.js:103
 #: app/js/equipment/EquipmentController.js:118
@@ -172,8 +177,8 @@ msgstr "Trimestriel"
 #: app/js/maintenance/RequestController.js:87
 #: app/js/maintenance/RequestController.js:174
 #: app/js/maintenance/RequestController.js:184
-#: app/js/maintenance/RequestsController.js:48
-#: app/js/maintenance/RequestsController.js:80
+#: app/js/maintenance/RequestsController.js:49
+#: app/js/maintenance/RequestsController.js:81
 #: app/js/movement/MovementController.js:132
 #: app/js/movement/MovementController.js:146
 #: app/js/movement/MovementController.js:160
@@ -260,7 +265,7 @@ msgstr "Gestion de l’équipement"
 
 #: app/js/equipment/EquipmentsController.js:25
 #: app/js/maintenance/MaintenancesController.js:19
-#: app/js/maintenance/RequestsController.js:27
+#: app/js/maintenance/RequestsController.js:28
 #: app/js/movement/MovementsController.js:22
 #: app/js/settings/DistrictsController.js:59
 #: app/js/settings/EquipmentTypesController.js:54
@@ -272,7 +277,7 @@ msgstr "Êtes-vous sûr de bien vouloir supprimer cet élément?"
 
 #: app/js/equipment/EquipmentsController.js:26
 #: app/js/maintenance/MaintenancesController.js:20
-#: app/js/maintenance/RequestsController.js:28
+#: app/js/maintenance/RequestsController.js:29
 #: app/js/movement/MovementsController.js:23
 #: app/js/settings/DistrictsController.js:60
 #: app/js/settings/EquipmentTypesController.js:55
@@ -288,7 +293,7 @@ msgstr ""
 
 #: app/js/equipment/EquipmentsController.js:27
 #: app/js/maintenance/MaintenancesController.js:21
-#: app/js/maintenance/RequestsController.js:29
+#: app/js/maintenance/RequestsController.js:30
 #: app/js/movement/MovementsController.js:24
 #: app/js/settings/DistrictsController.js:61
 #: app/js/settings/EquipmentTypesController.js:56
@@ -302,7 +307,7 @@ msgstr "Confirmation de suppression"
 #: app/js/maintenance/MaintenancesController.js:23
 #: app/js/maintenance/RequestController.js:133
 #: app/js/maintenance/RequestController.js:150
-#: app/js/maintenance/RequestsController.js:31
+#: app/js/maintenance/RequestsController.js:32
 #: app/js/movement/MovementController.js:317
 #: app/js/movement/MovementController.js:335
 #: app/js/movement/MovementsController.js:26
@@ -319,7 +324,7 @@ msgstr "Oui"
 #: app/js/maintenance/RequestController.js:134
 #: app/js/maintenance/RequestController.js:151
 #: app/js/maintenance/RequestController.js:19
-#: app/js/maintenance/RequestsController.js:32
+#: app/js/maintenance/RequestsController.js:33
 #: app/js/movement/MovementController.js:318
 #: app/js/movement/MovementController.js:336
 #: app/js/movement/MovementController.js:20
@@ -337,7 +342,7 @@ msgstr "Annuler"
 
 #: app/js/equipment/EquipmentsController.js:43
 #: app/js/maintenance/MaintenancesController.js:37
-#: app/js/maintenance/RequestsController.js:44
+#: app/js/maintenance/RequestsController.js:45
 #: app/js/movement/MovementsController.js:39
 #: app/js/settings/DistrictsController.js:77
 #: app/js/settings/EquipmentTypesController.js:73
@@ -354,7 +359,7 @@ msgstr "Gestion des équipements"
 
 #: app/js/equipment/EquipmentsController.js:9
 #: app/js/maintenance/MaintenancesController.js:9
-#: app/js/maintenance/RequestsController.js:9
+#: app/js/maintenance/RequestsController.js:10
 #: app/js/movement/MovementsController.js:9
 #: app/js/settings/DistrictsController.js:9
 #: app/js/settings/EquipmentTypesController.js:9
@@ -368,8 +373,8 @@ msgstr "Page"
 #: app/js/equipment/EquipmentsController.js:10
 #: app/js/maintenance/MaintenancesController.js:9
 #: app/js/maintenance/MaintenancesController.js:10
-#: app/js/maintenance/RequestsController.js:9
 #: app/js/maintenance/RequestsController.js:10
+#: app/js/maintenance/RequestsController.js:11
 #: app/js/movement/MovementsController.js:9
 #: app/js/movement/MovementsController.js:10
 #: app/js/settings/DistrictsController.js:9
@@ -386,7 +391,7 @@ msgstr " :"
 
 #: app/js/equipment/EquipmentsController.js:10
 #: app/js/maintenance/MaintenancesController.js:10
-#: app/js/maintenance/RequestsController.js:10
+#: app/js/maintenance/RequestsController.js:11
 #: app/js/movement/MovementsController.js:10
 #: app/js/settings/DistrictsController.js:10
 #: app/js/settings/EquipmentTypesController.js:10
@@ -398,7 +403,7 @@ msgstr "Lignes par page"
 
 #: app/js/equipment/EquipmentsController.js:11
 #: app/js/maintenance/MaintenancesController.js:11
-#: app/js/maintenance/RequestsController.js:11
+#: app/js/maintenance/RequestsController.js:12
 #: app/js/movement/MovementsController.js:11
 #: app/js/settings/DistrictsController.js:11
 #: app/js/settings/EquipmentTypesController.js:11
@@ -474,14 +479,10 @@ msgstr "Validé le"
 msgid "Rejected on"
 msgstr "Rejeté le"
 
-#: app/js/maintenance/RequestsController.js:3
+#: app/js/maintenance/RequestsController.js:4
 #: app/js/maintenance/requests.html:3
 msgid "History of Maintenance Requests"
 msgstr "Historique des demandes de maintenance"
-
-#: app/js/maintenance/RequestsController.js:84
-msgid "An unexpected error has occured with getAllRequests()."
-msgstr "Une erreur inattendue s’est produite avec getAllRequests()."
 
 #: app/js/movement/MovementController.js:307
 msgid "Toast dismissed."
@@ -546,7 +547,7 @@ msgstr "Gestion HD/CSI"
 msgid "Services in HD/CSI"
 msgstr "Services en HD/CSI"
 
-#: app/js/settings/SettingsController.js:3 app/js/dashboard/main.html:25
+#: app/js/settings/SettingsController.js:3 app/js/dashboard/main.html:49
 #: app/js/settings/settings.html:3
 msgid "Settings"
 msgstr "Paramètres"
@@ -560,15 +561,23 @@ msgstr "Sites dans le service HD/CSI"
 msgid "Equipment and maintenance management module"
 msgstr "Module de gestion de l’équipement et de la maintenance (GMAO)"
 
-#: app/js/dashboard/main.html:11
+#: app/js/dashboard/main.html:13
+msgid ""
+"You have one or more maintenance request(s) which is/are waiting to be "
+"validated or which must be carried out"
+msgstr ""
+"Vous avez une ou plusieurs demandes de maintenance qui sont/sont en attente "
+"d’être validées ou qui doivent être effectuées"
+
+#: app/js/dashboard/main.html:29
 msgid "Equipments management"
 msgstr "Gestion des équipements"
 
-#: app/js/dashboard/main.html:16
+#: app/js/dashboard/main.html:36
 msgid "Maintenance management"
 msgstr "Gestion de la maintenance"
 
-#: app/js/dashboard/main.html:21
+#: app/js/dashboard/main.html:43
 msgid "Movements management"
 msgstr "Gestion des mouvements"
 
@@ -772,7 +781,7 @@ msgid "Actions"
 msgstr "Actions"
 
 #: app/js/equipment/equipments.html:52 app/js/maintenance/maintenances.html:57
-#: app/js/maintenance/requests.html:65 app/js/movement/movements.html:65
+#: app/js/maintenance/requests.html:66 app/js/movement/movements.html:65
 #: app/js/settings/districts.html:79 app/js/settings/equipmentTypes.html:60
 #: app/js/settings/healthCenters.html:86 app/js/settings/services.html:94
 #: app/js/settings/sites.html:102
@@ -788,7 +797,7 @@ msgid "Maintain"
 msgstr "Maintenir"
 
 #: app/js/equipment/equipments.html:67 app/js/maintenance/maintenances.html:62
-#: app/js/maintenance/requests.html:84 app/js/movement/movements.html:84
+#: app/js/maintenance/requests.html:85 app/js/movement/movements.html:84
 #: app/js/settings/districts.html:83 app/js/settings/equipmentTypes.html:65
 #: app/js/settings/healthCenters.html:91 app/js/settings/services.html:99
 #: app/js/settings/sites.html:107
@@ -938,7 +947,7 @@ msgstr "Raison de la demande"
 msgid "Request for an intervention"
 msgstr "Demande d’intervention"
 
-#: app/js/maintenance/requests.html:29 app/js/maintenance/requests.html:56
+#: app/js/maintenance/requests.html:29 app/js/maintenance/requests.html:57
 #: app/js/movement/movements.html:29 app/js/movement/movements.html:56
 msgid "Validated"
 msgstr "Validé"
@@ -952,11 +961,11 @@ msgstr "Nature du travail"
 msgid "Date"
 msgstr "Date"
 
-#: app/js/maintenance/requests.html:70
+#: app/js/maintenance/requests.html:71
 msgid "Request detail"
 msgstr "Détails de la demande"
 
-#: app/js/maintenance/requests.html:78 app/js/movement/movements.html:78
+#: app/js/maintenance/requests.html:79 app/js/movement/movements.html:78
 msgid "Approve or cancel"
 msgstr "Approuver ou annuler"
 
