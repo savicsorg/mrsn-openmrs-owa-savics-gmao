@@ -168,15 +168,15 @@ msgstr "Une erreur inattendue s’est produite avec getAllRequests()."
 #: app/js/equipment/EquipmentController.js:206
 #: app/js/equipment/EquipmentsController.js:47
 #: app/js/equipment/EquipmentsController.js:82
-#: app/js/maintenance/MaintenanceController.js:37
-#: app/js/maintenance/MaintenanceController.js:42
-#: app/js/maintenance/MaintenanceController.js:62
-#: app/js/maintenance/MaintenanceController.js:71
+#: app/js/maintenance/MaintenanceController.js:57
+#: app/js/maintenance/MaintenanceController.js:63
+#: app/js/maintenance/MaintenanceController.js:89
+#: app/js/maintenance/MaintenanceController.js:98
 #: app/js/maintenance/MaintenancesController.js:41
 #: app/js/maintenance/MaintenancesController.js:68
-#: app/js/maintenance/RequestController.js:87
-#: app/js/maintenance/RequestController.js:174
-#: app/js/maintenance/RequestController.js:184
+#: app/js/maintenance/RequestController.js:93
+#: app/js/maintenance/RequestController.js:186
+#: app/js/maintenance/RequestController.js:196
 #: app/js/maintenance/RequestsController.js:49
 #: app/js/maintenance/RequestsController.js:81
 #: app/js/movement/MovementController.js:132
@@ -234,18 +234,18 @@ msgstr "Données enregistrées avec succès."
 #: app/js/equipment/EquipmentController.js:212
 #: app/js/equipment/EquipmentController.js:215
 #: app/js/equipment/EquipmentController.js:217
-#: app/js/maintenance/MaintenanceController.js:37
-#: app/js/maintenance/MaintenanceController.js:42
-#: app/js/maintenance/MaintenanceController.js:62
-#: app/js/maintenance/MaintenanceController.js:71
-#: app/js/maintenance/MaintenanceController.js:76
+#: app/js/maintenance/MaintenanceController.js:57
+#: app/js/maintenance/MaintenanceController.js:63
+#: app/js/maintenance/MaintenanceController.js:89
+#: app/js/maintenance/MaintenanceController.js:98
+#: app/js/maintenance/MaintenanceController.js:103
 #: app/js/movement/MovementController.js:283
 #: app/js/movement/MovementController.js:294
 msgid "Error"
 msgstr "Erreur"
 
 #: app/js/equipment/EquipmentController.js:212
-#: app/js/maintenance/MaintenanceController.js:76
+#: app/js/maintenance/MaintenanceController.js:103
 msgid "You must fill in the required fields before you proceed."
 msgstr "Vous devez remplir les champs obligatoires avant de continuer."
 
@@ -305,8 +305,8 @@ msgstr "Confirmation de suppression"
 
 #: app/js/equipment/EquipmentsController.js:29
 #: app/js/maintenance/MaintenancesController.js:23
-#: app/js/maintenance/RequestController.js:133
-#: app/js/maintenance/RequestController.js:150
+#: app/js/maintenance/RequestController.js:145
+#: app/js/maintenance/RequestController.js:162
 #: app/js/maintenance/RequestsController.js:32
 #: app/js/movement/MovementController.js:317
 #: app/js/movement/MovementController.js:335
@@ -321,8 +321,8 @@ msgstr "Oui"
 
 #: app/js/equipment/EquipmentsController.js:30
 #: app/js/maintenance/MaintenancesController.js:24
-#: app/js/maintenance/RequestController.js:134
-#: app/js/maintenance/RequestController.js:151
+#: app/js/maintenance/RequestController.js:146
+#: app/js/maintenance/RequestController.js:163
 #: app/js/maintenance/RequestController.js:19
 #: app/js/maintenance/RequestsController.js:33
 #: app/js/movement/MovementController.js:318
@@ -432,23 +432,23 @@ msgstr "Historique des entretiens"
 msgid "An unexpected error has occured with getAllMaintenances()."
 msgstr "Une erreur inattendue s’est produite avec getAllMaintenances()."
 
-#: app/js/maintenance/RequestController.js:132
+#: app/js/maintenance/RequestController.js:144
 msgid "Do you really want to reject this request  of maintenance?"
 msgstr "Voulez-vous vraiment rejeter cette demande de maintenance ?"
 
-#: app/js/maintenance/RequestController.js:149
+#: app/js/maintenance/RequestController.js:161
 msgid "Do you really want to approve this request of maintenance ?"
 msgstr "Voulez-vous vraiment approuver cette demande de maintenance ?"
 
-#: app/js/maintenance/RequestController.js:169
+#: app/js/maintenance/RequestController.js:181
 msgid "The maintenance request has been successfully updated."
 msgstr "La demande de maintenance a été mise à jour avec succès."
 
-#: app/js/maintenance/RequestController.js:179
+#: app/js/maintenance/RequestController.js:191
 msgid "The maintenance request has been successfully created."
 msgstr "La demande de maintenance a été créée avec succès."
 
-#: app/js/maintenance/RequestController.js:188
+#: app/js/maintenance/RequestController.js:200
 #: app/js/settings/DistrictsController.js:49
 #: app/js/settings/EquipmentTypesController.js:48
 #: app/js/settings/HealthCentersController.js:52
@@ -468,16 +468,19 @@ msgid "Initiated"
 msgstr "Initié"
 
 #: app/js/maintenance/RequestController.js:60
-#: app/js/maintenance/RequestController.js:106
-#: app/js/movement/MovementController.js:212
-msgid "Validated on"
-msgstr "Validé le"
+#: app/js/maintenance/RequestController.js:118
+msgid "Request approved on"
+msgstr "Demande approuvée le"
 
 #: app/js/maintenance/RequestController.js:66
 #: app/js/maintenance/RequestController.js:112
-#: app/js/movement/MovementController.js:218
-msgid "Rejected on"
-msgstr "Rejeté le"
+msgid "Maintenance performed on"
+msgstr "Maintenance effectuée le"
+
+#: app/js/maintenance/RequestController.js:72
+#: app/js/maintenance/RequestController.js:124
+msgid "Request rejected on"
+msgstr "Demande rejetée le"
 
 #: app/js/maintenance/RequestsController.js:4
 #: app/js/maintenance/requests.html:3
@@ -503,6 +506,14 @@ msgstr "Voulez-vous vraiment approuver ce mouvement ?"
 #: app/js/movement/MovementController.js:5 app/js/movement/movement.html:3
 msgid "Equipment movement"
 msgstr "Mouvement de l’équipement"
+
+#: app/js/movement/MovementController.js:212
+msgid "Validated on"
+msgstr "Validé le"
+
+#: app/js/movement/MovementController.js:218
+msgid "Rejected on"
+msgstr "Rejeté le"
 
 #: app/js/movement/MovementsController.js:3 app/js/movement/movements.html:3
 msgid "History of Movements"
@@ -714,8 +725,8 @@ msgid "Volume (cubic meters)"
 msgstr "Volume (mètres cubes)"
 
 #: app/js/equipment/equipment.html:222 app/js/equipment/equipment.html:224
-#: app/js/maintenance/maintenance.html:120
-#: app/js/maintenance/maintenance.html:122 app/js/maintenance/request.html:113
+#: app/js/maintenance/maintenance.html:125
+#: app/js/maintenance/maintenance.html:127 app/js/maintenance/request.html:113
 #: app/js/maintenance/request.html:115 app/js/movement/movement.html:158
 #: app/js/movement/movement.html:160 app/js/settings/districts.html:41
 #: app/js/settings/districts.html:43 app/js/settings/equipmentTypes.html:26
@@ -781,7 +792,7 @@ msgid "Actions"
 msgstr "Actions"
 
 #: app/js/equipment/equipments.html:52 app/js/maintenance/maintenances.html:57
-#: app/js/maintenance/requests.html:66 app/js/movement/movements.html:65
+#: app/js/maintenance/requests.html:69 app/js/movement/movements.html:65
 #: app/js/settings/districts.html:79 app/js/settings/equipmentTypes.html:60
 #: app/js/settings/healthCenters.html:86 app/js/settings/services.html:94
 #: app/js/settings/sites.html:102
@@ -797,14 +808,19 @@ msgid "Maintain"
 msgstr "Maintenir"
 
 #: app/js/equipment/equipments.html:67 app/js/maintenance/maintenances.html:62
-#: app/js/maintenance/requests.html:85 app/js/movement/movements.html:84
+#: app/js/maintenance/requests.html:88 app/js/movement/movements.html:84
 #: app/js/settings/districts.html:83 app/js/settings/equipmentTypes.html:65
 #: app/js/settings/healthCenters.html:91 app/js/settings/services.html:99
 #: app/js/settings/sites.html:107
 msgid "Delete"
 msgstr "Supprimer"
 
+#: app/js/maintenance/maintenance.html:31
+msgid "This field is mandatory"
+msgstr "Ce champ est obligatoire"
+
 #: app/js/maintenance/maintenance.html:40
+#: app/js/maintenance/maintenance.html:53
 msgid "Search equipment"
 msgstr "Recherche par équipement"
 
@@ -817,66 +833,62 @@ msgid "Equipment information"
 msgstr "Informations sur l’équipement"
 
 #: app/js/maintenance/maintenance.html:19
-#, fuzzy
-#| msgid "History of Maintenance Requests"
 msgid "Find by maintenance request"
-msgstr "Historique des demandes de maintenance"
+msgstr "Trouver par demande de maintenance"
 
 #: app/js/maintenance/maintenance.html:22
-#, fuzzy
-#| msgid "History of Maintenance Requests"
 msgid "Maintenance request Ref. N°:"
-msgstr "Historique des demandes de maintenance"
+msgstr "Demande d’entretien N° de Réf. :"
 
 #: app/js/maintenance/maintenance.html:48 app/js/maintenance/request.html:53
 #: app/js/movement/movement.html:70
 msgid "No matches found."
 msgstr "Aucun résultat trouvé."
 
-#: app/js/maintenance/maintenance.html:61
+#: app/js/maintenance/maintenance.html:66
 msgid "Type of maintenance"
 msgstr "Type d’entretien"
 
-#: app/js/maintenance/maintenance.html:69
+#: app/js/maintenance/maintenance.html:74
 msgid "Done by"
 msgstr "Fait par"
 
-#: app/js/maintenance/maintenance.html:76 app/js/movement/movement.html:51
+#: app/js/maintenance/maintenance.html:81 app/js/movement/movement.html:51
 #: app/js/movement/movementApproval.html:36
 msgid "Reason"
 msgstr "Raison"
 
-#: app/js/maintenance/maintenance.html:82
+#: app/js/maintenance/maintenance.html:87
 msgid "Task name"
 msgstr "Nom de la tâche"
 
-#: app/js/maintenance/maintenance.html:86
+#: app/js/maintenance/maintenance.html:91
 msgid "Task description"
 msgstr "Description de la tâche"
 
-#: app/js/maintenance/maintenance.html:92
+#: app/js/maintenance/maintenance.html:97
 msgid "Start date"
 msgstr "Date de début"
 
-#: app/js/maintenance/maintenance.html:96
+#: app/js/maintenance/maintenance.html:101
 msgid "End date"
 msgstr "Date de fin"
 
-#: app/js/maintenance/maintenance.html:102
+#: app/js/maintenance/maintenance.html:107
 msgid "Status *"
 msgstr "Statut *"
 
-#: app/js/maintenance/maintenance.html:104
+#: app/js/maintenance/maintenance.html:109
 #: app/js/maintenance/maintenances.html:50
 msgid "In Progress"
 msgstr "En cours"
 
-#: app/js/maintenance/maintenance.html:106
+#: app/js/maintenance/maintenance.html:111
 #: app/js/maintenance/maintenances.html:50
 msgid "Completed"
 msgstr "Terminé"
 
-#: app/js/maintenance/maintenance.html:110
+#: app/js/maintenance/maintenance.html:115
 msgid "Please choose a status."
 msgstr "Veuillez choisir un statut."
 
@@ -959,10 +971,9 @@ msgstr "Raison de la demande"
 msgid "Request for an intervention"
 msgstr "Demande d’intervention"
 
-#: app/js/maintenance/requests.html:29 app/js/maintenance/requests.html:57
-#: app/js/movement/movements.html:29 app/js/movement/movements.html:56
-msgid "Validated"
-msgstr "Validé"
+#: app/js/maintenance/requests.html:29
+msgid "Validated and awaiting maintenance"
+msgstr "Validé et en attente de maintenance"
 
 #: app/js/maintenance/requests.html:38
 msgid "Nature of Work"
@@ -973,11 +984,27 @@ msgstr "Nature du travail"
 msgid "Date"
 msgstr "Date"
 
-#: app/js/maintenance/requests.html:71
+#: app/js/maintenance/requests.html:57
+msgid "Request rejected"
+msgstr "Demande rejetée"
+
+#: app/js/maintenance/requests.html:58
+msgid "Request approved"
+msgstr "Demande approuvée"
+
+#: app/js/maintenance/requests.html:59
+msgid "Maintenance performed"
+msgstr "Maintenance effectuée le"
+
+#: app/js/maintenance/requests.html:60
+msgid "Waiting for approval"
+msgstr "En attente d'approbation"
+
+#: app/js/maintenance/requests.html:74
 msgid "Request detail"
 msgstr "Détails de la demande"
 
-#: app/js/maintenance/requests.html:79 app/js/movement/movements.html:78
+#: app/js/maintenance/requests.html:82 app/js/movement/movements.html:78
 msgid "Approve or cancel"
 msgstr "Approuver ou annuler"
 
@@ -1057,6 +1084,10 @@ msgstr "Décliner"
 #: app/js/movement/movements.html:13
 msgid "Add a new movement"
 msgstr "Ajouter un nouveau mouvement"
+
+#: app/js/movement/movements.html:29 app/js/movement/movements.html:56
+msgid "Validated"
+msgstr "Validé"
 
 #: app/js/movement/movements.html:70
 msgid "Movement Detail"
