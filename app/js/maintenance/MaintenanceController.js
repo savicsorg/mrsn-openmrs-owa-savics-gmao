@@ -7,17 +7,31 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
     $scope.maintenance = { maintenanceType: {} };
     $scope.equipment = {};
     $scope.item = null;
+    $scope.findByRequest = false;
     $scope.searchText = "";
     $scope.maintenance_types = [];
-
+    $scope.pendingRequests = [];
+    $scope.selectedMaintenanceRequest = undefined;
+    
+    console.log($stateParams);
     if ($stateParams.maintenance_id) {
         $scope.maintenance = $stateParams.data;
+        console.log("$stateParams.data")
+        console.log($stateParams.data)
         $scope.maintenance.startdate = new Date(moment(new Date($stateParams.data.startdate)).format('MM/DD/YYYY, h:mm A'));
         $scope.maintenance.enddate = new Date(moment(new Date($stateParams.data.enddate)).format('MM/DD/YYYY, h:mm A'));
         $scope.selectedItem = $stateParams.data.equipment.name;
+        $scope.selectedMaintenanceRequest = $stateParams.data.maintenanceRequest;
+        if ($scope.selectedMaintenanceRequest){
+            $scope.findByRequest = true;
+        }
     } else if($stateParams.data && $stateParams.data.equipment){
         $scope.equipment = $stateParams.data.equipment;
         $scope.selectedItem = $stateParams.data.equipment.name;
+        $scope.selectedMaintenanceRequest = $stateParams.data.maintenanceRequest;
+        if ($scope.selectedMaintenanceRequest){
+            $scope.findByRequest = true;
+        }
     }
 
     $scope.getData = function () {
@@ -28,7 +42,13 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
                 openmrsRest.getFull($scope.resource + "/maintenance/" + $stateParams.uuid).then(function (response) {
                     $scope.loading = false;
                     $scope.maintenance = response;
+                    console.log("$scope.maintenance")
+                    console.log($scope.maintenance)
                     $scope.searchText = $scope.maintenance.equipment.name;
+                    $scope.selectedMaintenanceRequest = $scope.maintenance.maintenanceRequest;
+                    if ($scope.maintenance.maintenanceRequest){
+                        $scope.findByRequest = true;
+                    }
                 }, function (e) {
                     $scope.loading = false;
                     toastr.error($translate.instant('An unexpected error has occured.'), $translate.instant('Error'));
@@ -48,6 +68,12 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
         query.description = !query.description ? "" : query.description;
         query.reason = !query.reason ? "" : query.reason;
         query.status = parseInt($scope.maintenance.status);
+        console.log("$scope.selectedMaintenanceRequest");
+        console.log($scope.selectedMaintenanceRequest);
+        if ($scope.selectedMaintenanceRequest){
+            query.maintenanceRequest = parseInt($scope.selectedMaintenanceRequest.id);
+        }
+        
         if ($scope.maintenance && query.status) {
             if ($scope.maintenance && $scope.maintenance.uuid) {    //Edit
                 openmrsRest.update($scope.resource + "/maintenance", query).then(function (response) {
@@ -79,10 +105,25 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
             return response.results;
         });
     };
+    
+    $scope.getMaintenanceRequest = function () {
+        openmrsRest.getFull($scope.resource + "/maintenanceRequest?status=VALID"  ).then(function (response) {
+            $scope.activeMaintenancesRequests = response.results;
+        });
+    };
+    $scope.getMaintenanceRequest();
 
     $scope.selectedEquipmentChange = function (item) {
         if (item) {
             $scope.equipment = item;
+        }
+    }
+
+    $scope.selectedMaintenanceRequestChange = function (mRequest) {
+        $scope.selectedMaintenanceRequest = mRequest;
+        if (mRequest) {
+            $scope.equipment = mRequest.equipment;
+            $scope.selectedItem = mRequest.equipment.name;
         }
     }
 

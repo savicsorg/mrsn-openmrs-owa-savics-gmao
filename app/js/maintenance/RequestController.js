@@ -57,13 +57,19 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
 
                     if ($stateParams.data.status == "VALID") {
                         $scope.isEditable = false;
-                        $scope.validateBtn.text = $translate.instant("Validated on ") + new Date($scope.request.approval).toLocaleDateString();
+                        $scope.validateBtn.text = $translate.instant("Request approved on  ") + new Date($scope.request.approval).toLocaleDateString();
+                        $scope.validateBtn.enabled = false;
+                        $scope.validateBtn.visible = true;
+                        $scope.cancelBtn.visible = true;
+                    } else if ($stateParams.data.status == "DONE") {
+                        $scope.isEditable = false;
+                        $scope.validateBtn.text = $translate.instant("Maintenance performed on  ") + new Date($scope.request.approval).toLocaleDateString();
                         $scope.validateBtn.enabled = false;
                         $scope.validateBtn.visible = true;
                         $scope.cancelBtn.visible = true;
                     } else if ($stateParams.data.status == "REJECT") {
                         $scope.isEditable = false;
-                        $scope.validateBtn.text = $translate.instant("Rejected on ") + new Date($scope.request.approval).toLocaleDateString();
+                        $scope.validateBtn.text = $translate.instant("Request rejected on  ") + new Date($scope.request.approval).toLocaleDateString();
                         $scope.validateBtn.enabled = false;
                         $scope.validateBtn.visible = true;
                         $scope.cancelBtn.visible = true;
@@ -101,15 +107,21 @@ angular.module('RequestController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.da
             $scope.request.creation = new Date(moment(new Date($stateParams.data.creation)).format('MM/DD/YYYY, h:mm A'));
             $scope.selectedEquipment = $stateParams.data.equipment.name;
 
-            if ($stateParams.data.status == "VALID") {
+            if ($stateParams.data.status == "DONE") {
                 $scope.isEditable = false;
-                $scope.validateBtn.text = $translate.instant("Validated on ") + new Date($scope.request.approval).toLocaleDateString();
+                $scope.validateBtn.text = $translate.instant("Maintenance performed on ") + new Date($scope.request.approval).toLocaleDateString();
+                $scope.validateBtn.enabled = false;
+                $scope.validateBtn.visible = true;
+                $scope.cancelBtn.visible = true;
+            } else if ($stateParams.data.status == "VALID") {
+                $scope.isEditable = false;
+                $scope.validateBtn.text = $translate.instant("Request approved on ") + new Date($scope.request.approval).toLocaleDateString();
                 $scope.validateBtn.enabled = false;
                 $scope.validateBtn.visible = true;
                 $scope.cancelBtn.visible = true;
             } else if ($stateParams.data.status == "REJECT") {
                 $scope.isEditable = false;
-                $scope.validateBtn.text = $translate.instant("Rejected on ") + new Date($scope.request.approval).toLocaleDateString();
+                $scope.validateBtn.text = $translate.instant("Request rejected on ") + new Date($scope.request.approval).toLocaleDateString();
                 $scope.validateBtn.enabled = false;
                 $scope.validateBtn.visible = true;
                 $scope.cancelBtn.visible = true;

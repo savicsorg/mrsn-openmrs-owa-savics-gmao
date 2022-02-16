@@ -26,7 +26,7 @@
                 placeholder="{{ 'Search by Equipement...' | translate }}">
         </div>
         <md-switch flex ng-model="requestValidated" aria-label="Validated">
-            <span translate>Validated</span>
+            <span translate>Validated and awaiting maintenance</span>
         </md-switch>
     </md-toolbar>
     <md-card>
@@ -52,9 +52,12 @@
                         <td style="text-align: center">
 
                             <md-icon
-                                style="color:{{request.status == 'REJECT' ? 'red': request.status == 'VALID' ?'green':'#ccc'}}">
+                                style="color:{{request.status == 'REJECT' ? 'red': request.status == 'VALID' ?'orange':request.status == 'DONE' ?'green':'#ccc'}}">
                                 <md-tooltip>
-                                    <span translate>Validated</span>
+                                    <span translate ng-if="request.status == 'REJECT'">Request rejected</span>
+                                    <span translate ng-if="request.status == 'VALID'">Request approved</span>
+                                    <span translate ng-if="request.status == 'DONE'">Maintenance performed</span>
+                                    <span translate ng-if="request.status == 'INIT' || request.status == null">Waiting for approval</span>
                                 </md-tooltip>
                                 fiber_manual_record
                             </md-icon>

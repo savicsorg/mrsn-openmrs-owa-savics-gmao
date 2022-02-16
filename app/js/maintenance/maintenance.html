@@ -15,11 +15,32 @@
             <md-card-title translate>Equipment information</md-card-title>
             <md-card-content>
                 <div layout="row" layout-xs="column" class="flex flex-col">
-                    <md-autocomplete autoFocus class="md-block" flex-gt-sm
-                        md-floating-label="{{'Search equipment'| translate}}" md-selected-item="selectedItem"
-                        md-search-text="searchText" md-items="item in getEquipments(searchText)"
-                        md-item-text="item.name" md-clear-button="true"
-                        md-selected-item-change="selectedEquipmentChange(item)" required flex>
+                    <md-switch flex ng-model="findByRequest" aria-label="Validated">
+                        <span translate>Find by maintenance request</span>
+                    </md-switch> 
+                    <md-input-container class="md-block" flex-gt-sm flex="66" ng-if="findByRequest">
+                        <label translate>Maintenance request Ref. N°:</label>
+                        <md-select name="selectedMaintenanceRequest" ng-model="selectedMaintenanceRequest" ng-change="selectedMaintenanceRequestChange(selectedMaintenanceRequest)" required
+                                   >
+                            <md-option ng-repeat="o in activeMaintenancesRequests" ng-value="o" ng-selected="selectedMaintenanceRequest && o.id == selectedMaintenanceRequest.id">
+                                [Ref#{{o.id}}] | Register N°: {{o.registerNumber }} | {{o.equipment.name}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="form.selectedMaintenanceRequest.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']" translate>
+                                This field is mandatory
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+
+                <div layout="row" layout-xs="column" class="flex flex-col">
+                    <md-autocomplete autoFocus class="md-block" flex-gt-sm ng-if="!findByRequest"
+                                     md-floating-label="{{'Search equipment'| translate}}" md-selected-item="selectedItem"
+                                     md-search-text="searchText" md-items="item in getEquipments(searchText)"
+                                     md-item-text="item.name" md-clear-button="true"
+                                     md-selected-item-change="selectedEquipmentChange(item)" required flex>
                         <md-item-template>
                             <span md-highlight-text="searchText">{{item.name}}</span>
                         </md-item-template>
@@ -27,6 +48,11 @@
                             <span translate>No matches found.</span>
                         </md-not-found>
                     </md-autocomplete>
+                    <md-input-container class="md-block" flex-gt-sm required flex
+                        ng-if="findByRequest" >
+                        <label>{{"Search equipment"| translate}}</label>
+                        <input class="form-control" disabled type="text" ng-model="selectedItem">
+                    </md-input-container>
 
                 </div>
 
