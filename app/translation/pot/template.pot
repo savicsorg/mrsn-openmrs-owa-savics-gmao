@@ -556,6 +556,10 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
+#: app/js/maintenance/maintenance.html:19
+msgid "Find by maintenance request"
+msgstr ""
+
 #: app/js/maintenance/maintenance.html:31
 msgid "This field is mandatory"
 msgstr ""
@@ -570,10 +574,6 @@ msgstr ""
 
 #: app/js/maintenance/maintenance.html:15
 msgid "Equipment information"
-msgstr ""
-
-#: app/js/maintenance/maintenance.html:19
-msgid "Find by maintenance request"
 msgstr ""
 
 #: app/js/maintenance/maintenance.html:22

@@ -11,9 +11,8 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
         $scope.editMode = false;
         $scope.searchText = "";
         $scope.maintenance_types = [];
-        $scope.pendingRequests = [];
         $scope.selectedMaintenanceRequest = undefined;
-        
+
 
         if ($stateParams.maintenance_id) {
             $scope.maintenance = $stateParams.data;
@@ -24,7 +23,6 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
             if ($scope.selectedMaintenanceRequest) {
                 $scope.findByRequest = true;
             }
-            $scope.editMode = true;
         } else if ($stateParams.data && $stateParams.data.equipment) {
             $scope.equipment = $stateParams.data.equipment;
             $scope.selectedItem = $stateParams.data.equipment.name;
@@ -32,7 +30,12 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
             if ($scope.selectedMaintenanceRequest) {
                 $scope.findByRequest = true;
             }
+        }
+
+        if ($stateParams.data && $stateParams.data.maintenanceRequest) {
             $scope.editMode = true;
+            $scope.activeMaintenancesRequests = [];
+            $scope.activeMaintenancesRequests.push($scope.maintenance.maintenanceRequest);
         }
 
         $scope.getData = function () {
@@ -45,10 +48,13 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
                         $scope.maintenance = response;
                         $scope.searchText = $scope.maintenance.equipment.name;
                         $scope.selectedMaintenanceRequest = $scope.maintenance.maintenanceRequest;
-                        if ($scope.maintenance.maintenanceRequest){
+                        if ($scope.maintenance.maintenanceRequest) {
+                            $scope.activeMaintenancesRequests = [];
                             $scope.activeMaintenancesRequests.push($scope.maintenance.maintenanceRequest);
+                        } else {
+                            $scope.getMaintenanceRequest();
                         }
-                        
+
                         if ($scope.maintenance.maintenanceRequest) {
                             $scope.findByRequest = true;
                         }
@@ -56,8 +62,11 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
                         $scope.loading = false;
                         toastr.error($translate.instant('An unexpected error has occured.'), $translate.instant('Error'));
                     });
-                } else
+                } else {
                     $scope.loading = false;
+                    $scope.getMaintenanceRequest();
+                }
+
             }, function (e) {
                 $scope.loading = false;
                 toastr.error($translate.instant('An unexpected error has occured.'), $translate.instant('Error'));
@@ -72,8 +81,6 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
             query.description = !query.description ? "" : query.description;
             query.reason = !query.reason ? "" : query.reason;
             query.status = parseInt($scope.maintenance.status);
-            console.log("$scope.selectedMaintenanceRequest");
-            console.log($scope.selectedMaintenanceRequest);
             if ($scope.selectedMaintenanceRequest) {
                 query.maintenanceRequest = parseInt($scope.selectedMaintenanceRequest.id);
             }
@@ -115,7 +122,7 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
                 $scope.activeMaintenancesRequests = response.results;
             });
         };
-        $scope.getMaintenanceRequest();
+
 
         $scope.selectedEquipmentChange = function (item) {
             if (item) {
@@ -133,16 +140,11 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
 
         $scope.getData();
 
-        var watch = {};
-        watch.findByRequest = $scope.$watch('findByRequest', function (newval, oldval) {
-            if (newval == false) {
-                $scope.equipment = undefined;
-                $scope.selectedItem = undefined;
-            }
-        });
+        $scope.toggleRequest = function (findByRequest) {
+            $scope.equipment = undefined;
+            $scope.selectedItem = undefined;
+            $scope.selectedMaintenanceRequest = undefined;
+        };
 
-        $scope.$on('$destroy', function () {// in case of destroy, we destroy the watch
-            watch.findByRequest();
-        });
 
     }]);

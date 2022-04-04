@@ -15,12 +15,12 @@
             <md-card-title translate>Equipment information</md-card-title>
             <md-card-content>
                 <div layout="row" layout-xs="column" class="flex flex-col">
-                    <md-switch flex ng-model="findByRequest" aria-label="Validated" ng-disabled="!editMode">
-                        <span translate>Find by maintenance request</span>
+                    <md-switch flex ng-model="findByRequest" aria-label="Validated" ng-disabled="editMode" ng-change="toggleRequest(findByRequest)">
+                        <span >{{'Find by maintenance request'| translate}}</span>
                     </md-switch> 
-                    <md-input-container class="md-block" flex-gt-sm flex="66" ng-if="findByRequest" ng-disabled="!editMode">
+                    <md-input-container class="md-block" flex-gt-sm flex="66" ng-if="findByRequest" ng-disabled="editMode">
                         <label translate>Maintenance request Ref. N°:</label>
-                        <md-select ng-disabled="!editMode" name="selectedMaintenanceRequest" ng-model="selectedMaintenanceRequest" ng-change="selectedMaintenanceRequestChange(selectedMaintenanceRequest)" required
+                        <md-select ng-disabled="editMode" name="selectedMaintenanceRequest" ng-model="selectedMaintenanceRequest" ng-change="selectedMaintenanceRequestChange(selectedMaintenanceRequest)" required
                                    >
                             <md-option ng-repeat="o in activeMaintenancesRequests" ng-value="o" ng-selected="selectedMaintenanceRequest && o.id == selectedMaintenanceRequest.id">
                                 [Ref#{{o.id}}] | Register N°: {{o.registerNumber }} | {{o.equipment.name}}
