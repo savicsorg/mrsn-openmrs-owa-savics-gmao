@@ -14,12 +14,42 @@
                 </md-tooltip>
             </md-button>
         </a>
+
         <a href="">
-            <md-button class="md-raised md-primary" aria-label="Add" ng-click="donwload()">
-                <md-icon>cloud_download</md-icon> <span translate>Export</span>
-            </md-button>
+            <md-menu>
+                <md-button class="md-raised md-primary" aria-label="Add" ng-click="openMenu($mdMenu, $event)">
+                    <md-icon>cloud_download</md-icon> <span translate>Export</span>
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button ng-click="donwload()">
+                            <md-icon md-menu-align-target>get_app</md-icon> <span translate>Export all</span>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="openDatePicker()">
+                            <md-icon md-menu-align-target>schedule</md-icon><span translate>Choose date</span>
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
         </a>
     </div>
+    <md-toolbar layout="row" class="md-table-toolbar" style="display:flex; height:40px"
+        ng-show="show_date_range">
+        <md-input-container>
+            <label translate>Start date</label>
+            <input type="date" ng-model="export.startdate" />
+        </md-input-container>
+        <md-input-container>
+            <label translate>End date</label>
+            <input type="date" ng-model="export.enddate" />
+        </md-input-container>
+        <md-button class="md-raised" aria-label="Add" style="height: 36px;margin-left: auto"
+            ng-click="downloadByDate()">
+            <md-icon>get_app</md-icon> <span translate>Export higher failure</span>
+        </md-button>
+    </md-toolbar>
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">
             <input flex type="search" name="search" ng-model="searchAll.equipment.name"
@@ -33,7 +63,8 @@
                     <tr md-row>
                         <th md-column md-order-by="id"><span translate>Ref.</span></th>
                         <th md-column md-order-by="maintenanceType.name"><span translate>Type</span></th>
-                        <th md-column md-order-by="startdate | date: 'dd/MM/yyyy'"><span translate>Start Date</span></th>
+                        <th md-column md-order-by="startdate | date: 'dd/MM/yyyy'"><span translate>Start Date</span>
+                        </th>
                         <th md-column md-order-by="enddate | date: 'dd/MM/yyyy'"><span translate>End Date</span></th>
                         <th md-column md-order-by="status"><span translate>Status</span></th>
                         <th md-column md-order-by="equipment.name"><span translate>Equipment</span></th>
@@ -47,7 +78,8 @@
                         <td md-cell>{{maintenance.startdate | date: 'dd/MM/yyyy, h:mma'}}</td>
                         <td md-cell>{{maintenance.enddate | date: 'dd/MM/yyyy, h:mma'}}</td>
                         <td md-cell>
-                            <span ng-if="maintenance.status==1" translate>In Progress</span><span ng-if="maintenance.status==2" translate>Completed</span>
+                            <span ng-if="maintenance.status==1" translate>In Progress</span><span
+                                ng-if="maintenance.status==2" translate>Completed</span>
                         </td>
                         <td md-cell>{{maintenance.equipment.name}}</td>
                         <td>
