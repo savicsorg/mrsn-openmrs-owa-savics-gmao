@@ -27,16 +27,15 @@
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="openDatePicker()">
-                            <md-icon md-menu-align-target>schedule</md-icon><span translate>Choose date</span>
+                        <md-button ng-click="downloadByHigherFailure()">
+                            <md-icon md-menu-align-target>schedule</md-icon><span translate>Export higher failure</span>
                         </md-button>
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>
         </a>
     </div>
-    <md-toolbar layout="row" class="md-table-toolbar" style="display:flex; height:40px"
-        ng-show="show_date_range">
+    <md-toolbar layout="row" class="md-table-toolbar" style="display:flex; height:40px">
         <md-input-container>
             <label translate>Start date</label>
             <input type="date" ng-model="export.startdate" />
@@ -45,10 +44,6 @@
             <label translate>End date</label>
             <input type="date" ng-model="export.enddate" />
         </md-input-container>
-        <md-button class="md-raised" aria-label="Add" style="height: 36px;margin-left: auto"
-            ng-click="downloadByDate()">
-            <md-icon>get_app</md-icon> <span translate>Export higher failure</span>
-        </md-button>
     </md-toolbar>
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">

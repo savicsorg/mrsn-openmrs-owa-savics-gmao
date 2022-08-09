@@ -3,7 +3,6 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
     $scope.appTitle = $translate.instant("History of Maintenances");
     $scope.resource = "savicsgmao";
     $scope.loading = false;
-    $scope.show_date_range = false;
     var originatorEv;
     //Breadcrumbs properties
     $rootScope.links = { "Module GMAO": "", "Maintenance Management": "History of Maintenances" };
@@ -33,7 +32,6 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
 
     function deleteObject(maintenance) {
         $scope.loading = true;
-        $scope.show_date_range = false;
         openmrsRest.remove($scope.resource + "/maintenance", maintenance, "Generic Reason").then(function (response) {
             $scope.loading = false;
             getAllMaintenances();
@@ -46,7 +44,6 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
     }
 
     $scope.openEdit = function (data) {
-        $scope.show_date_range = false;
         $state.go('home.maintenance', {
             maintenance_id: data.id,
             data: data,
@@ -54,14 +51,12 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
     }
 
     $scope.openMenu = function ($mdMenu, ev) {
-        $scope.show_date_range = false;
         originatorEv = ev;
         $mdMenu.open(ev);
     };
 
     function getAllMaintenances() {
         $scope.loading = true;
-        $scope.show_date_range = false;
         var deferred = $q.defer();
         $scope.promise = deferred.promise;
         $scope.query.startIndex = $scope.query.limit * ($scope.query.page - 1);
@@ -87,17 +82,12 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
     getAllMaintenances();
 
     $scope.donwload = function () {
-        $scope.show_date_range = false;
         let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/maintenances/export";
         localStorage.setItem("export_link", link);
         window.location = link;
     }
 
-    $scope.openDatePicker = function () {
-        $scope.show_date_range = true;
-    }
-
-    $scope.downloadByDate = function () {
+    $scope.downloadByHigherFailure = function () {
         let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/maintenances/export";
         localStorage.setItem("export_link_by_date", link);
         window.location = link;
