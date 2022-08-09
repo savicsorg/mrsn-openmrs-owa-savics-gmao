@@ -27,7 +27,7 @@
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="downloadByHigherFailure()">
+                        <md-button ng-click="downloadByHigherFailure(export_startdate,export_enddate)">
                             <md-icon md-menu-align-target>schedule</md-icon><span translate>Export higher failure</span>
                         </md-button>
                     </md-menu-item>
@@ -38,11 +38,11 @@
     <md-toolbar layout="row" class="md-table-toolbar" style="display:flex; height:40px">
         <md-input-container>
             <label translate>Start date</label>
-            <input type="date" ng-model="export.startdate" />
+            <input type="date" ng-model="export_startdate" />
         </md-input-container>
         <md-input-container>
             <label translate>End date</label>
-            <input type="date" ng-model="export.enddate" />
+            <input type="date" ng-model="export_enddate" />
         </md-input-container>
     </md-toolbar>
     <md-toolbar layout="row" class="md-table-toolbar md-default">

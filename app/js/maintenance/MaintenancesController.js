@@ -87,8 +87,8 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
         window.location = link;
     }
 
-    $scope.downloadByHigherFailure = function () {
-        let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/maintenances/export";
+    $scope.downloadByHigherFailure = function (startdate, enddate) {
+        let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/maintenances/withFailureRate?from=" + startdate + "&to=" + enddate;
         localStorage.setItem("export_link_by_date", link);
         window.location = link;
     }
