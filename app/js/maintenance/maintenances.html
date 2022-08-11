@@ -1,41 +1,8 @@
 <div id="content" class="container-fluid">
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="" translate>History of Maintenances</h1>
-        <a href="index.html#!/maintenancemanagement">
-            <md-button>
-                <md-icon>arrow_back</md-icon><span translate>Back</span>
-            </md-button>
-        </a>
-        <a href="index.html#!/maintenance">
-            <md-button class="md-raised md-primary" aria-label="Add">
-                <md-icon class="material-icons" role="img" aria-hidden="true">add</md-icon>
-                <md-tooltip md-direction="top">
-                    <span translate>Add a new maintenance</span>
-                </md-tooltip>
-            </md-button>
-        </a>
-
-        <a href="">
-            <md-menu>
-                <md-button class="md-raised md-primary" aria-label="Add" ng-click="openMenu($mdMenu, $event)">
-                    <md-icon>cloud_download</md-icon> <span translate>Export</span>
-                </md-button>
-                <md-menu-content width="4">
-                    <md-menu-item>
-                        <md-button ng-click="donwload()">
-                            <md-icon md-menu-align-target>get_app</md-icon> <span translate>Export all</span>
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="downloadByHigherFailure(export_startdate,export_enddate)">
-                            <md-icon md-menu-align-target>schedule</md-icon><span translate>Export higher failure</span>
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-        </a>
     </div>
-    <md-toolbar layout="row" class="md-table-toolbar" style="display:flex; height:40px">
+    <md-toolbar layout="row" class="md-toolbar-tools" style="display:flex; height:40px">
         <md-input-container>
             <label translate>Start date</label>
             <input type="date" ng-model="export_startdate" />
@@ -44,6 +11,40 @@
             <label translate>End date</label>
             <input type="date" ng-model="export_enddate" />
         </md-input-container>
+        <div style="margin-left: auto">
+            <a href="index.html#!/maintenancemanagement">
+                <md-button>
+                    <md-icon>arrow_back</md-icon><span translate>Back</span>
+                </md-button>
+            </a>
+            <a href="index.html#!/maintenance">
+                <md-button class="md-raised md-primary" aria-label="Add">
+                    <md-icon class="material-icons" role="img" aria-hidden="true">add</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Add a new maintenance</span>
+                    </md-tooltip>
+                </md-button>
+            </a>
+            <a href="">
+                <md-menu>
+                    <md-button class="md-raised md-primary" aria-label="Add" ng-click="openMenu($mdMenu, $event)">
+                        <md-icon>cloud_download</md-icon> <span translate>Export</span>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item>
+                            <md-button ng-click="donwload()">
+                                <md-icon md-menu-align-target>get_app</md-icon> <span translate>Export all</span>
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="downloadByHigherFailure(export_startdate,export_enddate)">
+                                <md-icon md-menu-align-target>schedule</md-icon><span translate>Export higher failure</span>
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </a>
+        </div>
     </md-toolbar>
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">

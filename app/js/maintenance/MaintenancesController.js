@@ -88,8 +88,26 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
     }
 
     $scope.downloadByHigherFailure = function (startdate, enddate) {
-        let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/maintenances/withFailureRate?from=" + startdate + "&to=" + enddate;
+        if (startdate == undefined || enddate == undefined) {
+            toastr.error($translate.instant('Please select a range of exportation'), 'Error');
+            return;
+        }
+        let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/maintenances/withFailureRate?from=" + formatDate(startdate) + "&to=" + formatDate(enddate);
         localStorage.setItem("export_link_by_date", link);
         window.location = link;
+    }
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
     }
 }]);
