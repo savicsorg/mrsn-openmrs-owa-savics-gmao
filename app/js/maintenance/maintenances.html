@@ -2,7 +2,7 @@
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="" translate>History of Maintenances</h1>
     </div>
-    <md-toolbar layout="row" class="md-toolbar-tools" style="display:flex; height:40px">
+    <div class="md-toolbar-tools">
         <md-input-container>
             <label translate>Start date</label>
             <input type="date" ng-model="export_startdate" />
@@ -38,14 +38,15 @@
                         </md-menu-item>
                         <md-menu-item>
                             <md-button ng-click="downloadByHigherFailure(export_startdate,export_enddate)">
-                                <md-icon md-menu-align-target>schedule</md-icon><span translate>Export higher failure</span>
+                                <md-icon md-menu-align-target>schedule</md-icon><span translate>Export higher
+                                    failure</span>
                             </md-button>
                         </md-menu-item>
                     </md-menu-content>
                 </md-menu>
             </a>
         </div>
-    </md-toolbar>
+    </div>
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">
             <input flex type="search" name="search" ng-model="searchAll.equipment.name"
