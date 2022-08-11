@@ -1,9 +1,7 @@
 <div id="content" class="container-fluid">
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="" translate>History of Maintenances</h1>
-    </div>
-    <div class="md-toolbar-tools">
-        <md-input-container>
+        <md-input-container class="md-block">
             <label translate>Start date</label>
             <input type="date" ng-model="export_startdate" />
         </md-input-container>
@@ -11,6 +9,8 @@
             <label translate>End date</label>
             <input type="date" ng-model="export_enddate" />
         </md-input-container>
+    </div>
+    <div class="md-toolbar-tools">
         <div style="margin-left: auto">
             <a href="index.html#!/maintenancemanagement">
                 <md-button>
@@ -26,24 +26,15 @@
                 </md-button>
             </a>
             <a href="">
-                <md-menu>
-                    <md-button class="md-raised md-primary" aria-label="Add" ng-click="openMenu($mdMenu, $event)">
-                        <md-icon>cloud_download</md-icon> <span translate>Export</span>
-                    </md-button>
-                    <md-menu-content width="4">
-                        <md-menu-item>
-                            <md-button ng-click="donwload()">
-                                <md-icon md-menu-align-target>get_app</md-icon> <span translate>Export all</span>
-                            </md-button>
-                        </md-menu-item>
-                        <md-menu-item>
-                            <md-button ng-click="downloadByHigherFailure(export_startdate,export_enddate)">
-                                <md-icon md-menu-align-target>schedule</md-icon><span translate>Export higher
-                                    failure</span>
-                            </md-button>
-                        </md-menu-item>
-                    </md-menu-content>
-                </md-menu>
+                <md-button ng-click="donwload()" class="md-raised md-primary">
+                    <md-icon md-menu-align-target>get_app</md-icon> <span translate>Export all</span>
+                </md-button>
+            </a>
+            <a href="">
+                <md-button ng-click="downloadByHigherFailure(export_startdate,export_enddate)"
+                    class="md-raised md-primary">
+                    <md-icon md-menu-align-target>get_app</md-icon> <span translate>Export higher failure</span>
+                </md-button>
             </a>
         </div>
     </div>
