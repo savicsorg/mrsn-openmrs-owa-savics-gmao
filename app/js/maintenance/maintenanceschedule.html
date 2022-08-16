@@ -1,0 +1,78 @@
+<div id="content" class="container-fluid">
+    <div class="md-toolbar-tools">
+        <h1 md-truncate="" flex="" translate>Management of schedule</h1>
+        <a href="index.html">
+            <md-button>
+                <md-icon>arrow_back</md-icon><span translate>Back</span>
+            </md-button>
+        </a>
+        <a href="index.html#!/schedule"  ng-if="account.role == 1 || account.role == 2 || account.role == 3" >
+            <md-button class="md-raised md-primary" aria-label="Add">
+                <md-icon class="material-icons" role="img" aria-hidden="true">add</md-icon>
+                <md-tooltip md-direction="top">
+                    <span translate>schedule maintenance</span>
+                </md-tooltip>
+            </md-button>
+        </a>
+        <a href="">
+            <md-button class="md-raised md-primary" aria-label="Add" ng-click="donwload()">
+                <md-icon>cloud_download</md-icon> <span translate>Export</span>
+            </md-button>
+        </a>
+    </div>
+    <md-toolbar layout="row" class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools" flex layout="row">
+            <input flex type="search" name="search" ng-model="searchAll.name"
+                placeholder="{{ 'Search by Name...' | translate }}">
+        </div>
+    </md-toolbar>
+    <md-card>
+        <md-card-content>
+            <md-table-container class="container" fixed-column-table>
+                <table md-table md-progress="promise">
+                    <thead md-head md-order="query.order">
+                        <tr md-row>
+                            <th md-column md-order-by="id"><span translate>Ref.</span></th>
+                            <th md-column md-order-by="Equipment"><span translate>Equipment</span></th>
+                            <th md-column md-order-by="Designation"><span translate>Designation</span></th>
+                            <th md-column md-order-by="schedule"><span translate>Maintenance type</span></th>
+                            <th md-column md-order-by="date"><span translate>Date</span></th>
+                
+                            <th md-column><span translate>Actions</span></th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row data-ng-repeat="schedule in schedules | orderBy:query.order | filter:searchAll ">
+                            <td md-cell>1</td>
+                            <td md-cell>GenExpert</td>
+                            <td md-cell>Nettoyage</td>
+                            <td md-cell>Preventive</td>
+                            <td md-cell>21-02-2021</td>
+                            <td>
+                                <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit"
+                                    ng-click="openEdit(schedule)" ng-if="account.role == 1 || account.role == 2" >
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
+                                    <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
+                                </button>
+                                <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Maintain"
+                                    ng-click="maintain(schedule)">
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">work</md-icon>
+                                    <md-tooltip md-direction="top"><span translate>Maintain</span></md-tooltip>
+                                </button>
+                                <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete"
+                                    ng-click="delete($event,schedule)"  ng-if="account.role == 1 || account.role == 2" >
+                                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                                    <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.count}}"
+                md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+                md-limit-options="[25, 50, 100]" md-on-paginate="logPagination" md-label="$parent.label">
+            </md-table-pagination>
+        </md-card-content>
+    </md-card>
+</div>
