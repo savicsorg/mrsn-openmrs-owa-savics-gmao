@@ -4,6 +4,9 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
     $scope.resource = "savicsgmao";
     $scope.loading = false;
     var originatorEv;
+    var today = new Date();
+    $scope.export_startdate = today;
+    $scope.export_enddate = addDays(today, 90);
     //Breadcrumbs properties
     $rootScope.links = { "Module GMAO": "", "Maintenance Management": "History of Maintenances" };
     $scope.label = {
@@ -92,12 +95,12 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
             toastr.error($translate.instant('Please select a range of exportation'), 'Error');
             return;
         }
-        let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/maintenances/withFailureRate?from=" + formatDate(startdate) + "&to=" + formatDate(enddate);
+        let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/maintenances/withFailureRate?from=" + formatDate(startdate, 'YYYY-MM-DD') + "&to=" + formatDate(enddate, 'YYYY-MM-DD');
         localStorage.setItem("export_link_by_date", link);
         window.location = link;
     }
 
-    function formatDate(date) {
+    function formatDate(date, format) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),
             day = '' + d.getDate(),
@@ -108,6 +111,20 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
         if (day.length < 2)
             day = '0' + day;
 
-        return [year, month, day].join('-');
+        let myformat = [year, month, day].join('-');
+        if (format == "YYYY-MM-DD") {
+            [year, month, day].join('-');
+        } else {
+            myformat = [day, month, year].join('/');
+
+        }
+
+        return myformat;
+    }
+
+    function addDays(date, days) {
+        var result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
     }
 }]);
