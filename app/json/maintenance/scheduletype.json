@@ -1,0 +1,22 @@
+[
+    {
+        "id": "1",
+        "en": "Weekly",
+        "fr": "Hebdomadaire"
+    },
+    {
+        "id": "2",
+        "en": "Monthly",
+        "fr": "Mensuelle"
+    },
+    {
+        "id": "3",
+        "en": "Quarterly",
+        "fr": "Trimestrielle"
+    },
+    {
+        "id": "4",
+        "en": "Annualy",
+        "fr": "Annuellement"
+    }
+]

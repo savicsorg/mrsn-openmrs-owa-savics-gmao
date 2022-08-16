@@ -329,6 +329,44 @@ angular.module('routes', []).config(['$stateProvider', '$urlRouterProvider', '$h
                 return deferred.promise;
             }]
         }
+    }).state('home.maintenanceSchedule', {
+        url: 'maintenanceSchedule',
+        template: require('./maintenance/maintenanceSchedule.html'),
+        controller: 'MaintenanceScheduleController',
+        resolve: {
+            loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
+                var deferred = $q.defer();
+                require.ensure([], function () {
+                    var mod = require('./maintenance/MaintenanceScheduleController.js');
+                    $ocLazyLoad.load({
+                        name: 'MaintenanceScheduleController'
+                    });
+                    deferred.resolve(mod.controller);
+                });
+                return deferred.promise;
+            }]
+        }
+    }).state('home.schedule', {
+        url: 'schedule',
+        params: {
+            schedule_id: undefined,
+            data: undefined
+        },
+        template: require('./maintenance/schedule.html'),
+        controller: 'ScheduleController',
+        resolve: {
+            loadMyCtrl: ['$q', '$ocLazyLoad', function ($q, $ocLazyLoad) {
+                var deferred = $q.defer();
+                require.ensure([], function () {
+                    var mod = require('./maintenance/ScheduleController.js');
+                    $ocLazyLoad.load({
+                        name: 'ScheduleController'
+                    });
+                    deferred.resolve(mod.controller);
+                });
+                return deferred.promise;
+            }]
+        }
     });
 }]).run(['$rootScope', '$state', '$transitions', 'openmrsTranslate', 'openmrsRest', function ($rootScope, $state, $transitions, openmrsTranslate, openmrsRest) {
     var _ = require("underscore");
