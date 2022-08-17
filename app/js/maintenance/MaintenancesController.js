@@ -5,8 +5,8 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
     $scope.loading = false;
     var originatorEv;
     var today = new Date();
-    $scope.export_startdate = today;
-    $scope.export_enddate = addDays(today, 90);
+    $scope.export_enddate = today;
+    $scope.export_startdate = addDays(today, 90);
     //Breadcrumbs properties
     $rootScope.links = { "Module GMAO": "", "Maintenance Management": "History of Maintenances" };
     $scope.label = {
@@ -124,7 +124,7 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
 
     function addDays(date, days) {
         var result = new Date(date);
-        result.setDate(result.getDate() + days);
+        result.setDate(result.getDate() - days);
         return result;
     }
 }]);
