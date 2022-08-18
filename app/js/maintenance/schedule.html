@@ -20,37 +20,12 @@
                             <span translate>No matches found.</span>
                         </md-not-found>
                     </md-autocomplete>
-                    <md-input-container class="md-block" flex-gt-sm required flex>
-                        <label>{{"Search equipment"| translate}}</label>
-                        <input class="form-control" disabled type="text" ng-model="selectedItem">
-                    </md-input-container>
                 </div>
-
             </md-card-content>
         </md-card>
         <md-card ng-if="!loading">
             <md-card-title>Maintenance information</md-card-title>
             <md-card-content>
-                <div layout="row" layout-xs="column" class="flex flex-col">
-                    <md-input-container class="md-block" flex="50">
-                        <label translate>Type of maintenance</label>
-                        <md-select ng-model="maintenance.maintenanceType.id" required>
-                            <md-option ng-repeat="t in maintenance_types" ng-value="t.id">
-                                {{t.name}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-input-container class="md-block" flex="50">
-                        <label translate>Done by</label>
-                        <input ng-model="maintenance.doneby" required>
-                    </md-input-container>
-                </div>
-                <div layout="row" layout-xs="column">
-                    <md-input-container class="md-block" flex-gt-sm>
-                        <label translate>Reason</label>
-                        <textarea ng-model="maintenance.reason"></textarea>
-                    </md-input-container>
-                </div>
                 <div layout="row" layout-xs="column">
                     <md-input-container class="md-block" flex="50">
                         <label translate>Task name</label>
@@ -70,20 +45,14 @@
                     <md-input-container class="md-block" flex="50">
                         <label translate>Type of schedule</label>
                         <md-select ng-model="schedule.maintenanceType.id" required>
-                            <md-option ng-repeat="s in schedule_types" ng-value="t.id">
-                                {{t.name}}
+                            <md-option ng-repeat="s in schedule_types" ng-value="s.id">
+                                {{s.value}}
                             </md-option>
                         </md-select>
                     </md-input-container>
-                </div>
-                <div layout="row" layout-xs="column">
                     <md-input-container class="md-block" flex-gt-sm>
                         <label translate>Start date</label>
                         <input type="datetime-local" required ng-model="maintenance.startdate" />
-                    </md-input-container>
-                    <md-input-container class="md-block" flex-gt-sm>
-                        <label translate>End date</label>
-                        <input type="datetime-local" ng-model="maintenance.enddate" />
                     </md-input-container>
                 </div>
                 </md-card_content>
@@ -96,6 +65,12 @@
                 </md-tooltip>
                 <span translate>Save</span>
             </md-button>
+            <a href="index.html#!/maintenanceSchedule">
+                <md-button aria-label="Add">
+                    <md-icon>cancel</md-icon>
+                    <span translate>Cancel</span>
+                </md-button>
+            </a>
         </div>
     </form>
 </div>

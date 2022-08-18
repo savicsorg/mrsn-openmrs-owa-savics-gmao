@@ -16,7 +16,12 @@
     },
     {
         "id": "4",
-        "en": "Annualy",
+        "en": "Annually",
         "fr": "Annuellement"
+    },
+    {
+        "id": "5",
+        "en": "Other",
+        "fr": "Autre"
     }
 ]
