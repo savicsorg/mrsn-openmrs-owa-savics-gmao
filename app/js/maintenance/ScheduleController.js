@@ -8,7 +8,14 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.loading = false;
     $scope.maintenance_types = [];
     //Breadcrumbs properties
-    $scope.equipement = {};
+    $scope.schedule = {};
+
+    $scope.validateBtn = {
+        text: $translate.instant("Validate"),
+        enabled: false,
+        visible: false
+    };
+    $scope.is_periodical = false;
 
     var dictionary = require("../utils/dictionary");
 
@@ -17,7 +24,7 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
 
     $scope.selectedEquipmentChange = function (item) {
         if (item) {
-            $scope.equipment = item;
+            $scope.schedule.equipment = item;
         }
     }
 
@@ -41,26 +48,23 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
 
     $scope.save = function () {
         $scope.loading = true;
-        var query = JSON.parse(JSON.stringify($scope.equipment));
-        delete query.country;
-        delete query.countrySanitary;
-        delete query.hdcsi;
-        delete query.departementhdcsi;
-        if ($scope.equipment && $scope.equipment.serialNumber && $scope.equipment.serialNumber.length >= 3 && $scope.equipment.serialNumber.length <= 120 && $scope.equipment.name && $scope.equipment.name != "") {
-            if ($scope.equipment.uuid) {    //Edit
-                openmrsRest.update($scope.resource + "/equipment", query).then(function (response) {
-                    $scope.equipment = response;
+        var query = JSON.parse(JSON.stringify($scope.schedule));
+        console.log($scope.schedule);
+        if ($scope.schedule && $scope.schedule.equipment && $scope.schedule.name && $scope.schedule.description && $scope.schedule.type.id && $scope.schedule.startdate) {
+            if ($scope.schedule.uuid) {    //Edit
+                openmrsRest.update($scope.resource + "/schedule", query).then(function (response) {
+                    $scope.schedule = response;
                     toastr.success($translate.instant('Data saved successfully.'), 'Success');
-                    $state.go('home.equipments');
+                    $state.go('home.maintenanceSchedule');
                     $scope.loading = false;
                 }, function (e) {
                     $scope.loading = false;
                     toastr.error($translate.instant('An unexpected error has occured.'), $translate.instant('Error'));
                 });
             } else {    //Creation
-                openmrsRest.create($scope.resource + "/equipment", query).then(function (response) {
+                openmrsRest.create($scope.resource + "/schedule", query).then(function (response) {
                     toastr.success($translate.instant('Data saved successfully.'), 'Success');
-                    $state.go('home.equipments');
+                    $state.go('home.maintenanceSchedule');
                     $scope.loading = false;
                 }, function (e) {
                     $scope.loading = false;
@@ -70,17 +74,45 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
             }
         } else {
             $scope.loading = false;
-            if (!$scope.equipment.serialNumber || !$scope.equipment.name || !$scope.equipment.equipmentType || !$scope.equipment.serviceStatus || !$scope.equipment.site) {
-                toastr.error($translate.instant('You must fill in the required fields before you proceed.'), $translate.instant('Error'));
-            }
-            if ($scope.equipment.serialNumber && ($scope.equipment.serialNumber.length <= 3 || $scope.equipment.serialNumber.length > 120)) {
-                toastr.error($translate.instant('The equipment serialNumber must be between 3 and 120 characters max.'), $translate.instant('Error'));
-            } else if ($scope.equipment.name && $scope.equipment.name == "") {
-                toastr.error($translate.instant('The equipment name must not be empty.'), $translate.instant('Error'));
-            }
+            toastr.error($translate.instant('You must fill in the required fields before you proceed.'), $translate.instant('Error'));
         }
     }
 
     $scope.getData();
+
+    $scope.toggleSchedule = function (type) {
+        $scope.is_periodical = type;
+    };
+
+    $scope.reject = function () {
+        $mdDialog.show($mdDialog.confirm()
+            .title('Confirmation')
+            .textContent($translate.instant('Do you really want to reject this request  of maintenance?'))
+            .ok($translate.instant('Yes'))
+            .cancel($translate.instant('Cancel'))).then(function () {
+                $scope.loading = true;
+                $scope.request.approval = moment(new Date()).format("YYYY-MM-D hh:mm:ss");
+                $scope.request.status = "REJECT";
+                // $scope.save();
+            }, function () {
+
+            });
+    }
+
+    $scope.approve = function () {
+        $mdDialog.show($mdDialog.confirm()
+            .title('Confirmation')
+            .textContent($translate.instant('Do you really want to approve this request of maintenance ?'))
+            .ok($translate.instant('Yes'))
+            .cancel($translate.instant('Cancel'))).then(function () {
+                $scope.loading = true;
+                $scope.request.approval = moment(new Date()).format("YYYY-MM-D hh:mm:ss");
+                $scope.request.status = "VALID";
+                // $scope.save();
+            }, function () {
+
+            });
+    }
+
 
 }]);

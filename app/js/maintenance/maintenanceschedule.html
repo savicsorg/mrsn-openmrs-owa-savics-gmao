@@ -42,72 +42,15 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row>
-                            <!--data-ng-repeat="schedule in schedules | orderBy:query.order | filter:searchAll "-->
-                            <td md-cell>GenExpert</td>
-                            <td md-cell>Quarterly</td>
-                            <td md-cell>21-02-2021</td>
-                            <td md-cell>19-08-2022</td>
+                        <tr md-row data-ng-repeat="schedule in schedules | orderBy:query.order | filter:searchAll ">
+                            <td md-cell>{{schedule.equipment}}</td>
+                            <td md-cell>{{schedule.periodical_type}}</td>
+                            <td md-cell>{{shedule.start_date}}</td>
+                            <td md-cell>{{schedule.next_date}}</td>
                             <td style="text-align: center">
                                 <md-icon style="color:red">
                                     <md-tooltip>
-                                        <span translate>Validated</span> 
-                                    </md-tooltip>
-                                    fiber_manual_record
-                                </md-icon>
-                            <td>
-                                <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit"
-                                    ng-click="openEdit(schedule)">
-                                    <!--ng-if="account.role == 1 || account.role == 2"-->
-                                    <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
-                                    <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
-                                </button>
-                                <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete"
-                                    ng-click="delete($event,schedule)">
-                                    <!--ng-if="account.role == 1 || account.role == 2"-->
-                                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
-                                    <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr md-row>
-                            <!--data-ng-repeat="schedule in schedules | orderBy:query.order | filter:searchAll "-->
-                            <td md-cell>Vehicle Hiace</td>
-                            <td md-cell>Quarterly</td>
-                            <td md-cell>21-02-2021</td>
-                            <td md-cell>21-08-2022</td>
-                            <td style="text-align: center">
-                                <md-icon style="color:red">
-                                    <md-tooltip>
-                                        <span translate>Validated</span> 
-                                    </md-tooltip>
-                                    fiber_manual_record
-                                </md-icon>
-                            <td>
-                                <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit"
-                                    ng-click="openEdit(schedule)">
-                                    <!--ng-if="account.role == 1 || account.role == 2"-->
-                                    <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
-                                    <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
-                                </button>
-                                <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete"
-                                    ng-click="delete($event,schedule)">
-                                    <!--ng-if="account.role == 1 || account.role == 2"-->
-                                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
-                                    <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr md-row>
-                            <!--data-ng-repeat="schedule in schedules | orderBy:query.order | filter:searchAll "-->
-                            <td md-cell>Photocopieuse</td>
-                            <td md-cell>Annually</td>
-                            <td md-cell>21-02-2021</td>
-                            <td md-cell>21-02-2022</td>
-                            <td style="text-align: center">
-                                <md-icon style="color:green">
-                                    <md-tooltip>
-                                        <span translate>Validated</span> 
+                                        <span translate>Nearest shedule</span>
                                     </md-tooltip>
                                     fiber_manual_record
                                 </md-icon>

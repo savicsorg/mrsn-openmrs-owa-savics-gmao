@@ -1,6 +1,28 @@
 <div id="content" class="container-fluid">
     <div class="md-toolbar-tools">
         <h1 md-truncate="" flex="">{{appTitle}}</h1>
+        <a href="index.html#!/maintenanceSchedule">
+            <md-button>
+                <md-icon>arrow_back</md-icon><span translate>Back</span>
+            </md-button>
+        </a>
+        <md-button class="md-raised md-primary" aria-label="Add" ng-if='validateBtn.visible  '
+            ng-disabled="!validateBtn.enabled" ng-click="approve()">
+            <md-icon class=" material-icons" role="img" aria-hidden="true">check_circle</md-icon>
+            <md-tooltip md-direction="top">
+                <span>{{validateBtn.text}}</span>
+            </md-tooltip>
+            {{validateBtn.text}}
+        </md-button>
+
+        <md-button class="md-raised md-accent" aria-label="Add" ng-if='validateBtn.enabled && validateBtn.visible '
+            ng-click="reject()">
+            <md-icon class=" material-icons" role="img" aria-hidden="true">cancel</md-icon>
+            <md-tooltip md-direction="top">
+                <span translate>Cancel</span>
+            </md-tooltip>
+            {{'Cancel' | translate}}
+        </md-button>
     </div>
 
     <form name="scheduleForm" ng-submit="save()">
@@ -29,11 +51,11 @@
                 <div layout="row" layout-xs="column">
                     <md-input-container class="md-block" flex="50">
                         <label translate>Task name</label>
-                        <textarea ng-model="maintenance.name" required></textarea>
+                        <textarea ng-model="schedule.name" required></textarea>
                     </md-input-container>
                     <md-input-container class="md-block" flex="50">
                         <label translate>Task description</label>
-                        <textarea ng-model="maintenance.description"></textarea>
+                        <textarea ng-model="schedule.description"></textarea>
                     </md-input-container>
                 </div>
                 </md-card_content>
@@ -41,10 +63,14 @@
         <md-card ng-if="!loading">
             <md-card-title>Periodical timeline information</md-card-title>
             <md-card-content>
-                <div layout="row" layout-xs="column">
+                <md-switch flex ng-model="schedule_type" aria-label="Validated" ng-disabled="editMode"
+                    ng-change="toggleSchedule(schedule_type)">
+                    <span>{{'is it a Periodical schedule?'| translate}}</span>
+                </md-switch>
+                <div layout="row" layout-xs="column" ng-if='is_periodical'>
                     <md-input-container class="md-block" flex="50">
                         <label translate>Type of schedule</label>
-                        <md-select ng-model="schedule.maintenanceType.id" required>
+                        <md-select ng-model="schedule.type.id" required>
                             <md-option ng-repeat="s in schedule_types" ng-value="s.id">
                                 {{s.value}}
                             </md-option>
@@ -52,7 +78,13 @@
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm>
                         <label translate>Start date</label>
-                        <input type="datetime-local" required ng-model="maintenance.startdate" />
+                        <input type="datetime-local" required ng-model="schedule.startdate" />
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column" ng-if='!is_periodical'>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label translate>Schedule date</label>
+                        <input type="datetime-local" required ng-model="schedule.scheduledate" />
                     </md-input-container>
                 </div>
                 </md-card_content>
