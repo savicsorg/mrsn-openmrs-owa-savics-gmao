@@ -59,12 +59,13 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
         $scope.promise = deferred.promise;
         $scope.query.startIndex = $scope.query.limit * ($scope.query.page - 1);
         $scope.schedules = [
-            { equipement: "GenExpert", periodical_type: "Quarterly", start_date: "21-02-2021", next_date: "19-08-2022", alert: true },
-            { equipement: "Vehicle Hiace", periodical_type: "Quarterly", start_date: "21-02-2021", next_date: "19-08-2022", alert: true },
-            { equipement: "Photocopieuse", periodical_type: "Annually", start_date: "21-02-2021", next_date: "21-02-2022", alert: false },
-            { equipement: "Bed", periodical_type: "Quarterly", start_date: "21-02-2021", next_date: "19-08-2022", alert: true },
-            { equipement: "Office chair", periodical_type: "Quarterly", start_date: "21-02-2021", next_date: "19-08-2022", alert: true },
-        ]
+            { equipment: "GenExpert", periodical_type: "Quarterly", start_date: "21-02-2021", next_date: "19-08-2022", alert: true },
+            { equipment: "Vehicle Hiace", periodical_type: "Quarterly", start_date: "21-02-2021", next_date: "19-08-2022", alert: true },
+            { equipment: "Photocopieuse", periodical_type: "Annually", start_date: "21-02-2021", next_date: "21-02-2022", alert: false },
+            { equipment: "Bed", periodical_type: "Quarterly", start_date: "21-02-2021", next_date: "19-08-2022", alert: true },
+            { equipment: "Office chair", periodical_type: "Quarterly", start_date: "21-02-2021", next_date: "19-08-2022", alert: true },
+        ];
+        $scope.loading = false;
 
         // openmrsRest.getFull($scope.resource + "/schedule?limit=" + $scope.query.limit + "&startIndex=" + $scope.query.startIndex).then(function (response) {
         //     $scope.loading = false;
