@@ -1,24 +1,42 @@
 <div id="content" class="container-fluid">
-    <div class="md-toolbar-tools">
+    <div class="md-toolbar-tools" style="margin-top: 16px;">
         <h1 md-truncate="" flex="" translate>History of Maintenances</h1>
-        <a href="index.html#!/maintenancemanagement">
-            <md-button>
-                <md-icon>arrow_back</md-icon><span translate>Back</span>
-            </md-button>
-        </a>
-        <a href="index.html#!/maintenance">
-            <md-button class="md-raised md-primary" aria-label="Add">
-                <md-icon class="material-icons" role="img" aria-hidden="true">add</md-icon>
-                <md-tooltip md-direction="top">
-                    <span translate>Add a new maintenance</span>
-                </md-tooltip>
-            </md-button>
-        </a>
-        <a href="">
-            <md-button class="md-raised md-primary" aria-label="Add" ng-click="donwload()">
-                <md-icon>cloud_download</md-icon> <span translate>Export</span>
-            </md-button>
-        </a>
+        <md-input-container class="md-block">
+            <label translate>Start date</label>
+            <input type="date" ng-model="export_startdate" />
+        </md-input-container>
+        <md-input-container>
+            <label translate>End date</label>
+            <input type="date" ng-model="export_enddate" />
+        </md-input-container>
+    </div>
+    <div class="md-toolbar-tools">
+        <div style="margin-left: auto">
+            <a href="index.html#!/maintenancemanagement">
+                <md-button>
+                    <md-icon>arrow_back</md-icon><span translate>Back</span>
+                </md-button>
+            </a>
+            <a href="index.html#!/maintenance">
+                <md-button class="md-raised md-primary" aria-label="Add">
+                    <md-icon class="material-icons" role="img" aria-hidden="true">add</md-icon>
+                    <md-tooltip md-direction="top">
+                        <span translate>Add a new maintenance</span>
+                    </md-tooltip>
+                </md-button>
+            </a>
+            <a href="">
+                <md-button ng-click="donwload()" class="md-raised md-primary">
+                    <md-icon md-menu-align-target>get_app</md-icon> <span translate>Export all</span>
+                </md-button>
+            </a>
+            <a href="">
+                <md-button ng-click="downloadByHigherFailure(export_startdate,export_enddate)"
+                    class="md-raised md-primary">
+                    <md-icon md-menu-align-target>get_app</md-icon> <span translate>HIGH FAILURE RATE</span>
+                </md-button>
+            </a>
+        </div>
     </div>
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">
@@ -33,7 +51,8 @@
                     <tr md-row>
                         <th md-column md-order-by="id"><span translate>Ref.</span></th>
                         <th md-column md-order-by="maintenanceType.name"><span translate>Type</span></th>
-                        <th md-column md-order-by="startdate | date: 'dd/MM/yyyy'"><span translate>Start Date</span></th>
+                        <th md-column md-order-by="startdate | date: 'dd/MM/yyyy'"><span translate>Start Date</span>
+                        </th>
                         <th md-column md-order-by="enddate | date: 'dd/MM/yyyy'"><span translate>End Date</span></th>
                         <th md-column md-order-by="status"><span translate>Status</span></th>
                         <th md-column md-order-by="equipment.name"><span translate>Equipment</span></th>
@@ -47,7 +66,8 @@
                         <td md-cell>{{maintenance.startdate | date: 'dd/MM/yyyy, h:mma'}}</td>
                         <td md-cell>{{maintenance.enddate | date: 'dd/MM/yyyy, h:mma'}}</td>
                         <td md-cell>
-                            <span ng-if="maintenance.status==1" translate>In Progress</span><span ng-if="maintenance.status==2" translate>Completed</span>
+                            <span ng-if="maintenance.status==1" translate>In Progress</span><span
+                                ng-if="maintenance.status==2" translate>Completed</span>
                         </td>
                         <td md-cell>{{maintenance.equipment.name}}</td>
                         <td>
