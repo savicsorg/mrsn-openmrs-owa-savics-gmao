@@ -30,13 +30,12 @@
             <md-card-title translate>Equipment information</md-card-title>
             <md-card-content>
                 <div layout="row" layout-xs="column" class="flex flex-col">
-                    <md-autocomplete autoFocus class="md-block" flex-gt-sm
-                        md-floating-label="{{'Search equipment'| translate}}" md-selected-item="selectedItem"
-                        md-search-text="searchText" md-items="item in getEquipments(searchText)"
-                        md-item-text="item.name" md-clear-button="true"
-                        md-selected-item-change="selectedEquipmentChange(item)" required flex>
+                    <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText"
+                        md-items="equipment in getEquipments(searchText)" md-item-text="equipment.name" class="md-block"
+                        flex-gt-sm md-floating-label="{{'Search equipment'| translate}}" md-clear-button="true"
+                        md-no-cache="true" md-selected-item-change="selectedEquipmentChange(equipment)" required flex>
                         <md-item-template>
-                            <span md-highlight-text="searchText">{{item.name}}</span>
+                            <span md-highlight-text="searchText">{{equipment.name}}</span>
                         </md-item-template>
                         <md-not-found>
                             <span translate>No matches found.</span>
@@ -70,21 +69,21 @@
                 <div layout="row" layout-xs="column" ng-if='is_periodical'>
                     <md-input-container class="md-block" flex="50">
                         <label translate>Type of schedule</label>
-                        <md-select ng-model="schedule.type.id" required>
-                            <md-option ng-repeat="s in schedule_types" ng-value="s.id">
+                        <md-select ng-model="schedule.frequency" required>
+                            <md-option ng-repeat="s in schedule_types" ng-value="s">
                                 {{s.value}}
                             </md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm>
                         <label translate>Start date</label>
-                        <input type="datetime-local" required ng-model="schedule.startdate" />
+                        <input type="date" required ng-model="schedule.startdate" />
                     </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column" ng-if='!is_periodical'>
                     <md-input-container class="md-block" flex-gt-sm>
                         <label translate>Schedule date</label>
-                        <input type="datetime-local" required ng-model="schedule.scheduledate" />
+                        <input type="date" required ng-model="schedule.enddate" />
                     </md-input-container>
                 </div>
                 </md-card_content>

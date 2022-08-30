@@ -9,7 +9,7 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.maintenance_types = [];
     //Breadcrumbs properties
     $scope.schedule = {};
-
+    
     $scope.validateBtn = {
         text: $translate.instant("Validate"),
         enabled: false,
@@ -21,6 +21,21 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
 
     var schedule_typesjson = require('../../json/maintenance/scheduletype.json');
     $scope.schedule_types = dictionary.getJsonList(schedule_typesjson, $rootScope.selectedLanguage);
+
+    if ($stateParams.data && $stateParams.data.uuid) {
+        $scope.schedule = $stateParams.data;
+        $scope.selectedItem = $stateParams.data.equipment.name;
+        if ($stateParams.data.frequency === "N/A") {
+            $scope.is_periodical = false;
+            $scope.schedule_type = false;
+            $scope.schedule.enddate = new Date(moment(new Date($stateParams.data.enddate)).format('MM/DD/YYYY, h:mm A'));
+        } else {
+            $scope.is_periodical = true;
+            $scope.schedule_type = true;
+            $scope.schedule.frequency = _.find($scope.schedule_types, function (p) { return p.value === $stateParams.data.frequency; });
+            $scope.schedule.startdate = new Date(moment(new Date($stateParams.data.startdate)).format('MM/DD/YYYY, h:mm A'));
+        }
+    }
 
     $scope.selectedEquipmentChange = function (item) {
         if (item) {
@@ -45,14 +60,24 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         });
     }
 
-
     $scope.save = function () {
         $scope.loading = true;
-        var query = JSON.parse(JSON.stringify($scope.schedule));
-        console.log($scope.schedule);
-        if ($scope.schedule && $scope.schedule.equipment && $scope.schedule.name && $scope.schedule.description && $scope.schedule.type.id && $scope.schedule.startdate) {
+        $scope.schedule.equipment = $scope.schedule.equipment.id;
+        $scope.schedule.priority = 0;
+        $scope.schedule.status = 0;
+        if ($scope.is_periodical) {
+            var period = _.find(schedule_typesjson, function (p) { return p.id === $scope.schedule.frequency.id; });
+            const mydate = new Date($scope.schedule.startdate);
+            $scope.schedule.enddate = new Date(mydate.setDate(mydate.getDate() + period.weeks * 7));
+            $scope.schedule.frequency = $scope.schedule.frequency.value;
+        } else {
+            $scope.schedule.frequency = "N/A";
+            $scope.schedule.startdate = new Date();
+        }
+        if ($scope.schedule) {
+           
             if ($scope.schedule.uuid) {    //Edit
-                openmrsRest.update($scope.resource + "/schedule", query).then(function (response) {
+                openmrsRest.update($scope.resource + "/maintenanceEvent", $scope.schedule).then(function (response) {
                     $scope.schedule = response;
                     toastr.success($translate.instant('Data saved successfully.'), 'Success');
                     $state.go('home.maintenanceSchedule');
@@ -62,7 +87,7 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
                     toastr.error($translate.instant('An unexpected error has occured.'), $translate.instant('Error'));
                 });
             } else {    //Creation
-                openmrsRest.create($scope.resource + "/schedule", query).then(function (response) {
+                openmrsRest.create($scope.resource + "/maintenanceEvent", $scope.schedule).then(function (response) {
                     toastr.success($translate.instant('Data saved successfully.'), 'Success');
                     $state.go('home.maintenanceSchedule');
                     $scope.loading = false;

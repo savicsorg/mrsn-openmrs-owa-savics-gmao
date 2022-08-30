@@ -35,7 +35,7 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
 
     function deleteObject(schedule) {
         $scope.loading = true;
-        openmrsRest.remove($scope.resource + "/schedule", schedule, "Generic Reason").then(function (response) {
+        openmrsRest.remove($scope.resource + "/maintenanceEvent", schedule, "Generic Reason").then(function (response) {
             $scope.loading = false;
             getAllSchedules();
             toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
@@ -58,32 +58,25 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
         var deferred = $q.defer();
         $scope.promise = deferred.promise;
         $scope.query.startIndex = $scope.query.limit * ($scope.query.page - 1);
-        $scope.schedules = [
-            { equipment: "GenExpert", periodical_type: "Quarterly", start_date: "21-02-2021", next_date: "19-08-2022", alert: true },
-            { equipment: "Vehicle Hiace", periodical_type: "Quarterly", start_date: "21-02-2021", next_date: "19-08-2022", alert: true },
-            { equipment: "Photocopieuse", periodical_type: "Annually", start_date: "21-02-2021", next_date: "21-02-2022", alert: false },
-            { equipment: "Bed", periodical_type: "Quarterly", start_date: "21-02-2021", next_date: "19-08-2022", alert: true },
-            { equipment: "Office chair", periodical_type: "Quarterly", start_date: "21-02-2021", next_date: "19-08-2022", alert: true },
-        ];
-        $scope.loading = false;
-
-        // openmrsRest.getFull($scope.resource + "/schedule?limit=" + $scope.query.limit + "&startIndex=" + $scope.query.startIndex).then(function (response) {
-        //     $scope.loading = false;
-        //     $scope.schedules = response.results;
-        //     openmrsRest.get($scope.resource + "/schedule/count").then(function (response) {
-        //         if (response.count) {
-        //             $scope.query.count = response.count;
-        //         }
-        //         $rootScope.kernel.loading = 100;
-        //         deferred.resolve(response.results);
-        //     }, function (e) {
-        //         $scope.loading = false;
-        //         showToast($translate.instant("An unexpected error has occured."), "error");
-        //     });
-        // }, function (e) {
-        //     $scope.loading = false;
-        //     showToast($translate.instant("An unexpected error has occured with getAllSchedules()."), "error");
-        // });
+        openmrsRest.getFull($scope.resource + "/maintenanceEvent?limit=" + $scope.query.limit + "&startIndex=" + $scope.query.startIndex).then(function (response) {
+            $scope.loading = false;
+            $scope.schedules = response.results;
+            $rootScope.kernel.loading = 100;
+            deferred.resolve(response.results);
+            // openmrsRest.get($scope.resource + "/maintenanceEvent/count").then(function (response) {
+            //     if (response.count) {
+            //         $scope.query.count = response.count;
+            //     }
+            //     $rootScope.kernel.loading = 100;
+            //     deferred.resolve(response.results);
+            // }, function (e) {
+            //     $scope.loading = false;
+            //     showToast($translate.instant("An unexpected error has occured."), "error");
+            // });
+        }, function (e) {
+            $scope.loading = false;
+            showToast($translate.instant("An unexpected error has occured with getAllSchedules()."), "error");
+        });
     }
 
     getAllSchedules();
