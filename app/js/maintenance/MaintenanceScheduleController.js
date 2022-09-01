@@ -3,6 +3,9 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
     $scope.appTitle = $translate.instant("Management of Equipements");
     $scope.resource = "savicsgmao";
     $scope.loading = false;
+    var today = new Date();
+    $scope.export_enddate = today;
+    $scope.export_startdate = addDays(today, 90);
     //Breadcrumbs properties
     $rootScope.links = { "Module GMAO": "", "maintenanceSchedule": "maintenanceSchedule" };
     $scope.label = {
@@ -82,10 +85,42 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
     getAllSchedules();
 
 
-    $scope.donwload = function () {
-        let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/schedule/export";
+    $scope.donwload = function (startdate, enddate) {
+        if (startdate == undefined || enddate == undefined) {
+            toastr.error($translate.instant('Please select a range of exportation'), 'Error');
+            return;
+        }
+        let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/maintenanceEvent/export?startdate=" + formatDate(startdate, 'YYYY-MM-DD') + "&enddate=" + formatDate(enddate, 'YYYY-MM-DD');
         localStorage.setItem("export_link", link);
         window.location = link;
+    }
+
+    function formatDate(date, format) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        let myformat = [year, month, day].join('-');
+        if (format == "YYYY-MM-DD") {
+            [year, month, day].join('-');
+        } else {
+            myformat = [day, month, year].join('/');
+
+        }
+
+        return myformat;
+    }
+
+    function addDays(date, days) {
+        var result = new Date(date);
+        result.setDate(result.getDate() - days);
+        return result;
     }
 
 }]);
