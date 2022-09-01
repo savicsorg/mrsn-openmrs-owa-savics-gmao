@@ -1,38 +1,25 @@
 <div id="content" class="container-fluid">
-    <div class="md-toolbar-tools" style="margin-top: 16px;">
-        <h1 md-truncate="" flex="" translate>Management of schedule</h1>
-        <md-input-container class="md-block">
-            <label translate>Start date</label>
-            <input type="date" ng-model="export_startdate" />
-        </md-input-container>
-        <md-input-container>
-            <label translate>End date</label>
-            <input type="date" ng-model="export_enddate" />
-        </md-input-container>
-    </div>
     <div class="md-toolbar-tools">
-        <div style="margin-left: auto">
-            <a href="index.html">
-                <md-button>
-                    <md-icon>arrow_back</md-icon><span translate>Back</span>
-                </md-button>
-            </a>
-            <a href="index.html#!/schedule">
-                <!--ng-if="account.role == 1 || account.role == 2 || account.role == 3" -->
-                <md-button class="md-raised md-primary" aria-label="Add">
-                    <md-icon class="material-icons" role="img" aria-hidden="true">add</md-icon>
-                    <md-tooltip md-direction="top">
-                        <span translate>Schedule maintenance</span>
-                    </md-tooltip>
-                </md-button>
-            </a>
-            <a href="">
-                <md-button class="md-raised md-primary" aria-label="Add"
-                    ng-click="donwload(export_startdate,export_enddate)">
-                    <md-icon>cloud_download</md-icon> <span translate>Export</span>
-                </md-button>
-            </a>
-        </div>
+        <h1 md-truncate="" flex="" translate>Management of schedule</h1>
+        <a href="index.html">
+            <md-button>
+                <md-icon>arrow_back</md-icon><span translate>Back</span>
+            </md-button>
+        </a>
+        <a href="index.html#!/schedule">
+            <!--ng-if="account.role == 1 || account.role == 2 || account.role == 3" -->
+            <md-button class="md-raised md-primary" aria-label="Add">
+                <md-icon class="material-icons" role="img" aria-hidden="true">add</md-icon>
+                <md-tooltip md-direction="top">
+                    <span translate>Schedule maintenance</span>
+                </md-tooltip>
+            </md-button>
+        </a>
+        <a href="">
+            <md-button class="md-raised md-primary" aria-label="Add" ng-click="donwload()">
+                <md-icon>cloud_download</md-icon> <span translate>Export</span>
+            </md-button>
+        </a>
     </div>
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">
@@ -63,7 +50,7 @@
                             <td style="text-align: center">
                                 <md-icon style="color:red">
                                     <md-tooltip>
-                                        <span>{{schedule.status}}</span>
+                                        <span translate>{{schedule.status}}</span>
                                     </md-tooltip>
                                     fiber_manual_record
                                 </md-icon>
