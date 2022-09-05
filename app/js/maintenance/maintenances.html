@@ -50,34 +50,39 @@
                 <thead md-head md-order="query.order">
                     <tr md-row>
                         <th md-column md-order-by="id"><span translate>Ref.</span></th>
-                        <th md-column md-order-by="maintenanceType.name"><span translate>Type</span></th>
-                        <th md-column md-order-by="startdate | date: 'dd/MM/yyyy'"><span translate>Start Date</span>
-                        </th>
-                        <th md-column md-order-by="enddate | date: 'dd/MM/yyyy'"><span translate>End Date</span></th>
-                        <th md-column md-order-by="status"><span translate>Status</span></th>
                         <th md-column md-order-by="equipment.name"><span translate>Equipment</span></th>
+                        <th md-column md-order-by="maintenanceType.name"><span translate>Type</span></th>
+                        <th md-column md-order-by="maintenance.name"><span translate>Task</span></th>
+                        <th md-column md-order-by="status"><span translate>Status</span></th>
+                        
                         <th md-column style="width:150px"><span translate>Actions</span></th>
                     </tr>
                 </thead>
                 <tbody md-body>
                     <tr md-row data-ng-repeat="maintenance in maintenances | orderBy:query.order | filter:searchAll ">
                         <td md-cell>{{maintenance.id}}</td>
-                        <td md-cell>{{maintenance.maintenanceType.name}}</td>
-                        <td md-cell>{{maintenance.startdate | date: 'dd/MM/yyyy, h:mma'}}</td>
-                        <td md-cell>{{maintenance.enddate | date: 'dd/MM/yyyy, h:mma'}}</td>
-                        <td md-cell>
-                            <span ng-if="maintenance.status==1" translate>In Progress</span><span
-                                ng-if="maintenance.status==2" translate>Completed</span>
-                        </td>
                         <td md-cell>{{maintenance.equipment.name}}</td>
+                        <td md-cell>{{maintenance.maintenanceType.name}}</td>
+                        <td md-cell>{{maintenance.name}}</td>
+                        <td md-cell>
+                            <span ng-if="maintenance.status==0" translate>To do<br/> </span> 
+                            <span ng-if="maintenance.status==1" translate>In Progress</span>
+                            <span ng-if="maintenance.status==2" translate>Completed</span>
+                            <small style="color: {{isFutureDate(maintenance.dueDate) ?'red':'gray'}}" ng-if="maintenance.dueDate && (maintenance.status==0 || maintenance.status==1)">(due date: {{maintenance.dueDate | date: 'dd-MM-yyyy'}})</small>
+                        </td>
                         <td>
                             <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit"
-                                ng-click="openEdit(maintenance)">
+                                ng-click="openEdit(maintenance)" ng-if="maintenance.status==0 || maintenance.status==1">
                                 <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
                                 <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
                             </button>
+                            <button ng-if="maintenance.status==2" class="md-fab md-mini md-primary md-button" type="button"
+                                aria-label="History" ng-click="openEdit(maintenance)">
+                                <md-icon class="material-icons" role="img" aria-hidden="true">visibility</md-icon>
+                                <md-tooltip md-direction="top"><span translate>Request detail</span></md-tooltip>
+                            </button>
                             <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete"
-                                ng-click="delete($event,maintenance)">
+                                    ng-click="delete($event,maintenance)" ng-if="maintenance.status==0 || maintenance.status==1">
                                 <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
                                 <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
                             </button>

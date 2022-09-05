@@ -18,6 +18,7 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
             $scope.maintenance = $stateParams.data;
             $scope.maintenance.startdate = new Date(moment(new Date($stateParams.data.startdate)).format('MM/DD/YYYY, h:mm A'));
             $scope.maintenance.enddate = new Date(moment(new Date($stateParams.data.enddate)).format('MM/DD/YYYY, h:mm A'));
+            $scope.maintenance.dueDate = new Date(moment(new Date($stateParams.data.dueDate)).format('MM/DD/YYYY, h:mm A'));
             $scope.selectedItem = $stateParams.data.equipment.name;
             $scope.selectedMaintenanceRequest = $stateParams.data.maintenanceRequest;
             if ($scope.selectedMaintenanceRequest) {
@@ -48,6 +49,7 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
                         $scope.maintenance = response;
                         $scope.searchText = $scope.maintenance.equipment.name;
                         $scope.selectedMaintenanceRequest = $scope.maintenance.maintenanceRequest;
+                        $scope.equipment = $scope.maintenance.equipment;
                         if ($scope.maintenance.maintenanceRequest) {
                             $scope.activeMaintenancesRequests = [];
                             $scope.activeMaintenancesRequests.push($scope.maintenance.maintenanceRequest);
@@ -84,8 +86,12 @@ angular.module('MaintenanceController', ['ngMaterial', 'ngAnimate', 'toastr', 'm
             if ($scope.selectedMaintenanceRequest) {
                 query.maintenanceRequest = parseInt($scope.selectedMaintenanceRequest.id);
             }
-
-            if ($scope.maintenance && query.status) {
+            
+            if ($scope.maintenance && $scope.maintenance.maintenanceEvent) {
+                query.maintenanceEvent = parseInt($scope.maintenance.maintenanceEvent.id);
+            }
+            console.log("$scope.maintenance.status", $scope.maintenance.status, query.status)
+            if ($scope.maintenance && query.status !== null && query.status !== undefined && query.status >= 0) {
                 if ($scope.maintenance && $scope.maintenance.uuid) {    //Edit
                     openmrsRest.update($scope.resource + "/maintenance", query).then(function (response) {
                         $scope.maintenance = response;

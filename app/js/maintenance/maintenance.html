@@ -15,7 +15,7 @@
             <md-card-title translate>Equipment information</md-card-title>
             <md-card-content>
                 <div layout="row" layout-xs="column" class="flex flex-col">
-                    <md-switch flex ng-model="findByRequest" aria-label="Validated" ng-disabled="editMode" ng-change="toggleRequest(findByRequest)">
+                    <md-switch  flex ng-model="findByRequest" aria-label="Validated" ng-disabled="editMode || maintenance.maintenanceEvent" ng-change="toggleRequest(findByRequest)">
                         <span >{{'Find by maintenance request'| translate}}</span>
                     </md-switch> 
                     <md-input-container class="md-block" flex-gt-sm flex="66" ng-if="findByRequest" ng-disabled="editMode">
@@ -23,7 +23,7 @@
                         <md-select ng-disabled="editMode" name="selectedMaintenanceRequest" ng-model="selectedMaintenanceRequest" ng-change="selectedMaintenanceRequestChange(selectedMaintenanceRequest)" required
                                    >
                             <md-option ng-repeat="o in activeMaintenancesRequests" ng-value="o" ng-selected="selectedMaintenanceRequest && o.id == selectedMaintenanceRequest.id">
-                                [Ref#{{o.id}}] | Register N°: {{o.registerNumber }} | {{o.equipment.name}}
+                                [Ref#{{o.id}}] | Register N°: {{o.registerNumber}} | {{o.equipment.name}}
                             </md-option>
                         </md-select>
                         <div ng-messages="form.selectedMaintenanceRequest.$error" role="alert">
@@ -36,7 +36,7 @@
 
 
                 <div layout="row" layout-xs="column" class="flex flex-col">
-                    <md-autocomplete autoFocus class="md-block" flex-gt-sm ng-if="!findByRequest"
+                    <md-autocomplete autoFocus class="md-block" flex-gt-sm ng-if="!findByRequest" 
                                      md-floating-label="{{'Search equipment'| translate}}" md-selected-item="selectedItem"
                                      md-search-text="searchText" md-items="item in getEquipments(searchText)"
                                      md-item-text="item.name" md-clear-button="true"
@@ -49,7 +49,7 @@
                         </md-not-found>
                     </md-autocomplete>
                     <md-input-container class="md-block" flex-gt-sm required flex
-                        ng-if="findByRequest" >
+                                        ng-if="findByRequest" ng-disabled="maintenance.maintenanceEvent">
                         <label>{{"Search equipment"| translate}}</label>
                         <input class="form-control" disabled type="text" ng-model="selectedItem">
                     </md-input-container>
@@ -62,9 +62,9 @@
             <md-card-title>Maintenance information</md-card-title>
             <md-card-content>
                 <div layout="row" layout-xs="column" class="flex flex-col">
-                    <md-input-container class="md-block" flex="50">
+                    <md-input-container class="md-block" flex="50" >
                         <label translate>Type of maintenance</label>
-                        <md-select ng-model="maintenance.maintenanceType.id" required>
+                        <md-select ng-model="maintenance.maintenanceType.id" required ng-disabled="maintenance.maintenanceEvent">
                             <md-option ng-repeat="t in maintenance_types" ng-value="t.id">
                                 {{t.name}}
                             </md-option>
@@ -79,13 +79,13 @@
                 <div layout="row" layout-xs="column">
                     <md-input-container class="md-block" flex-gt-sm>
                         <label translate>Reason</label>
-                        <textarea ng-model="maintenance.reason"></textarea>
+                        <textarea ng-model="maintenance.reason" ng-disabled="maintenance.maintenanceEvent"></textarea>
                     </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column">
                     <md-input-container class="md-block" flex="50">
                         <label translate>Task name</label>
-                        <textarea ng-model="maintenance.name" required></textarea>
+                        <textarea ng-model="maintenance.name" ng-disabled="maintenance.maintenanceEvent" required></textarea>
                     </md-input-container>
                     <md-input-container class="md-block" flex="50">
                         <label translate>Task description</label>
@@ -102,10 +102,18 @@
                         <input type="datetime-local" ng-model="maintenance.enddate" />
                     </md-input-container>
                 </div>
+                <div layout="row" layout-xs="column" ng-if="maintenance.maintenanceEvent">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label translate>Due date</label>
+                        <input type="date" disabled required ng-model="maintenance.dueDate" />
+                    </md-input-container>
+                </div>
                 <div layout="row" layout-xs="column" class="flex flex-col">
                     <md-input-container class="md-block md-input-has-value">
                         <label translate>Status *</label>
-                        <md-radio-group ng-model="maintenance.status" layout="row" name="property" required>
+                        <md-radio-group ng-model="maintenance.status" layout="row" name="property" required ng-disabled="maintenance.status===2">
+                            <md-radio-button value="0" class="md-primary"><span translate>To do</span>
+                            </md-radio-button>
                             <md-radio-button value="1" class="md-primary"><span translate>In Progress</span>
                             </md-radio-button>
                             <md-radio-button value="2" class="md-primary"><span translate>Completed</span>
@@ -119,13 +127,18 @@
                 </md-card_content>
         </md-card>
         <div layout="row" layout-xs="column" ng-if="!loading">
-            <md-button class="md-raised md-primary" aria-label="Add" type="submit" >
+            <md-button class="md-raised md-primary" aria-label="Add" type="submit" ng-disabled="maintenance.status===2">
                 <md-icon>save</md-icon>
                 <md-tooltip md-direction="top">
                     <span translate>Save</span>
                 </md-tooltip> 
                 <span translate>Save</span>
             </md-button>
+            <a href="index.html#!/maintenances">
+                <md-button>
+                    <md-icon>arrow_back</md-icon><span translate>Cancel</span>
+                </md-button>
+            </a>
         </div>
     </form>
 </div>

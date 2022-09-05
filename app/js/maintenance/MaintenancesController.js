@@ -99,6 +99,15 @@ angular.module('MaintenancesController', ['ngMaterial', 'ngAnimate', 'toastr', '
         localStorage.setItem("export_link_by_date", link);
         window.location = link;
     }
+    
+    
+    $scope.isFutureDate = function (myDate) {
+        if (myDate) {
+            return new Date(myDate) >= new Date();
+        }
+        return false; 
+    };
+
 
     function formatDate(date, format) {
         var d = new Date(date),
