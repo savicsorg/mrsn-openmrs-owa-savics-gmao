@@ -6,13 +6,15 @@
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 homeNotification">
                 <div>
-                    <div class="note-container" ng-class="{'hidden': hasPendingRequest == false}">
+                    <div class="note-container" ng-if="todoFutureMaintenances + todoPassMaintenances > 0" >
                         <div class="note warning">
                             <div class="d-flex text">
                                 <i class="icon-warning-sign medium"></i>
-                                <p><span>{{ "You have one or more maintenance request(s) which is/are waiting to be
-                                        validated or which must be carried out " | translate}}
-                                    </span>
+                                <p>
+                                    <span translate>Vous avez : </span>
+                                    <a href="index.html#!/maintenances" >{{todoFutureMaintenances}}</a> maintenance(s) à faire
+                                    - <a href="index.html#!/maintenances" > {{todoFutureMaintenances}} </a>maintenance(s) en retard
+                                    - <a href="index.html#!/requests" > {{requestMaintenances}} </a> demande(s) en attente
                                     <a href="" ng-click="hideWarning()" class="font-weight-bold">X</a>
                                 </p>
                             </div>
