@@ -1,4 +1,5 @@
 angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table']).controller('MaintenanceScheduleController', ['$scope', '$state', '$stateParams', '$rootScope', '$mdToast', 'openmrsRest', '$mdDialog', '$q', '$translate', function ($scope, $state, $stateParams, $rootScope, $mdToast, openmrsRest, $mdDialog, $q, $translate) {
+    var _ = require("underscore");
     $scope.rootScope = $rootScope;
     $scope.appTitle = $translate.instant("Management of Equipements");
     $scope.resource = "savicsgmao";
@@ -63,7 +64,12 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
         $scope.query.startIndex = $scope.query.limit * ($scope.query.page - 1);
         openmrsRest.getFull($scope.resource + "/maintenanceEvent?limit=" + $scope.query.limit + "&startIndex=" + $scope.query.startIndex).then(function (response) {
             $scope.loading = false;
-            $scope.schedules = response.results;
+            $scope.schedules = _.map(response.results, (d) => {
+                if (new Date() > d.enddate) {
+                    d.status = 2;
+                }
+                return d;
+            });
             $rootScope.kernel.loading = 100;
             deferred.resolve(response.results);
             // openmrsRest.get($scope.resource + "/maintenanceEvent/count").then(function (response) {

@@ -27,7 +27,8 @@
                 </md-button>
             </a>
             <a href="">
-                <md-button class="md-raised md-primary" aria-label="Add" ng-click="donwload(export_startdate,export_enddate)">
+                <md-button class="md-raised md-primary" aria-label="Add"
+                    ng-click="donwload(export_startdate,export_enddate)">
                     <md-icon>cloud_download</md-icon> <span translate>Export</span>
                 </md-button>
             </a>
@@ -37,6 +38,16 @@
         <div class="md-toolbar-tools" flex layout="row">
             <input flex type="search" name="search" ng-model="searchAll.name"
                 placeholder="{{ 'Search by Name...' | translate }}">
+        </div>
+    </md-toolbar>
+    <md-toolbar layout="row" class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools" flex layout="row">
+            <md-icon style="color:orange;margin-right:0px;margin-left:0px">fiber_manual_record</md-icon>: <small><i>No
+                    schedule</i></small>
+            <md-icon style="color:green;margin-right:0px">fiber_manual_record</md-icon>: <small><i>Schedule
+                    available</i></small>
+            <md-icon style="color:red;margin-right:0px">fiber_manual_record</md-icon>: <small><i>Time
+                    exceeded</i></small>
         </div>
     </md-toolbar>
     <md-card>
@@ -60,9 +71,11 @@
                             <td md-cell>{{schedule.startdate| date:'dd/MM/yyyy' : 'UTC'}}</td>
                             <td md-cell>{{schedule.enddate| date:'dd/MM/yyyy' : 'UTC'}}</td>
                             <td style="text-align: center">
-                                <md-icon style="color:red">
+                                <md-icon
+                                    style="color:{{schedule.status == 0 ? 'orange': schedule.status == 1 ?'green':'red'}}">
                                     <md-tooltip>
-                                        <span translate>{{schedule.status}}</span>
+                                        <span translate>{{schedule.status == 0 ? 'No schedule available':
+                                            schedule.status == 1 ?'Schedule available':'Time exceeded'}}</span>
                                     </md-tooltip>
                                     fiber_manual_record
                                 </md-icon>
