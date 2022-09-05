@@ -1,31 +1,22 @@
 [
     {
         "id": "1",
-        "en": "Weekly",
-        "fr": "Hebdomadaire",
-        "weeks": 1
+        "en": "days",
+        "fr": "Jours"
     },
     {
         "id": "2",
-        "en": "Monthly",
-        "fr": "Mensuelle",
-        "weeks": 4
+        "en": "Weeks",
+        "fr": "Semaines"
     },
     {
         "id": "3",
-        "en": "Quarterly",
-        "fr": "Trimestrielle",
-        "weeks": 12
+        "en": "Months",
+        "fr": "Mois"
     },
     {
         "id": "4",
-        "en": "Annually",
-        "fr": "Annuellement",
-        "weeks": 52
-    },
-    {
-        "id": "5",
-        "en": "Other",
-        "fr": "Autre"
+        "en": "Years",
+        "fr": "Années"
     }
 ]
