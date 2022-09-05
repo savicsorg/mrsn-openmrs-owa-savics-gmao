@@ -9,7 +9,7 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.maintenance_types = [];
     //Breadcrumbs properties
     $scope.schedule = {};
-    
+
     $scope.validateBtn = {
         text: $translate.instant("Validate"),
         enabled: false,
@@ -67,15 +67,24 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.schedule.status = 0;
         if ($scope.is_periodical) {
             var period = _.find(schedule_typesjson, function (p) { return p.id === $scope.schedule.frequency.id; });
+            if (period.id == "4") {
+                period = $scope.schedule.number * 365;
+            } else if (period.id == "3") {
+                period = $scope.schedule.number * 30;
+            } else if (period.id == "2") {
+                period = $scope.schedule.number * 7;
+            } else {
+                period = $scope.schedule.number;
+            }
+            console.log($scope.schedule.startdate);
             const mydate = new Date($scope.schedule.startdate);
-            $scope.schedule.enddate = new Date(mydate.setDate(mydate.getDate() + period.weeks * 7));
+            $scope.schedule.enddate = new Date(mydate.setDate(mydate.getDate() + period));
             $scope.schedule.frequency = $scope.schedule.frequency.value;
         } else {
             $scope.schedule.frequency = "N/A";
             $scope.schedule.startdate = new Date();
         }
         if ($scope.schedule) {
-           
             if ($scope.schedule.uuid) {    //Edit
                 openmrsRest.update($scope.resource + "/maintenanceEvent", $scope.schedule).then(function (response) {
                     $scope.schedule = response;
