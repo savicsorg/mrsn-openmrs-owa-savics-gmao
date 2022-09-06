@@ -42,12 +42,12 @@
     </md-toolbar>
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">
-            <md-icon style="color:orange;margin-right:0px;margin-left:0px">fiber_manual_record</md-icon>: <small><i>No
-                    schedule</i></small>
-            <md-icon style="color:green;margin-right:0px">fiber_manual_record</md-icon>: <small><i>Schedule
-                    available</i></small>
-            <md-icon style="color:red;margin-right:0px">fiber_manual_record</md-icon>: <small><i>Time
-                    exceeded</i></small>
+            <md-icon style="color:orange;margin-right:0px;margin-left:0px">fiber_manual_record</md-icon>:
+            <small><i translate>No schedule</i></small>
+            <md-icon style="color:green;margin-right:0px">fiber_manual_record</md-icon>:
+            <small> <i translate>Schedule available</i></small>
+            <md-icon style="color:red;margin-right:0px">fiber_manual_record</md-icon>:
+            <small> <i translate>Time exceeded</i></small>
         </div>
     </md-toolbar>
     <md-card>
@@ -71,11 +71,9 @@
                             <td md-cell>{{schedule.startdate| date:'dd/MM/yyyy' : 'UTC'}}</td>
                             <td md-cell>{{schedule.enddate| date:'dd/MM/yyyy' : 'UTC'}}</td>
                             <td style="text-align: center">
-                                <md-icon
-                                    style="color:{{schedule.status == 0 ? 'orange': schedule.status == 1 ?'green':'red'}}">
+                                <md-icon style="color:{{schedule.status_color}}">
                                     <md-tooltip>
-                                        <span translate>{{schedule.status == 0 ? 'No schedule available':
-                                            schedule.status == 1 ?'Schedule available':'Time exceeded'}}</span>
+                                        <span>{{schedule.status_label}}</span>
                                     </md-tooltip>
                                     fiber_manual_record
                                 </md-icon>

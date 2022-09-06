@@ -7,8 +7,7 @@
             </md-button>
         </a>
 
-        <md-button class="md-raised md-accent" aria-label="Add" ng-if='reject.enabled'
-            ng-click="reject()">
+        <md-button class="md-raised md-accent" aria-label="Add" ng-if='rejectBtn.enabled' ng-click="reject()">
             <md-icon class="material-icons" role="img" aria-hidden="true">cancel</md-icon>
             <md-tooltip md-direction="top">
                 <span translate>Cancel</span>
@@ -17,7 +16,7 @@
         </md-button>
     </div>
 
-    <form name="scheduleForm" ng-submit="save()">
+    <form name="scheduleForm" ng-submit="save(true)">
         <md-card ng-if="!loading">
             <md-card-title translate>Equipment information</md-card-title>
             <md-card-content>
@@ -72,7 +71,7 @@
                         </md-select>
                     </md-input-container>
                 </div>
-                <div layout="row" layout-xs="column"  ng-if='is_periodical'>
+                <div layout="row" layout-xs="column" ng-if='is_periodical'>
                     <md-input-container class="md-block" flex-gt-sm>
                         <label translate>Start date</label>
                         <input type="date" required ng-model="schedule.startdate" />

@@ -10,7 +10,7 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     //Breadcrumbs properties
     $scope.schedule = {};
 
-    $scope.reject = {
+    $scope.rejectBtn = {
         enabled: false,
     };
 
@@ -24,15 +24,15 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     if ($stateParams.data && $stateParams.data.uuid) {
         $scope.schedule = $stateParams.data;
         $scope.selectedItem = $stateParams.data.equipment.name;
+        $scope.rejectBtn.enabled = ($stateParams.data.status == 1) ? true : false;
         if ($stateParams.data.frequency === "N/A") {
-            $scope.reject.enabled = false;
             $scope.is_periodical = false;
             $scope.schedule_type = false;
+            $scope.schedule.startdate = new Date(moment(new Date($stateParams.data.startdate)).format('MM/DD/YYYY, h:mm A'));
             $scope.schedule.enddate = new Date(moment(new Date($stateParams.data.enddate)).format('MM/DD/YYYY, h:mm A'));
         } else {
             $scope.is_periodical = true;
             $scope.schedule_type = true;
-            $scope.reject.enabled = true;
             $scope.schedule.frequency = _.find($scope.schedule_types, function (p) { return p.value === $stateParams.data.frequency; });
             $scope.schedule.startdate = new Date(moment(new Date($stateParams.data.startdate)).format('MM/DD/YYYY, h:mm A'));
             $scope.schedule.enddate = new Date(moment(new Date($stateParams.data.enddate)).format('MM/DD/YYYY, h:mm A'));
@@ -62,7 +62,7 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         });
     }
 
-    $scope.save = function () {
+    $scope.save = function (mode) {
         $scope.loading = true;
         $scope.schedule.equipment = $scope.schedule.equipment.id;
         $scope.schedule.priority = 0;
@@ -78,11 +78,15 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
                 period = $scope.schedule.repeatInterval;
             }
             $scope.schedule.frequency = $scope.schedule.frequency.value;
-            $scope.schedule.status = 1;
+            if (mode) {
+                $scope.schedule.status = 1;
+            }
         } else {
             $scope.schedule.frequency = "N/A";
             $scope.schedule.startdate = new Date();
-            $scope.schedule.status = 0;
+            if (mode) {
+                $scope.schedule.status = 0;
+            }
         }
         if ($scope.schedule) {
             if ($scope.schedule.uuid) {    //Edit
@@ -112,7 +116,7 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         }
     }
 
-    $scope.reject = function(){
+    $scope.reject = function () {
         $scope.schedule.status = 0;
         openmrsRest.update($scope.resource + "/maintenanceEvent", $scope.schedule).then(function (response) {
             $scope.schedule = response;
@@ -134,32 +138,14 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
     $scope.reject = function () {
         $mdDialog.show($mdDialog.confirm()
             .title('Confirmation')
-            .textContent($translate.instant('Do you really want to reject this request  of maintenance?'))
+            .textContent($translate.instant('Do you really want to terminate this maintenance schedule?'))
             .ok($translate.instant('Yes'))
             .cancel($translate.instant('Cancel'))).then(function () {
-                $scope.loading = true;
-                $scope.request.approval = moment(new Date()).format("YYYY-MM-D hh:mm:ss");
-                $scope.request.status = "REJECT";
-                // $scope.save();
+                $scope.schedule.status = 0;
+                $scope.save(false);
             }, function () {
 
             });
     }
-
-    $scope.approve = function () {
-        $mdDialog.show($mdDialog.confirm()
-            .title('Confirmation')
-            .textContent($translate.instant('Do you really want to approve this request of maintenance ?'))
-            .ok($translate.instant('Yes'))
-            .cancel($translate.instant('Cancel'))).then(function () {
-                $scope.loading = true;
-                $scope.request.approval = moment(new Date()).format("YYYY-MM-D hh:mm:ss");
-                $scope.request.status = "VALID";
-                // $scope.save();
-            }, function () {
-
-            });
-    }
-
 
 }]);
