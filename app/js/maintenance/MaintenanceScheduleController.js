@@ -1,4 +1,5 @@
 angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table']).controller('MaintenanceScheduleController', ['$scope', '$state', '$stateParams', '$rootScope', '$mdToast', 'openmrsRest', '$mdDialog', '$q', '$translate', function ($scope, $state, $stateParams, $rootScope, $mdToast, openmrsRest, $mdDialog, $q, $translate) {
+    var _ = require("underscore");
     $scope.rootScope = $rootScope;
     $scope.appTitle = $translate.instant("Management of Equipements");
     $scope.resource = "savicsgmao";
@@ -63,7 +64,22 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
         $scope.query.startIndex = $scope.query.limit * ($scope.query.page - 1);
         openmrsRest.getFull($scope.resource + "/maintenanceEvent?limit=" + $scope.query.limit + "&startIndex=" + $scope.query.startIndex).then(function (response) {
             $scope.loading = false;
-            $scope.schedules = response.results;
+            $scope.schedules = _.map(response.results, (d) => {
+                if (d.status == 0) {
+                    d.status_color = "orange";
+                    d.status_label = $translate.instant("No schedule available");
+                }
+                if (d.status == 1) {
+                    d.status_color = "green";
+                    d.status_label = $translate.instant("Schedule available");
+                }
+                if (new Date() > new Date(d.enddate)) {
+                    d.status = 2;
+                    d.status_color = "red";
+                    d.status_label = $translate.instant("Time exceeded");
+                }
+                return d;
+            });
             $rootScope.kernel.loading = 100;
             deferred.resolve(response.results);
             // openmrsRest.get($scope.resource + "/maintenanceEvent/count").then(function (response) {
