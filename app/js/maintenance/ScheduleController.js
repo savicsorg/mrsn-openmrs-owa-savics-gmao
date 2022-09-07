@@ -67,17 +67,18 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.schedule.equipment = $scope.schedule.equipment.id;
         $scope.schedule.priority = 0;
         if ($scope.is_periodical) {
-            var period = _.find(schedule_typesjson, function (p) { return p.id === $scope.schedule.frequency.id; });
-            if (period.id == "4") {
-                period = $scope.schedule.repeatInterval * 365;
-            } else if (period.id == "3") {
-                period = $scope.schedule.repeatInterval * 30;
-            } else if (period.id == "2") {
-                period = $scope.schedule.repeatInterval * 7;
-            } else {
-                period = $scope.schedule.repeatInterval;
-            }
-            $scope.schedule.frequency = $scope.schedule.frequency.value;
+            //TODO: NO NEED THIS ANYMORE @PETER
+//            var period = _.find(schedule_typesjson, function (p) { return p.id === $scope.schedule.frequency.id; });
+//            if (period.id == "4") {
+//                period = $scope.schedule.repeatInterval * 365;
+//            } else if (period.id == "3") {
+//                period = $scope.schedule.repeatInterval * 30;
+//            } else if (period.id == "2") {
+//                period = $scope.schedule.repeatInterval * 7;
+//            } else {
+//                period = $scope.schedule.repeatInterval;
+//            }
+            $scope.schedule.frequency = $scope.schedule.frequency.id;
             if (mode) {
                 $scope.schedule.status = 1;
             }
