@@ -14,6 +14,9 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
         rowsPerPage: $translate.instant("Rows per page") + $translate.instant(":"),
         of: $translate.instant("of")
     }
+    var dictionary = require("../utils/dictionary");
+    var schedule_typesjson = require('../../json/maintenance/scheduletype.json');
+    $scope.schedule_types = dictionary.getJsonList(schedule_typesjson, $rootScope.selectedLanguage);
 
     $scope.options = { autoSelect: true, boundaryLinks: false, largeEditDialog: true, pageSelector: true, rowSelection: true };
     $scope.query = { limit: 50, page: 1, startIndex: 0, count: 0, order: '-id' };
@@ -55,6 +58,11 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
             schedule_id: data.id,
             data: data,
         });
+    }
+
+    $scope.getFrequancy = function (id) {
+        var frequency = _.find($scope.schedule_types, function (p) { return p.id === id; });
+        return frequency.value; 
     }
 
     function getAllSchedules() {
@@ -106,7 +114,7 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
             toastr.error($translate.instant('Please select a range of exportation'), 'Error');
             return;
         }
-        let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/maintenanceEvent/export?startdate=" + formatDate(startdate, 'YYYY-MM-DD') + "&enddate=" + formatDate(enddate, 'YYYY-MM-DD');
+        let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/maintenances/planning?startdate=" + formatDate(startdate, 'YYYY-MM-DD') + "&enddate=" + formatDate(enddate, 'YYYY-MM-DD');
         localStorage.setItem("export_link", link);
         window.location = link;
     }
