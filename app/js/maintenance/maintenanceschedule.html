@@ -64,7 +64,7 @@
                         <tr md-row>
                             <th md-column><span translate>Equipment name</span></th>
                             <th md-column><span translate>Task name</span></th>
-                            <th md-column><span translate>Frequancy</span></th>
+                            <th md-column><span translate>Frequency</span></th>
                             <th md-column><span translate>Starting date</span></th>
                             <th md-column><span translate>Maintenance date</span></th>
                             <th md-column><span translate>Status</span></th>
@@ -75,7 +75,7 @@
                         <tr md-row data-ng-repeat="schedule in schedules | orderBy:query.order | filter:searchAll ">
                             <td md-cell>{{schedule.equipment.name}}</td>
                             <td md-cell>{{schedule.name}}</td>
-                            <td md-cell>Après {{schedule.repeatInterval}} {{getFrequancy(schedule.frequency)}} (s)</td>
+                            <td md-cell>Après {{schedule.repeatInterval}} {{getFrequancy(schedule.frequency)}}(s)</td>
                             <td md-cell>{{schedule.startdate| date:'dd/MM/yyyy' : 'UTC'}}</td>
                             <td md-cell>{{schedule.enddate| date:'dd/MM/yyyy' : 'UTC'}}</td>
                             <td style="text-align: center">
