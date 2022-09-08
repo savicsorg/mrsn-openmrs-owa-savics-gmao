@@ -9,6 +9,12 @@
             <label translate>End date</label>
             <input type="date" ng-model="export_enddate" />
         </md-input-container>
+        <div style="margin-top:-32px">
+            <md-button class="md-raised md-primary" aria-label="filter_alt"
+                ng-click="filterByDate(export_startdate,export_enddate)">
+                <md-icon>search</md-icon><span translate>Filter</span>
+            </md-button>
+        </div>
     </div>
     <div class="md-toolbar-tools">
         <div style="margin-left: auto">
@@ -56,8 +62,9 @@
                 <table md-table md-progress="promise">
                     <thead md-head md-order="query.order">
                         <tr md-row>
-                            <th md-column><span translate>Equipment</span></th>
-                            <th md-column><span translate>Periodical type</span></th>
+                            <th md-column><span translate>Equipment name</span></th>
+                            <th md-column><span translate>Task name</span></th>
+                            <!-- <th md-column><span translate>Periodical type</span></th> -->
                             <th md-column><span translate>Starting date</span></th>
                             <th md-column><span translate>Next maintenance date</span></th>
                             <th md-column><span translate>Status</span></th>
@@ -66,8 +73,9 @@
                     </thead>
                     <tbody md-body>
                         <tr md-row data-ng-repeat="schedule in schedules | orderBy:query.order | filter:searchAll ">
+                            <td md-cell>{{schedule.equipment.name}}</td>
                             <td md-cell>{{schedule.name}}</td>
-                            <td md-cell>{{schedule.frequency}}</td>
+                            <!-- <td md-cell>{{schedule.frequency}}</td> -->
                             <td md-cell>{{schedule.startdate| date:'dd/MM/yyyy' : 'UTC'}}</td>
                             <td md-cell>{{schedule.enddate| date:'dd/MM/yyyy' : 'UTC'}}</td>
                             <td style="text-align: center">

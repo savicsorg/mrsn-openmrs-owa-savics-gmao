@@ -41,7 +41,7 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
         $scope.loading = true;
         openmrsRest.remove($scope.resource + "/maintenanceEvent", schedule, "Generic Reason").then(function (response) {
             $scope.loading = false;
-            getAllSchedules();
+            getAllSchedules(null, null);
             toastr.success($translate.instant('The item has been successfully deleted.'), 'Success');
         }, function (e) {
             console.error(e);
@@ -57,12 +57,20 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
         });
     }
 
-    function getAllSchedules() {
+    function getAllSchedules(startdate, enddate) {
         $scope.loading = true;
         var deferred = $q.defer();
         $scope.promise = deferred.promise;
         $scope.query.startIndex = $scope.query.limit * ($scope.query.page - 1);
-        openmrsRest.getFull($scope.resource + "/maintenanceEvent?limit=" + $scope.query.limit + "&startIndex=" + $scope.query.startIndex).then(function (response) {
+        let url_custom = null;
+        if (startdate != null && enddate != null) {
+            console.log("oooooooooooooo", [startdate, enddate]);
+            url_custom = $scope.resource + "/maintenanceEvent?limit=" + $scope.query.limit + "&startIndex=" + $scope.query.startIndex + "&startdate=" + formatDate(startdate, 'YYYY-MM-DD') + "&enddate=" + formatDate(enddate, 'YYYY-MM-DD');
+        } else {
+            console.log("pppppppppppppppppp", [startdate, enddate]);
+            url_custom = $scope.resource + "/maintenanceEvent?limit=" + $scope.query.limit + "&startIndex=" + $scope.query.startIndex;
+        }
+        openmrsRest.getFull(url_custom).then(function (response) {
             $scope.loading = false;
             $scope.schedules = _.map(response.results, (d) => {
                 if (d.status == 0) {
@@ -98,7 +106,7 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
         });
     }
 
-    getAllSchedules();
+    getAllSchedules(null, null);
 
 
     $scope.donwload = function (startdate, enddate) {
@@ -109,6 +117,10 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
         let link = window.location.protocol + "//" + window.location.host + "/openmrs/ws/rest/v1/savicsgmao/maintenanceEvent/export?startdate=" + formatDate(startdate, 'YYYY-MM-DD') + "&enddate=" + formatDate(enddate, 'YYYY-MM-DD');
         localStorage.setItem("export_link", link);
         window.location = link;
+    }
+
+    $scope.filterByDate = function (export_startdate, export_enddat) {
+        getAllSchedules(export_startdate, export_enddat);
     }
 
     function formatDate(date, format) {
