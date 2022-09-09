@@ -1,13 +1,18 @@
 [
     {
+        "id": "0",
+        "en": "N/A",
+        "fr": "N/A"
+    },
+    {
         "id": "1",
         "en": "days",
-        "fr": "Jours"
+        "fr": "Jour"
     },
     {
         "id": "2",
-        "en": "Weeks",
-        "fr": "Semaines"
+        "en": "Week",
+        "fr": "Semaine"
     },
     {
         "id": "3",
@@ -17,6 +22,6 @@
     {
         "id": "4",
         "en": "Years",
-        "fr": "Années"
+        "fr": "Année"
     }
 ]
