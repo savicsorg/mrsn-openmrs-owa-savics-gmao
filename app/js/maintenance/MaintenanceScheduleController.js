@@ -81,16 +81,16 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
             $scope.schedules = _.map(response.results, (d) => {
                 if (d.status == 0) {
                     d.status_color = "orange";
-                    d.status_label = $translate.instant("No schedule available");
+                    d.status_label = $translate.instant("Canceled");
                 }
                 if (d.status == 1) {
                     d.status_color = "green";
-                    d.status_label = $translate.instant("Schedule available");
+                    d.status_label = $translate.instant("Active");
                 }
                 if (new Date() > new Date(d.enddate)) {
                     d.status = 2;
-                    d.status_color = "red";
-                    d.status_label = $translate.instant("Time exceeded");
+                    d.status_color = "gray";
+                    d.status_label = $translate.instant("Exceeded");
                 }
                 return d;
             });

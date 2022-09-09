@@ -232,16 +232,16 @@ msgstr ""
 msgid "Please select a range of exportation"
 msgstr ""
 
-#: app/js/maintenance/MaintenanceScheduleController.js:84
-msgid "No schedule available"
+#: app/js/maintenance/MaintenanceScheduleController.js:84 app/js/maintenance/maintenanceschedule.html:52
+msgid "Canceled"
 msgstr ""
 
 #: app/js/maintenance/MaintenanceScheduleController.js:88 app/js/maintenance/maintenanceschedule.html:54
-msgid "Schedule available"
+msgid "Active"
 msgstr ""
 
-#: app/js/maintenance/MaintenanceScheduleController.js:93 app/js/maintenance/maintenanceschedule.html:56
-msgid "Time exceeded"
+#: app/js/maintenance/MaintenanceScheduleController.js:93
+msgid "Exceded"
 msgstr ""
 
 #: app/js/maintenance/MaintenanceScheduleController.js:111
@@ -728,8 +728,8 @@ msgstr ""
 msgid "Export annual planning"
 msgstr ""
 
-#: app/js/maintenance/maintenanceschedule.html:52
-msgid "No schedule"
+#: app/js/maintenance/maintenanceschedule.html:56
+msgid "Exceeded"
 msgstr ""
 
 #: app/js/maintenance/maintenanceschedule.html:67

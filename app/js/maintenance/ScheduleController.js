@@ -33,7 +33,7 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         } else {
             $scope.is_periodical = true;
             $scope.schedule_type = true;
-            $scope.schedule.frequency = _.find($scope.schedule_types, function (p) { return p.value === $stateParams.data.frequency; });
+            $scope.schedule.frequency = _.find($scope.schedule_types, function (p) { return p.id === $stateParams.data.frequency; });
             $scope.schedule.startdate = new Date(moment(new Date($stateParams.data.startdate)).format('MM/DD/YYYY, h:mm A'));
             $scope.schedule.enddate = new Date(moment(new Date($stateParams.data.enddate)).format('MM/DD/YYYY, h:mm A'));
         }

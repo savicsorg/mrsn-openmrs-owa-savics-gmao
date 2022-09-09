@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: app/js/appFilters.js:87 app/js/appFilters.js:147
@@ -457,30 +457,26 @@ msgstr "Gestion de la maintenance"
 
 #: app/js/maintenance/MaintenanceScheduleController.js:120
 #: app/js/maintenance/MaintenancesController.js:95
-#, fuzzy
-#| msgid "Please choose a tracking option."
 msgid "Please select a range of exportation"
-msgstr "Veuillez choisir une option de suivi."
+msgstr "Veuillez sélectionner une gamme d’exportations"
 
 #: app/js/maintenance/MaintenanceScheduleController.js:84
-msgid "No schedule available"
-msgstr ""
+#: app/js/maintenance/maintenanceschedule.html:52
+msgid "Canceled"
+msgstr "Annulé"
 
 #: app/js/maintenance/MaintenanceScheduleController.js:88
 #: app/js/maintenance/maintenanceschedule.html:54
-msgid "Schedule available"
-msgstr ""
+msgid "Active"
+msgstr "Actif"
 
 #: app/js/maintenance/MaintenanceScheduleController.js:93
-#: app/js/maintenance/maintenanceschedule.html:56
-msgid "Time exceeded"
+msgid "Exceded"
 msgstr ""
 
 #: app/js/maintenance/MaintenanceScheduleController.js:111
-#, fuzzy
-#| msgid "An unexpected error has occured with getAllRequests()."
 msgid "An unexpected error has occured with getAllSchedules()."
-msgstr "Une erreur inattendue s’est produite avec getAllRequests()."
+msgstr "Une erreur inattendue s’est produite avec getAllSchedules()."
 
 #: app/js/maintenance/MaintenancesController.js:3
 #: app/js/maintenance/maintenances.html:3
@@ -547,16 +543,12 @@ msgid "History of Maintenance Requests"
 msgstr "Historique des demandes de maintenance"
 
 #: app/js/maintenance/ScheduleController.js:142
-#, fuzzy
-#| msgid "Do you really want to approve this request of maintenance ?"
 msgid "Do you really want to terminate this maintenance schedule?"
-msgstr "Voulez-vous vraiment approuver cette demande de maintenance ?"
+msgstr "Voulez-vous vraiment mettre fin à ce calendrier de maintenance?"
 
 #: app/js/maintenance/ScheduleController.js:5
-#, fuzzy
-#| msgid "Maintenance"
 msgid "Maintenance Schedule"
-msgstr "Maintenance"
+msgstr "Calendrier de maintenance"
 
 #: app/js/movement/MovementController.js:307
 msgid "Toast dismissed."
@@ -652,10 +644,8 @@ msgid "Maintenance management"
 msgstr "Gestion de la maintenance"
 
 #: app/js/dashboard/main.html:46
-#, fuzzy
-#| msgid "Maintenance"
 msgid "Maintenance schedule"
-msgstr "Maintenance"
+msgstr "Calendrier de maintenance"
 
 #: app/js/dashboard/main.html:53
 msgid "Movements management"
@@ -965,10 +955,8 @@ msgid "End date"
 msgstr "Date de fin"
 
 #: app/js/maintenance/maintenance.html:107
-#, fuzzy
-#| msgid "End date"
 msgid "Due date"
-msgstr "Date de fin"
+msgstr "Date d'échéance"
 
 #: app/js/maintenance/maintenance.html:113
 msgid "Status *"
@@ -976,7 +964,7 @@ msgstr "Statut *"
 
 #: app/js/maintenance/maintenance.html:115
 msgid "To do"
-msgstr ""
+msgstr "A faire"
 
 #: app/js/maintenance/maintenance.html:117
 #: app/js/maintenance/maintenances.html:69
@@ -1010,25 +998,21 @@ msgid "Add a new maintenance"
 msgstr "Ajouter une nouvelle maintenance"
 
 #: app/js/maintenance/maintenances.html:30
-#, fuzzy
-#| msgid "Export"
 msgid "Export all"
-msgstr "Exporter"
+msgstr "Tout exporter"
 
 #: app/js/maintenance/maintenances.html:36
 msgid "HIGH FAILURE RATE"
-msgstr ""
+msgstr "TAUX DE DÉFAILLANCE ÉLEVÉ"
 
 #: app/js/maintenance/maintenances.html:53 app/js/maintenance/requests.html:41
 #: app/js/movement/movements.html:40
 msgid "Equipment"
-msgstr "Equipement"
+msgstr "Équipement"
 
 #: app/js/maintenance/maintenances.html:55
-#, fuzzy
-#| msgid "Task name"
 msgid "Task"
-msgstr "Nom de la tâche"
+msgstr "Tâche"
 
 #: app/js/maintenance/maintenances.html:56
 #: app/js/maintenance/maintenanceschedule.html:70
@@ -1038,51 +1022,43 @@ msgstr "Statut"
 
 #: app/js/maintenance/maintenances.html:68
 msgid "To do<br/>"
-msgstr ""
+msgstr "À faire<br/>"
 
 #: app/js/maintenance/maintenances.html:82 app/js/maintenance/requests.html:74
 msgid "Request detail"
 msgstr "Détails de la demande"
 
 #: app/js/maintenance/maintenanceschedule.html:3
-#, fuzzy
-#| msgid "Management of Equipements"
 msgid "Management of schedule"
-msgstr "Gestion des équipements"
+msgstr "Gestion de l’horaire"
 
 #: app/js/maintenance/maintenanceschedule.html:15
 msgid "Filter"
-msgstr ""
+msgstr "Filtrer"
 
 #: app/js/maintenance/maintenanceschedule.html:31
-#, fuzzy
-#| msgid "New maintenance"
 msgid "Schedule maintenance"
-msgstr "Nouvelle maintenance"
+msgstr "Planifier la maintenance"
 
 #: app/js/maintenance/maintenanceschedule.html:38
 msgid "Export annual planning"
 msgstr ""
 
-#: app/js/maintenance/maintenanceschedule.html:52
-msgid "No schedule"
-msgstr ""
+#: app/js/maintenance/maintenanceschedule.html:56
+msgid "Exceeded"
+msgstr "Expiré"
 
 #: app/js/maintenance/maintenanceschedule.html:67
 msgid "Frequency"
-msgstr ""
+msgstr "Fréquence"
 
 #: app/js/maintenance/maintenanceschedule.html:68
-#, fuzzy
-#| msgid "Start date"
 msgid "Starting date"
-msgstr "Date de début"
+msgstr "Date de départ"
 
 #: app/js/maintenance/maintenanceschedule.html:69
-#, fuzzy
-#| msgid "Maintenance"
 msgid "Maintenance date"
-msgstr "Maintenance"
+msgstr "Date de maintenance"
 
 #: app/js/maintenance/request.html:3
 msgid "Request for maintenance"
@@ -1163,21 +1139,19 @@ msgstr "Approuver ou annuler"
 
 #: app/js/maintenance/schedule.html:58
 msgid "is it a Periodical schedule?"
-msgstr ""
+msgstr "s’agit-il d’une maintenance périodique?"
 
 #: app/js/maintenance/schedule.html:62
 msgid "Repeat after"
-msgstr ""
+msgstr "Répéter après"
 
 #: app/js/maintenance/schedule.html:66
-#, fuzzy
-#| msgid "Type of maintenance"
 msgid "Type of repeat Interval"
-msgstr "Type d’entretien"
+msgstr "Type d’intervalle de répétition"
 
 #: app/js/maintenance/schedule.html:86
 msgid "Schedule date"
-msgstr ""
+msgstr "Date de l’horaire"
 
 #: app/js/movement/movement.html:62
 msgid "Search Equipment"
