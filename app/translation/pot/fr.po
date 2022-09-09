@@ -662,7 +662,7 @@ msgid "Movements management"
 msgstr "Gestion des mouvements"
 
 #: app/js/dashboard/main.html:14
-msgid "Vous avez :"
+msgid "You have :"
 msgstr ""
 
 #: app/js/equipment/equipment.html:9 app/js/movement/movement.html:34
