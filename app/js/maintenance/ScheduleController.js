@@ -25,7 +25,7 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.schedule = $stateParams.data;
         $scope.selectedItem = $stateParams.data.equipment.name;
         $scope.rejectBtn.enabled = ($stateParams.data.status == 1) ? true : false;
-        if ($stateParams.data.frequency === "N/A") {
+        if ($stateParams.data.frequency === "0") {
             $scope.is_periodical = false;
             $scope.schedule_type = false;
             $scope.schedule.startdate = new Date(moment(new Date($stateParams.data.startdate)).format('MM/DD/YYYY, h:mm A'));
@@ -33,7 +33,7 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         } else {
             $scope.is_periodical = true;
             $scope.schedule_type = true;
-            $scope.schedule.frequency = _.find($scope.schedule_types, function (p) { return p.value === $stateParams.data.frequency; });
+            $scope.schedule.frequency = _.find($scope.schedule_types, function (p) { return p.id === $stateParams.data.frequency; });
             $scope.schedule.startdate = new Date(moment(new Date($stateParams.data.startdate)).format('MM/DD/YYYY, h:mm A'));
             $scope.schedule.enddate = new Date(moment(new Date($stateParams.data.enddate)).format('MM/DD/YYYY, h:mm A'));
         }
@@ -72,7 +72,7 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
                 $scope.schedule.status = 1;
             }
         } else {
-            $scope.schedule.frequency = "N/A";
+            $scope.schedule.frequency = "0";
             $scope.schedule.startdate = new Date();
             $scope.schedule.status = 0;
         }
