@@ -67,17 +67,6 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         $scope.schedule.equipment = $scope.schedule.equipment.id;
         $scope.schedule.priority = 0;
         if ($scope.is_periodical) {
-            //TODO: NO NEED THIS ANYMORE @PETER
-//            var period = _.find(schedule_typesjson, function (p) { return p.id === $scope.schedule.frequency.id; });
-//            if (period.id == "4") {
-//                period = $scope.schedule.repeatInterval * 365;
-//            } else if (period.id == "3") {
-//                period = $scope.schedule.repeatInterval * 30;
-//            } else if (period.id == "2") {
-//                period = $scope.schedule.repeatInterval * 7;
-//            } else {
-//                period = $scope.schedule.repeatInterval;
-//            }
             $scope.schedule.frequency = $scope.schedule.frequency.id;
             if (mode) {
                 $scope.schedule.status = 1;
@@ -85,9 +74,7 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         } else {
             $scope.schedule.frequency = "N/A";
             $scope.schedule.startdate = new Date();
-            if (mode) {
-                $scope.schedule.status = 0;
-            }
+            $scope.schedule.status = 0;
         }
         if ($scope.schedule) {
             if ($scope.schedule.uuid) {    //Edit
@@ -117,18 +104,6 @@ angular.module('ScheduleController', ['ngMaterial', 'ngAnimate', 'toastr', 'md.d
         }
     }
 
-    $scope.reject = function () {
-        $scope.schedule.status = 0;
-        openmrsRest.update($scope.resource + "/maintenanceEvent", $scope.schedule).then(function (response) {
-            $scope.schedule = response;
-            toastr.success($translate.instant('Data saved successfully.'), 'Success');
-            $state.go('home.maintenanceSchedule');
-            $scope.loading = false;
-        }, function (e) {
-            $scope.loading = false;
-            toastr.error($translate.instant('An unexpected error has occured.'), $translate.instant('Error'));
-        });
-    }
 
     $scope.getData();
 
