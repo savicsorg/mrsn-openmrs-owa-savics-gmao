@@ -65,14 +65,14 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
         return frequency.value;
     }
 
-    function getAllSchedules(startdate, enddate) {
+    function getAllSchedules(export_year) {
         $scope.loading = true;
         var deferred = $q.defer();
         $scope.promise = deferred.promise;
         $scope.query.startIndex = $scope.query.limit * ($scope.query.page - 1);
         let url_custom = null;
-        if (startdate != null && enddate != null) {
-            url_custom = $scope.resource + "/maintenanceEvent?limit=" + $scope.query.limit + "&startIndex=" + $scope.query.startIndex + "&startdate=" + formatDate(startdate, 'YYYY-MM-DD') + "&enddate=" + formatDate(enddate, 'YYYY-MM-DD');
+        if (export_year != null ) {
+            url_custom = $scope.resource + "/maintenanceEvent?limit=" + $scope.query.limit + "&startIndex=" + $scope.query.startIndex + "&year=" + export_year;
         } else {
             url_custom = $scope.resource + "/maintenanceEvent?limit=" + $scope.query.limit + "&startIndex=" + $scope.query.startIndex;
         }
@@ -125,8 +125,8 @@ angular.module('MaintenanceScheduleController', ['ngMaterial', 'md.data.table'])
         window.location = link;
     }
 
-    $scope.filterByDate = function (export_startdate, export_enddat) {
-        getAllSchedules(export_startdate, export_enddat);
+    $scope.filterByDate = function (export_year) {
+        getAllSchedules(export_year);
     }
 
     function formatDate(date, format) {
