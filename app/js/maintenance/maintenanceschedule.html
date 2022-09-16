@@ -1,17 +1,17 @@
 <div id="content" class="container-fluid">
     <div class="md-toolbar-tools" style="margin-top: 16px;">
         <h1 md-truncate="" flex="" translate>Management of schedule</h1>
-        <md-input-container class="md-block">
-            <label translate>Start date</label>
-            <input type="date" ng-model="export_startdate" />
-        </md-input-container>
-        <md-input-container>
-            <label translate>End date</label>
-            <input type="date" ng-model="export_enddate" />
+        <md-input-container class="md-block" flex="20" style="margin-top:-32px">
+            <label translate>Year</label>
+            <md-select ng-model="export_year" >
+                <md-option ng-repeat="s in ['2022', '2023', '2024']" ng-value="s">
+                    {{s}}
+                </md-option>
+            </md-select>
         </md-input-container>
         <div style="margin-top:-32px">
             <md-button class="md-raised md-primary" aria-label="filter_alt"
-                ng-click="filterByDate(export_startdate,export_enddate)">
+                       ng-click="filterByDate(export_year)">
                 <md-icon>search</md-icon><span translate>Filter</span>
             </md-button>
         </div>
@@ -34,8 +34,8 @@
             </a>
             <a href="">
                 <md-button class="md-raised md-primary" aria-label="Add"
-                    ng-click="donwload(export_startdate,export_enddate)">
-                    <md-icon>cloud_download</md-icon> <span style="font-size: 12px;" translate>Export annual planning</span>
+                           ng-click="donwload(export_startdate, export_enddate)">
+                    <md-icon>cloud_download</md-icon> <span translate>Export annual planning</span>
                 </md-button>
             </a>
         </div>
@@ -43,17 +43,29 @@
     <md-toolbar layout="row" class="md-table-toolbar md-default">
         <div class="md-toolbar-tools" flex layout="row">
             <input flex type="search" name="search" ng-model="searchAll.name"
-                placeholder="{{ 'Search by Name...' | translate }}">
+                   placeholder="{{ 'Search by Name...' | translate }}">
         </div>
     </md-toolbar>
-    <md-toolbar layout="row" class="md-table-toolbar md-default">
-        <div class="md-toolbar-tools" flex layout="row">
-            <md-icon style="color:orange;margin-right:0px;margin-left:0px">fiber_manual_record</md-icon>:
-            <small><i translate>Canceled</i></small>
-            <md-icon style="color:green;margin-right:0px">fiber_manual_record</md-icon>:
-            <small> <i translate>Active</i></small>
-            <md-icon style="color:red;margin-right:0px">fiber_manual_record</md-icon>:
-            <small> <i translate>Exceeded</i></small>
+    <md-toolbar layout="column" class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools" flex ></div>
+
+        <div class="md-toolbar-tools" flex layout="row" style="text-align: right">
+            <span style="text-align: right">
+                <md-icon style="color:orange;">fiber_manual_record
+                </md-icon>
+                :Canceled
+            </span>
+            <span style="text-align: right">
+                <md-icon style="color:green;">fiber_manual_record
+                </md-icon>
+                :Active
+            </span style="text-align: right">
+            <span>
+                <md-icon style="color:gray;">fiber_manual_record
+                </md-icon>
+                :Exceeded
+            </span>
+
         </div>
     </md-toolbar>
     <md-card>
@@ -72,41 +84,41 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row data-ng-repeat="schedule in schedules | orderBy:query.order | filter:searchAll ">
+                        <tr md-row data-ng-repeat="schedule in schedules| orderBy:query.order | filter:searchAll ">
                             <td md-cell>{{schedule.equipment.name}}</td>
                             <td md-cell>{{schedule.name}}</td>
                             <td md-cell style="text-align: center"><span ng-if="schedule.frequency !== '0'">Après {{schedule.repeatInterval}} </span> {{getFrequancy(schedule.frequency)}} <span ng-if="schedule.frequency !== '0'">(s)</span></td>
                             <td md-cell>{{schedule.startdate| date:'dd/MM/yyyy' : 'UTC'}}</td>
                             <td md-cell>{{schedule.enddate| date:'dd/MM/yyyy' : 'UTC'}}</td>
                             <td style="text-align: center">
-                                <md-icon style="color:{{schedule.status_color}}">
-                                    <md-tooltip>
-                                        <span>{{schedule.status_label}}</span>
-                                    </md-tooltip>
-                                    fiber_manual_record
-                                </md-icon>
-                            </td>
-                            <td>
-                                <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit"
-                                    ng-click="openEdit(schedule)">
-                                    <!--ng-if="account.role == 1 || account.role == 2"-->
-                                    <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
-                                    <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
-                                </button>
-                                <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete"
-                                    ng-click="delete($event,schedule)">
-                                    <!--ng-if="account.role == 1 || account.role == 2"-->
-                                    <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
-                                    <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
-                                </button>
-                            </td>
-                        </tr>
+                    <md-icon style="color:{{schedule.status_color}}">
+                        <md-tooltip>
+                            <span>{{schedule.status_label}}</span>
+                        </md-tooltip>
+                        fiber_manual_record
+                    </md-icon>
+                    </td>
+                    <td>
+                        <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Edit"
+                                ng-click="openEdit(schedule)">
+                            <!--ng-if="account.role == 1 || account.role == 2"-->
+                            <md-icon class="material-icons" role="img" aria-hidden="true">edit</md-icon>
+                            <md-tooltip md-direction="top"><span translate>Edit</span></md-tooltip>
+                        </button>
+                        <button class="md-fab md-mini md-primary md-button" type="button" aria-label="Delete"
+                                ng-click="delete($event, schedule)">
+                            <!--ng-if="account.role == 1 || account.role == 2"-->
+                            <md-icon class="material-icons" role="img" aria-hidden="true">delete</md-icon>
+                            <md-tooltip md-direction="top"><span translate>Delete</span></md-tooltip>
+                        </button>
+                    </td>
+                    </tr>
                     </tbody>
                 </table>
             </md-table-container>
             <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.count}}"
-                md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
-                md-limit-options="[25, 50, 100]" md-on-paginate="logPagination" md-label="$parent.label">
+                                 md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks"
+                                 md-limit-options="[25, 50, 100]" md-on-paginate="logPagination" md-label="$parent.label">
             </md-table-pagination>
         </md-card-content>
     </md-card>
